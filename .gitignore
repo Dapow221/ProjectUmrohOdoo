@@ -1,0 +1,7 @@
+odoo.conf
+etc
+requirements.txt
+docker-compose.yml
+entrypoint.sh
+README.md
+run.sh
