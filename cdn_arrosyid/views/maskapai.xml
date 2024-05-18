@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- cdn.maskapai tree view -->
+        <record id="cdn_maskapai_view_tree" model="ir.ui.view">
+            <field name="name">cdn.maskapai.view.tree</field>
+            <field name="model">cdn.maskapai</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="partner_id"/>
+                    <field name="keterangan"/>
+                    <!-- <field name="sesi_id"/> -->
+                    <field name="harga"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- cdn.maskapai form view -->
+        <record id="cdn_maskapai_view_form" model="ir.ui.view">
+            <field name="name">cdn.maskapai.view.form</field>
+            <field name="model">cdn.maskapai</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <!-- <field name="name"/> -->
+                            <field name="partner_id"/>
+                            <field name="keterangan"/>
+                            <field name="harga"/>
+                        </group>
+                        <notebook>
+                            <page name="sesi_umroh" string="Sesi Umroh">
+                                <!-- <field name="sesi_id"/> -->
+                                    <!-- <tree>
+
+                                    </tree> -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- cdn.maskapai action window -->
+        <record id="cdn_maskapai_action" model="ir.actions.act_window">
+            <field name="name">Maskapai</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.maskapai</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="maskapai_menu_act" name="Maskapai" parent="umroh_menu_categ" action="cdn_maskapai_action" sequence="20"/>
+    
+    </data>
+    
+
+</odoo>
