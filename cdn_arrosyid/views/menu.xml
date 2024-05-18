@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <menuitem id="travel_umroh_menu_root" name="Travel Umroh" sequence="1"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="travel_umroh_menu_categ" name="Paket Umroh" parent="travel_umroh_menu_root" sequence="30"/>
+        <menuitem id="umroh_menu_categ" name="Umroh" parent="travel_umroh_menu_root" sequence="50"/>
+    </data>
+    
+
+</odoo>
