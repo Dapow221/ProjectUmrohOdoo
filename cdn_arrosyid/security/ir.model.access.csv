@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_cdn_arrosyid_cdn_arrosyid,cdn_arrosyid.cdn_arrosyid,model_cdn_arrosyid_cdn_arrosyid,base.group_user,1,1,1,1
+access_cdn_paket_umroh,cdn_paket_umroh,model_cdn_paket_umroh,base.group_user,1,1,1,1
