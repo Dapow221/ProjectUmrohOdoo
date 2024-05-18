@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- cdn.sesi.umroh tree view -->
+        <record id="cdn_sesi_umroh_view_tree" model="ir.ui.view">
+            <field name="name">cdn.sesi.umroh.view.tree</field>
+            <field name="model">cdn.sesi.umroh</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- cdn.sesi.umroh form view -->
+        <record id="cdn_sesi_umroh_view_form" model="ir.ui.view">
+            <field name="name">cdn.sesi.umroh.view.form</field>
+            <field name="model">cdn.sesi.umroh</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- cdn.sesi.umroh action window -->
+        <record id="cdn_sesi_umroh_action" model="ir.actions.act_window">
+            <field name="name">cdn.sesi.umroh.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.sesi.umroh</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create your first item
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="sesi_umroh_root_menu_act" name="Sesi Umroh" sequence="10"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="sesi_umroh_menu_categ" name="Sesi Umroh" parent="sesi_umroh_root_menu_act" action="cdn_sesi_umroh_action" sequence="10"/>
+    </data>
+</odoo>
