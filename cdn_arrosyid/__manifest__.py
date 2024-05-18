@@ -25,6 +25,10 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/menu.xml',
+        'views/views.xml',
+        'views/templates.xml',
+        'views/transaksi_sesiumroh.xml',
+        'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
     ],
     # only loaded in demonstration mode
