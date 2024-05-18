@@ -1,7 +1,5 @@
 from odoo import models, fields, api
 
-
-
 class CdnMaskapai(models.Model):
     _name = 'cdn.maskapai'
     _description = 'Maskapai'

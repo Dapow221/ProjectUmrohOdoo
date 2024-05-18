@@ -52,9 +52,6 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="hotel_menu_act" name="Hotel" parent="umroh_menu_categ" action="cdn_hotel_action" sequence="20"/>
-    
+        <menuitem id="hotel_menu_act" name="Hotel" parent="travel_pengaturan_menu_categ" action="cdn_hotel_action" sequence="20"/>
     </data>
-    
-
 </odoo>

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<odoo>
-    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
-    <menuitem id="travel_arrosyid_menu_root" name="travel_arrosyid" sequence="0"/>
-
-    <!-- This Menu Item Must have a parent -->
-    <menuitem id="travel_arrosyid_menu_categ" name="Identitas Jamaah" parent="travel_arrosyid_menu_root" sequence="10"/>
-
-</odoo>
