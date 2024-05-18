@@ -30,6 +30,7 @@
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
+        'views/maskapai.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
