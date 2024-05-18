@@ -31,6 +31,7 @@
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
         'views/maskapai.xml',
+        'views/identitas_jamaah.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -3,3 +3,5 @@ access_cdn_arrosyid_cdn_arrosyid,cdn_arrosyid.cdn_arrosyid,model_cdn_arrosyid_cd
 access_cdn_paket_umroh,cdn_paket_umroh,model_cdn_paket_umroh,base.group_user,1,1,1,1
 access_cdn_maskapai,access_cdn_maskapai,model_cdn_maskapai,base.group_user,1,1,1,1
 access_cdn_hotel,access_cdn_hotel,model_cdn_hotel,base.group_user,1,1,1,1
+access_cdn_identitas_jamaah,access_cdn_identitas_jamaah,model_cdn_identitas_jamaah,base.group_user,1,1,1,1
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+    
+        <!-- cdn.identitas.jamaah tree view -->
+        <record id="cdn_identitas_jamaah_view_tree" model="ir.ui.view">
+            <field name="name">cdn.identitas.jamaah.view.tree</field>
+            <field name="model">cdn.identitas.jamaah</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="partner_id" />
+                    <field name="paspor" />
+                    <field name="kategori" />
+                    <field name="tgl_lahir" />  
+                    <field name="jenis_kel" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- cdn.identitas.jamaah form view -->
+        <record id="cdn_identitas_jamaah_view_form" model="ir.ui.view">
+            <field name="name">cdn.identitas.jamaah.view.form</field>
+            <field name="model">cdn.identitas.jamaah</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="partner_id" />
+                            <field name="kategori" />
+                            <field name="jenis_kel" />
+                            <field name="tgl_lahir" />
+                            <field name="paspor" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- cdn.identitas.jamaah action window -->
+        <record id="cdn_identitas_jamaah_action" model="ir.actions.act_window">
+            <field name="name">cdn.identitas.jamaah.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.identitas.jamaah</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="travel_arrosyid_menu_act" name="arrosyid  " parent="travel_arrosyid_menu_categ" action="cdn_identitas_jamaah_action" sequence="1"/>
+    
+    </data>
+    
+</odoo>
