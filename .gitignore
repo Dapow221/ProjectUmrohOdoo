@@ -5,3 +5,4 @@ docker-compose.yml
 entrypoint.sh
 README.md
 run.sh
+.vscode
