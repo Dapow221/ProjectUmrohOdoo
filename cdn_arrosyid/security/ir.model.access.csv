@@ -1,7 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_user_cdn_maskapai,access_user_cdn_maskapai,model_cdn_maskapai,base.group_user,1,1,1,1
-access_user_cdn_hotel,access_user_cdn_hotel,model_cdn_hotel,base.group_user,1,1,1,1
-
-
-
-
+access_cdn_arrosyid_cdn_arrosyid,cdn_arrosyid.cdn_arrosyid,model_cdn_arrosyid_cdn_arrosyid,base.group_user,1,1,1,1
+access_cdn_paket_umroh,cdn_paket_umroh,model_cdn_paket_umroh,base.group_user,1,1,1,1
+access_cdn_maskapai,access_cdn_maskapai,model_cdn_maskapai,base.group_user,1,1,1,1
+access_cdn_hotel,access_cdn_hotel,model_cdn_hotel,base.group_user,1,1,1,1

@@ -1,0 +1,15 @@
+from odoo import models, fields, api
+
+
+
+class CdnRencanaPerjalanan(models.Model):
+    _name = 'cdn.rencana.perjalanan'
+    _description = 'Cdn Rencana Perjalanan'
+
+    # sesi_umroh_ids = fields.Many2many('sesi.umroh', string='sesi_umroh')
+    nama = fields.Char(string='Nama')
+    keterangan = fields.Text(string='Keterangan')
+    dimulai = fields.Date('Dimulai')
+    durasi = fields.Float(string='Durasi')
+    state = fields.Selection([('batal', 'Batal'),('belum', 'Belum'),('proses', 'Proses'),('selesai', 'selesai')], string='state')
+    
