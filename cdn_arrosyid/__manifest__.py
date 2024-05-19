@@ -25,7 +25,6 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/menu.xml',
-        'views/menu_travel.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
         'views/transaksi_sesiumroh.xml',
@@ -33,6 +32,8 @@
         'views/paket_umroh.xml',
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
+        'views/hotel.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [

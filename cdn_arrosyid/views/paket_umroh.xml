@@ -61,7 +61,6 @@
         </record>
 
     </data>
-    
-    <!-- This Menu Item must have a parent and an action -->
     <menuitem id="paket_umroh_menu_act" name="Paket Umroh" parent="travel_umroh_menu_categ" action="cdn_paket_umroh_action" sequence="10"/>
+    <!-- This Menu Item must have a parent and an action -->
 </odoo>
