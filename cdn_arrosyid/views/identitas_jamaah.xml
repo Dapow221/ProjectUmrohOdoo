@@ -9,11 +9,11 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
-                    <field name="partner_id" />
-                    <field name="paspor" />
+                    <field name="name" />
                     <field name="kategori" />
-                    <field name="tgl_lahir" />  
                     <field name="jenis_kel" />
+                    <field name="tgl_lahir" />  
+                    <field name="paspor" />
                 </tree>
             </field>
         </record>
@@ -27,11 +27,15 @@
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                            <field name="partner_id" />
+                            <field name="name" />
                             <field name="kategori" />
                             <field name="jenis_kel" />
                             <field name="tgl_lahir" />
+                            <field name="mobile" />
+                            <field name="street" />
                             <field name="paspor" />
+                            <field name="masa_paspor" />
+                            <field name="riwayat_penyakit" />
                         </group>
                     </sheet>
                 </form>
