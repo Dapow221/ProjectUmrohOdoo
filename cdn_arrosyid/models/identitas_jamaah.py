@@ -28,7 +28,7 @@ class IdentitasJamaah(models.Model):
     def create(self, vals):
         if vals['kategori'] == 'peserta':
             vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
-        return super(IdentitasJamaah, self).create(vals)
+        return super(IdentitasJamaah, self).create(vals)    
     
     @api.model
     def create(self, vals):
