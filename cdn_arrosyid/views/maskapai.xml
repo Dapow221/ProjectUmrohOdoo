@@ -10,9 +10,9 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
-                    <field name="partner_id"/>
+                    <field name="company_id"/>
                     <field name="keterangan"/>
-                    <!-- <field name="sesi_id"/> -->
+                    <field name="sesi_id"/>
                     <field name="harga"/>
                 </tree>
             </field>
@@ -27,14 +27,13 @@
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                            <!-- <field name="name"/> -->
-                            <field name="partner_id"/>
+                            <field name="company_id"/>
                             <field name="keterangan"/>
                             <field name="harga"/>
                         </group>
                         <notebook>
                             <page name="sesi_umroh" string="Sesi Umroh">
-                                <!-- <field name="sesi_id"/> -->
+                                <field name="sesi_id"/>
                                     <!-- <tree>
 
                                     </tree> -->
