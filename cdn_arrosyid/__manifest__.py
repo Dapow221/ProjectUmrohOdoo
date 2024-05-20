@@ -34,9 +34,6 @@
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
         'views/hotel.xml',
-
-        'views/hotel.xml',
-
     ],
     # only loaded in demonstration mode
     'demo': [
