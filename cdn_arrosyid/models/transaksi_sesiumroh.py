@@ -10,7 +10,7 @@ class SesiUmroh(models.Model):
     pembimbing_id = fields.Many2one(comodel_name='res.users', string='Pembimbing')
     petugas_lapangan = fields.Many2many(comodel_name='res.users', string='Petugas Lapangan')
     jammaah_ids = fields.Many2many(comodel_name='res.partner', string='Jamaah')
-    jumlah_jamaah = fields.Integer(string='Jumlah Jamaah')
+    jumlah_jamaah = fields.Char(compute='_compute_jml_jamaah', string='jumlah jamaah', store=True)
     state = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     rencana_perjalanan_ids = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='rencana_perjalanan')
 
@@ -38,6 +38,10 @@ class SesiUmroh(models.Model):
         for rec in self:
             rec.state = 'batal_perjalanan'
 
+    @api.depends('jammaah_ids')
+    def _compute_jml_jamaah(self):
+        for rec in self:
+            rec.jumlah_jamaah = len(rec.jammaah_ids)
     
     
 
