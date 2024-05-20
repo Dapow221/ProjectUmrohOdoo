@@ -25,13 +25,18 @@
             <field name="arch" type="xml">
                 <form string="">
                     <sheet>
-                        <!-- <field name="image_1920" widget="image" class="oe_avatar"/> -->
                         <group>
-                            <!-- Add your fields here -->
-                            <!-- <field name="name"/> -->
-                            <field name="company_id"/>
-                            <field name="keterangan"/>
-                            <field name="harga"/>
+                            <group>
+                                <!-- Add your fields here -->
+                                <field name="company_id"/>
+                                <field name="keterangan"/>
+                                <field name="harga"/>
+                            </group>
+                            <group>
+                                <field name="street"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="sesi_umroh" string="Sesi Umroh">

@@ -1,11 +1,10 @@
 from odoo import models, fields, api
 
-
-
 class CdnHotel(models.Model):
     _name = 'cdn.hotel'
     _description = 'Hotel'
     _inherits={'res.company':'company_id'}
+
 
     company_id = fields.Many2one(comodel_name='res.company', string='Hotel')
     type = fields.Selection(string='Type Hotel', selection=[('bintang_1', 'Bintang 1'), ('bintang_2', 'Bintang 2'), 
@@ -13,3 +12,9 @@ class CdnHotel(models.Model):
     keterangan = fields.Text(string='Keterangan')  
     harga = fields.Monetary('Harga', currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', string='Currency')
+    street = fields.Char(related='company_id.street', string='Street', readonly=False)
+    phone = fields.Char(related='company_id.phone', string='Phone', readonly=False)
+    email = fields.Char(related='company_id.email', string='Email', readonly=False)
+
+
+    

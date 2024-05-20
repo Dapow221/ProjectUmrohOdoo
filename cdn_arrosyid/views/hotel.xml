@@ -25,7 +25,7 @@
             <field name="arch" type="xml">
                 <form string="">
                     <sheet>
-                        <!-- <field name="image_1920" widget="image" class="oe_avatar"/> -->
+                    <group>
                         <group>
                             <!-- Add your fields here -->
                             <field name="company_id"/>
@@ -33,6 +33,12 @@
                             <field name="keterangan"/>
                             <field name="harga"/>
                         </group>
+                        <group>
+                            <field name="street"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                    </group>
                     </sheet>
                 </form>
             </field>
