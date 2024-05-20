@@ -6,4 +6,5 @@ entrypoint.sh
 README.md
 run.sh
 .vscode
+.__pycache__
 __pycache__

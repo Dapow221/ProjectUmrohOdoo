@@ -17,11 +17,12 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
-                    <field name="partner_id" />
-                    <field name="paspor" />
+                    <field name="name" />
                     <field name="kategori" />
-                    <field name="tgl_lahir" />  
+                    <field name="referensi" />
                     <field name="jenis_kel" />
+                    <field name="tgl_lahir" />  
+                    <field name="paspor" />
                 </tree>
             </field>
         </record>
@@ -36,22 +37,61 @@
                         <button name="%(action_report_identitas_jamaah)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
                     </header>
                     <sheet>
-                        <group>
+                        <field name="image" widget="image" class="oe_avatar"/>
                             <!-- Add your fields here -->
-                            <field name="partner_id" />
-                            <field name="kategori" />
-                            <field name="jenis_kel" />
-                            <field name="tgl_lahir" />
-                            <field name="paspor" />
-                        </group>
+                            <group name="umum" string="Informasi Umum">
+                                <group>
+                                    <field name="name" />
+                                    <field name="kategori" />
+                                    <field name="referensi" />
+                                    <field name="jenis_kel" />
+                                    <field name="is_menikah" />
+                                </group>
+                                <group>
+                                    <field name="tgl_lahir" />
+                                    <field name="umur" />
+                                    <field name="mobile" string="No. HP"/>  
+                                    <field name="street" string="Alamat" />
+                                </group>
+                            </group>
+                            <group>
+                                <group name="imigrasi" string="Keimigrasian">
+                                    <field name="paspor" />
+                                    <field name="masa_paspor" />
+                                </group>
+                                <group name="khusus" string="Informasi Khusus">
+                                    <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
+                                    <field name="status_petugas" attrs="{'invisible':[('kategori', '=', 'peserta')]}"/>
+                                    <field name="riwayat_penyakit" />
+                                    <field name="active" invisible="1" />
+                                </group>
+                            </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
+        <!-- cdn.identitas.jamaah search view -->
+        <record id="cdn_identitas_jamaah_view_search" model="ir.ui.view">
+            <field name="name">cdn.identitas.jamaah.view.search</field>
+            <field name="model">cdn.identitas.jamaah</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="kategori" />
+                    <field name="jenis_kel" />
+                    <searchpanel>
+                      <field name="jenis_kel" string="Jenis Kelamin" enable_counters="1" select="multi"/> <!--adding search panel inside the hospital module-->
+                      <field name="kategori" string="Kategori Jamaah" enable_counters="1" select="multi"/>  
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
         <!-- cdn.identitas.jamaah action window -->
         <record id="cdn_identitas_jamaah_action" model="ir.actions.act_window">
-            <field name="name">cdn.identitas.jamaah.action</field>
+            <field name="name">Identitas Jamaah Umroh</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.identitas.jamaah</field>
             <field name="view_mode">tree,form</field>
