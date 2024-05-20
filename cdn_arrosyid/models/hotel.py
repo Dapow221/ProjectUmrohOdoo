@@ -15,6 +15,13 @@ class CdnHotel(models.Model):
     street = fields.Char(related='company_id.street', string='Street', readonly=False)
     phone = fields.Char(related='company_id.phone', string='Phone', readonly=False)
     email = fields.Char(related='company_id.email', string='Email', readonly=False)
+    city = fields.Char(related='company_id.city', string='Kota', readonly=False)
+    zip = fields.Char(related='company_id.zip', string='Kode Pos', readonly=False)
+    country_id = fields.Many2one('res.country', related='company_id.country_id', string='Negara', readonly=False)
+    
+    
+    
+    
 
 
     
