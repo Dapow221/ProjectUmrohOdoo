@@ -11,6 +11,7 @@
                     <!-- Add your fields here -->
                     <field name="name" />
                     <field name="kategori" />
+                    <!-- <field name="referensi" /> -->
                     <field name="jenis_kel" />
                     <field name="tgl_lahir" />  
                     <field name="paspor" />
@@ -25,36 +26,35 @@
             <field name="arch" type="xml">
                 <form string="">
                     <sheet>
-                        <group>
+                        <field name="image" widget="image" class="oe_avatar"/>
                             <!-- Add your fields here -->
                             <group name="umum" string="Informasi Umum">
                                 <group>
                                     <field name="name" />
                                     <field name="kategori" />
+                                    <!-- <field name="referensi" /> -->
                                     <field name="jenis_kel" />
                                     <field name="is_menikah" />
                                 </group>
                                 <group>
                                     <field name="tgl_lahir" />
                                     <field name="umur" />
-                                    <field name="mobile" />
-                                    <field name="street" />
+                                    <field name="mobile" string="No. HP"/>  
+                                    <field name="street" string="Alamat" />
                                 </group>
                             </group>
-                            <group name="imigrasi" string="Keimigrasian">
-                                <group>
+                            <group>
+                                <group name="imigrasi" string="Keimigrasian">
                                     <field name="paspor" />
                                     <field name="masa_paspor" />
                                 </group>
-                            </group>
-                            <group name="khusus" string="Informasi Khusus">
-                                <group>
+                                <group name="khusus" string="Informasi Khusus">
                                     <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
                                     <field name="status_petugas" attrs="{'invisible':[('kategori', '=', 'peserta')]}"/>
                                     <field name="riwayat_penyakit" />
+                                    <field name="active" />
                                 </group>
                             </group>
-                        </group>
                     </sheet>
                 </form>
             </field>
