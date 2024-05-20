@@ -36,6 +36,6 @@ class SesiUmroh(models.Model):
     def click_me(self):
         print('clicked')
     
-    
+
 
     

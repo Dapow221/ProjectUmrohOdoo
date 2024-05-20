@@ -19,7 +19,7 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product'],
+    'depends': ['base', 'product', 'account'],
 
     # always loaded
     'data': [
@@ -32,6 +32,8 @@
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
         'views/hotel.xml',
+        'views/product_inherit.xml',
+        'views/invoice_inherit.xml',
 
     ],
     # only loaded in demonstration mode

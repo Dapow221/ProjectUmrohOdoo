@@ -5,11 +5,13 @@ class PaketUmroh(models.Model):
     _description = 'Master Data Paket Umroh'
     _rec_name = 'keterangan'
 
-    keterangan = fields.Text('Keterangan')
-    sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh') 
+    keterangan = fields.Text('Keterangan', required=True)
+    sesi_umroh = fields.Many2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')     
     perlengkapan_ids = fields.One2many('cdn_perlengkapan', 'paket_umroh_id', string='Perlengkapan')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
+    product_ids = fields.Many2many(comodel_name='product.product', string='')
+
 
 class Perlengkapan(models.Model):
     _name = 'cdn_perlengkapan'
