@@ -23,24 +23,19 @@ class IdentitasJamaah(models.Model):
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
     
-    
+
     @api.model
     def create(self, vals):
-        if vals['kategori'] == 'peserta':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
+        match vals['kategori']:
+            case 'peserta':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
+            case 'petugas_lap':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
+            case 'pembimbing':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
+            case _:
+                return  
         return super(IdentitasJamaah, self).create(vals)    
-    
-    @api.model
-    def create(self, vals):
-        if vals['kategori'] == 'petugas_lap':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
-        return super(IdentitasJamaah, self).create(vals)
-    
-    @api.model
-    def create(self, vals):
-        if vals['kategori'] == 'pembimbing':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
-        return super(IdentitasJamaah, self).create(vals)
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):

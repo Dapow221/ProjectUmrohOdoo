@@ -33,7 +33,6 @@
                             <field name="company_id"/>
                             <field name="keterangan"/>
                             <field name="harga"/>
-                        <group>
                             <group>
                                 <!-- Add your fields here -->
                                 <field name="company_id"/>
