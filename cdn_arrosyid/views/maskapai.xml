@@ -47,6 +47,7 @@
                 <tree>
                     <!-- Add your fields here -->
                     <field name="company_id"/>
+                    <field name="company_id"/>
                     <field name="keterangan"/>
                     <field name="sesi_id"/>
                     <field name="harga"/>
@@ -63,6 +64,11 @@
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <group>
+                            <!-- Add your fields here -->
+                            <!-- <field name="name"/> -->
+                            <field name="company_id"/>
+                            <field name="keterangan"/>
+                            <field name="harga"/>
                             <group>
                                 <!-- Add your fields here -->
                                 <field name="company_id"/>
@@ -108,6 +114,7 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
         <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
     </data>
     

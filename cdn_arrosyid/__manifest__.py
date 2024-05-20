@@ -25,12 +25,16 @@
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
+        'data/sequence_data.xml',
         'views/menu.xml',
+        'views/cetak_identitas_jamaah.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
+        'views/hotel.xml',
+
         'views/hotel.xml',
 
     ],
