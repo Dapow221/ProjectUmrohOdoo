@@ -16,7 +16,7 @@ class IdentitasJamaah(models.Model):
     masa_paspor      = fields.Date(string='Masa berlaku Paspor', required=True)
     tgl_lahir        = fields.Date(string='Tanggal Lahir')
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
-    image            = fields.Image(string='image')
+    image            = fields.Image(string='image',)
     is_menikah       = fields.Boolean(string='Sudah menikah?', default = False)
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     status_petugas   = fields.Selection(string='Status Petugas', selection=[('siap', 'Siap'), ('sibuk', 'Sibuk'),], default ='siap')
@@ -26,19 +26,16 @@ class IdentitasJamaah(models.Model):
 
     @api.model
     def create(self, vals):
-        match vals['kategori']:
-            case 'peserta':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
-            case 'petugas_lap':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
-            case 'pembimbing':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
-            case _:
-                return  
+        if vals['kategori'] == 'peserta'    :
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
+        if vals['kategori'] == 'petugas_lap':
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
+        if vals['kategori'] == 'pembimbing' :
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
         return super(IdentitasJamaah, self).create(vals)    
     
     @api.depends('tgl_lahir')
-    def _compute_umur(self):
+    def _compute_umur(self):    
         for rec in self:
             today = date.today()
             if rec.tgl_lahir:
