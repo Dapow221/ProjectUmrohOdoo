@@ -17,6 +17,8 @@ class CdnMaskapai(models.Model):
     city = fields.Char(related='company_id.city', string='Kota', readonly=False)
     zip = fields.Char(related='company_id.zip', string='Kode Pos', readonly=False)
     country_id = fields.Many2one('res.country',related='company_id.country_id', string='Negara', readonly=False)
+    image = fields.Image('image')
+    
 
     
 
