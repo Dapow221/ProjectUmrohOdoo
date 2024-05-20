@@ -23,6 +23,7 @@
 
     # always loaded
     'data': [
+        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/transaksi_sesiumroh.xml',
