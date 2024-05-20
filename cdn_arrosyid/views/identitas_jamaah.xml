@@ -41,7 +41,7 @@
                             <!-- Add your fields here -->
                             <group name="umum" string="Informasi Umum">
                                 <group>
-                                    <field name="name" />
+                                    <field name="name" required="1"/>   
                                     <field name="kategori" />
                                     <field name="referensi" />
                                     <field name="jenis_kel" />
@@ -111,8 +111,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.identitas.jamaah</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">['jenis_kel', '=', 'p']</field>
-            <field name="context">{'default_gender':'p'}</field>
+            <field name="domain">[('jenis_kel', '=', 'p')]</field>
+            <field name="context">{'default_jenis_kel':'p', 'hide_jenis_kel': 1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->
@@ -123,10 +123,12 @@
             </field>
         </record>
 
+
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="travel_arrosyid_menu_act" name="Identitas Jamaah" parent="travel_arrosyid_menu_categ" action="cdn_identitas_jamaah_action" sequence="40"/>
 
         <menuitem id="travel_arrosyid_menu_perempuan_act" name="Identitas Jamaah Perempuan" parent="travel_arrosyid_menu_categ" action="cdn_identitas_jamaah_perempuan_action" sequence="50"/>
+
     </data>
     
 </odoo>

@@ -14,7 +14,7 @@ class IdentitasJamaah(models.Model):
     paspor           = fields.Char(string='Nomor Paspor', required=True)
     referensi        = fields.Char(string='No Referensi')
     masa_paspor      = fields.Date(string='Masa berlaku Paspor', required=True)
-    tgl_lahir        = fields.Date(string='Tanggal Lahir')
+    tgl_lahir        = fields.Date(string='Tanggal Lahir', required=True)
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
     image            = fields.Image(string='image',)
     is_menikah       = fields.Boolean(string='Sudah menikah?', default = False)
@@ -31,6 +31,14 @@ class IdentitasJamaah(models.Model):
                 rec.umur = today.year - rec.tgl_lahir.year
             else:
                 rec.umur = 1
+                
+    @api.constrains('tgl_lahir')
+    def _check_tgl_lahir(self):
+        for rec in self:
+            today = date.today()
+            if rec.tgl_lahir and rec.tgl_lahir > today:
+                raise ValidationError(_('Tanggal lahir yang dimasukkan tidak tepat!'))
+    
                 
     _sql_constraints = [
         ("paspor_unique", "unique(paspor)", "Nomor Paspor sudah tercatat"),
@@ -52,5 +60,14 @@ class IdentitasJamaah(models.Model):
             vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
         elif vals['kategori'] == 'pembimbing':
             vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
-        return super(IdentitasJamaah, self).create(vals)    
+        return super(IdentitasJamaah, self).create(vals)
     
+    def write(self, vals):
+        if not self.referensi and not vals.get('referensi'):
+            if vals['kategori'] == 'peserta':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
+            elif vals['kategori'] == 'petugas_lap':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
+            elif vals['kategori'] == 'pembimbing':
+                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
+        return super(IdentitasJamaah, self).write(vals)
