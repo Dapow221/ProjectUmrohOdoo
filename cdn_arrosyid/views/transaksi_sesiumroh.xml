@@ -9,6 +9,14 @@
                 <tree>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="paket_umroh_id"/>
+                    <field name="pembimbing_id"/>
+                    <field name="petugas_lapangan"/>
+                    <field name="maskapai_id"/>
+                    <field name="hotel_id"/>
+                    <field name="jammaah_ids"/>
+                    <field name="jumlah_jamaah"/>
+                    
                 </tree>
             </field>
         </record>
@@ -23,6 +31,14 @@
                         <group>
                             <field name="name"/>
                             <field name="description"/>
+                            <field name="paket_umroh_id"/>
+                            <field name="pembimbing_id"/>
+                            <field name="petugas_lapangan"/>
+                            <field name="maskapai_id"/>
+                            <field name="hotel_id"/>
+                            <field name="jammaah_ids"/>
+                            <field name="jumlah_jamaah"/>
+                            <field name="rencana_perjalanan_ids"/>
                         </group>
                     </sheet>
                 </form>
