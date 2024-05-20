@@ -1,7 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
-    
+        <record id="action_report_identitas_jamaah" model="ir.actions.report">
+            <field name="name">Identitas Jamaah</field>
+            <field name="model">cdn.identitas.jamaah</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cdn_arrosyid.report_identitas_jamaah_document</field>
+            <field name="report_file">cdn_arrosyid.report_identitas_jamaah_document</field>
+            <field name="binding_model_id" ref="model_cdn_identitas_jamaah"/>
+        </record>
+        
         <!-- cdn.identitas.jamaah tree view -->
         <record id="cdn_identitas_jamaah_view_tree" model="ir.ui.view">
             <field name="name">cdn.identitas.jamaah.view.tree</field>
@@ -25,6 +33,9 @@
             <field name="model">cdn.identitas.jamaah</field>
             <field name="arch" type="xml">
                 <form string="">
+                    <header>
+                        <button name="%(action_report_identitas_jamaah)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar"/>
                             <!-- Add your fields here -->

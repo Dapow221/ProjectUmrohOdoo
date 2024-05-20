@@ -13,6 +13,32 @@ class PaketUmroh(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
 
+    def action_create_invoice(self):
+        invoice_lines = []
+        for item in self.perlengkapan_ids:
+            invoice_lines.append((0, 0, {
+                'product_id': item.product_id.id,
+                'quantity': item.jumlah,
+                'price_unit': item.harga,
+                'name': item.product_id.name,
+            }))
+
+        invoice = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.sesi_umroh.jammaah_ids,  # or set the appropriate partner_id
+            'invoice_date': fields.Date.today(),
+            'invoice_line_ids': invoice_lines,
+            'currency_id': self.currency_id.id,
+        })
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Invoice',
+            'view_mode': 'form',
+            'res_model': 'account.move',
+            'res_id': invoice.id,
+        }
+
 class Perlengkapan(models.Model):
     _name = 'cdn_perlengkapan'
     _description = 'Perlengkapan'
