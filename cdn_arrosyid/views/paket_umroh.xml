@@ -52,6 +52,9 @@
             <field name="model">cdn.paket.umroh</field>
             <field name="arch" type="xml">
                 <form string="">
+                    <header>
+                        <button name="action_create_invoice" type="object" string="Create Invoice" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
