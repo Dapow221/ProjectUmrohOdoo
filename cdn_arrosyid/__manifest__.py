@@ -26,6 +26,7 @@
         'security/groups.xml',
         'security/ir.model.access.csv',
         'views/menu.xml',
+        'views/cetak_identitas_jamaah.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',

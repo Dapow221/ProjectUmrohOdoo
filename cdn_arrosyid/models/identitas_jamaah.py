@@ -41,7 +41,3 @@ class IdentitasJamaah(models.Model):
             masa_berlaku_paspor = today - relativedelta.relativedelta(month=6)
             if rec.masa_paspor and rec.masa_paspor < masa_berlaku_paspor:
                 raise ValidationError (_("Masa Berlaku Paspor harus lebih dari 6 bulan dari hari ini."))
-
-    
-    
-    
