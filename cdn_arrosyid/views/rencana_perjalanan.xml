@@ -13,7 +13,6 @@
                     <field name="keterangan"/>
                     <field name="dimulai"/>
                     <field name="durasi"/>
-                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -23,6 +22,9 @@
             <field name="model">cdn.rencana.perjalanan</field>
             <field name="arch" type="xml">
                 <form string="">
+                    <header>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="belum,proses,selesai,batal"/>
+                    </header>
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
@@ -31,7 +33,6 @@
                             <field name="keterangan"/>
                             <field name="dimulai"/>
                             <field name="durasi"/>
-                            <field name="state"/>
                         </group>
                     </sheet>
                 </form>

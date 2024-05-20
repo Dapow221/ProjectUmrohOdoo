@@ -20,10 +20,6 @@
                                         <li>
                                             <field name="perlengkapan_ids"/>
                                         </li>
-                                            <field name="maskapai_id"/>
-                                        <li>
-                                            <field name="hotel_id"/>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -43,6 +39,8 @@
                         <field name="keterangan"/>
                         <field name="sesi_umroh"/>
                         <field name="perlengkapan_ids"/>
+                        <field name="maskapai_id"/>         
+                        <field name="hotel_id"/> 
                 </tree>
             </field>
         </record>

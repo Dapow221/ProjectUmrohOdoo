@@ -14,6 +14,13 @@ class SesiUmroh(models.Model):
     state = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     rencana_perjalanan_ids = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='rencana_perjalanan')
 
+    def write(self, values):
+        res = super(SesiUmroh, self).write(values)
+        if 'state' in values:
+            for rec in self.rencana_perjalanan_ids:
+                rec._compute_state()
+        return res
+        
     def action_akan_datang(self):
         for rec in self:
             rec.state = 'akan_datang'
@@ -30,9 +37,6 @@ class SesiUmroh(models.Model):
     def action_batal_perjalanan(self):
         for rec in self:
             rec.state = 'batal_perjalanan'
-    
-    def click_me(self):
-        print('clicked')
 
     @api.depends('jammaah_ids')
     def _compute_jml_jamaah(self):

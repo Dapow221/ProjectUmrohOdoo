@@ -1,7 +1,5 @@
 from odoo import models, fields, api
 
-
-
 class CdnRencanaPerjalanan(models.Model):
     _name = 'cdn.rencana.perjalanan'
     _description = 'Cdn Rencana Perjalanan'
@@ -12,5 +10,20 @@ class CdnRencanaPerjalanan(models.Model):
     keterangan = fields.Text(string='Keterangan')
     dimulai = fields.Date('Dimulai')
     durasi = fields.Float(string='Durasi')
-    state = fields.Selection([('batal', 'Batal'),('belum', 'Belum'),('proses', 'Proses'),('selesai', 'selesai')], string='state')
+    state = fields.Selection([('batal', 'Batal'),('belum', 'Belum'),('proses', 'Proses'),('selesai', 'selesai')], string='state', compute='_compute_state', store=True)
+
+    @api.depends('sesi_umroh_id.state')
+    def _compute_state(self):
+        for rec in self:
+            if rec.sesi_umroh_id:
+                if rec.sesi_umroh_id.state == 'akan_datang':
+                    rec.state = 'belum'
+                elif rec.sesi_umroh_id.state == 'prosess':
+                    rec.state = 'proses'
+                elif rec.sesi_umroh_id.state == 'selesai':
+                    rec.state = 'selesai'
+                elif rec.sesi_umroh_id.state == 'batal_perjalanan':
+                    rec.state = 'batal'
+            else:
+                rec.state = 'belum'
     
