@@ -1,15 +1,33 @@
-<!-- <?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
     
         <record id="seq_peserta_umroh" model="ir.sequence">
             <field name="name">Peserta Umroh</field>
-            <field name="code">cdn.identitas.jamaah.peserta</field> <!--nama code dianjurkan sesuai dengan konteks model yang diberi sequence-->
-            <field name="prefix">AR-P</field> <!--prefiks dari sequence, HP0010 maka HP adalah prefiks-->
-            <field name="padding">4</field> <!--panjang total dari string sequence yang akan diberi sequence-->
+            <field name="code">cdn.identitas.jamaah.peserta</field> 
+            <field name="prefix">AR-P</field> 
+            <field name="padding">4</field> 
             <field name="company_id" eval="False"/>
         </record>
+
+        <record id="seq_petugas_lapangan_umroh" model="ir.sequence">
+            <field name="name">Petugas Lapangan Umroh</field>
+            <field name="code">cdn.identitas.jamaah.petugas</field> 
+            <field name="prefix">AR-PL</field> 
+            <field name="padding">4</field> 
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_pembimbing_umroh" model="ir.sequence">
+            <field name="name">Pembimbing Umroh</field>
+            <field name="code">cdn.identitas.jamaah.pembimbing</field> 
+            <field name="prefix">AR-PU</field> 
+            <field name="padding">4</field> 
+            <field name="company_id" eval="False"/>
+        </record>
+
+        
     
     </data>
     
-</odoo> -->
+</odoo>

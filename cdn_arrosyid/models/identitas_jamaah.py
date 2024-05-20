@@ -9,10 +9,10 @@ class IdentitasJamaah(models.Model):
     _inherits        = {'res.partner':'partner_id'}
 
     partner_id       = fields.Many2one(comodel_name='res.partner', string='Nama Jamaah', required=True, ondelete="cascade")
-    kategori         = fields.Selection(string='Jenis Jamaah', selection=[('peserta', 'Peserta Umroh'), ('petugas_lap', 'Petugas Lapangan'),('penanggung_jawab', 'Penanggung Jawab')], default ='peserta')
+    kategori         = fields.Selection(string='Jenis Jamaah', selection=[('peserta', 'Peserta Umroh'), ('petugas_lap', 'Petugas Lapangan'),('pembimbing', 'Ustadz Pembimbing')], default ='peserta')
     jenis_kel        = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
     paspor           = fields.Char(string='Nomor Paspor', required=True)
-    # referensi        = fields.Char(string='No Referensi')
+    referensi        = fields.Char(string='No Referensi')
     masa_paspor      = fields.Date(string='Masa berlaku Paspor', required=True)
     tgl_lahir        = fields.Date(string='Tanggal Lahir')
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
@@ -24,11 +24,23 @@ class IdentitasJamaah(models.Model):
     active           = fields.Boolean(string='Active', default= True)
     
     
-    # @api.model
-    # def create(self, vals):
-    #     if self.kategori == "peserta":
-    #         vals['referensi'] =self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
-    #     return super(IdentitasJamaah, self).create(vals)
+    @api.model
+    def create(self, vals):
+        if vals['kategori'] == 'peserta':
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
+        return super(IdentitasJamaah, self).create(vals)
+    
+    @api.model
+    def create(self, vals):
+        if vals['kategori'] == 'petugas_lap':
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
+        return super(IdentitasJamaah, self).create(vals)
+    
+    @api.model
+    def create(self, vals):
+        if vals['kategori'] == 'pembimbing':
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
+        return super(IdentitasJamaah, self).create(vals)
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):

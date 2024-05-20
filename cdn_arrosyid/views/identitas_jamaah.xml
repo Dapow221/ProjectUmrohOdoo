@@ -11,7 +11,7 @@
                     <!-- Add your fields here -->
                     <field name="name" />
                     <field name="kategori" />
-                    <!-- <field name="referensi" /> -->
+                    <field name="referensi" />
                     <field name="jenis_kel" />
                     <field name="tgl_lahir" />  
                     <field name="paspor" />
@@ -32,7 +32,7 @@
                                 <group>
                                     <field name="name" />
                                     <field name="kategori" />
-                                    <!-- <field name="referensi" /> -->
+                                    <field name="referensi" />
                                     <field name="jenis_kel" />
                                     <field name="is_menikah" />
                                 </group>
@@ -52,7 +52,7 @@
                                     <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
                                     <field name="status_petugas" attrs="{'invisible':[('kategori', '=', 'peserta')]}"/>
                                     <field name="riwayat_penyakit" />
-                                    <field name="active" />
+                                    <field name="active" invisible="1" />
                                 </group>
                             </group>
                     </sheet>
