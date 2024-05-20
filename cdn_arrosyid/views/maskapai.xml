@@ -11,8 +11,9 @@
                 <tree>
                     <!-- Add your fields here -->
                     <field name="company_id"/>
+                    <field name="company_id"/>
                     <field name="keterangan"/>
-                    <!-- <field name="sesi_id"/> -->
+                    <field name="sesi_id"/>
                     <field name="harga"/>
                 </tree>
             </field>
@@ -32,10 +33,22 @@
                             <field name="company_id"/>
                             <field name="keterangan"/>
                             <field name="harga"/>
+                        <group>
+                            <group>
+                                <!-- Add your fields here -->
+                                <field name="company_id"/>
+                                <field name="keterangan"/>
+                                <field name="harga"/>
+                            </group>
+                            <group>
+                                <field name="street"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="sesi_umroh" string="Sesi Umroh">
-                                <!-- <field name="sesi_id"/> -->
+                                <field name="sesi_id"/>
                                     <!-- <tree>
 
                                     </tree> -->
@@ -63,6 +76,7 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
         <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
     </data>
     

@@ -23,6 +23,8 @@
 
     # always loaded
     'data': [
+        'security/groups.xml',
+        'security/ir.model.access.csv',
         # 'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'views/menu.xml',
@@ -33,6 +35,8 @@
         'views/paket_umroh.xml',
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
+        'views/hotel.xml',
+
         'views/hotel.xml',
 
     ],

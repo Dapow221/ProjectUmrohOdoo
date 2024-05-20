@@ -9,6 +9,10 @@
                 <tree>
                     <field name="name"/>
                     <field name="description"/>
+                    <field name="paket_umroh_id"/>
+                    <field name="pembimbing_id"/>
+                    <field name="petugas_lapangan"/>
+                    <field name="jumlah_jamaah"/>
                 </tree>
             </field>
         </record>
@@ -18,16 +22,38 @@
             <field name="name">cdn.sesi.umroh.view.form</field>
             <field name="model">cdn.sesi.umroh</field>
             <field name="arch" type="xml">
-                <form string="">
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="description"/>
-                        </group>
-                    </sheet>
+                <form>
+                    <header>
+                        <!-- <button name="action_akan_datang" string="Akan Datang" type="object" class="oe_highlight" states="prosess"/> -->
+                        <button name="action_prosess" string="Mulai Sesi Umroh" type="object" class="oe_highlight" states="akan_datang"/>
+                        <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" states="prosess"/>
+                        <button name="action_batal_perjalanan" string="Batal" type="object" class="oe_highlight" states="prosess"/>
+                        <field name="state" widget="statusbar" statusbar_visible="prosess,akan_datang,selesai,batal_perjalanan"/>
+                    </header>
+                        <sheet>
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="paket_umroh_id"/>
+                                <field name="pembimbing_id"/>
+                                <field name="jumlah_jamaah"/>
+                            </group>
+                            <notebook>
+                                <page name="petugas_lapangan" string="Petugas Lapangan">
+                                    <field name="petugas_lapangan"/>
+                                </page>
+                                <page name="jammaah_ids" string="Jammaah">
+                                    <field name="jammaah_ids"/>
+                                </page>
+                                <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
+                                    <field name="rencana_perjalanan_ids"/>
+                                </page>
+                            </notebook>
+                        </sheet>
                 </form>
             </field>
         </record>
+
 
         <!-- cdn.sesi.umroh action window -->
         <record id="cdn_sesi_umroh_action" model="ir.actions.act_window">
