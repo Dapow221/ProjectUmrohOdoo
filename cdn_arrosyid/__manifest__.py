@@ -34,6 +34,8 @@
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
         'views/hotel.xml',
+        'wizards/wizard_pembayaran.xml',
+        'wizards/wizard_pendaftaran.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

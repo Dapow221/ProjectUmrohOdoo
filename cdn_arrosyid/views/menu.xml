@@ -2,16 +2,18 @@
 <odoo>
     <data>
         <menuitem id="travel_umroh_menu_root" name="Travel Arrosyid" web_icon="cdn_arrosyid,static/description/icon.png" sequence="1"/>
+        
         <menuitem id="travel_umroh_menu_categ" name="Paket Umroh" parent="travel_umroh_menu_root" sequence="10"/>
 
+        <menuitem id="travel_arrosyid_menu_categ" name="Identitas" parent="travel_umroh_menu_root" sequence="20"/>
 
-        <menuitem id="travel_arrosyid_menu_categ" name="Identitas Jamaah" parent="travel_umroh_menu_root" sequence="30"/>
+        <!-- <menuitem id="umroh_menu_categ" name="Umroh" parent="travel_umroh_menu_root" sequence="40"/> -->
 
-        <menuitem id="umroh_menu_categ" name="Umroh" parent="travel_umroh_menu_root" sequence="40"/>
+        <!-- <menuitem id="rencana_perjalanan_menu_categ" name="Rencana Perjalanan" parent="travel_umroh_menu_root" sequence="50"/> -->
+        <menuitem id="travel_pembayaran_pengaturan_menu_categ" name="Pembayaran dan Pendaftaran" parent="travel_umroh_menu_root" sequence="30"/>
 
-        <menuitem id="rencana_perjalanan_menu_categ" name="Rencana Perjalanan" parent="travel_umroh_menu_root" sequence="50"/>
+        <menuitem id="travel_pengaturan_menu_categ" name="Pengaturan" parent="travel_umroh_menu_root" sequence="40"/>
 
-        <menuitem id="travel_pengaturan_menu_categ" name="Pengaturan" parent="travel_umroh_menu_root" sequence="60"/>
 
     </data>
 </odoo>

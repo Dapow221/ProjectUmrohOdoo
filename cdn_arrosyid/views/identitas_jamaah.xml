@@ -37,6 +37,17 @@
                         <button name="%(action_report_identitas_jamaah)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_jemaah_invoices" context="{'default_partner_id': active_id}">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="currency_id" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                                        <field name="total_invoiced" widget="monetary" options="{'currency_field': 'currency_id'}" modifiers="{&quot;readonly&quot;: true}"/>
+                                    </span>
+                                    <span class="o_stat_text">Invoiced</span>
+                                </div>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_avatar"/>
                             <!-- Add your fields here -->
                             <group name="umum" string="Informasi Umum">

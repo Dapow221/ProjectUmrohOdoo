@@ -3,8 +3,8 @@ from odoo import models, fields, api
 class PaketUmroh(models.Model):
     _name = 'cdn.paket.umroh'
     _description = 'Master Data Paket Umroh'
-    _rec_name = 'keterangan'
 
+    name = fields.Char(string='Nama')  
     keterangan = fields.Text('Keterangan')
     sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh') 
     perlengkapan_ids = fields.One2many('cdn_perlengkapan', 'paket_umroh_id', string='Perlengkapan')
@@ -38,6 +38,7 @@ class PaketUmroh(models.Model):
             'res_model': 'account.move',
             'res_id': invoice.id,
         }
+    
 
 class Perlengkapan(models.Model):
     _name = 'cdn_perlengkapan'

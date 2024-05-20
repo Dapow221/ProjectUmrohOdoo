@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- wizard.pembayaran form view -->
+    <data>  
+        <record id="wizard_pembayaran_view_form" model="ir.ui.view">
+            <field name="name">wizard.pembayaran.view.form</field>
+            <field name="model">wizard.pembayaran</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="jamaah_id"/>
+                            <footer>
+                                <button name="action_pembayaran" string="Cetak Pembayaran" type="object" class="btn-primary"/>
+                                <button string="Cancel" class="btn-secondary" special="cancel"/>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="wizard_pembayaran_action" model="ir.actions.act_window">
+            <field name="name">Pembayaran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.pembayaran</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="pembayaran_menu_act" name="Pembayaran" parent="travel_pembayaran_pengaturan_menu_categ" action="wizard_pembayaran_action" sequence="10"/>
+</odoo>
