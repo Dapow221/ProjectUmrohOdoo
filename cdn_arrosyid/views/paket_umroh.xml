@@ -20,6 +20,10 @@
                                         <li>
                                             <field name="perlengkapan_ids"/>
                                         </li>
+                                            <field name="maskapai_id"/>
+                                        <li>
+                                            <field name="hotel_id"/>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

@@ -8,6 +8,8 @@ class PaketUmroh(models.Model):
     keterangan = fields.Text('Keterangan')
     sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh') 
     perlengkapan_ids = fields.One2many('cdn_perlengkapan', 'paket_umroh_id', string='Perlengkapan')
+    maskapai_id = fields.Many2one(comodel_name='res.company', string='Maskapai')
+    hotel_id = fields.Many2many(comodel_name='res.company', string='Hotel')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
 

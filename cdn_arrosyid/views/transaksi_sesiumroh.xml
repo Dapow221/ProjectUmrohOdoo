@@ -36,8 +36,6 @@
                                 <field name="description"/>
                                 <field name="paket_umroh_id"/>
                                 <field name="pembimbing_id"/>
-                                <field name="maskapai_id"/>
-                                <field name="hotel_id"/>
                                 <field name="jumlah_jamaah"/>
                             </group>
                             <notebook>
