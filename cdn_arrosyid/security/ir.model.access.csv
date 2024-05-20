@@ -5,6 +5,3 @@ access_cdn_hotel,access_cdn_hotel,model_cdn_hotel,base.group_user,1,1,1,1
 access_cdn_identitas_jamaah,access_cdn_identitas_jamaah,model_cdn_identitas_jamaah,base.group_user,1,1,1,1
 access_cdn_rencana_perjalanan,access_cdn_rencana_perjalanan,model_cdn_rencana_perjalanan,base.group_user,1,1,1,1
 access_cdn_sesi_umroh,access_cdn_sesi_umroh,model_cdn_sesi_umroh,base.group_user,1,1,1,1
-
-
-
