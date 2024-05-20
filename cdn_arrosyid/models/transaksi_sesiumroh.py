@@ -9,13 +9,18 @@ class SesiUmroh(models.Model):
     paket_umroh_id = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
     pembimbing_id = fields.Many2one(comodel_name='res.users', string='Pembimbing')
     petugas_lapangan = fields.Many2many(comodel_name='res.users', string='Petugas Lapangan')
-    maskapai_id = fields.Many2one(comodel_name='res.company', string='Maskapai')
-    hotel_id = fields.Many2one(comodel_name='res.company', string='Hotel')
     jammaah_ids = fields.Many2many(comodel_name='res.partner', string='Jamaah')
-    jumlah_jamaah = fields.Integer(string='Jumlah Jamaah')
+    jumlah_jamaah = fields.Char(compute='_compute_jml_jamaah', string='jumlah jamaah', store=True)
     state = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     rencana_perjalanan_ids = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='rencana_perjalanan')
 
+    def write(self, values):
+        res = super(SesiUmroh, self).write(values)
+        if 'state' in values:
+            for rec in self.rencana_perjalanan_ids:
+                rec._compute_state()
+        return res
+        
     def action_akan_datang(self):
         for rec in self:
             rec.state = 'akan_datang'
@@ -32,9 +37,11 @@ class SesiUmroh(models.Model):
     def action_batal_perjalanan(self):
         for rec in self:
             rec.state = 'batal_perjalanan'
-    
-    def click_me(self):
-        print('clicked')
+
+    @api.depends('jammaah_ids')
+    def _compute_jml_jamaah(self):
+        for rec in self:
+            rec.jumlah_jamaah = len(rec.jammaah_ids)
     
 
 
