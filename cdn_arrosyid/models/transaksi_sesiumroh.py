@@ -43,6 +43,6 @@ class SesiUmroh(models.Model):
         for rec in self:
             rec.jumlah_jamaah = len(rec.jammaah_ids)
     
-    
+
 
     

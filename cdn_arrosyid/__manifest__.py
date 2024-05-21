@@ -34,6 +34,9 @@
         'views/maskapai.xml',
         'views/identitas_jamaah.xml',
         'views/hotel.xml',
+        'views/product_inherit.xml',
+        'views/invoice_inherit.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [
