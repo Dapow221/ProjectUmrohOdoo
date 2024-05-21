@@ -53,7 +53,7 @@
                 </p>
             </field>
         </record>
-        <menuitem id="rencana_perjalanan_menu_root" name="Rencana Perjalanan" action="cdn_rencana_perjalan_action" parent="rencana_perjalanan_menu_categ" sequence="20"/>
         <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="rencana_perjalanan_menu_root" name="Rencana Perjalanan" action="cdn_rencana_perjalan_action" parent="travel_umroh_menu_categ" sequence="30"/>
     </data>
 </odoo>

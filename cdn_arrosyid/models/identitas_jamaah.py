@@ -71,3 +71,34 @@ class IdentitasJamaah(models.Model):
             elif vals['kategori'] == 'pembimbing':
                 vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
         return super(IdentitasJamaah, self).write(vals)
+        return super(IdentitasJamaah, self).create(vals)
+
+     # Use @api.model if you're using Odoo version 10 or later
+    def action_view_jemaah_invoices(self):
+        # self.ensure_one()  # Ensure that there's only one record being processed
+
+        # # Assuming 'partner_id' is the field linking the current record to the partner
+        # partner_id = self.partner_id.id
+
+        # # Define the action
+        # action = {
+        #     'type': 'ir.actions.act_window',
+        #     'name': 'View Partner Invoices',
+        #     'res_model': 'account.move',  # Assuming the model is account.move
+        #     'view_mode': 'tree,form',  # Set the desired view mode
+        #     'domain': [('partner_id', '=', partner_id)],  # Filter invoices by the current partner
+        #     'context': {'search_default_partner_id': partner_id},  # Pass the partner's ID as a default search filter
+        # }
+
+        # return action
+        jamaah_id = self.partner_id.id
+        return {
+            'name': 'Pembayaran Jamaah',
+            'view_mode': 'tree,form',
+            'res_model': 'account.move',
+            'context': {'search_default_partner_id': jamaah_id},
+            'domain': [('partner_id', '=', jamaah_id)],
+            'target': 'current',
+            'type': 'ir.actions.act_window',
+        }
+    

@@ -67,7 +67,7 @@
                 </p>
             </field>
         </record>
-        <menuitem id="sesi_umroh_root_menu_act" name="Sesi Umroh" action="cdn_sesi_umroh_action" parent="travel_umroh_menu_categ" sequence="10"/>
+        <menuitem id="sesi_umroh_root_menu_act" name="Sesi Umroh" action="cdn_sesi_umroh_action" parent="travel_umroh_menu_categ" sequence="20"/>
         <!-- This Menu Item must have a parent and an action -->
     </data>
 </odoo>
