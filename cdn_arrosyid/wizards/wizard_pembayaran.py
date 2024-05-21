@@ -19,10 +19,17 @@ class WizardPembayaran(models.TransientModel):
             }))
             # print("******** data: ", rec.name)
 
+        product_invoice = self.env['account.move'].create({
+            'move_type': 'out_invoice',
+            'partner_id': self.jamaah_id.id,
+            'invoice_date': fields.Date.today(),
+            'invoice_line_ids': data_paket,
+        })
+
         return {
             'type': 'ir.actions.act_window',
             'name': 'pembayaran',
             'view_mode': 'form',
             'res_model': 'account.move',
-            'res_id': invoice.id,
+            'res_id': product_invoice.id,
         }
