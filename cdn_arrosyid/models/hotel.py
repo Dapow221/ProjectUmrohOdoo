@@ -11,7 +11,7 @@ class CdnHotel(models.Model):
     ('bintang_3', 'Bintang 3'), ('bintang_4', 'Bintang 4'), ('bintang_5', 'Bintang 5')])
     keterangan = fields.Text(string='Keterangan')  
     harga = fields.Monetary('Harga', currency_field='currency_id')
-    currency_id = fields.Many2one('res.currency', string='Currency')
+    currency_id = fields.Many2one('res.currency')
     street = fields.Char(related='company_id.street', string='Street', readonly=False)
     phone = fields.Char(related='company_id.phone', string='Phone', readonly=False)
     email = fields.Char(related='company_id.email', string='Email', readonly=False)
