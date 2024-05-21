@@ -6,6 +6,7 @@ class CdnMaskapai(models.Model):
     _description = 'Maskapai'
     _inherits={'res.company':'company_id'}
 
+
     company_id = fields.Many2one(comodel_name='res.company', string='Maskapai')
     keterangan = fields.Text(string='Keterangan')
     sesi_id = fields.Many2one(comodel_name='cdn.paket.umroh', string='Sesi Umroh')
@@ -17,7 +18,8 @@ class CdnMaskapai(models.Model):
     city = fields.Char(related='company_id.city', string='Kota', readonly=False)
     zip = fields.Char(related='company_id.zip', string='Kode Pos', readonly=False)
     country_id = fields.Many2one('res.country', related='company_id.country_id', string='Negara', readonly=False)
-    image = fields.Image('image')
+    image = fields.Binary('image')
+    
     
 
     

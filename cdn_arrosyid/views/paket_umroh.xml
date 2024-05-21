@@ -14,6 +14,9 @@
                                 <div class="oe_kanban_details">
                                     <ul>
                                         <li>
+                                            <field name="name"/>
+                                        </li>
+                                        <li>
                                             <field name="keterangan"/>
                                         </li>
                                             <field name="sesi_umroh"/>
@@ -36,12 +39,13 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
+                        <field name="name"/>
                         <field name="keterangan"/>
-                        <field name="product_ids"/>
                         <field name="sesi_umroh"/>
-                        <field name="perlengkapan_ids"/>
-                        <field name="maskapai_id"/>         
-                        <field name="hotel_id"/> 
+                        <!-- <field name="product_ids"/> -->
+                        <field name="perlengkapan_ids" force_save="1"/>
+                        <!-- <field name="maskapai_id"/>         
+                        <field name="hotel_id"/>  -->
                 </tree>
             </field>
         </record>
@@ -58,21 +62,21 @@
                     </header>
                     <sheet>
                         <group>
-                            <!-- Add your fields here -->
+                            <field name="name"/>
                             <field name="keterangan"/>
-                            <field name="currency_id" groups="base.group_no_one"/>
+                            <!-- <field name="currency_id" groups="base.group_no_one"/> -->
                         </group>
                         <notebook>
-                        <page name="sesi" string="Sesi umroh">
-                            <field name="sesi_umroh">
-                                <tree editable="bottom">
-                                    <field name="name"/>
-                                    <field name="description"/>
-                                </tree>
-                            </field>
-                        </page>
+                            <page name="sesi" string="Sesi umroh">
+                                <field name="sesi_umroh" readonly="True">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="keterangan"/>
+                                    </tree>
+                                </field>
+                            </page>
                         <page name="perlengkapan" string="Perlengkapan">
-                            <field name="perlengkapan_ids">
+                            <!-- <field name="product_ids" force_save="1">
                                 <tree editable="bottom">
                                     <field name="product_id"/>
                                     <field name="harga" widget="monetary" options="{'currency_field': 'currency_id'}"/>   
@@ -80,7 +84,8 @@
                                     <field name="currency_id" invisible="1"/>
                                     <field name="harga_subtotal"/>   
                                 </tree>
-                            </field>
+                            </field> -->
+                            <field name="product_ids"/>
                         </page>
                         </notebook>  
                     </sheet>
