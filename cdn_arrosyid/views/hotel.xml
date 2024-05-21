@@ -16,8 +16,8 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                        <t t-if="record.image.raw_value">
-                            </t>
+                        <!-- <t t-if="record.image.raw_value">
+                            </t> -->
                             <div class="o_kanban_details">
                                 <h4>
                                     <a type="open"><field name="company_id"/></a>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </group>
-                        <group>
+                        <group> 
                             <field name="type"/>
                             <field name="keterangan"/>
                             <field name="harga"/>
