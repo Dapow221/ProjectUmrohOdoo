@@ -29,5 +29,5 @@
         </record>
     </data>
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="pembayaran_menu_act" name="Pembayaran" parent="travel_pembayaran_pengaturan_menu_categ" action="wizard_pembayaran_action" sequence="10"/>
+    <!-- <menuitem id="pembayaran_menu_act" name="Pembayaran" parent="travel_pembayaran_pengaturan_menu_categ" action="wizard_pembayaran_action" sequence="10"/> -->
 </odoo>
