@@ -4,6 +4,8 @@ from . import transaksi_sesiumroh
 from . import rencana_perjalanan
 from . import hotel
 from . import maskapai
-from . import identitas_jamaah
+from . import identitas_peserta_umroh
+from . import identitas_petugas_lapangan
+from . import identitas_ustadz_pembimbing
 from . import product_inherit
 from . import invoice_inherit

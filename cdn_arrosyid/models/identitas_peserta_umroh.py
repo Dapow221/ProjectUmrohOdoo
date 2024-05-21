@@ -1,6 +1,6 @@
 from odoo            import models, fields, api, _
 from datetime        import date
-from dateutil        import relativedelta
+# from dateutil        import relativedelta
 from odoo.exceptions import ValidationError
 
 class IdentitasJamaah(models.Model):
@@ -9,17 +9,15 @@ class IdentitasJamaah(models.Model):
     _inherits        = {'res.partner':'partner_id'}
 
     partner_id       = fields.Many2one(comodel_name='res.partner', string='Nama Jamaah', required=True, ondelete="cascade")
-    kategori         = fields.Selection(string='Jenis Jamaah', selection=[('peserta', 'Peserta Umroh'), ('petugas_lap', 'Petugas Lapangan'),('pembimbing', 'Ustadz Pembimbing')], default ='peserta')
     jenis_kel        = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
-    paspor           = fields.Char(string='Nomor Paspor', required=True)
     referensi        = fields.Char(string='No Referensi')
+    paspor           = fields.Char(string='Nomor Paspor', required=True)
     masa_paspor      = fields.Date(string='Masa berlaku Paspor', required=True)
     tgl_lahir        = fields.Date(string='Tanggal Lahir', required=True)
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
     image            = fields.Image(string='image',)
     is_menikah       = fields.Boolean(string='Sudah menikah?', default = False)
     nama_pasangan    = fields.Char(string='Nama Pasangan')
-    status_petugas   = fields.Selection(string='Status Petugas', selection=[('siap', 'Siap'), ('sibuk', 'Sibuk'),], default ='siap')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
     
@@ -54,24 +52,13 @@ class IdentitasJamaah(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['kategori'] == 'peserta':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
-        elif vals['kategori'] == 'petugas_lap':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
-        elif vals['kategori'] == 'pembimbing':
-            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
+        vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
         return super(IdentitasJamaah, self).create(vals)
     
     def write(self, vals):
         if not self.referensi and not vals.get('referensi'):
-            if vals['kategori'] == 'peserta':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
-            elif vals['kategori'] == 'petugas_lap':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.petugas')
-            elif vals['kategori'] == 'pembimbing':
-                vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.pembimbing')
+            vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
         return super(IdentitasJamaah, self).write(vals)
-        return super(IdentitasJamaah, self).create(vals)
 
      # Use @api.model if you're using Odoo version 10 or later
     def action_view_jemaah_invoices(self):
