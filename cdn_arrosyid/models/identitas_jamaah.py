@@ -44,13 +44,13 @@ class IdentitasJamaah(models.Model):
         ("paspor_unique", "unique(paspor)", "Nomor Paspor sudah tercatat"),
     ]
     
-    @api.constrains('masa_paspor')
-    def _check_masa_paspor(self):
-        for rec in self:
-            today = date.today()
-            masa_berlaku_paspor = today - relativedelta.relativedelta(month=6)
-            if rec.masa_paspor and rec.masa_paspor < masa_berlaku_paspor:
-                raise ValidationError (_("Masa Berlaku Paspor harus lebih dari 6 bulan dari hari ini."))
+    # @api.constrains('masa_paspor')
+    # def _check_masa_paspor(self):
+    #     for rec in self:
+    #         today = date.today()
+    #         masa_berlaku_paspor = today - relativedelta.relativedelta(month=6)
+    #         if rec.masa_paspor and rec.masa_paspor < masa_berlaku_paspor:
+    #             raise ValidationError (_("Masa Berlaku Paspor harus lebih dari 6 bulan dari hari ini."))
 
     @api.model
     def create(self, vals):
