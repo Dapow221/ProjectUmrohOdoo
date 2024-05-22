@@ -13,7 +13,6 @@
                 <xpath expr="//field[@name='l10n_id_pkp']" position="after">
                     <field name="jenis"/>
                 </xpath>
-                
             </field>
         </record>
 
@@ -23,7 +22,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
             <field name="domain">[('jenis', '=', 'maskapai')]</field>
-            <field name="context">{'default_jenis' : 'maskapai'}</field>
+            <field name="context">{'default_jenis' : 'maskapai', 'readonly': True}</field>
             <field name="view_mode">tree,form,kanban,activity</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

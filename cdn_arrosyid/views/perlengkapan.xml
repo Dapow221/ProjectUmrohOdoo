@@ -2,16 +2,19 @@
 <odoo>
 
     <data>
-        <!-- product.product.inherit tree view -->
-        <record id="product_product_inherit_view_tree" model="ir.ui.view">
-            <field name="name">product.product.inherit.view.tree</field>
+        <!-- product.product form view -->
+        <record id="product_product_view_form" model="ir.ui.view">
+            <field name="name">product.product.view.form</field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <tree>
-                    <!-- Add your fields here -->
-                    
-                </tree>
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="paket_umroh"/>
+                        </group>
+                    </sheet>
+                </form>
             </field>
         </record>
 
@@ -21,7 +24,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('detailed_type', '=', 'consum')]</field>
+            <field name="domain">[('detailed_type', '=', 'consu')]</field>
+            <field name="context">{'default_paket_umroh': True}</field>
 
         </record>
         <!-- This Menu Item must have a parent and an action -->
