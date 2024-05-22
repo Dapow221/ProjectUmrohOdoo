@@ -44,8 +44,6 @@
                         <field name="sesi_umroh"/>
                         <!-- <field name="product_ids"/> -->
                         <field name="perlengkapan_ids" force_save="1"/>
-                        <!-- <field name="maskapai_id"/>         
-                        <field name="hotel_id"/>  -->
                 </tree>
             </field>
         </record>
@@ -64,7 +62,8 @@
                         <group>
                             <!-- Add your fields here -->
                             <field name="keterangan"/>
-                            <!-- <field name="currency_id" groups="base.group_no_one"/> -->
+                            <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
+                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> 
                         </group>
                         <notebook>
                             <page name="sesi" string="Sesi umroh">
@@ -75,18 +74,9 @@
                                     </tree>
                                 </field>
                             </page>
-                        <page name="perlengkapan" string="Perlengkapan">
-                            <!-- <field name="product_ids" force_save="1">
-                                <tree editable="bottom">
-                                    <field name="product_id"/>
-                                    <field name="harga" widget="monetary" options="{'currency_field': 'currency_id'}"/>   
-                                    <field name="jumlah"/>
-                                    <field name="currency_id" invisible="1"/>
-                                    <field name="harga_subtotal"/>   
-                                </tree>
-                            </field> -->
-                            <field name="product_ids"/>
-                        </page>
+                            <page name="perlengkapan" string="Perlengkapan">
+                                <field name="product_ids"/>
+                            </page>
                         </notebook>  
                     </sheet>
                 </form>

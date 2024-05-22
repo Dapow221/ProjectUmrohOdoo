@@ -22,6 +22,8 @@
             <field name="name">Maskapai</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
+            <field name="domain">[('jenis', '=', 'maskapai')]</field>
+            <field name="context">{'default_jenis' : 'maskapai'}</field>
             <field name="view_mode">tree,form,kanban,activity</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -34,7 +36,7 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
+        <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="0"/>
     </data>
     
 
