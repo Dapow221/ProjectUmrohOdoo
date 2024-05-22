@@ -8,7 +8,6 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
-                    <field name="sesi_umroh_id"/>
                     <field name="nama"/>
                     <field name="keterangan"/>
                     <field name="dimulai"/>
@@ -28,7 +27,6 @@
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                            <field name="sesi_umroh_id"/>
                             <field name="nama"/>
                             <field name="keterangan"/>
                             <field name="dimulai"/>

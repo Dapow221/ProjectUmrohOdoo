@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class CdnMaskapai(models.Model):
@@ -10,7 +11,7 @@ class CdnMaskapai(models.Model):
     company_id = fields.Many2one(comodel_name='res.company', string='Maskapai')
     keterangan = fields.Text(string='Keterangan')
     sesi_id = fields.Many2one(comodel_name='cdn.paket.umroh', string='Sesi Umroh')
-    harga = fields.Monetary('Harga', currency_field='currency_id')
+    harga = fields.Monetary('Harga', currency_field='currency_id', required=True)
     currency_id = fields.Many2one('res.currency')
     street = fields.Char(related='company_id.street', string='Street', readonly=False)
     phone = fields.Char(related='company_id.phone', string='Phone', readonly=False)
@@ -22,7 +23,11 @@ class CdnMaskapai(models.Model):
     
     
 
-    
+    @api.constrains('harga')
+    def _constrains_harga(self):
+        for rec in self:
+            if rec.harga < 0:
+                raise ValidationError (_("Harga tidak valid!"))
 
 
 

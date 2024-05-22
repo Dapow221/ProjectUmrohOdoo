@@ -29,7 +29,7 @@
             <field name="target">new</field>
         </record>
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="wizard_pendaftaran_menu_act" name="Pendaftaran" parent="travel_pembayaran_pengaturan_menu_categ" action="wizard_pendaftaran_action" sequence="20"/>
+        <!-- <menuitem id="wizard_pendaftaran_menu_act" name="Pendaftaran" parent="travel_pembayaran_pengaturan_menu_categ" action="wizard_pendaftaran_action" sequence="20"/> -->
     </data>
     
 </odoo>
