@@ -12,6 +12,9 @@
                 <!-- Add your xpath here -->
                 <field name="uom_po_id" position="after">
                     <field name="product_travel"/>
+                    <field name="paket_umroh_id"/>
+                    <field name="pelengkap_id"/>
+                    
                 </field>
             </field>
         </record>

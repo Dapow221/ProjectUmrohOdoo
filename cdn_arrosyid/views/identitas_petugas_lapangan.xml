@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+
+        <!-- cdn.petugas.lapangan tree view -->
+        <record id="cdn_petugas_lapangan_view_tree" model="ir.ui.view">
+            <field name="name">cdn.petugas.lapangan.view.tree</field>
+            <field name="model">cdn.petugas.lapangan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name" />
+                    <field name="referensi" />
+                    <field name="jenis_kel" />
+                    <field name="tgl_lahir" />  
+                    <field name="paspor" />
+                </tree>
+            </field>
+        </record>
+    
+        <!-- cdn.identitas.petugas.lapagan form view -->
+        <record id="cdn_identitas_petugas_lapangan_view_form" model="ir.ui.view">
+            <field name="name">cdn.identitas.petugas.lapangan.view.form</field>
+            <field name="model">cdn.petugas.lapangan</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group name="umum" string="Informasi Umum">
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="referensi" />
+                                <field name="jenis_kel" />
+                            </group>
+                            <group>
+                                <field name="tgl_lahir" />
+                                <field name="umur" />
+                                <field name="mobile" string="No. HP"/>  
+                                <field name="street" string="Alamat" />
+                            </group>
+                        </group>
+                        <group>
+                            <group name="imigrasi" string="Keimigrasian">
+                                <field name="paspor" />
+                                <field name="masa_paspor" />
+                            </group>
+                            <group name="khusus" string="Informasi Khusus">
+                                <field name="status_petugas" />
+                                <field name="active" invisible="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- cdn.petugas.lapangan search view -->
+        <record id="cdn_petugas_lapangan_view_search" model="ir.ui.view">
+            <field name="name">cdn.petugas.lapangan.view.search</field>
+            <field name="model">cdn.petugas.lapangan</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <filter name="filter_laki" string  ="Laki-Laki"   domain="[('jenis_kel', '=', 'l')]" />
+                    <filter name="filter_perempuan" string="Perempuan" domain="[('jenis_kel', '=', 'p')]" />
+                    <field name="name" />
+                    <field name="jenis_kel" />
+                    <searchpanel>
+                      <field name="jenis_kel" string="Jenis Kelamin" enable_counters="1" select="multi"/> <!--adding search panel inside the hospital module-->
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <!-- cdn.petugas.lapangan action window -->
+        <record id="cdn_petugas_lapangan_action" model="ir.actions.act_window">
+            <field name="name">Identitas Petugas Lapangan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.petugas.lapangan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="travel_arrosyid_menu_petugas_lapangan_act" name="Identitas Petugas Lapangan" parent="travel_arrosyid_menu_categ" action="cdn_petugas_lapangan_action" sequence="50"/>
+    
+    </data>
+    
+</odoo>

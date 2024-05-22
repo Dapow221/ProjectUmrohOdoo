@@ -5,7 +5,7 @@ class CdnRencanaPerjalanan(models.Model):
     _description = 'Cdn Rencana Perjalanan'
     _rec_name = 'nama'
 
-    sesi_umroh_id = fields.Many2one('cdn.sesi.umroh', string='sesi_umroh')
+    sesi_umroh_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh')
     nama = fields.Char(string='Nama')
     keterangan = fields.Text(string='Keterangan')
     dimulai = fields.Date('Dimulai')
