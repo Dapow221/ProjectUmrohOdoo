@@ -4,7 +4,7 @@
     <data>
 
          <!-- res.partner inherit form view -->
-        <record id="res_partner_efaktur" model="ir.ui.view">
+        <record id="res_partner_inherit_efaktur_form_view" model="ir.ui.view">
             <field name="name">res.partner.efaktur.inherit.view.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="l10n_id_efaktur.res_partner_tax_form_view"/>

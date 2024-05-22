@@ -19,7 +19,7 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account','l10n_id_efaktur'],
+    'depends': ['base', 'product', 'account','l10n_id_efaktur',],
 
     # always loaded
     'data': [
@@ -31,16 +31,17 @@
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
-        'views/maskapai.xml',
+        # 'views/maskapai.xml',
         'views/identitas_peserta_umroh.xml',
         'views/identitas_petugas_lapangan.xml',
         'views/identitas_ustadz_pembimbing.xml',
-        'views/hotel.xml',
+        # 'views/hotel.xml',
         'views/perlengkapan.xml',
         'wizards/wizard_pembayaran.xml',
         'wizards/wizard_pendaftaran.xml',
         'views/product_inherit.xml',
         'views/invoice_inherit.xml',
+        # 'views/res_partner_inherit.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
