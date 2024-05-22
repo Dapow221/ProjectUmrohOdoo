@@ -62,7 +62,7 @@
                     </header>
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <!-- Add your fields here -->
                             <field name="keterangan"/>
                             <!-- <field name="currency_id" groups="base.group_no_one"/> -->
                         </group>

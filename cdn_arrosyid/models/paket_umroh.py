@@ -51,9 +51,7 @@ class PaketUmroh(models.Model):
     hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
-    # product_ids = fields.Many2many(comodel_name='product.product', string='')
-    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
-
+    product_ids = fields.Many2many(comodel_name='product.product', string='')
 
     def action_create_invoice(self):
         invoice_lines = []

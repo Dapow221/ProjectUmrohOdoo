@@ -3,107 +3,17 @@
 
     <data>
 
-        <record id="cdn_maskapai_view_kanban" model="ir.ui.view">
-            <field name="name">cdn.maskapai.view.kanban</field>
-            <field name="model">cdn.maskapai</field>
+         <!-- res.partner inherit form view -->
+        <record id="res_partner_efaktur" model="ir.ui.view">
+            <field name="name">res.partner.efaktur.inherit.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_id_efaktur.res_partner_tax_form_view"/>
             <field name="arch" type="xml">
-            <kanban string="Kanban Description">
-                <field name="company_id"/>
-                <field name="keterangan"/>
-                <field name="harga"/>
-                <field name="phone"/>
-                <field name="image"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                            <!-- <t t-if="record.image.raw_value">
-                                <div class="o_kanban_image">
-
-                                    <img t-att-src="kanban_image('test.test','image',record.id.raw_value)"/>
-
-                                </div>
-                            </t> -->
-                            <div class="o_kanban_details">
-                                <h4>
-                                    <a type="open"><field name="company_id"/></a>
-                                </h4>
-                                    <ul>
-                                    <li>
-                                        <span class="text-muted">Keterangan: </span><field name="keterangan"/></li>
-                                    <li>
-                                        <span class="text-muted">Harga: </span><field name="harga"/></li>
-                                    <li>
-                                        <span class="text-muted">Phone: </span><field name="phone"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-    
-        <!-- cdn.maskapai tree view -->
-        <record id="cdn_maskapai_view_tree" model="ir.ui.view">
-            <field name="name">cdn.maskapai.view.tree</field>
-            <field name="model">cdn.maskapai</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <!-- Add your fields here -->
-                    <field name="company_id"/>
-                    <field name="company_id"/>
-                    <field name="keterangan"/>
-                    <field name="sesi_id"/>
-                    <field name="harga"/>
-                </tree>
-            </field>
-        </record>
-        
-        <!-- cdn.maskapai form view -->
-        <record id="cdn_maskapai_view_form" model="ir.ui.view">
-            <field name="name">cdn.maskapai.view.form</field>
-            <field name="model">cdn.maskapai</field>
-            <field name="arch" type="xml">
-                <form string="">
-                    <sheet>
-                    <field name="image" widget="image" class="oe_avatar"/>
-                    <div class="oe_title">
-                        <h2>
-                            <label for="company_id" string="Nama Maskapai"/>
-                            <field name="company_id"/>
-                        </h2>
-                    </div>
-                    <group>    
-                        <group>
-                            <span class="o_form_label o_td_label">
-                                <b>Alamat</b>
-                            </span>
-                        <div class="o_address_format">
-                            <field name="street" placeholder="Alamat" class="o_address_street"/>
-                            <field name="city" placeholder="Kota" class="o_address_city"/>
-                            <field name="zip" placeholder="Kode Pos" class="o_address_zip"/>
-                            <div name="partner_address_country" class="d-flex justify-content-between">
-                                <field name="country_id" placeholder="Negara" class="o_address_country"/>
-                            </div>
-                        </div>
-                        </group>
-                        <group>
-                            <field name="keterangan"/>
-                            <field name="harga"/>
-                            <field name="phone" widget="phone"/>
-                            <field name="email" widget="email"/>
-                        </group>
-                    </group>
-                        <notebook>
-                            <page name="sesi_umroh" string="Sesi Umroh">
-                                <field name="sesi_id"/>
-                                    <!-- <tree>
-
-                                    </tree> -->
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
+                <!-- Add your xpath here -->
+                <xpath expr="//field[@name='l10n_id_pkp']" position="after">
+                    <field name="jenis"/>
+                </xpath>
+                
             </field>
         </record>
 
@@ -111,8 +21,8 @@
         <record id="cdn_maskapai_action" model="ir.actions.act_window">
             <field name="name">Maskapai</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">cdn.maskapai</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban,activity</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->
@@ -124,7 +34,6 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
         <menuitem id="maskapai_menu_act" name="Maskapai" parent="travel_pengaturan_menu_categ" action="cdn_maskapai_action" sequence="10"/>
     </data>
     

@@ -3,10 +3,21 @@
 
     <data>
 
-        <record id="cdn_hotel_view_kanban" model="ir.ui.view">
-            <field name="name">cdn.hotel.view.kanban</field>
-            <field name="model">cdn.hotel</field>
+         <!-- res.partner inherit form view -->
+        <record id="res_partner_efaktur" model="ir.ui.view">
+            <field name="name">res.partner.efaktur.inherit.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="l10n_id_efaktur.res_partner_tax_form_view"/>
             <field name="arch" type="xml">
+                <!-- Add your xpath here -->
+                <xpath expr="//field[@name='l10n_id_pkp']" position="after">
+                    <field name="jenis"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- cdn.maskapai action window -->
             <kanban string="Kanban Description">
                 <field name="company_id"/>
                 <field name="keterangan"/>
@@ -100,8 +111,8 @@
         <record id="cdn_hotel_action" model="ir.actions.act_window">
             <field name="name">Hotel</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">cdn.hotel</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban,activity</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->
@@ -115,4 +126,6 @@
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="hotel_menu_act" name="Hotel" parent="travel_pengaturan_menu_categ" action="cdn_hotel_action" sequence="20"/>
     </data>
+    
+
 </odoo>
