@@ -62,8 +62,8 @@
                         <group>
                             <!-- Add your fields here -->
                             <field name="keterangan"/>
-                            <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
-                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> 
+                            <!-- <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
+                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/>  -->
                         </group>
                         <notebook>
                             <page name="sesi" string="Sesi umroh">

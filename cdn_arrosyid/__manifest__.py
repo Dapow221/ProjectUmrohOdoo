@@ -41,7 +41,6 @@
         'wizards/wizard_pendaftaran.xml',
         'views/product_inherit.xml',
         'views/invoice_inherit.xml',
-        # 'views/res_partner_inherit.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
