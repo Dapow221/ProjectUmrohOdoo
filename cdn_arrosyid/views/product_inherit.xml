@@ -11,10 +11,7 @@
             <field name="arch" type="xml">
                 <!-- Add your xpath here -->
                 <field name="uom_po_id" position="after">
-                    <field name="product_travel"/>
-                    <field name="paket_umroh_id"/>
-                    <field name="pelengkap_id"/>
-                    
+                    <field name="paket_umroh"/>                    
                 </field>
             </field>
         </record>

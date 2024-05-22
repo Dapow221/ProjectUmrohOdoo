@@ -8,7 +8,13 @@ class PaketUmroh(models.Model):
     name = fields.Char(string='Nama')  
     keterangan = fields.Text(string='Keterangan')
     sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
-    
+    perlengkapan_ids = fields.One2many('cdn.perlengkapan', 'paket_umroh_id', string='Perlengkapan')
+    maskapai_id = fields.Many2one(comodel_name='res.partner', string='Maskapai')
+    hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
+    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
+
     @api.model
     def create(self, vals):
 
@@ -18,18 +24,10 @@ class PaketUmroh(models.Model):
         product_vals = {
             'name': paket_umroh.name,
             'detailed_type': 'service',
-            'paket_umroh_id': paket_umroh.id,
         }
         product_obj.create(product_vals)
         
         return paket_umroh
-    
-    perlengkapan_ids = fields.One2many('cdn.perlengkapan', 'paket_umroh_id', string='Perlengkapan')
-    maskapai_id = fields.Many2one(comodel_name='res.partner', string='Maskapai')
-    hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
-    currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
-    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
 
     def action_create_invoice(self):
         invoice_lines = []

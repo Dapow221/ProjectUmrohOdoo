@@ -61,6 +61,7 @@
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
+                            <field name="name"/>
                             <field name="keterangan"/>
                             <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
                             <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> 
