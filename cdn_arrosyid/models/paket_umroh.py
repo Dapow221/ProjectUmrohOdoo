@@ -23,35 +23,13 @@ class PaketUmroh(models.Model):
         product_obj.create(product_vals)
         
         return paket_umroh
-
-    # @api.model
-    # def create(self, values):
-    #     # Buat objek Paket Umroh
-    #     paket_umroh = super(PaketUmroh, self).create(values)
-        
-    #     # Perbarui name di semua objek ProductProduct yang terkait
-    #     products = self.env['product.product'].search([('paket_umroh_id', '=', False)])
-    #     for product in products:
-    #         product.write({'name': "{} - {}".format(product.name, paket_umroh.name)})
-
-    #     return paket_umroh
-
-    # def write(self, values):
-    #     # Tulis name di semua objek ProductProduct yang terkait
-    #     res = super(PaketUmroh, self).write(values)
-    #     products = self.env['product.product'].search([('paket_umroh_id', '=', self.id)])
-    #     for product in products:
-    #         product.write({'name': "{} - {}".format(product.product_id.name, self.name)})
-
-    #     return res
-    
     
     perlengkapan_ids = fields.One2many('cdn.perlengkapan', 'paket_umroh_id', string='Perlengkapan')
     maskapai_id = fields.Many2one(comodel_name='res.partner', string='Maskapai')
     hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
-    product_ids = fields.Many2many(comodel_name='product.product', string='')
+    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
 
     def action_create_invoice(self):
         invoice_lines = []
@@ -96,19 +74,3 @@ class Perlengkapan(models.Model):
     def _compute_harga_subtotal(self):
         for rec in self:
             rec.harga_subtotal = rec.harga * rec.jumlah
-
-    @api.model
-    def create(self, vals):
-        
-        pelengkap_inherit = super(Perlengkapan, self).create(vals)
-        
-        product_obj = self.env['product.product']
-        for perlengkapans_inherit in pelengkap_inherit:
-            product_vals = {
-                'name': perlengkapans_inherit.name,
-                'product_travel': 'konsumen',
-                'pelengkap_id': perlengkapans_inherit.id,
-            }
-            product_obj.create(product_vals)
-        
-        return pelengkap_inherit

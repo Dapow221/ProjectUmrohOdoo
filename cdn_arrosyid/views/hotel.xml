@@ -3,115 +3,13 @@
 
     <data>
 
-         <!-- res.partner inherit form view -->
-        <record id="res_partner_efaktur" model="ir.ui.view">
-            <field name="name">res.partner.efaktur.inherit.view.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="l10n_id_efaktur.res_partner_tax_form_view"/>
-            <field name="arch" type="xml">
-                <!-- Add your xpath here -->
-                <xpath expr="//field[@name='l10n_id_pkp']" position="after">
-                    <field name="jenis"/>
-                </xpath>
-                
-            </field>
-        </record>
-
         <!-- cdn.maskapai action window -->
-            <kanban string="Kanban Description">
-                <field name="company_id"/>
-                <field name="keterangan"/>
-                <field name="harga"/>
-                <field name="phone"/>
-                <!-- <field name="image"/> -->
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                        <!-- <t t-if="record.image.raw_value">
-                            </t> -->
-                            <div class="o_kanban_details">
-                                <h4>
-                                    <a type="open"><field name="company_id"/></a>
-                                </h4>
-                                    <ul>
-                                    <li>
-                                        <span class="text-muted">Keterangan: </span><field name="keterangan"/></li>
-                                    <li>
-                                        <span class="text-muted">Harga: </span><field name="harga"/></li>
-                                    <li>
-                                        <span class="text-muted">Phone: </span><field name="phone"/></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-
-
-    
-        <!-- cdn.hotel tree view -->
-        <record id="cdn_hotel_view_tree" model="ir.ui.view">
-            <field name="name">cdn.hotel.view.tree</field>
-            <field name="model">cdn.hotel</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <!-- Add your fields here -->
-                    <field name="company_id"/>
-                    <field name="type"/>
-                    <field name="keterangan"/>
-                    <field name="harga"/>
-                </tree>
-            </field>
-        </record>
-        
-        <!-- cdn.hotel form view -->
-        <record id="cdn_hotel_view_form" model="ir.ui.view">
-            <field name="name">cdn.hotel.view.form</field>
-            <field name="model">cdn.hotel</field>
-            <field name="arch" type="xml">
-                <form string="">
-                    <sheet>
-                    <field name="image" widget="image" class="oe_avatar"/>
-                    <div class="oe_title">
-                        <h2>
-                            <label for="company_id" string="Nama Hotel"/>
-                            <field name="company_id"/>
-                        </h2>
-                    </div>
-                    <group>
-                        <group>
-                            <span class="o_form_label o_td_label">
-                                <b>Alamat</b>
-                            </span>
-                            <div class="o_address_format">
-                                <field name="street" placeholder="Alamat" class="o_address_street"/>
-                                <field name="city" placeholder="Kota" class="o_address_city"/>
-                                <field name="zip" placeholder="Kode Pos" class="o_address_zip"/>
-                                <div name="partner_address_country" class="d-flex justify-content-between">
-                                    <field name="country_id" placeholder="Negara" class="o_address_country"/>
-                                </div>
-                            </div>
-                        </group>
-                        <group> 
-                            <field name="type"/>
-                            <field name="keterangan"/>
-                            <field name="harga"/>
-                            <field name="phone" widget="phone"/>
-                            <field name="email" widget="email"/>
-                        </group>
-                    </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <!-- cdn.hotel action window -->
         <record id="cdn_hotel_action" model="ir.actions.act_window">
             <field name="name">Hotel</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
+            <field name="domain">[('jenis', '=', 'hotel')]</field>
+            <field name="context">{'default_jenis' : 'hotel'}</field>
             <field name="view_mode">tree,form,kanban,activity</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -124,7 +22,7 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="hotel_menu_act" name="Hotel" parent="travel_pengaturan_menu_categ" action="cdn_hotel_action" sequence="20"/>
+        <menuitem id="hotel_menu_act" name="Hotel" parent="travel_pengaturan_menu_categ" action="cdn_hotel_action" sequence="10"/>
     </data>
     
 
