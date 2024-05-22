@@ -18,8 +18,8 @@
                                 <td><span t-field="doc.paspor"/></td>
                             </tr>
                             <tr>
-                                <td><strong>Jenis Jamaah:</strong></td>
-                                <td><span t-field="doc.kategori"/></td>
+                                <td><strong>No Referensi:</strong></td>
+                                <td><span t-field="doc.referensi"/></td>
                             </tr>
                             <tr>
                                 <td><strong>Tanggal Lahir:</strong></td>

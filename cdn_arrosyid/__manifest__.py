@@ -19,7 +19,7 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur'],
 
     # always loaded
     'data': [
