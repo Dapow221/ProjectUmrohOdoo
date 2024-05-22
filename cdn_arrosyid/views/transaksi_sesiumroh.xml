@@ -62,7 +62,7 @@
                         <sheet>
                             <group>
                                 <field name="name"/>
-                                <field name="description"/>
+                                <field name="keterangan"/>
                                 <field name="paket_umroh_id"/>
                                 <field name="pembimbing_id"/>
                                 <field name="tanggal_berangkat"/>

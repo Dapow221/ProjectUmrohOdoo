@@ -18,7 +18,6 @@
                 <tree>
                     <!-- Add your fields here -->
                     <field name="name" />
-                    <field name="kategori" />
                     <field name="referensi" />
                     <field name="jenis_kel" />
                     <field name="tgl_lahir" />  
@@ -52,8 +51,7 @@
                             <!-- Add your fields here -->
                             <group name="umum" string="Informasi Umum">
                                 <group>
-                                    <field name="name" />
-                                    <field name="kategori" />
+                                    <field name="name" required="1"/>
                                     <field name="referensi" />
                                     <field name="jenis_kel" />
                                     <field name="is_menikah" />
@@ -72,7 +70,6 @@
                                 </group>
                                 <group name="khusus" string="Informasi Khusus">
                                     <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
-                                    <field name="status_petugas" attrs="{'invisible':[('kategori', '=', 'peserta')]}"/>
                                     <field name="riwayat_penyakit" />
                                     <field name="active" invisible="1" />
                                 </group>
@@ -89,12 +86,12 @@
             <field name="arch" type="xml">
                 <search string="Search Description">
                     <!-- Add your fields here -->
+                    <filter name="filter_laki" string  ="Laki-Laki"   domain="[('jenis_kel', '=', 'l')]" />
+                    <filter name="filter_perempuan" string="Perempuan" domain="[('jenis_kel', '=', 'p')]" />
                     <field name="name" />
-                    <field name="kategori" />
                     <field name="jenis_kel" />
                     <searchpanel>
                       <field name="jenis_kel" string="Jenis Kelamin" enable_counters="1" select="multi"/> <!--adding search panel inside the hospital module-->
-                      <field name="kategori" string="Kategori Jamaah" enable_counters="1" select="multi"/>  
                     </searchpanel>
                 </search>
             </field>
@@ -115,6 +112,7 @@
                 </p>
             </field>
         </record>
+
 
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="travel_arrosyid_menu_act" name="Identitas Jamaah" parent="travel_arrosyid_menu_categ" action="cdn_identitas_jamaah_action" sequence="40"/>
