@@ -8,7 +8,7 @@ class PetugasLapangan(models.Model):
     _description = 'Cdn Petugas Lapangan'
     _inherits    = {'res.partner':'partner_id'}
     
-    partner_id       = fields.Many2one(comodel_name='res.partner', string='Nama Petugas Jamaah')
+    partner_id       = fields.Many2one(comodel_name='res.partner', string='Nama Petugas Jamaah', ondelete='cascade')
     jenis_kel        = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
     referensi        = fields.Char(string='No Referensi')
     paspor           = fields.Char(string='Nomor Paspor', required=True)

@@ -1,19 +1,20 @@
 from odoo import models, fields, api
 
 class PaketUmroh(models.Model):
-    _name = 'cdn.paket.umroh'
+    _name        = 'cdn.paket.umroh'
     _description = 'Master Data Paket Umroh'
     
 
-    name = fields.Char(string='Nama')  
-    keterangan = fields.Text(string='Keterangan')
-    sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
+    name             = fields.Char(string='Nama')  
+    keterangan       = fields.Text(string='Keterangan')
+    durasi           = fields.Integer(string='Durasi Umroh (Hari)')
+    sesi_umroh       = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
     perlengkapan_ids = fields.One2many('cdn.perlengkapan', 'paket_umroh_id', string='Perlengkapan')
-    maskapai_id = fields.Many2one(comodel_name='res.partner', string='Maskapai')
-    hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
-    currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
-    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
+    maskapai_id      = fields.Many2one(comodel_name='res.partner', string='Maskapai')
+    hotel_id         = fields.Many2many(comodel_name='res.partner', string='Hotel')
+    company_id       = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    currency_id      = fields.Many2one('res.currency', related='company_id.currency_id')
+    product_ids      = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
 
     @api.model
     def create(self, vals):
