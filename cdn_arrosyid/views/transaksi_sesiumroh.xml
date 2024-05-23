@@ -1,6 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
+
+        <record id="action_report_manifes_jamaah" model="ir.actions.report">
+            <field name="name">Identitas Manifes Jamaah</field>
+            <field name="model">cdn.sesi.umroh</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cdn_arrosyid.report_identitas_manifes_jamaah_document</field>
+            <field name="report_file">cdn_arrosyid.report_identitas_manifes_jamaah_document</field>
+            <field name="binding_model_id" ref="model_cdn_sesi_umroh"/>
+        </record>
+
         <record id="cdn_sesi_umroh_view_kanban" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
             <field name="model">cdn.sesi.umroh</field>
@@ -57,6 +67,7 @@
                         <button name="action_prosess" string="Mulai Sesi Umroh" type="object" class="oe_highlight" states="akan_datang"/>
                         <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" states="prosess"/>
                         <button name="action_batal_perjalanan" string="Batal" type="object" class="oe_highlight" states="prosess"/>
+                        <button name="%(action_report_manifes_jamaah)d" string="Cetak Manifes Jamaah" type="action" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="prosess,akan_datang,selesai,batal_perjalanan"/>
                     </header>
                         <sheet>
