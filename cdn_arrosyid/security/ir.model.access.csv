@@ -7,6 +7,7 @@ access_cdn_rencana_perjalanan,access_cdn_rencana_perjalanan,model_cdn_rencana_pe
 access_cdn_sesi_umroh,access_cdn_sesi_umroh,model_cdn_sesi_umroh,group_travel_user,1,0,0,0
 access_cdn_perlengkapan,access_cdn_perlengkapan,model_cdn_perlengkapan,group_travel_user,1,0,0,0
 access_res_partner,access_res_partner,model_res_partner,group_travel_user,1,0,0,0
+access_cdn_pendaftaran,access_cdn_pendaftaran,model_cdn_pendaftaran,group_travel_user,1,0,0,0
 
 access_cdn_paket_umroh,cdn_paket_umroh,model_cdn_paket_umroh,group_travel_opr,1,1,1,0
 access_cdn_identitas_jamaah,access_cdn_identitas_jamaah,model_cdn_identitas_jamaah,group_travel_opr,1,1,1,0
@@ -16,6 +17,7 @@ access_cdn_rencana_perjalanan,access_cdn_rencana_perjalanan,model_cdn_rencana_pe
 access_cdn_sesi_umroh,access_cdn_sesi_umroh,model_cdn_sesi_umroh,group_travel_opr,1,1,1,0
 access_cdn_perlengkapan,access_cdn_perlengkapan,model_cdn_perlengkapan,group_travel_opr,1,1,1,0
 access_res_partner,access_res_partner,model_res_partner,group_travel_opr,1,1,1,0
+access_cdn_pendaftaran,access_cdn_pendaftaran,model_cdn_pendaftaran,group_travel_opr,1,1,1,0
 
 access_cdn_paket_umroh,cdn_paket_umroh,model_cdn_paket_umroh,group_travel_admin,1,1,1,1
 access_cdn_identitas_jamaah,access_cdn_identitas_jamaah,model_cdn_identitas_jamaah,group_travel_admin,1,1,1,1
@@ -25,4 +27,5 @@ access_cdn_rencana_perjalanan,access_cdn_rencana_perjalanan,model_cdn_rencana_pe
 access_cdn_sesi_umroh,access_cdn_sesi_umroh,model_cdn_sesi_umroh,group_travel_admin,1,1,1,1
 access_cdn_perlengkapan,access_cdn_perlengkapan,model_cdn_perlengkapan,group_travel_admin,1,1,1,1
 access_res_partner,access_res_partner,model_res_partner,group_travel_admin,1,1,1,1
+access_cdn_pendaftaran,access_cdn_pendaftaran,model_cdn_pendaftaran,group_travel_admin,1,1,1,1
 
