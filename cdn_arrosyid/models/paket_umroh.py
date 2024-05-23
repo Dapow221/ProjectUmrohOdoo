@@ -1,33 +1,55 @@
 from odoo import models, fields, api
 
 class PaketUmroh(models.Model):
-    _name = 'cdn.paket.umroh'
-    _description = 'Master Data Paket Umroh'
+    _name               = 'cdn.paket.umroh'
+    _description        = 'Master Data Paket Umroh'
     
+    name                = fields.Char(string='Nama')  
+    keterangan          = fields.Text(string='Keterangan')
+    lst_price           = fields.Float(string='Harga Paket')
+    image               = fields.Image('image')
+    sesi_umroh          = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
+    maskapai_id         = fields.Many2one(comodel_name='res.partner', string='Maskapai')
+    hotel_id            = fields.Many2many(comodel_name='res.partner', string='Hotel')
+    company_id          = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    currency_id         = fields.Many2one('res.currency', related='company_id.currency_id')
+    product_ids         = fields.Many2many(comodel_name='product.product', string='Consumable', domain=[('detailed_type', '=', 'consu')])
+    durasi              = fields.Float(string='Durasi')
+    product_id          = fields.Many2one('product.product')
+    harga_subtotal      = fields.Monetary(string='Harga Total', compute="_compute_harga_subtotal", currency_field="currency_id")
 
-    name = fields.Char(string='Nama')  
-    keterangan = fields.Text(string='Keterangan')
-    sesi_umroh = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
-    perlengkapan_ids = fields.One2many('cdn.perlengkapan', 'paket_umroh_id', string='Perlengkapan')
-    maskapai_id = fields.Many2one(comodel_name='res.partner', string='Maskapai')
-    hotel_id = fields.Many2many(comodel_name='res.partner', string='Hotel')
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
-    currency_id = fields.Many2one('res.currency', related='company_id.currency_id')
-    product_ids = fields.Many2many(comodel_name='product.product', string='Peralatan/Konsumsi', domain=[('detailed_type', '=', 'consu')])
+    @api.depends('product_ids', 'product_ids.lst_price')
+    def _compute_harga_subtotal(self):
+        for rec in self:
+            total_price = sum(product.lst_price for product in rec.product_ids)
+            rec.harga_subtotal = total_price
+        return total_price
 
     @api.model
-    def create(self, vals):
+    def create(self, vals):      
+        paket_baru = super(PaketUmroh, self).create(vals)
 
-        paket_umroh = super(PaketUmroh, self).create(vals)
-        
-        product_obj = self.env['product.product']
-        product_vals = {
-            'name': paket_umroh.name,
+        paket_baru_umroh = self.env['product.product']
+        paket_baru_umroh.create({
+            'name': paket_baru.name,
+            'lst_price': paket_baru.lst_price,
             'detailed_type': 'service',
-        }
-        product_obj.create(product_vals)
-        
-        return paket_umroh
+            'paket_umroh_id': paket_baru.id
+        })
+
+        return paket_baru
+
+    def write(self, vals):      
+        paket_baru = super(PaketUmroh, self).write(vals)
+
+        paket_baru_umroh = self.env['product.product'].search([('paket_umroh_id','=', self.id)])
+        paket_baru_umroh.write({
+            'name': self.name,
+            'lst_price': self.lst_price,
+
+        })
+        return paket_baru
+
 
     def action_create_invoice(self):
         invoice_lines = []
@@ -54,21 +76,3 @@ class PaketUmroh(models.Model):
             'res_model': 'account.move',
             'res_id': invoice.id,
         }
-    
-
-class Perlengkapan(models.Model):
-    _name = 'cdn.perlengkapan'
-    _description = 'Perlengkapan'
-
-    name = fields.Char(string='Nama')  
-    product_id = fields.Many2one('product.product', required=True, String='Perlengkapan')
-    harga = fields.Float(related='product_id.list_price')
-    jumlah = fields.Integer(string='Jumlah', default="1")
-    paket_umroh_id = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
-    currency_id = fields.Many2one('res.currency', related='paket_umroh_id.currency_id')
-    harga_subtotal = fields.Monetary(string='Subtotal', compute="_compute_harga_subtotal", currency_field="currency_id")
-
-    @api.depends('harga', 'jumlah')
-    def _compute_harga_subtotal(self):
-        for rec in self:
-            rec.harga_subtotal = rec.harga * rec.jumlah

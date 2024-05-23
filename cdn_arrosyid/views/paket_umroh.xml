@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <data>
         <!-- kanban -->
         <record id="cdn_paket_umroh_view_kanban" model="ir.ui.view">
@@ -8,9 +7,17 @@
             <field name="model">cdn.paket.umroh</field>
             <field name="arch" type="xml">
                 <kanban>
+                    <field name="id"/>
+                    <field name="image"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div t-attf-class="oe_kanban_global_click">
+                                <!-- <div class="oe_kanban_image d-md-none"> -->
+                                    <!-- <img class="o_kanban_image_inner_pic" t-attf-src="kanban_image('cdn.paket.umroh', 'image', record.id.raw_value)" />
+                                </div> -->
+                                <t t-if="record.image.raw_value">
+                                    <div class="o_kanban_image_full_left o_kanban_image_full" t-attf-style="background-image: url(#{image}})" role="img"/>
+                                </t>
                                 <div class="oe_kanban_details">
                                     <ul>
                                         <li>
@@ -19,9 +26,14 @@
                                         <li>
                                             <field name="keterangan"/>
                                         </li>
-                                            <field name="sesi_umroh"/>
                                         <li>
-                                            <field name="perlengkapan_ids"/>
+                                            <field name="lst_price"/>
+                                        </li>
+                                        <li>
+                                            <field name="sesi_umroh"/>
+                                        </li>
+                                        <li>
+                                            <field name="durasi"/>
                                         </li>
                                     </ul>
                                 </div>
@@ -41,14 +53,11 @@
                     <!-- Add your fields here -->
                         <field name="name"/>
                         <field name="keterangan"/>
-                        <field name="sesi_umroh"/>
-                        <!-- <field name="product_ids"/> -->
-                        <field name="perlengkapan_ids" force_save="1"/>
+                        <field name="lst_price"/>
                 </tree>
             </field>
         </record>
         
-
         <!-- cdn.paket.umroh form view -->
         <record id="cdn_paket_umroh_view_form" model="ir.ui.view">
             <field name="name">Paket Umroh</field>
@@ -60,12 +69,17 @@
                     </header>
                     <sheet>
                         <group>
-                            <!-- Add your fields here -->
+                            <field name="image" widget="image" class="" nolabel="1"/>
+                        </group>
+                        <group string="Paket">
                             <field name="name"/>
                             <field name="keterangan"/>
                             <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
-                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> 
-                        </group>
+                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/>
+                            <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/> 
+                            <field name="durasi"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>   
                         <notebook>
                             <page name="sesi" string="Sesi umroh">
                                 <field name="sesi_umroh" readonly="True">
@@ -76,7 +90,12 @@
                                 </field>
                             </page>
                             <page name="perlengkapan" string="Perlengkapan">
-                                <field name="product_ids"/>
+                                <field name="product_ids">
+                                    <!-- <field name="standard_price" invisible="1"/> -->
+                                </field>
+                                <group string="Harga Total">
+                                    <field name="harga_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </group>
                             </page>
                         </notebook>  
                     </sheet>
@@ -95,5 +114,4 @@
     </data>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="paket_umroh_menu_act" name="Paket Umroh" parent="travel_umroh_menu_categ" action="cdn_paket_umroh_action" sequence="10"/>
-    <!-- This Menu Item must have a parent and an action -->
 </odoo>
