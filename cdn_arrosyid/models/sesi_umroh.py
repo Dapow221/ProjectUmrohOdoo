@@ -19,14 +19,14 @@ class SesiUmroh(models.Model):
     durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
     rencana_perjalanan_ids = fields.One2many(comodel_name='cdn.rencana.perjalanan', inverse_name='sesi_umroh_id', string='')
-    
 
-    # def write(self, values):
-    #     res = super(SesiUmroh, self).write(values)
-    #     if 'state' in values:
-    #         for rec in self.rencana_perjalanan_ids:
-    #             rec._compute_state()
-    #     return res
+
+    def write(self, values):
+        res = super(SesiUmroh, self).write(values)
+        if 'state' in values:
+            for rec in self.rencana_perjalanan_ids:
+                rec._compute_state()
+        return res
         
     def action_akan_datang(self):
         for rec in self:

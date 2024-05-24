@@ -52,6 +52,12 @@
                     <field name="tanggal_berangkat"/>
                     <field name="durasi"/>
                     <field name="tanggal_pulang"/>
+                    <field name="state" 
+                            decoration-success="state == 'selesai'"
+                            decoration-info="state == 'akan_datang'"
+                            decoration-danger="state == 'batal_perjalanan'"
+                            decoration-warning="state == 'proses'"
+                            widget="badge"/>
                 </tree>
             </field>
         </record>
