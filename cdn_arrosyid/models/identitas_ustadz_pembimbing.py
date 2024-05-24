@@ -8,7 +8,7 @@ class UstadzPembimbing(models.Model):
     _description = 'Ustadz Pembimbing'
     _inherits    = {'res.partner':'partner_id'}
     
-    partner_id          = fields.Many2one(comodel_name='res.partner', string='Nama Ustadz Pembimbing')
+    partner_id          = fields.Many2one(comodel_name='res.partner', string='Nama Ustadz Pembimbing', ondelete='cascade')
     jenis_kel           = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
     referensi           = fields.Char(string='No Referensi')
     paspor              = fields.Char(string='Nomor Paspor', required=True)

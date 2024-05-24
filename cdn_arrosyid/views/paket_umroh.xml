@@ -25,6 +25,7 @@
                                         <li>
                                             <field name="keterangan"/>
                                         </li>
+
                                         <li>
                                             <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                         </li>
@@ -74,6 +75,7 @@
                         <group string="Paket">
                             <field name="name"/>
                             <field name="keterangan"/>
+                            <field name="durasi" />
                             <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
                             <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/>
                             <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/> 

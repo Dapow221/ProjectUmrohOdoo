@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class PaketUmroh(models.Model):
     _name               = 'cdn.paket.umroh'
     _description        = 'Master Data Paket Umroh'
+
     
     name                = fields.Char(string='Nama', required=True)  
     keterangan          = fields.Text(string='Keterangan')
