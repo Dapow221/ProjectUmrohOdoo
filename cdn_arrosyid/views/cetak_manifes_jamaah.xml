@@ -10,19 +10,25 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td><strong>Nama Jamaah:</strong></td>
-                                <td><strong>Nomor Paspor:</strong></td>
-                                <td><strong>No Referensi:</strong></td>
-                                <td><strong>Tanggal Lahir:</strong></td>
-                                <td><strong>Jenis Kelamin:</strong></td>
+                                <td><strong>No</strong></td>
+                                <td><strong>Nama Jamaah</strong></td>
+                                <td><strong>Nomor Paspor</strong></td>
+                                <td><strong>No Referensi</strong></td>
+                                <td><strong>Tanggal Lahir</strong></td>
+                                <td><strong>Jenis Kelamin</strong></td>
                             </tr>
-                            <tr>
-                                <td><span t-field="doc.jammaah_ids.name"/></td>
-                                <td><span t-field="doc.jammaah_ids.paspor"/></td>
-                                <td><span t-field="doc.jammaah_ids.referensi"/></td>
-                                <td><span t-field="doc.jammaah_ids.tgl_lahir"/></td>
-                                <td><span t-field="doc.jammaah_ids.jenis_kel"/></td>
-                            </tr>
+                            <t t-set="counter" t-value="1"/>
+                            <t t-foreach="doc.jammaah_ids" t-as="data">
+                                <tr>
+                                    <td><span t-esc="counter"/></td>
+                                    <td><span t-field="data.nama"/></td>
+                                    <td><span t-field="data.paspor"/></td>
+                                    <td><span t-field="data.referensi"/></td>
+                                    <td><span t-field="data.tgl_lahir"/></td>
+                                    <td><span t-field="data.jenis_kel"/></td>
+                                </tr>
+                                <t t-set="counter" t-value="counter + 1"/>
+                            </t>
                         </tbody>
                     </table>
                 </div>
