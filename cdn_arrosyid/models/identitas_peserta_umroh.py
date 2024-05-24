@@ -20,6 +20,8 @@ class IdentitasJamaah(models.Model):
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
+    state = fields.Selection(string='Status Umroh Jamaah', selection=[('draft', 'Draft'), ('berlangsung', 'Sedang Umroh'),('selesai', 'Selesai Umroh')])
+    
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):    
