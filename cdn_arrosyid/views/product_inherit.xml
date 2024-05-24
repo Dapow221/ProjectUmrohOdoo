@@ -11,7 +11,7 @@
             <field name="arch" type="xml">
                 <!-- Add your xpath here -->
                 <field name="uom_po_id" position="after">
-                    <field name="paket_umroh"/>                    
+                    <field name="paket_umroh"/> 
                 </field>
             </field>
         </record>
