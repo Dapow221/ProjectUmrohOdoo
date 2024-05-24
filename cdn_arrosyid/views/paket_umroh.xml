@@ -19,6 +19,9 @@
                                         <li>
                                             <field name="keterangan"/>
                                         </li>
+                                        <!-- </li>
+                                            <field name="durasi" />
+                                        </li> -->
                                             <field name="sesi_umroh"/>
                                         <li>
                                             <field name="perlengkapan_ids"/>
@@ -41,6 +44,7 @@
                     <!-- Add your fields here -->
                         <field name="name"/>
                         <field name="keterangan"/>
+                        <field name="durasi" />
                         <field name="sesi_umroh"/>
                         <!-- <field name="product_ids"/> -->
                         <field name="perlengkapan_ids" force_save="1"/>
@@ -63,6 +67,7 @@
                             <!-- Add your fields here -->
                             <field name="name"/>
                             <field name="keterangan"/>
+                            <field name="durasi" />
                             <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
                             <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> 
                         </group>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_identitas_manifes_jamaah_document">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <h2>
+                        <span>Identitas Manifes Jamaah</span>
+                    </h2>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>Nama Jamaah:</strong></td>
+                                <td><strong>Nomor Paspor:</strong></td>
+                                <td><strong>No Referensi:</strong></td>
+                                <td><strong>Tanggal Lahir:</strong></td>
+                                <td><strong>Jenis Kelamin:</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span t-field="doc.jammaah_ids.name"/></td>
+                                <td><span t-field="doc.jammaah_ids.paspor"/></td>
+                                <td><span t-field="doc.jammaah_ids.referensi"/></td>
+                                <td><span t-field="doc.jammaah_ids.tgl_lahir"/></td>
+                                <td><span t-field="doc.jammaah_ids.jenis_kel"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
