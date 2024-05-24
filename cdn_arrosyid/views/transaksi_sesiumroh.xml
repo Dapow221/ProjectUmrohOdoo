@@ -63,7 +63,7 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <!-- <button name="action_akan_datang" string="Akan Datang" type="object" class="oe_highlight" states="prosess"/> -->
+                        <button name="action_akan_datang" string="Akan Datang" type="object" class="oe_highlight" states="prosess"/>
                         <button name="action_prosess" string="Mulai Sesi Umroh" type="object" class="oe_highlight" states="akan_datang"/>
                         <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" states="prosess"/>
                         <button name="action_batal_perjalanan" string="Batal" type="object" class="oe_highlight" states="prosess"/>
