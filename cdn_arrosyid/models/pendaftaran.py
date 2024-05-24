@@ -32,7 +32,7 @@ class CdnPendaftaran(models.Model):
     pembimbing = fields.Char(related='sesi_id.pembimbing_id.name', string="Nama Pembimbing")
     petugas_lapangan = fields.Char(related='sesi_id.petugas_lapangan.name', string="Nama Petugas Lapangan")
     tanggal_berangkat = fields.Date(related='sesi_id.tanggal_berangkat')
-    durasi = fields.Float(related='sesi_id.durasi')
+    durasi = fields.Integer(related='sesi_id.durasi')
     tanggal_pulang = fields.Date(related='sesi_id.tanggal_pulang')
     
     # action button
