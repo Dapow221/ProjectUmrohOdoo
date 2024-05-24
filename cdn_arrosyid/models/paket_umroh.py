@@ -4,7 +4,6 @@ class PaketUmroh(models.Model):
     _name               = 'cdn.paket.umroh'
     _description        = 'Master Data Paket Umroh'
 
-    
     name                = fields.Char(string='Nama', required=True)  
     keterangan          = fields.Text(string='Keterangan')
     lst_price           = fields.Float(string='Harga Paket', required=True)
@@ -50,29 +49,28 @@ class PaketUmroh(models.Model):
         })
         return paket_baru
 
+    # def action_create_invoice(self):
+    #     invoice_lines = []
+    #     for item in self.perlengkapan_ids:
+    #         invoice_lines.append((0, 0, {
+    #             'product_id': item.product_id.id,
+    #             'quantity': item.jumlah,
+    #             'price_unit': item.harga,
+    #             'name': item.product_id.name,
+    #         }))
 
-    def action_create_invoice(self):
-        invoice_lines = []
-        for item in self.perlengkapan_ids:
-            invoice_lines.append((0, 0, {
-                'product_id': item.product_id.id,
-                'quantity': item.jumlah,
-                'price_unit': item.harga,
-                'name': item.product_id.name,
-            }))
+    #     invoice = self.env['account.move'].create({
+    #         'move_type': 'out_invoice',
+    #         'partner_id': self.sesi_umroh.jammaah_ids,  
+    #         'invoice_date': fields.Date.today(),
+    #         'invoice_line_ids': invoice_lines,
+    #         'currency_id': self.currency_id.id,
+    #     })
 
-        invoice = self.env['account.move'].create({
-            'move_type': 'out_invoice',
-            'partner_id': self.sesi_umroh.jammaah_ids,  
-            'invoice_date': fields.Date.today(),
-            'invoice_line_ids': invoice_lines,
-            'currency_id': self.currency_id.id,
-        })
-
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Invoice',
-            'view_mode': 'form',
-            'res_model': 'account.move',
-            'res_id': invoice.id,
-        }
+    #     return {
+    #         'type': 'ir.actions.act_window',
+    #         'name': 'Invoice',
+    #         'view_mode': 'form',
+    #         'res_model': 'account.move',
+    #         'res_id': invoice.id,
+    #     }

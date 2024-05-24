@@ -16,7 +16,7 @@ class SesiUmroh(models.Model):
     state                  = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     itenerary              = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='Itinerary')
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
-    durasi                 = fields.Integer(string='Durasi Umroh (Hari)', store=True, compute='_compute_durasi')
+    durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
        
     def write(self, values):
@@ -52,10 +52,10 @@ class SesiUmroh(models.Model):
     def _onchange_paket_umroh_id(self):
         self.durasi = self.paket_umroh_id.durasi
     
-    @api.depends('tanggal_berangkat','durasi')
-    def _compute_durasi(self):
-        for rec in self:
-            if rec.tanggal_berangkat and rec.durasi:
-                rec.tanggal_pulang = rec.tanggal_berangkat + relativedelta.relativedelta(days=rec.durasi)
-
     
+    @api.onchange('tanggal_berangkat', 'durasi')
+    def _compute_tanggal_pulang(self):
+        for sesi in self:
+            if sesi.tanggal_berangkat and sesi.durasi:
+                durasi = relativedelta.relativedelta(days=sesi.durasi)
+                sesi.tanggal_pulang = fields.Date.to_string(fields.Date.from_string(sesi.tanggal_berangkat) + durasi)
