@@ -63,12 +63,12 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_akan_datang" string="Akan Datang" type="object" class="oe_highlight" states="prosess"/>
-                        <button name="action_prosess" string="Mulai Sesi Umroh" type="object" class="oe_highlight" states="akan_datang"/>
-                        <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" states="prosess"/>
-                        <button name="action_batal_perjalanan" string="Batal" type="object" class="oe_highlight" states="prosess"/>
+                        <button name="action_proses" string="Mulai Sesi Umroh" type="object" class="oe_highlight" states="akan_datang"/>
+                        <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" states="proses"/>
+                        <button name="action_batal_perjalanan" string="Batal" type="object" class="oe_highlight" states="proses,akan_datang"/>
+                        <button name="action_akan_datang" string="Akan Datang" type="object" class="oe_highlight" states="batal_perjalanan"/>
                         <button name="%(action_report_manifes_jamaah)d" string="Cetak Manifes Jamaah" type="action" class="oe_highlight"/>
-                        <field name="state" widget="statusbar" statusbar_visible="prosess,akan_datang,selesai,batal_perjalanan"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="proses,akan_datang,selesai,batal_perjalanan"/>
                     </header>
                         <sheet>
                             <group>
