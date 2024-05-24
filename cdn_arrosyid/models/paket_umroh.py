@@ -4,17 +4,17 @@ class PaketUmroh(models.Model):
     _name               = 'cdn.paket.umroh'
     _description        = 'Master Data Paket Umroh'
     
-    name                = fields.Char(string='Nama')  
+    name                = fields.Char(string='Nama', required=True)  
     keterangan          = fields.Text(string='Keterangan')
-    lst_price           = fields.Float(string='Harga Paket')
+    lst_price           = fields.Float(string='Harga Paket', required=True)
     image               = fields.Image('image')
     sesi_umroh          = fields.One2many(comodel_name='cdn.sesi.umroh', inverse_name='paket_umroh_id', string='Sesi Umroh')
-    maskapai_id         = fields.Many2one(comodel_name='res.partner', string='Maskapai')
-    hotel_id            = fields.Many2many(comodel_name='res.partner', string='Hotel')
+    maskapai_id         = fields.Many2one(comodel_name='res.partner', string='Maskapai', required=True)
+    hotel_id            = fields.Many2many(comodel_name='res.partner', string='Hotel', required=True)
     company_id          = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
-    currency_id         = fields.Many2one('res.currency', related='company_id.currency_id')
-    product_ids         = fields.Many2many(comodel_name='product.product', string='Consumable', domain=[('detailed_type', '=', 'consu')])
-    durasi              = fields.Float(string='Durasi')
+    currency_id         = fields.Many2one('res.currency', related='company_id.currency_id', required=True)
+    product_ids         = fields.Many2many(comodel_name='product.product', string='Consumable', domain=[('detailed_type', '=', 'consu')], required=True)
+    durasi              = fields.Integer(string='Durasi', required=True)
     product_id          = fields.Many2one('product.product')
     harga_subtotal      = fields.Monetary(string='Harga Total', compute="_compute_harga_subtotal", currency_field="currency_id")
 
@@ -46,7 +46,6 @@ class PaketUmroh(models.Model):
         paket_baru_umroh.write({
             'name': self.name,
             'lst_price': self.lst_price,
-
         })
         return paket_baru
 
