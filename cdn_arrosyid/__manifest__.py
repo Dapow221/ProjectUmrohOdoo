@@ -28,6 +28,7 @@
         'data/sequence_data.xml',
         'views/menu.xml',
         'views/cetak_identitas_jamaah.xml',
+        'views/cetak_manifes_jamaah.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
@@ -41,6 +42,7 @@
         'wizards/wizard_pendaftaran.xml',
         'views/product_inherit.xml',
         'views/invoice_inherit.xml',
+        'views/pendaftaran.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

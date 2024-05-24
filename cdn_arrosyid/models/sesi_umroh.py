@@ -1,20 +1,22 @@
 from odoo import models, fields, api
+from dateutil import relativedelta
+from datetime import date
 
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
     _description           = 'Sesi Umroh'
 
-    name                   = fields.Char(string='Name')
+    name                   = fields.Char(string='Name', required=True)
     keterangan             = fields.Text(string='Description')
     paket_umroh_id         = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
-    pembimbing_id          = fields.Many2one(comodel_name='res.users', string='Pembimbing')
-    petugas_lapangan       = fields.Many2many(comodel_name='res.users', string='Petugas Lapangan')
-    jammaah_ids            = fields.Many2many(comodel_name='res.partner', string='Jamaah')
+    pembimbing_id          = fields.Many2one(comodel_name='cdn.ustadz.pembimbing', string='Pembimbing')
+    petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
+    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah')
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
     state                  = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     itenerary              = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='Itinerary')
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
-    durasi                 = fields.Float(string='Durasi')
+    durasi                 = fields.Integer(string='Durasi Umroh (Hari)', store=True, compute='_compute_durasi')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
        
     def write(self, values):
@@ -46,6 +48,14 @@ class SesiUmroh(models.Model):
         for rec in self:
             rec.jumlah_jamaah = len(rec.jammaah_ids)
     
-
+    @api.onchange('paket_umroh_id')
+    def _onchange_paket_umroh_id(self):
+        self.durasi = self.paket_umroh_id.durasi
+    
+    @api.depends('tanggal_berangkat','durasi')
+    def _compute_durasi(self):
+        for rec in self:
+            if rec.tanggal_berangkat and rec.durasi:
+                rec.tanggal_pulang = rec.tanggal_berangkat + relativedelta.relativedelta(days=rec.durasi)
 
     
