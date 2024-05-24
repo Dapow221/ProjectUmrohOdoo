@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
             <xpath expr="//field[@name='jenis']" position="after">
-                <field name="kelas" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
+                <field name="kelas" widget="priority" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
             </xpath>
             </field>
         </record>
