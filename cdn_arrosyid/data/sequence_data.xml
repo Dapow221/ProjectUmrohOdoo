@@ -25,6 +25,14 @@
             <field name="padding">4</field> 
             <field name="company_id" eval="False"/>
         </record>
+
+        <record id="seq_pendaftaran_umroh" model="ir.sequence">
+            <field name="name">Pendaftaran Umroh</field>
+            <field name="code">cdn.pendaftaran</field> 
+            <field name="prefix">REG-</field> 
+            <field name="padding">4</field> 
+            <field name="company_id" eval="False"/>
+        </record>
     
     </data>
     
