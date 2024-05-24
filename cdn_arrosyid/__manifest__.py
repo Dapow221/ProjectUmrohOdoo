@@ -40,7 +40,6 @@
         'views/perlengkapan.xml',
         'wizards/wizard_pembayaran.xml',
         'wizards/wizard_pendaftaran.xml',
-        'views/product_inherit.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
     ],
