@@ -76,6 +76,7 @@
                                 <field name="keterangan"/>
                                 <field name="paket_umroh_id"/>
                                 <field name="pembimbing_id"/>
+                                <field name="petugas_lapangan" />
                                 <field name="tanggal_berangkat"/>
                                 <field name="durasi"/>
                                 <field name="tanggal_pulang"/>
@@ -84,11 +85,16 @@
                                 <page name="itenerary" string="Rencana Perjalanan">
                                     <field name="itenerary"/>
                                 </page>
-                                <page name="jammaah_ids" string="Jammaah">
+                                <page name="jammaah_ids" string="Jamaah Umroh">
                                     <field name="jammaah_ids" readonly="1"/>
                                 </page>
                             </notebook>
                         </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>

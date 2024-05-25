@@ -62,4 +62,5 @@ class CdnPendaftaran(models.Model):
             vals['no_pendaftaran'] = self.env['ir.sequence'].next_by_code('cdn.pendaftaran')
         return super(CdnPendaftaran, self).write(vals)
     
-        
+    def name_get(self):
+        return [(record.id, "[%s] %s" % (record.no_pendaftaran, record.nama)) for record in self]
