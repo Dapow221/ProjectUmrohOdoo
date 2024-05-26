@@ -1,16 +1,16 @@
 from odoo import models, fields, api, _
-
+from odoo.exceptions import ValidationError
 
 
 class CdnPendaftaran(models.Model):
     _name = 'cdn.pendaftaran'
     _description = 'Cdn Pendaftaran'
+    _inherit = ['mail.thread','mail.activity.mixin']
 
-    no_pendaftaran = fields.Char(string='Nomor Pendaftaran')
-    state = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'), ('selesai', 'Selesai'),], default="draf")
+    no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
+    state = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'), ('selesai', 'Selesai'),], default="draf", tracking=True)
     
-    # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
-    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True)
+    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, tracking=True)
     # relatad jamaah
     nama = fields.Char(related='jamaah_id.name', string="Nama")
     jenis_kel = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")
@@ -24,7 +24,7 @@ class CdnPendaftaran(models.Model):
     nama_pasangan = fields.Char(related='jamaah_id.nama_pasangan')
     riwayat_penyakit = fields.Char(related='jamaah_id.riwayat_penyakit')
 
-    sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh')
+    sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
     # related sesi
     name_sesi = fields.Char(related='sesi_id.name', string="Nama")
     keterangan = fields.Text(related='sesi_id.keterangan')
@@ -52,10 +52,58 @@ class CdnPendaftaran(models.Model):
         for rec in self:
             rec.state = 'selesai'
 
+    # validasi jamaah double
+    @api.constrains('jamaah_id', 'sesi_id')
+    def _check_unique_jamaah(self):
+        for rec in self:
+            if rec.jamaah_id and rec.sesi_id:
+                data_jamaah = self.env['cdn.pendaftaran'].search([
+                    ('jamaah_id', '=', rec.jamaah_id.id),
+                    ('sesi_id', '=', rec.sesi_id.id),
+                    ('id', '!=', rec.id),  # Exclude the current record
+                ])
+                if data_jamaah:
+                    raise ValidationError(_('Jamaah sudah terdaftar pada sesi ini!'))
+
     @api.model
     def create(self, vals):
+        # Membuat nomor pendaftaran
         vals['no_pendaftaran'] = self.env['ir.sequence'].next_by_code('cdn.pendaftaran')
-        return super(CdnPendaftaran, self).create(vals)
+
+        # Membuat pendaftaran   
+        pendaftaran = super(CdnPendaftaran, self).create(vals)
+
+        # Mendapatkan data Jamaah
+        jamaah = pendaftaran.jamaah_id
+        partner = jamaah.partner_id
+
+        # Mendapatkan data Sesi Umroh
+        sesi_umroh = pendaftaran.sesi_id
+        paket_umroh = sesi_umroh.paket_umroh_id
+
+        # Mendapatkan produk untuk invoice
+        produk = self.env['product.product'].search([('paket_umroh_id', '=', paket_umroh.id)], limit=1)
+
+        # Membuat data penagihan
+        data_penagihan = [(0, 0, {
+            'product_id': produk.id,
+            'quantity': 1,
+            'price_unit': produk.lst_price,
+        })]
+
+        # Membuat invoice
+        account_move = self.env['account.move']
+        invoice = account_move.create({
+            'move_type': 'out_invoice',
+            'partner_id': partner.id,
+            'invoice_date': fields.Date.today(),
+            'invoice_line_ids': data_penagihan,
+            'paket_umroh': True,
+            # 'sequence_prefix': f'pkt_umroh-{self.no_pendaftaran}',
+            # 'state': 'posted',
+        })
+
+        return pendaftaran
 
     def write(self, vals):
         if not self.no_pendaftaran and not vals.get('no_pendaftaran'):

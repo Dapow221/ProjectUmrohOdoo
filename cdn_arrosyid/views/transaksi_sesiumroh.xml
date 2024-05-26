@@ -85,7 +85,22 @@
                                     <field name="itenerary"/>
                                 </page>
                                 <page name="jammaah_ids" string="Jammaah">
-                                    <field name="jammaah_ids" readonly="1"/>
+                                    <field name="jammaah_ids" readonly="1">
+                                        <tree>
+                                            <field name="no_pendaftaran"/>
+                                            <field name="nama"/>
+                                            <field name="umur"  optional="show"/>
+                                            <field name="jenis_kel"  optional="hide"/>
+                                            <field name="referensi"  optional="hide"/>
+                                            <field name="paspor"  optional="hide"/>
+                                            <field name="masa_paspor"  optional="hide"/>
+                                            <field name="tgl_lahir"  optional="hide"/>
+                                            <field name="is_menikah"  optional="hide"/>
+                                            <field name="nama_pasangan"  optional="hide"/>
+                                            <field name="riwayat_penyakit"  optional="hide"/>
+                                            <field name="state"  optional="hide"/>
+                                        </tree>
+                                    </field>
                                 </page>
                             </notebook>
                         </sheet>

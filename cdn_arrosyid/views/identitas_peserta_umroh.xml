@@ -37,6 +37,9 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" name="action_view_pendaftaran" icon="fa-address-card"> 
+                                <field name="jumlah_pendaftaran" string="Pendaftaran" widget="statinfo" class="text-center"/>
+                            </button>
                             <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_jemaah_invoices" context="{'default_partner_id': active_id}">
                                 <div class="o_form_field o_stat_info">
                                     <span class="o_stat_value">
@@ -45,6 +48,9 @@
                                     </span>
                                     <span class="o_stat_text">Invoiced</span>
                                 </div>
+                            </button>
+                            <button class="oe_stat_button" type="object" name="action_view_penagihan" icon="fa-money">
+                                <field name="jumlah_penagihan" string="Penagihan" widget="statinfo"/>
                             </button>
                         </div>
                         <field name="image" widget="image" class="oe_avatar"/>
