@@ -42,6 +42,7 @@
         'wizards/wizard_pendaftaran.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
+        'views/penagihan.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
