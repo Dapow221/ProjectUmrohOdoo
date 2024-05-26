@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from dateutil import relativedelta
 from datetime import date
+import xml.etree.ElementTree as ET
 
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
@@ -11,7 +12,7 @@ class SesiUmroh(models.Model):
     paket_umroh_id         = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
     pembimbing_id          = fields.Many2one(comodel_name='cdn.ustadz.pembimbing', string='Pembimbing')
     petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
-    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah')
+    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah', domain=lambda self: [('penagihan_ids.payment_state', '=', 'paid')])
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
     state                  = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
     itenerary              = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='Itinerary')
@@ -19,6 +20,16 @@ class SesiUmroh(models.Model):
     durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
        
+
+    def show_finished_records(xml_string):
+        root = ET.fromstring(xml_string)
+        records = root.findall(".//record")
+        for record in records:
+            status_field = record.find(".//field[@name='state']")
+            if status_field is not None and status_field.text != "selesai":
+                root.remove(record)
+        return ET.tostring(root, encoding="unicode")
+
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
         if 'state' in values:
