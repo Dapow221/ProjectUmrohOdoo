@@ -14,7 +14,7 @@ class PaketUmroh(models.Model):
     company_id          = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     currency_id         = fields.Many2one('res.currency', related='company_id.currency_id', required=True)
     product_ids         = fields.Many2many(comodel_name='product.product', string='Consumable', domain=[('detailed_type', '=', 'consu')], required=True)
-    durasi              = fields.Integer(string='Durasi', required=True)
+    durasi              = fields.Integer(string='Durasi Umroh (Hari)', required=True)
     product_id          = fields.Many2one('product.product')
     harga_subtotal      = fields.Monetary(string='Harga Total', compute="_compute_harga_subtotal", currency_field="currency_id")
 

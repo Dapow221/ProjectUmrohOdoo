@@ -11,6 +11,17 @@
             <field name="binding_model_id" ref="model_cdn_sesi_umroh"/>
         </record>
 
+        <record id="cdn_sesi_umroh_view_calendar" model="ir.ui.view">
+            <field name="name">Sesi Umroh</field>
+            <field name="model">cdn.sesi.umroh</field>
+            <field name="arch" type="xml">
+                <calendar string="Sesi Umroh" date_start="tanggal_berangkat" date_stop="tanggal_pulang" mode="month" date_delay="durasi" color="state" quick_add="False" hide_time="True" event_open_popup="True" form_view_id="%(cdn_arrosyid.cdn_sesi_umroh_view_form)d" event_limit="5">
+                    <field name="paket_umroh_id" filters="1" avatar_field="image"/>
+                    <field name="state" invisible="1" filters="1"/>
+                </calendar>
+            </field>
+        </record>
+
         <record id="cdn_sesi_umroh_view_kanban" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
             <field name="model">cdn.sesi.umroh</field>
@@ -87,8 +98,8 @@
                                 <field name="tanggal_pulang"/>
                             </group>
                             <notebook>
-                                <page name="itenerary" string="Rencana Perjalanan">
-                                    <field name="itenerary"/>
+                                <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
+                                    <field name="rencana_perjalanan_ids"/>
                                 </page>
                                 <page name="jammaah_ids" string="Jammaah">
                                     <field name="jammaah_ids" readonly="1"/>
@@ -105,7 +116,7 @@
             <field name="name">Sesi Umroh</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.sesi.umroh</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">tree,form,kanban,calendar</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Create your first item

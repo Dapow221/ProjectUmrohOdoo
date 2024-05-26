@@ -9,7 +9,7 @@ class CdnRencanaPerjalanan(models.Model):
     nama = fields.Char(string='Nama')
     keterangan = fields.Text(string='Keterangan')
     dimulai = fields.Date('Dimulai')
-    durasi = fields.Float(string='Durasi')
+    durasi  = fields.Integer(related='sesi_umroh_id.durasi', string='Durasi Umroh (Hari)')
     state = fields.Selection([('batal', 'Batal'),('belum', 'Belum'),('proses', 'Proses'),('selesai', 'selesai')], string='state', compute='_compute_state', store=True)
 
     @api.depends('sesi_umroh_id.state')
@@ -26,4 +26,5 @@ class CdnRencanaPerjalanan(models.Model):
                     rec.state = 'batal'
             else:
                 rec.state = 'belum'
+    
     

@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from dateutil import relativedelta
 from datetime import date
+from odoo.exceptions import ValidationError
 
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
@@ -14,12 +15,10 @@ class SesiUmroh(models.Model):
     jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah')
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
     state                  = fields.Selection([('akan_datang', 'Akan Datang'), ('proses', 'Sedang Berjalan'), ('selesai', 'Selesai'), ('batal_perjalanan', 'Perjalanan Batal'),], default="akan_datang", required=True, string="Status", tracking=True)
-    itenerary              = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='Itinerary')
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
-    durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
+    durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
-    rencana_perjalanan_ids = fields.One2many(comodel_name='cdn.rencana.perjalanan', inverse_name='sesi_umroh_id', string='')
-
+    rencana_perjalanan_ids = fields.One2many(comodel_name='cdn.rencana.perjalanan', inverse_name='sesi_umroh_id')
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
