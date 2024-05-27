@@ -4,9 +4,16 @@
         <t t-foreach="docs" t-as="doc">
             <t t-call="web.basic_layout">
                 <div class="page">
-                    <h2>
-                        <span>Identitas Manifes Jamaah</span>
-                    </h2>
+                    <center>
+                        <h1>
+                            <span>Identitas Manifes Jamaah</span>
+                        </h1>
+                    </center>
+                    <div>
+                        <h2 t-field="docs.paket_umroh_id.name"></h2>
+                        <h3 t-field="docs.name"></h3>
+                        <h3>Mulai <span t-field="docs.tanggal_berangkat"></span> s/d <span t-field="docs.tanggal_pulang"></span></h3>
+                    </div>
                     <table class="table">
                         <tbody>
                             <tr>
