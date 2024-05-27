@@ -25,7 +25,7 @@ class CdnPendaftaran(models.Model):
     riwayat_penyakit = fields.Char(related='jamaah_id.riwayat_penyakit')
 
     sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
-    # related sesi tes
+    # related sesi
     name_sesi = fields.Char(related='sesi_id.name', string="Nama")
     keterangan = fields.Text(related='sesi_id.keterangan')
     paket_umroh = fields.Char(related='sesi_id.paket_umroh_id.name', string="Nama Paket")
@@ -132,58 +132,11 @@ class CdnPendaftaran(models.Model):
                 if data_jamaah:
                     raise ValidationError(_('Jamaah sudah terdaftar pada sesi ini!'))
 
-    # validasi jamaah double
-    @api.constrains('jamaah_id', 'sesi_id')
-    def _check_unique_jamaah(self):
-        for rec in self:
-            if rec.jamaah_id and rec.sesi_id:
-                data_jamaah = self.env['cdn.pendaftaran'].search([
-                    ('jamaah_id', '=', rec.jamaah_id.id),
-                    ('sesi_id', '=', rec.sesi_id.id),
-                    ('id', '!=', rec.id),  # Exclude the current record
-                ])
-                if data_jamaah:
-                    raise ValidationError(_('Jamaah sudah terdaftar pada sesi ini!'))
-
     @api.model
     def create(self, vals):
         # Membuat nomor pendaftaran
         vals['no_pendaftaran'] = self.env['ir.sequence'].next_by_code('cdn.pendaftaran')
-
-        # Membuat pendaftaran   
-        pendaftaran = super(CdnPendaftaran, self).create(vals)
-
-        # Mendapatkan data Jamaah
-        jamaah = pendaftaran.jamaah_id
-        partner = jamaah.partner_id
-
-        # Mendapatkan data Sesi Umroh
-        sesi_umroh = pendaftaran.sesi_id
-        paket_umroh = sesi_umroh.paket_umroh_id
-
-        # Mendapatkan produk untuk invoice
-        produk = self.env['product.product'].search([('paket_umroh_id', '=', paket_umroh.id)], limit=1)
-
-        # Membuat data penagihan
-        data_penagihan = [(0, 0, {
-            'product_id': produk.id,
-            'quantity': 1,
-            'price_unit': produk.lst_price,
-        })]
-
-        # Membuat invoice
-        account_move = self.env['account.move']
-        invoice = account_move.create({
-            'move_type': 'out_invoice',
-            'partner_id': partner.id,
-            'invoice_date': fields.Date.today(),
-            'invoice_line_ids': data_penagihan,
-            'paket_umroh': True,
-            # 'sequence_prefix': f'pkt_umroh-{self.no_pendaftaran}',
-            # 'state': 'posted',
-        })
-
-        return pendaftaran
+        return super(CdnPendaftaran, self).create(vals)
 
     def write(self, vals):
         if not self.no_pendaftaran and not vals.get('no_pendaftaran'):
