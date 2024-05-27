@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 from dateutil import relativedelta
 from datetime import date
-import xml.etree.ElementTree as ET
 
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
@@ -19,16 +18,6 @@ class SesiUmroh(models.Model):
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
     durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
-       
-
-    def show_finished_records(xml_string):
-        root = ET.fromstring(xml_string)
-        records = root.findall(".//record")
-        for record in records:
-            status_field = record.find(".//field[@name='state']")
-            if status_field is not None and status_field.text != "selesai":
-                root.remove(record)
-        return ET.tostring(root, encoding="unicode")
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
