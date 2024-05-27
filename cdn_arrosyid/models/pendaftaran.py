@@ -25,7 +25,7 @@ class CdnPendaftaran(models.Model):
     riwayat_penyakit = fields.Char(related='jamaah_id.riwayat_penyakit')
 
     sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
-    # related sesi
+    # related sesi tes
     name_sesi = fields.Char(related='sesi_id.name', string="Nama")
     keterangan = fields.Text(related='sesi_id.keterangan')
     paket_umroh = fields.Char(related='sesi_id.paket_umroh_id.name', string="Nama Paket")
