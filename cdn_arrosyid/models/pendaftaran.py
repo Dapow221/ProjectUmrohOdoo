@@ -9,8 +9,8 @@ class CdnPendaftaran(models.Model):
 
     no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
     state = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'), ('selesai', 'Selesai'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
-    
-    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, tracking=True)
+    # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
+    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
     # relatad jamaah
     nama = fields.Char(related='jamaah_id.name', string="Nama")
     jenis_kel = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")

@@ -20,14 +20,12 @@ class IdentitasJamaah(models.Model):
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
-    state            = fields.Selection(string='Status Umroh Jamaah', selection=[('draft', 'Draft'), ('berlangsung', 'Sedang Umroh'),('selesai', 'Selesai Umroh')])
+    state            = fields.Selection(string='Status', selection=[('draft', 'draft'),('proses', 'Sedang Umroh'),('selesai', 'Selesai'),('batal', 'Perjalanan Batal')], default='draft')
     pendaftaran_ids  = fields.One2many('cdn.pendaftaran', 'jamaah_id', string='Pendaftaran')
     jumlah_pendaftaran = fields.Integer(string='Jumlah pendaftaran ', compute="_compute_jumlah_pendaftaran")
     penagihan_ids    = fields.One2many('account.move', 'partner_id', string='Penagihan')
     jumlah_penagihan = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
     lunas            = fields.Char(string='Lunas')
-
-    
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):    
@@ -114,4 +112,20 @@ class IdentitasJamaah(models.Model):
             'target': 'current',
             'type': 'ir.actions.act_window',
         }
+    # action button
+    def action_draft(self):
+        for rec in self:
+            rec.state = 'draft'
+    
+    def action_batal(self):
+        for rec in self:
+            rec.state = 'batal'
+
+    def action_proses(self):
+        for rec in self:
+            rec.state = 'proses'
+
+    def action_selesai(self):
+        for rec in self:
+            rec.state = 'selesai'
     
