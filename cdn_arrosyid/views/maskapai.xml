@@ -3,7 +3,6 @@
 
     <data>
 
-        <!-- res.partner inherit form view -->
         <record id="res_partner_efaktur" model="ir.ui.view">
             <field name="name">res.partner.efaktur.inherit.view.form</field>
             <field name="model">res.partner</field>

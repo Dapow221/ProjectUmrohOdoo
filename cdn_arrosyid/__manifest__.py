@@ -19,7 +19,7 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'data/sequence_data.xml',
         'views/menu.xml',
         'views/cetak_identitas_jamaah.xml',
+        'views/cetak_manifes_jamaah.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
@@ -39,9 +40,9 @@
         'views/perlengkapan.xml',
         'wizards/wizard_pembayaran.xml',
         'wizards/wizard_pendaftaran.xml',
-        'views/product_inherit.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
+        'views/penagihan.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
