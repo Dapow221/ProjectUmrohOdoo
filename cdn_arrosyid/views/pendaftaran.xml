@@ -47,13 +47,15 @@
                                 <field name="nama" required="1"/>
                                 <field name="referensi" placeholder="otomatis"/>
                                 <field name="jenis_kel" />                                   
-                                <!-- <field name="mobile" string="No. HP"/>   -->
+                                <field name="mobile" string="No. HP"/>
+                                <field name="pendidikan" />
                             </group>
                             <group>
                                 <field name="tgl_lahir" />
                                 <field name="umur" readonly="1"/>
-                                <!-- <field name="street" string="Alamat" /> -->
+                                <field name="street" string="Alamat" />
                                 <field name="is_menikah" />
+                                <field name="is_umroh" />
                                 <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
                             </group>
                         </group>
@@ -66,21 +68,40 @@
                                 <field name="masa_paspor" />
                             </group>
                         </group>
+                        <group name="lainnya" string="Informasi Lainnya">
+                            <group >
+                                    <field name="golongan_darah" />
+                                    <field name="pekerjaan" widget='selection' />
+                                    <field name="email" />
+                                    <field name="tanggal_umroh" attrs="{'invisible': [('is_umroh', '!=', True)]}" />
+                                </group>
+                                <group>
+                                    <field name="vaksin_meningitis" />
+                                    <field name="vaksin_covid19" />
+                                </group>
+                        </group>
                         <group name="sesi_umroh" string="Sesi Umroh">
                             <field name="sesi_id" placeholder="Pilih Sesi"/>
                         </group>
                         <notebook>
-                            <page name="deatail_sesi" string="Rincian Sesi">
+                            <page name="detail_sesi" string="Rincian Sesi">
                                 <group>
-                                    <field name="name_sesi"/>
-                                    <field name="keterangan"/>
-                                    <field name="tanggal_berangkat"/>
-                                    <field name="durasi"/>
-                                    <field name="tanggal_pulang"/>
-                                    <field name="paket_umroh"/>
-                                    <field name="pembimbing"/>
-                                    <field name="petugas_lapangan"/>
+                                    <group>
+                                        <field name="name_sesi"/>
+                                        <field name="keterangan"/>
+                                        <field name="tanggal_berangkat"/>
+                                        <field name="durasi"/>
+                                        <field name="tanggal_pulang"/>
+                                    </group>
+                                    <group>
+                                        <field name="paket_umroh"/>
+                                        <field name="pembimbing"/>
+                                        <field name="petugas_lapangan"/>
+                                    </group>
                                 </group>                  
+                            </page>
+                            <page name="perlengkapan" string="Perlengkapan Umroh">
+                                <field name="product_ids"></field>
                             </page>
                         </notebook>
                     </sheet>

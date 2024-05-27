@@ -20,6 +20,9 @@ class SesiUmroh(models.Model):
     durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
     rencana_perjalanan_ids = fields.Many2many(comodel_name='cdn.rencana.perjalanan', String="Itenerary")
+    maskapai_id            = fields.Many2one(related='paket_umroh_id.maskapai_id')
+    hotel_id               = fields.Many2many(related='paket_umroh_id.hotel_id')
+    
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)

@@ -66,12 +66,14 @@
                                     <field name="referensi" />
                                     <field name="jenis_kel" />
                                     <field name="is_menikah" />
+                                    <field name="is_umroh" />
                                 </group>
                                 <group>
                                     <field name="tgl_lahir" />
                                     <field name="umur" />
                                     <field name="mobile" string="No. HP"/>  
                                     <field name="street" string="Alamat" />
+                                    <field name="pendidikan" />
                                 </group>
                             </group>
                             <group>
@@ -83,6 +85,18 @@
                                     <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
                                     <field name="riwayat_penyakit" />
                                     <field name="active" invisible="1" />
+                                </group>
+                            </group>
+                            <group name="lain" string="Informasi Lain">
+                                <group >
+                                    <field name="golongan_darah" />
+                                    <field name="pekerjaan" widget='selection' />
+                                    <field name="email" />
+                                    <field name="tanggal_umroh" attrs="{'invisible': [('is_umroh', '!=', True)]}" />
+                                </group>
+                                <group>
+                                    <field name="vaksin_meningitis" />
+                                    <field name="vaksin_covid19" />
                                 </group>
                             </group>
                     </sheet>

@@ -97,12 +97,14 @@
                                 <field name="tanggal_berangkat"/>
                                 <field name="durasi"/>
                                 <field name="tanggal_pulang"/>
+                                <field name="maskapai_id" />
+                                <field name="hotel_id" />
                             </group>
                             <notebook>
                                 <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
                                     <field name="rencana_perjalanan_ids"/>
                                 </page>
-                                <page name="jammaah_idss" string="Jammaah">
+                                <page name="jammaah_idss" string="Jamaah">
                                     <field name="jammaah_ids" readonly="1">
                                         <tree>
                                             <field name="no_pendaftaran"/>
