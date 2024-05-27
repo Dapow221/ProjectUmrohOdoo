@@ -14,7 +14,7 @@ class SesiUmroh(models.Model):
     lst_price              = fields.Float(string='Harga Paket',related='paket_umroh_id.lst_price', required=True, store=True)
     pembimbing_id          = fields.Many2one(comodel_name='cdn.ustadz.pembimbing', string='Pembimbing')
     petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
-    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah', domain=lambda self: [('penagihan_ids.payment_state', '=', 'paid')])
+    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah')
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
     state                  = fields.Selection([('akan_datang', 'Akan Datang'), ('proses', 'Sedang Berjalan'), ('selesai', 'Selesai'), ('batal_perjalanan', 'Perjalanan Batal'),], default="akan_datang", required=True, string="Status", tracking=True)
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
