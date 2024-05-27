@@ -29,6 +29,7 @@ class CdnPendaftaran(models.Model):
     name_sesi = fields.Char(related='sesi_id.name', string="Nama")
     keterangan = fields.Text(related='sesi_id.keterangan')
     paket_umroh = fields.Char(related='sesi_id.paket_umroh_id.name', string="Nama Paket")
+    lst_price = fields.Float(string='Harga Paket',related='sesi_id.lst_price',store=True)
     pembimbing = fields.Char(related='sesi_id.pembimbing_id.name', string="Nama Pembimbing")
     petugas_lapangan = fields.Char(related='sesi_id.petugas_lapangan.name', string="Nama Petugas Lapangan")
     tanggal_berangkat = fields.Date(related='sesi_id.tanggal_berangkat')
@@ -61,16 +62,16 @@ class CdnPendaftaran(models.Model):
 
             # Mendapatkan data Sesi Umroh
             sesi_umroh = pendaftaran.sesi_id
-            paket_umroh = sesi_umroh.paket_umroh_id
+            sesi_harga = sesi_umroh.paket_umroh_id
 
             # Mendapatkan produk untuk invoice
-            produk = self.env['product.product'].search([('paket_umroh_id', '=', paket_umroh.id)], limit=1)
+            produk = self.env['product.product'].search([('paket_umroh_id', '=', sesi_harga.id)], limit=1)
 
             # Membuat data penagihan
             data_penagihan = [(0, 0, {
                 'product_id': produk.id,
                 'quantity': 1,
-                'price_unit': produk.lst_price,
+                'price_unit': sesi_umroh.lst_price,
             })]
 
             # Membuat invoice

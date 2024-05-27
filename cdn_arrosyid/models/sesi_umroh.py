@@ -11,6 +11,7 @@ class SesiUmroh(models.Model):
     name                   = fields.Char(string='Name', required=True)
     keterangan             = fields.Text(string='Description')
     paket_umroh_id         = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
+    lst_price              = fields.Float(string='Harga Paket',related='paket_umroh_id.lst_price', required=True, store=True)
     pembimbing_id          = fields.Many2one(comodel_name='cdn.ustadz.pembimbing', string='Pembimbing')
     petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
     jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah', domain=lambda self: [('penagihan_ids.payment_state', '=', 'paid')])
@@ -20,6 +21,8 @@ class SesiUmroh(models.Model):
     durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
     rencana_perjalanan_ids = fields.Many2many(comodel_name='cdn.rencana.perjalanan', String="Itenerary")
+    product_id          = fields.Many2one('product.product')
+
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)

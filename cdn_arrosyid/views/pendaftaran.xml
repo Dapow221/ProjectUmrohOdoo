@@ -46,7 +46,8 @@
                             <group>
                                 <field name="nama" required="1"/>
                                 <field name="referensi" placeholder="otomatis"/>
-                                <field name="jenis_kel" />                                   
+                                <field name="jenis_kel" />
+                                <field name="lst_price"/>                                   
                                 <!-- <field name="mobile" string="No. HP"/>   -->
                             </group>
                             <group>
