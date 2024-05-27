@@ -3,7 +3,7 @@
     <data>  
         <!-- cdn.pendaftaran tree view -->
            <record id="cdn_pendaftaran_view_tree" model="ir.ui.view">
-            <field name="name">cdn.pendaftaran.view.tree</field>
+            <field name="name">Pendaftaran</field>
             <field name="model">cdn.pendaftaran</field>
             <field name="arch" type="xml">
                 <tree >
@@ -20,7 +20,7 @@
         </record>
         <!-- cdn.pendaftaran form view -->
         <record id="cdn_pendaftaran_view_form" model="ir.ui.view">
-            <field name="name">cdn.pendaftaran.view.form</field>
+            <field name="name">Pendaftaran</field>
             <field name="model">cdn.pendaftaran</field>
             <field name="arch" type="xml">
                 <form string="">
@@ -28,7 +28,7 @@
                         <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="batal"/>
                         <button name="action_konfirmasi" string="Konfirmasi" type="object" class="oe_highlight" states="draf"/>
                         <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi"/>
-                        <button name="action_cek_tagihan" string="Cek Tagihan" type="object" class="btn-light" states="konfirmasi"/>
+                        <button name="action_cek_tagihan" string="Buat Tagihan" type="object" class="btn-light" states="konfirmasi"/>
                         <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,selesai"/>
                     </header>
                     <sheet>
@@ -36,11 +36,9 @@
                         <h4>No Pendaftaran : <field name="no_pendaftaran" placeholder="Otomatis"/></h4>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <group>
-                            <!-- <field name="pilih_jamaah" widget="radio"/> -->
                         </group>
                         <group name="identitas_jamaah" string="Identitas Jamaah">
                             <field name="jamaah_id" placeholder="Pilih Jamaah" />
-                            <!-- <field name="jamaah_id" placeholder="Pilih Jamaah"  attrs="{'invisible': [('pilih_jamaah', '=', 'baru')]}"/> -->
                         </group>
                         <group name="rincian" string="Rincian">
                             <group>
@@ -48,12 +46,10 @@
                                 <field name="referensi" placeholder="otomatis"/>
                                 <field name="jenis_kel" />
                                 <field name="lst_price"/>                                   
-                                <!-- <field name="mobile" string="No. HP"/>   -->
                             </group>
                             <group>
                                 <field name="tgl_lahir" />
                                 <field name="umur" readonly="1"/>
-                                <!-- <field name="street" string="Alamat" /> -->
                                 <field name="is_menikah" />
                                 <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
                             </group>
@@ -99,17 +95,6 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.pendaftaran</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="domain">[]</field> -->
-            <!-- <field name="context">{}</field> -->
-            <!-- <field name="target">{current}</field> -->
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    <!-- Add Text Here -->
-                </p><p>
-                    <!-- More details about what a user can do with this object will be OK --> 
-                
-                </p>
-            </field>
         </record>
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="pendaftaran_menu_action" name="Pendaftaran" parent="travel_pendaftaran_pengaturan_menu_categ" action="cdn_pendaftaran_action" sequence="10"/>
