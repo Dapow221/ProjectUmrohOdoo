@@ -16,11 +16,17 @@ class IdentitasJamaah(models.Model):
     tgl_lahir        = fields.Date(string='Tanggal Lahir', required=True)
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
     image            = fields.Image(string='image',)
-    is_menikah       = fields.Boolean(string='Sudah menikah?', default = False)
+    is_menikah       = fields.Boolean(string='Sudah menikah', default = False)
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
-    state = fields.Selection(string='Status Umroh Jamaah', selection=[('draft', 'Draft'), ('berlangsung', 'Sedang Umroh'),('selesai', 'Selesai Umroh')])
+    state            = fields.Selection(string='Status Umroh Jamaah', selection=[('draft', 'Draft'), ('berlangsung', 'Sedang Umroh'),('selesai', 'Selesai Umroh')])
+    pendaftaran_ids  = fields.One2many('cdn.pendaftaran', 'jamaah_id', string='Pendaftaran')
+    jumlah_pendaftaran = fields.Integer(string='Jumlah pendaftaran ', compute="_compute_jumlah_pendaftaran")
+    penagihan_ids    = fields.One2many('account.move', 'partner_id', string='Penagihan')
+    jumlah_penagihan = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
+    lunas            = fields.Char(string='Lunas')
+
     
     
     @api.depends('tgl_lahir')
@@ -61,25 +67,43 @@ class IdentitasJamaah(models.Model):
         if not self.referensi and not vals.get('referensi'):
             vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
         return super(IdentitasJamaah, self).write(vals)
+    
+    @api.depends('pendaftaran_ids')
+    def _compute_jumlah_pendaftaran(self):
+        for rec in self:
+            jumlah_pendaftaran = self.env['cdn.pendaftaran'].search_count([('jamaah_id','=', rec.id)])
+            rec.jumlah_pendaftaran = jumlah_pendaftaran
 
-     # Use @api.model if you're using Odoo version 10 or later
+    def action_view_pendaftaran(self):
+        return {
+            'name': _('Pendaftaran'),
+            'res_model': 'cdn.pendaftaran',
+            'view_mode': 'list,form',
+            'context': {'default_jamaah_id': self.id},
+            'domain': [('jamaah_id', '=', self.id)],
+            'target': 'current',
+            'type': 'ir.actions.act_window'
+        }
+
+    @api.depends('penagihan_ids')
+    def _compute_jumlah_penagihan(self):
+        for rec in self:
+            jumlah_penagihan = self.env['account.move'].search_count([('partner_id','=', rec.partner_id.id)])
+            rec.jumlah_penagihan = jumlah_penagihan
+        # self.jumlah_penagihan = 3
+    
+    def action_view_penagihan(self):
+        return {
+            'name': _('Penagihan'),
+            'res_model': 'account.move',
+            'view_mode': 'list,form',
+            'context': {'default_partner_id': self.partner_id.id},
+            'domain': [('partner_id', '=', self.partner_id.id)],
+            'target': 'current',
+            'type': 'ir.actions.act_window'
+        }
+    
     def action_view_jemaah_invoices(self):
-        # self.ensure_one()  # Ensure that there's only one record being processed
-
-        # # Assuming 'partner_id' is the field linking the current record to the partner
-        # partner_id = self.partner_id.id
-
-        # # Define the action
-        # action = {
-        #     'type': 'ir.actions.act_window',
-        #     'name': 'View Partner Invoices',
-        #     'res_model': 'account.move',  # Assuming the model is account.move
-        #     'view_mode': 'tree,form',  # Set the desired view mode
-        #     'domain': [('partner_id', '=', partner_id)],  # Filter invoices by the current partner
-        #     'context': {'search_default_partner_id': partner_id},  # Pass the partner's ID as a default search filter
-        # }
-
-        # return action
         jamaah_id = self.partner_id.id
         return {
             'name': 'Pembayaran Jamaah',
