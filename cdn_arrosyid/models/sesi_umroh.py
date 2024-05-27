@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 from dateutil import relativedelta
 from datetime import date
+from odoo.exceptions import ValidationError
 
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
@@ -13,11 +14,11 @@ class SesiUmroh(models.Model):
     petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
     jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah', domain=lambda self: [('penagihan_ids.payment_state', '=', 'paid')])
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
-    state                  = fields.Selection(string='Status', selection=[('akan_datang', 'Akan Datang'),('prosess', 'Sedang Berjalan'),('selesai', 'Selesai'),('batal_perjalanan', 'Perjalanan Batal')], default='akan_datang',required=True)
-    itenerary              = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='Itinerary')
+    state                  = fields.Selection([('akan_datang', 'Akan Datang'), ('proses', 'Sedang Berjalan'), ('selesai', 'Selesai'), ('batal_perjalanan', 'Perjalanan Batal'),], default="akan_datang", required=True, string="Status", tracking=True)
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
-    durasi                 = fields.Integer(related='paket_umroh_id.durasi',string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
+    durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
+    rencana_perjalanan_ids = fields.One2many(comodel_name='cdn.rencana.perjalanan', inverse_name='sesi_umroh_id')
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
@@ -30,14 +31,14 @@ class SesiUmroh(models.Model):
         for rec in self:
             rec.state = 'akan_datang'
     
+    def action_proses(self):
+        for rec in self:
+            if rec.state == 'akan_datang':
+                rec.state = 'proses'
+    
     def action_selesai(self):
         for rec in self:
             rec.state = 'selesai'
-    
-    def action_prosess(self):
-        for rec in self:
-            if rec.state == 'akan_datang':
-                rec.state = 'prosess'
     
     def action_batal_perjalanan(self):
         for rec in self:
@@ -51,8 +52,7 @@ class SesiUmroh(models.Model):
     @api.onchange('paket_umroh_id')
     def _onchange_paket_umroh_id(self):
         self.durasi = self.paket_umroh_id.durasi
-    
-    
+     
     @api.onchange('tanggal_berangkat', 'durasi')
     def _compute_tanggal_pulang(self):
         for sesi in self:

@@ -16,7 +16,7 @@ class IdentitasJamaah(models.Model):
     tgl_lahir        = fields.Date(string='Tanggal Lahir', required=True)
     umur             = fields.Integer(string='Umur', compute='_compute_umur') 
     image            = fields.Image(string='image',)
-    is_menikah       = fields.Boolean(string='Sudah menikah?', default = False)
+    is_menikah       = fields.Boolean(string='Sudah menikah', default = False)
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)

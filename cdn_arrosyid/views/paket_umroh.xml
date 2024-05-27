@@ -74,7 +74,7 @@
                         <group string="Paket">
                             <field name="name"/>
                             <field name="keterangan"/>
-                            <field name="durasi" />
+                            <field name="durasi"/>
                             <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
                             <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/>
                             <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/> 
@@ -91,7 +91,6 @@
                             </page>
                             <page name="perlengkapan" string="Perlengkapan">
                                 <field name="product_ids">
-                                    <!-- <field name="standard_price" invisible="1"/> -->
                                 </field>
                                 <group string="Harga Total">
                                     <field name="harga_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
