@@ -23,17 +23,13 @@
                                             <field name="name"/>
                                         </li>
                                         <li>
-                                            <field name="keterangan"/>
-                                        </li>
-
-                                        <li>
-                                            <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                            Harga : <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                         </li>
                                         <li>
                                             <field name="currency_id" invisible="1"/>                                        
                                         </li>
                                         <li>
-                                            <field name="durasi"/>
+                                            Durasi : <field name="durasi"/> Hari
                                         </li>
                                     </ul>
                                 </div>
@@ -91,7 +87,6 @@
                             </page>
                             <page name="perlengkapan" string="Perlengkapan">
                                 <field name="product_ids">
-                                    <!-- <field name="standard_price" invisible="1"/> -->
                                 </field>
                                 <group string="Harga Total">
                                     <field name="harga_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>

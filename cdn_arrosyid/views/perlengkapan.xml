@@ -37,7 +37,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.product</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('detailed_type', '=', 'consu')]</field>
+            <field name="domain">[('detailed_type', '=', 'consu'), ('paket_umroh', '=', True)]</field>
             <field name="context">{'default_paket_umroh': True}</field>
 
         </record>

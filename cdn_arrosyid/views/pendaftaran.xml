@@ -6,9 +6,14 @@
             <field name="name">cdn.pendaftaran.view.tree</field>
             <field name="model">cdn.pendaftaran</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree >
                     <field name="no_pendaftaran"/>
-                    <field name="state"/>
+                    <field name="state" 
+                        decoration-success="state == 'selesai'"
+                        decoration-info="state == 'konfirmasi'"
+                        decoration-danger="state == 'batal'"
+                        decoration-warning="state == 'draft'"
+                        widget="badge"/>
                     <field name="jamaah_id"/>
                 </tree>
             </field>
@@ -20,13 +25,14 @@
             <field name="arch" type="xml">
                 <form string="">
                     <header>
-                        <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="selesai"/>
+                        <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="batal"/>
                         <button name="action_konfirmasi" string="Konfirmasi" type="object" class="oe_highlight" states="draf"/>
-                        <button name="action_batal" string="Batal" type="object" class="oe_highlight" states="konfirmasi"/>
-                        <button name="action_selesai" string="Selesai" type="object" class="oe_highlight" states="konfirmasi"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,batal,selesai"/>
+                        <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi"/>
+                        <button name="action_cek_tagihan" string="Cek Tagihan" type="object" class="btn-light" states="konfirmasi"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,selesai"/>
                     </header>
                     <sheet>
+                        <widget name="web_ribbon" text="Selesai" bg_color="bg-info" attrs="{'invisible':[('state','!=','selesai')]}"/>
                         <h4>No Pendaftaran : <field name="no_pendaftaran" placeholder="Otomatis"/></h4>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <group>

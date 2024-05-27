@@ -34,6 +34,11 @@
                 <form string="">
                     <header>
                         <button name="%(action_report_identitas_jamaah)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
+                        <button name="action_draft" string="Kembali ke Draf" type="object" class="oe_highlight" states="proses"/>
+                        <button name="action_proses" string="Konfirmasi" type="object" class="oe_highlight" states="draft"/>
+                        <button name="action_batal" string="Batal" type="object" class="oe_highlight" states="proses"/>
+                        <button name="action_selesai" string="Selesai" type="object" class="oe_highlight" states="proses"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,batal,selesai"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
