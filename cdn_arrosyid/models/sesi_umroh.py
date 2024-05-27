@@ -19,7 +19,7 @@ class SesiUmroh(models.Model):
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
     durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
-    rencana_perjalanan_ids = fields.One2many(comodel_name='cdn.rencana.perjalanan', inverse_name='sesi_umroh_id')
+    rencana_perjalanan_ids = fields.Many2many(comodel_name='cdn.rencana.perjalanan', String="Itenerary")
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
