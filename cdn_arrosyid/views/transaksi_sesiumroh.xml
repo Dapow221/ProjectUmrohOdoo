@@ -93,6 +93,7 @@
                                 <field name="keterangan"/>
                                 <field name="paket_umroh_id"/>
                                 <field name="pembimbing_id"/>
+                                <field name="petugas_lapangan" />
                                 <field name="tanggal_berangkat"/>
                                 <field name="durasi"/>
                                 <field name="tanggal_pulang"/>
@@ -119,9 +120,13 @@
                                         </tree>
                                     </field>
                                 </page>
-
                             </notebook>
                         </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>

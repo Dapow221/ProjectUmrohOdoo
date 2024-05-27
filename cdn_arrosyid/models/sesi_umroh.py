@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class SesiUmroh(models.Model):
     _name                  = 'cdn.sesi.umroh'
     _description           = 'Sesi Umroh'
+    _inherit               = ['mail.thread', 'mail.activity.mixin']
 
     name                   = fields.Char(string='Name', required=True)
     keterangan             = fields.Text(string='Description')

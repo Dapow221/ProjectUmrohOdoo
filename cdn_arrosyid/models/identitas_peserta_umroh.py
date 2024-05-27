@@ -20,11 +20,13 @@ class IdentitasJamaah(models.Model):
     nama_pasangan    = fields.Char(string='Nama Pasangan')
     riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
     active           = fields.Boolean(string='Active', default= True)
+    state            = fields.Selection(string='Status Umroh Jamaah', selection=[('draft', 'Draft'), ('berlangsung', 'Sedang Umroh'),('selesai', 'Selesai Umroh')])
     pendaftaran_ids  = fields.One2many('cdn.pendaftaran', 'jamaah_id', string='Pendaftaran')
     jumlah_pendaftaran = fields.Integer(string='Jumlah pendaftaran ', compute="_compute_jumlah_pendaftaran")
     penagihan_ids    = fields.One2many('account.move', 'partner_id', string='Penagihan')
     jumlah_penagihan = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
-    lunas = fields.Char(string='Lunas')
+    lunas            = fields.Char(string='Lunas')
+
     
     
     @api.depends('tgl_lahir')
