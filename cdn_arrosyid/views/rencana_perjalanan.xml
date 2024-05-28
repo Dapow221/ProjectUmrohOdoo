@@ -11,7 +11,7 @@
                     <field name="nama"/>
                     <field name="keterangan"/>
                     <field name="dimulai"/>
-                    <field name="durasi"/>
+                    <field name="durasi" widget="float_time"/>
                     <field name="state" 
                             decoration-success="state == 'selesai'"
                             decoration-info="state == 'belum'"
@@ -37,7 +37,7 @@
                             <field name="nama"/>
                             <field name="keterangan"/>
                             <field name="dimulai"/>
-                            <field name="durasi"/>
+                            <field name="durasi" widget="float_time"/>
                         </group>
                     </sheet>
                 </form>

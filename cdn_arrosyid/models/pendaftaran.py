@@ -1,45 +1,42 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-
 class CdnPendaftaran(models.Model):
-    _name = 'cdn.pendaftaran'
-    _description = 'Cdn Pendaftaran'
-    _inherit = ['mail.thread','mail.activity.mixin']
+    _name             = 'cdn.pendaftaran'
+    _description      = 'Cdn Pendaftaran'
+    _inherit          = ['mail.thread','mail.activity.mixin']
 
-    no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
-    state = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
-    # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
-    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
-    # relatad jamaah
-    nama = fields.Char(related='jamaah_id.name', string="Nama")
-    jenis_kel = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")
-    referensi = fields.Char(related='jamaah_id.referensi')
-    paspor = fields.Char(related='jamaah_id.paspor')
-    masa_paspor = fields.Date(related='jamaah_id.masa_paspor')
-    tgl_lahir = fields.Date(related='jamaah_id.tgl_lahir')
-    umur = fields.Integer(related='jamaah_id.umur') 
-    image = fields.Image(related='jamaah_id.image')
-    is_menikah = fields.Boolean(related='jamaah_id.is_menikah')
-    nama_pasangan = fields.Char(related='jamaah_id.nama_pasangan')
-    riwayat_penyakit = fields.Char(related='jamaah_id.riwayat_penyakit')
-
-    sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
+    no_pendaftaran    = fields.Char(string='Nomor Pendaftaran', tracking=True)
+    state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'), ('selesai', 'Selesai'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
+    jamaah_id         = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
+    sesi_id           = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
+    penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
+    state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
+    nama              = fields.Char(related='jamaah_id.name', string="Nama")
+    jenis_kel         = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")
+    referensi         = fields.Char(related='jamaah_id.referensi')
+    paspor            = fields.Char(related='jamaah_id.paspor')
+    masa_paspor       = fields.Date(related='jamaah_id.masa_paspor')
+    tgl_lahir         = fields.Date(related='jamaah_id.tgl_lahir')
+    umur              = fields.Integer(related='jamaah_id.umur') 
+    image             = fields.Image(related='jamaah_id.image')
+    is_menikah        = fields.Boolean(related='jamaah_id.is_menikah')
+    nama_pasangan     = fields.Char(related='jamaah_id.nama_pasangan')
+    riwayat_penyakit  = fields.Char(related='jamaah_id.riwayat_penyakit')
     # related sesi
-    name_sesi = fields.Char(related='sesi_id.name', string="Nama")
-    keterangan = fields.Text(related='sesi_id.keterangan')
-    paket_umroh = fields.Char(related='sesi_id.paket_umroh_id.name', string="Nama Paket")
-    lst_price = fields.Float(string='Harga Paket',related='sesi_id.lst_price',store=True)
-    pembimbing = fields.Char(related='sesi_id.pembimbing_id.name', string="Nama Pembimbing")
-    petugas_lapangan = fields.Char(related='sesi_id.petugas_lapangan.name', string="Nama Petugas Lapangan")
+    name_sesi         = fields.Char(related='sesi_id.name', string="Nama")
+    keterangan        = fields.Text(related='sesi_id.keterangan')
+    paket_umroh       = fields.Char(related='sesi_id.paket_umroh_id.name', string="Nama Paket")
+    lst_price         = fields.Float(string='Harga Paket',related='sesi_id.lst_price',store=True)
+    pembimbing        = fields.Char(related='sesi_id.pembimbing_id.name', string="Nama Pembimbing")
+    petugas_lapangan  = fields.Char(related='sesi_id.petugas_lapangan.name', string="Nama Petugas Lapangan")
     tanggal_berangkat = fields.Date(related='sesi_id.tanggal_berangkat')
-    durasi = fields.Integer(related='sesi_id.durasi')
-    tanggal_pulang = fields.Date(related='sesi_id.tanggal_pulang')
+    durasi            = fields.Integer(related='sesi_id.durasi')
+    tanggal_pulang    = fields.Date(related='sesi_id.tanggal_pulang')
 
-    penagihan_ids = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
-    btn_batal = fields.Boolean(string='btn batal', default=False)
-    status = fields.Selection(string='status', selection=[('draf', 'Draf'), ('konfirmasi', 'konfirmasi'), ('batal', 'batal'), ('nol', 'nol')], default='nol')
-    
+    penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
+    btn_batal         = fields.Boolean(string='btn batal', default=False)
+    status            = fields.Selection(string='status', selection=[('draf', 'Draf'), ('konfirmasi', 'konfirmasi'), ('batal', 'batal'), ('nol', 'nol')], default='nol')
     
     
     # action button
@@ -109,8 +106,6 @@ class CdnPendaftaran(models.Model):
                 'invoice_line_ids': data_penagihan,
                 'paket_umroh': True,
                 'pendaftaran_id': pendaftaran.id
-                # 'sequence_prefix': f'pkt_umroh-{self.no_pendaftaran}',
-                # 'state': 'posted',
             })
 
             view_penagihan = {

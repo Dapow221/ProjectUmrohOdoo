@@ -21,7 +21,7 @@ class SesiUmroh(models.Model):
     durasi                 = fields.Integer(related='paket_umroh_id.durasi', string='Durasi Umroh (Hari)', store=True, compute='_compute_tanggal_pulang')
     tanggal_pulang         = fields.Date(string='Tanggal Pulang')
     rencana_perjalanan_ids = fields.Many2many(comodel_name='cdn.rencana.perjalanan', String="Itenerary")
-    product_id          = fields.Many2one('product.product')
+    product_id             = fields.Many2one('product.product')
 
 
     def write(self, values):
@@ -63,3 +63,10 @@ class SesiUmroh(models.Model):
             if sesi.tanggal_berangkat and sesi.durasi:
                 durasi = relativedelta.relativedelta(days=sesi.durasi)
                 sesi.tanggal_pulang = fields.Date.to_string(fields.Date.from_string(sesi.tanggal_berangkat) + durasi)
+
+    @api.constrains('rencana_perjalanan_ids')
+    def _check_rencana_perjalanan_dates(self):
+        for session in self:
+            for itinerary in session.rencana_perjalanan_ids:
+                if itinerary.dimulai and (itinerary.dimulai < session.tanggal_berangkat or itinerary.dimulai > session.tanggal_pulang):
+                    raise ValidationError("Tanggal dimulai rencana perjalanan harus berada dalam rentang tanggal berangkat dan tanggal pulang sesi umroh.")
