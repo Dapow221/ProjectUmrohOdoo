@@ -8,6 +8,7 @@
             <field name="res_model">account.move</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('paket_umroh', '=', True)]</field>
+            <field name="context">{'default_move_type': 'out_invoice'}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->

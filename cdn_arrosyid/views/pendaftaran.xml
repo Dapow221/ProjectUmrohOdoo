@@ -3,13 +3,14 @@
     <data>  
         <!-- cdn.pendaftaran tree view -->
            <record id="cdn_pendaftaran_view_tree" model="ir.ui.view">
-            <field name="name">cdn.pendaftaran.view.tree</field>
+            <field name="name">Pendaftaran</field>
             <field name="model">cdn.pendaftaran</field>
             <field name="arch" type="xml">
                 <tree >
                     <field name="no_pendaftaran"/>
                     <field name="state" 
-                        decoration-success="state == 'selesai'"
+                        decoration-success="state == 'lunas'"
+                        decoration-primary="state == 'belum'"
                         decoration-info="state == 'konfirmasi'"
                         decoration-danger="state == 'batal'"
                         decoration-warning="state == 'draft'"
@@ -20,27 +21,26 @@
         </record>
         <!-- cdn.pendaftaran form view -->
         <record id="cdn_pendaftaran_view_form" model="ir.ui.view">
-            <field name="name">cdn.pendaftaran.view.form</field>
+            <field name="name">Pendaftaran</field>
             <field name="model">cdn.pendaftaran</field>
             <field name="arch" type="xml">
                 <form string="">
                     <header>
                         <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="batal"/>
                         <button name="action_konfirmasi" string="Konfirmasi" type="object" class="oe_highlight" states="draf"/>
-                        <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi"/>
-                        <button name="action_cek_tagihan" string="Cek Tagihan" type="object" class="btn-light" states="konfirmasi"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,selesai"/>
+                        <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi,belum"/>
+                        <button name="action_cek_tagihan" string="Buat Tagihan" type="object" class="btn-light" states="konfirmasi"/>
+                        <button name="action_lunas" string="Bayar" type="object" class="btn-primary" states="belum"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,lunas,belum"/>
                     </header>
                     <sheet>
-                        <widget name="web_ribbon" text="Selesai" bg_color="bg-info" attrs="{'invisible':[('state','!=','selesai')]}"/>
+                        <widget name="web_ribbon" text="Lunas" bg_color="bg-info" attrs="{'invisible':[('state','!=','lunas')]}"/>
                         <h4>No Pendaftaran : <field name="no_pendaftaran" placeholder="Otomatis"/></h4>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <group>
-                            <!-- <field name="pilih_jamaah" widget="radio"/> -->
                         </group>
                         <group name="identitas_jamaah" string="Identitas Jamaah">
                             <field name="jamaah_id" placeholder="Pilih Jamaah" />
-                            <!-- <field name="jamaah_id" placeholder="Pilih Jamaah"  attrs="{'invisible': [('pilih_jamaah', '=', 'baru')]}"/> -->
                         </group>
                         <group name="rincian" string="Rincian">
                             <group>
@@ -49,6 +49,8 @@
                                 <field name="jenis_kel" />                                   
                                 <field name="mobile" string="No. HP"/>
                                 <field name="pendidikan" />
+                                <field name="jenis_kel" />
+                                <field name="lst_price"/>                                   
                             </group>
                             <group>
                                 <field name="tgl_lahir" />
@@ -119,17 +121,6 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.pendaftaran</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="domain">[]</field> -->
-            <!-- <field name="context">{}</field> -->
-            <!-- <field name="target">{current}</field> -->
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    <!-- Add Text Here -->
-                </p><p>
-                    <!-- More details about what a user can do with this object will be OK --> 
-                
-                </p>
-            </field>
         </record>
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="pendaftaran_menu_action" name="Pendaftaran" parent="travel_pendaftaran_pengaturan_menu_categ" action="cdn_pendaftaran_action" sequence="10"/>

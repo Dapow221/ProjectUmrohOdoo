@@ -11,9 +11,10 @@ class SesiUmroh(models.Model):
     name                   = fields.Char(string='Name', required=True)
     keterangan             = fields.Text(string='Description')
     paket_umroh_id         = fields.Many2one(comodel_name='cdn.paket.umroh', string='Paket Umroh')
+    lst_price              = fields.Float(string='Harga Paket',related='paket_umroh_id.lst_price', required=True, store=True)
     pembimbing_id          = fields.Many2one(comodel_name='cdn.ustadz.pembimbing', string='Pembimbing')
     petugas_lapangan       = fields.Many2many(comodel_name='cdn.petugas.lapangan', string='Petugas Lapangan')
-    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah', domain=lambda self: [('penagihan_ids.payment_state', '=', 'paid')])
+    jammaah_ids            = fields.One2many('cdn.pendaftaran', 'sesi_id', string='jammaah')
     jumlah_jamaah          = fields.Char(compute='_compute_jml_jamaah', string='Jumlah Jamaah')
     state                  = fields.Selection([('akan_datang', 'Akan Datang'), ('proses', 'Sedang Berjalan'), ('selesai', 'Selesai'), ('batal_perjalanan', 'Perjalanan Batal'),], default="akan_datang", required=True, string="Status", tracking=True)
     tanggal_berangkat      = fields.Date(string='Tanggal Berangkat')
@@ -22,7 +23,7 @@ class SesiUmroh(models.Model):
     rencana_perjalanan_ids = fields.Many2many(comodel_name='cdn.rencana.perjalanan', String="Itenerary")
     maskapai_id            = fields.Many2one(related='paket_umroh_id.maskapai_id')
     hotel_id               = fields.Many2many(related='paket_umroh_id.hotel_id')
-    
+    product_id             = fields.Many2one('product.product')
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
@@ -38,6 +39,8 @@ class SesiUmroh(models.Model):
     def action_proses(self):
         for rec in self:
             if rec.state == 'akan_datang':
+                if not rec.jammaah_ids:
+                    raise ValidationError('Tidak bisa memulai sesi karena belum memiliki jamaah yang telah membayar.')
                 rec.state = 'proses'
     
     def action_selesai(self):
@@ -63,3 +66,10 @@ class SesiUmroh(models.Model):
             if sesi.tanggal_berangkat and sesi.durasi:
                 durasi = relativedelta.relativedelta(days=sesi.durasi)
                 sesi.tanggal_pulang = fields.Date.to_string(fields.Date.from_string(sesi.tanggal_berangkat) + durasi)
+
+    @api.constrains('rencana_perjalanan_ids')
+    def _check_rencana_perjalanan_dates(self):
+        for session in self:
+            for itinerary in session.rencana_perjalanan_ids:
+                if itinerary.dimulai and (itinerary.dimulai < session.tanggal_berangkat or itinerary.dimulai > session.tanggal_pulang):
+                    raise ValidationError("Tanggal dimulai rencana perjalanan harus berada dalam rentang tanggal berangkat dan tanggal pulang sesi umroh.")

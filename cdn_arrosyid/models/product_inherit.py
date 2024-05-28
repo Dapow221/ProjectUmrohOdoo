@@ -5,5 +5,6 @@ class ProductProduct(models.Model):
 
     paket_umroh = fields.Boolean(string='Paket Umroh')
     paket_umroh_id = fields.Integer(string='')
+    sesi_id = fields.Integer(string='')
     
     
