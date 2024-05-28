@@ -24,6 +24,7 @@ class SesiUmroh(models.Model):
     product_id             = fields.Many2one('product.product')
 
 
+
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
         if 'state' in values:
@@ -38,6 +39,8 @@ class SesiUmroh(models.Model):
     def action_proses(self):
         for rec in self:
             if rec.state == 'akan_datang':
+                if not rec.jammaah_ids:
+                    raise ValidationError('Tidak bisa memulai sesi karena belum memiliki jamaah yang telah membayar.')
                 rec.state = 'proses'
     
     def action_selesai(self):
