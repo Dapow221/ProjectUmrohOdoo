@@ -2,27 +2,41 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class CdnPendaftaran(models.Model):
-    _name             = 'cdn.pendaftaran'
-    _description      = 'Cdn Pendaftaran'
-    _inherit          = ['mail.thread','mail.activity.mixin']
+    _name = 'cdn.pendaftaran'
+    _description = 'Cdn Pendaftaran'
+    _inherit = ['mail.thread','mail.activity.mixin']
 
-    no_pendaftaran    = fields.Char(string='Nomor Pendaftaran', tracking=True)
-    state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'), ('selesai', 'Selesai'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
-    jamaah_id         = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
-    sesi_id           = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
-    penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
+    no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
     state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
-    nama              = fields.Char(related='jamaah_id.name', string="Nama")
-    jenis_kel         = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")
-    referensi         = fields.Char(related='jamaah_id.referensi')
-    paspor            = fields.Char(related='jamaah_id.paspor')
-    masa_paspor       = fields.Date(related='jamaah_id.masa_paspor')
-    tgl_lahir         = fields.Date(related='jamaah_id.tgl_lahir')
-    umur              = fields.Integer(related='jamaah_id.umur') 
-    image             = fields.Image(related='jamaah_id.image')
-    is_menikah        = fields.Boolean(related='jamaah_id.is_menikah')
-    nama_pasangan     = fields.Char(related='jamaah_id.nama_pasangan')
-    riwayat_penyakit  = fields.Char(related='jamaah_id.riwayat_penyakit')
+    # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
+    jamaah_id      = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
+    # relatad jamaah
+    nama           = fields.Char(related='jamaah_id.name', string="Nama")
+    jenis_kel      = fields.Selection(related='jamaah_id.jenis_kel')
+    referensi      = fields.Char(related='jamaah_id.referensi')
+    paspor         = fields.Char(related='jamaah_id.paspor')
+    masa_paspor    = fields.Date(related='jamaah_id.masa_paspor')
+    tgl_lahir      = fields.Date(related='jamaah_id.tgl_lahir')
+    umur           = fields.Integer(related='jamaah_id.umur') 
+    image          = fields.Image(related='jamaah_id.image')
+    is_menikah     = fields.Boolean(related='jamaah_id.is_menikah')
+    nama_pasangan  = fields.Char(related='jamaah_id.nama_pasangan')
+    riwayat_penyakit = fields.Char(related='jamaah_id.riwayat_penyakit')
+    street         = fields.Char(related='jamaah_id.street')
+    mobile         = fields.Char(related='jamaah_id.mobile')
+    golongan_darah = fields.Selection(related='jamaah_id.golongan_darah')
+    pekerjaan      = fields.Selection(related='jamaah_id.pekerjaan')
+    email          = fields.Char(related='jamaah_id.email')
+    is_umroh       = fields.Boolean(related='jamaah_id.is_umroh')
+    tanggal_umroh  = fields.Date(related='jamaah_id.tanggal_umroh')
+    pendidikan     = fields.Selection(related='jamaah_id.pendidikan')
+    vaksin_meningitis = fields.Boolean(related='jamaah_id.vaksin_meningitis')
+    vaksin_covid19 = fields.Selection(related='jamaah_id.vaksin_covid19')
+    product_ids    = fields.Many2many(related='sesi_id.paket_umroh_id.product_ids')
+    
+    
+
+    sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
     # related sesi
     name_sesi         = fields.Char(related='sesi_id.name', string="Nama")
     keterangan        = fields.Text(related='sesi_id.keterangan')

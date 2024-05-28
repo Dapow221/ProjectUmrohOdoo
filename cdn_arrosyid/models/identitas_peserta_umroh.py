@@ -26,6 +26,14 @@ class IdentitasJamaah(models.Model):
     penagihan_ids    = fields.One2many('account.move', 'partner_id', string='Penagihan')
     jumlah_penagihan = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
     lunas            = fields.Char(string='Lunas')
+    golongan_darah   = fields.Selection(string='Golongan Darah', selection=[('oplus', 'O+'), ('ominus', 'O-'),('aplus', 'A+'),('aminus', 'A-'),('bplus', 'B+'), ('bminus', 'B-'),('abplus', 'AB+'),('abminus', 'AB-')], default='oplus')
+    pekerjaan        = fields.Selection(string='Pekerjaan', selection=[('pns', 'PNS'), ('irt', 'Ibu Rumah Tangga'),('tni', 'TNI'),('dagang', 'Pedagang'),('tani', 'Petani'),('swasta', 'Swasta'),('pelajar', 'Pelajar'),('bumn', 'BUMN'),], default='pns')
+    pendidikan = fields.Selection(string='Pendidikan Terakhir', selection=[('sd', 'SD'), ('smp', 'SMP'),('sma', 'SMA'),('kuliah', 'Perguruan Tinggi')], default='sd')
+    vaksin_meningitis = fields.Boolean(string='Vaksinasi Meningitis', default=False)
+    vaksin_covid19    = fields.Selection(string='Vaksinasi Covid19', selection=[('belum', 'Belum Vaksin'), ('vaksin1', 'Vaksinasi Pertama'), ('vaksin2', 'Vaksinasi Kedua'), ('booster', 'Vaksin Booster')], default='belum')
+    is_umroh = fields.Boolean(string='Pernah Umroh')
+    tanggal_umroh = fields.Date(string='Tanggal Umroh')
+    
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):    
