@@ -9,7 +9,8 @@
                 <tree >
                     <field name="no_pendaftaran"/>
                     <field name="state" 
-                        decoration-success="state == 'selesai'"
+                        decoration-success="state == 'lunas'"
+                        decoration-primary="state == 'belum'"
                         decoration-info="state == 'konfirmasi'"
                         decoration-danger="state == 'batal'"
                         decoration-warning="state == 'draft'"
@@ -27,12 +28,13 @@
                     <header>
                         <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="batal"/>
                         <button name="action_konfirmasi" string="Konfirmasi" type="object" class="oe_highlight" states="draf"/>
-                        <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi"/>
-                        <button name="action_cek_tagihan" string="Cek Tagihan" type="object" class="btn-light" states="konfirmasi"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,selesai"/>
+                        <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi,belum"/>
+                        <button name="action_cek_tagihan" string="Buat Tagihan" type="object" class="btn-light" states="konfirmasi"/>
+                        <button name="action_lunas" string="Bayar" type="object" class="btn-primary" states="belum"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draf,konfirmasi,lunas,belum"/>
                     </header>
                     <sheet>
-                        <widget name="web_ribbon" text="Selesai" bg_color="bg-info" attrs="{'invisible':[('state','!=','selesai')]}"/>
+                        <widget name="web_ribbon" text="Lunas" bg_color="bg-info" attrs="{'invisible':[('state','!=','lunas')]}"/>
                         <h4>No Pendaftaran : <field name="no_pendaftaran" placeholder="Otomatis"/></h4>
                         <field name="image" widget="image" class="oe_avatar"/>
                         <group>
