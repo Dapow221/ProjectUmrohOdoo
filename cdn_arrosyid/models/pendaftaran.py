@@ -11,8 +11,7 @@ class CdnPendaftaran(models.Model):
     jamaah_id         = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
     sesi_id           = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
     penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
-    btn_batal         = fields.Boolean(string='btn batal', default=False)
-    # relatad jamaah
+    state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
     nama              = fields.Char(related='jamaah_id.name', string="Nama")
     jenis_kel         = fields.Selection(related='jamaah_id.jenis_kel', string="Nama")
     referensi         = fields.Char(related='jamaah_id.referensi')
@@ -34,12 +33,16 @@ class CdnPendaftaran(models.Model):
     tanggal_berangkat = fields.Date(related='sesi_id.tanggal_berangkat')
     durasi            = fields.Integer(related='sesi_id.durasi')
     tanggal_pulang    = fields.Date(related='sesi_id.tanggal_pulang')
+
+    penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
+    btn_batal         = fields.Boolean(string='btn batal', default=False)
+    status            = fields.Selection(string='status', selection=[('draf', 'Draf'), ('konfirmasi', 'konfirmasi'), ('batal', 'batal'), ('nol', 'nol')], default='nol')
+    
     
     # action button
     def action_draf(self):
         for rec in self:
-            rec.state = 'draf'
-            rec.btn_batal = False
+            rec.status = 'draf'
     
     def action_batal(self):
         for rec in self:
@@ -47,9 +50,34 @@ class CdnPendaftaran(models.Model):
                 if invoice.state == 'posted':
                     invoice.button_cancel()
             rec.penagihan_ids.unlink()
-            rec.btn_batal = True
+            rec.status = 'draf'
 
     def action_konfirmasi(self):
+        for rec in self:
+            rec.status = 'konfirmasi'
+        
+    @api.depends('penagihan_ids', 'status')
+    def _cek_status_pembayaran(self):
+        for rec in self:
+            get_penagihan = self.env['account.move'].search([('pendaftaran_id','=', rec.id)])
+            if get_penagihan:
+                if get_penagihan.payment_state == 'paid':
+                    rec.state = 'lunas'
+                elif get_penagihan.payment_state == 'not_paid':
+                    rec.state = 'belum'
+            else:
+                if rec.status == 'draf':
+                    rec.state = 'draf'
+                elif rec.status == 'konfirmasi':
+                    rec.state = 'konfirmasi'
+                elif rec.status == 'batal':
+                    rec.state = 'batal'
+                else:
+                    rec.state = 'draf'
+
+
+
+    def action_cek_tagihan(self):
         for pendaftaran in self:
         # Mendapatkan data Jamaah
             jamaah = pendaftaran.jamaah_id
@@ -71,7 +99,7 @@ class CdnPendaftaran(models.Model):
 
             # Membuat invoice
             account_move = self.env['account.move']
-            account_move.create({
+            buat_penagian = account_move.create({
                 'move_type': 'out_invoice',
                 'partner_id': partner.id,
                 'invoice_date': fields.Date.today(),
@@ -79,35 +107,32 @@ class CdnPendaftaran(models.Model):
                 'paket_umroh': True,
                 'pendaftaran_id': pendaftaran.id
             })
-        
-    @api.depends('penagihan_ids')
-    def _cek_status_pembayaran(self):
-        for rec in self:
-            get_penagihan = self.env['account.move'].search([('pendaftaran_id','=', rec.id)])
-            if get_penagihan:
-                if get_penagihan.payment_state == 'paid':
-                    rec.state = 'selesai'
-                elif get_penagihan.payment_state == 'not_paid':
-                    rec.state = 'konfirmasi'
-            else:
-                if rec.btn_batal:
-                    rec.state = 'batal'
-                else:
-                    rec.state = 'draf'
 
-    def action_cek_tagihan(self):
-        for penagihan in self:
-            get_penagihan = self.env['account.move'].search([('pendaftaran_id', '=', penagihan.id)])
-            penagihan_view = {
+            view_penagihan = {
+                'name': f'Invoice {partner.name}',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'account.move',
+                'res_id': buat_penagian.id,
+                'target': 'current', 
+            }
+
+            return view_penagihan
+
+    def action_lunas(self):
+        for pelunasan in self:
+            get_pelunasan = self.env['account.move'].search([('pendaftaran_id', '=', pelunasan.id)])
+            pelunasan_view = {
                 'res_model': 'account.move',
                 'name': 'Tagihan Jamaah',
-                'res_id': get_penagihan.id,
+                'res_id': get_pelunasan.id,
                 'view_mode': 'form',
                 'view_type': 'form',
                 'target': 'current',
                 'type': 'ir.actions.act_window'
             }
-            return penagihan_view
+            return pelunasan_view
+
 
     # validasi jamaah double
     @api.constrains('jamaah_id', 'sesi_id')
