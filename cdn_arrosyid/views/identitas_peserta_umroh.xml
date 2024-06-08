@@ -43,19 +43,25 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button class="oe_stat_button" type="object" name="action_view_pendaftaran" icon="fa-address-card"> 
-                                <field name="jumlah_pendaftaran" string="Pendaftaran" widget="statinfo" class="text-center"/>
-                            </button>
-                            <button type="object" class="oe_stat_button" icon="fa-pencil-square-o" name="action_view_jemaah_invoices" context="{'default_partner_id': active_id}">
-                                <div class="o_form_field o_stat_info">
-                                    <span class="o_stat_value">
-                                        <field name="currency_id" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
-                                        <field name="total_invoiced" widget="monetary" options="{'currency_field': 'currency_id'}" modifiers="{&quot;readonly&quot;: true}"/>
-                                    </span>
-                                    <span class="o_stat_text">Invoiced</span>
+                                <div class="o_field_widget o_stat_info mr4">
+                                    <field name="jumlah_pendaftaran" string="x Pendaftaran" widget="statinfo" class="text-center"/>
                                 </div>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_view_penagihan" icon="fa-money">
-                                <field name="jumlah_penagihan" string="Penagihan" widget="statinfo"/>
+                            <button class="oe_stat_button" type="object" name="action_view_penagihan" icon="fa-money" context="{'default_jamaah_id': active_id}">
+                                <div class="o_field_widget o_stat_info mr4">
+                                    <span class="o_stat_text">Inv:</span>
+                                    <span class="o_stat_text">Due:</span>
+                                </div>
+                                <div class="o_field_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="total_pembayaran" options="{'currency_field': 'currency_id'}" widget="monetary" modifiers="{&quot;readonly&quot;: true}"/>
+                                    </span>
+                                    <span class="o_stat_value">
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="total_due" options="{'currency_field': 'currency_id'}" widget="monetary" modifiers="{&quot;readonly&quot;: true}"/>
+                                    </span>
+                                </div>                        
                             </button>
                         </div>
                         <field name="image" widget="image" class="oe_avatar"/>
