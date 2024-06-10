@@ -19,7 +19,7 @@
     'version': '1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website'],
 
     # always loaded
     'data': [
@@ -43,10 +43,17 @@
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
+        'views/homepage_templates.xml',
+        'views/sesi_umroh_templates.xml',
+        'views/ketentuan_umum_templates.xml',
+        'views/pendaftaran_umroh_templates.xml',
+        'views/profil_templates.xml',
+        'views/menu_website.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
         
     ],
+    'css': ['static/src/css/custom.css'],
 }

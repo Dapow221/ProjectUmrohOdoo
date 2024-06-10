@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="pendaftaran_web" name="pendaftaran web">
+        <t t-call="website.layout">
+        <h1>pendaftaran_web
+        </h1>
+        </t>
+        </template>
+    </data>
+</odoo>

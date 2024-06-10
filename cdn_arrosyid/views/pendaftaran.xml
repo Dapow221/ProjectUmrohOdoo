@@ -103,7 +103,14 @@
                                 </group>                  
                             </page>
                             <page name="perlengkapan" string="Perlengkapan Umroh">
-                                <field name="product_ids"></field>
+                                <field name="perlengkapan_line">
+                                    <tree string="Perlengkapan"
+                                          editable="bottom">
+                                        <field name="name"/>
+                                        <field name="cek_perlengkapan" widget="boolean_toggle"/>
+                                        <field name="pendaftaran_id" invisible="True"/>            
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
