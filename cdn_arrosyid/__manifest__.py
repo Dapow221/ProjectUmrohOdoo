@@ -58,8 +58,15 @@
         
     ],
     'assets': {
+<<<<<<< HEAD
+    'web.assets_frontend': [
+        'cdn_arrosyid/static/src/css/custom.css',
+    ],
+},
+=======
         'web.assets_frontend': [
             'cdn_arrosyid/static/src/css/layout.css',
         ],
     },
+>>>>>>> main
 }
