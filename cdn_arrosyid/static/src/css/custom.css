@@ -34,3 +34,13 @@
 .btn:hover {
     background-color: #0056b3;
 }
+
+.custom-alpha-list {
+    list-style-type: upper-alpha;
+    font-weight: bold;
+}
+
+.ordered-list-ketentuan {
+    font-weight: normal;
+    list-style-type: decimal;
+}

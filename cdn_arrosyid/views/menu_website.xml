@@ -7,12 +7,11 @@
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
-    <record id="menu_sesi" model="website.menu">
-        <field name="name">Sesi Umroh</field>
-        <field name="url">/sesi</field>
-        <field name="parent_id" search="[('parent_id', '=', False), ('website_id', '=', 1)]"/>
-        <field name="sequence" type="int">20</field>
-        <field name="website_id" ref="website.default_website"/>
+    <record id="website_sesi_umroh_menu" model="website.menu">
+            <field name="name">Sesi Umroh</field>
+            <field name="url">/sesi_umroh</field>
+            <field name="sequence">20</field>
+            <field name="parent_id" ref="website.main_menu"/>
     </record>
     <record id="menu_ketentuan" model="website.menu">
         <field name="name">Ketentuan Umum</field>

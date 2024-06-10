@@ -1,11 +1,111 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
-        <template id="ketentuan_umum" name="ketentuan umum">
-        <t t-call="website.layout">
-        <h1>ketentuan umum
-        </h1>
-        </t>
+        <template id="ketentuan_umum" name="Ketentuan Umum">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h1>Syarat dan Ketentuan Pendaftaran Umroh</h1>
+                    <p>Bismillah,</p>
+                    <p>Para calon jamaah umroh yang akan mendaftar paket perjalanan umroh melalui Travel Umroh Ar-Rosyid, wajib menyepakati segala peraturan dan kondisi yang telah kami buat berikut ini, agar dalam segala proses dari awal hingga akhir dapat terpenuhi dengan tertib. Tentu kami sebagai penyelenggara memiliki kewenangan penuh terhadap paket perjalanan yang kami tawarkan, dan wajib secara paripurna melayani para jamaah sebagai konsumen kami.</p>
+
+                    <p>*semua dokumen discan yang rapi dan jelas dikirim via WA/Email</p>
+                    
+                    <ol class="custom-alpha-list">
+                        <li>PENDAFTARAN
+                            <ol class="ordered-list-ketentuan">
+                                <li>Uang Muka Pendaftaran Sebesar Rp. 3.000.000,- /Orang (no-refund/tidak berlaku uang kembali).</li>
+                                <li>Pembayaran melalui Rekening berikut:</li>
+                                <li>Pelunasan Maksimum 30 hari sebelum keberangkatan.</li>
+                                <li>Pendaftaran kurang dari 30 hari wajib membayar penuh/lunas sesuai paket.</li>
+                                <li>Calon jamaah bersedia memenuhi kelengkapan persyaratan dokumen sesuai jadwal yang diberikan, dan kepengurusan dokumen mandiri (kecuali surat pengantar ke imigrasi dari travel).</li>
+                                <li>Syarat untuk mendapatkan surat pengantar pembuatan paspor ke imigrasi adalah untuk jamaah yang sudah membayar booking seat/DP.</li>
+                                <li>Segala biaya dan akibat serta resiko yang timbul dikarenakan keterlambatan pembayaran, pengumpulan dokumen akan dibebankan kepada jamaah.</li>
+                                <li>Harga dasar adalah Quad/Quint (sekamar ber-4/5) apabila pada akhir sesi penyusunan room-list tidak bisa mendapatkan paket quad, maka akan disesuaikan dengan komposisi yang ada, bisa Triple/Double dengan tambahan biaya upgrade Room.</li>
+                                <li>Pendaftaran tanpa menyetorkan deposit bersifat tidak mengikat dan belum pasti masuk ke dalam antrian kepengurusan visa dan tiket perjalanan.</li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>FASILITAS
+                            <ol class="ordered-list-ketentuan">
+                                <li>Tiket Pesawat sesuai paket</li>
+                                <li>Visa Umroh Resmi + Asuransi</li>
+                                <li>Akomodasi Hotel sesuai paket yang dipilih </li>
+                                <li>Konsumsi makan 3X sehari Fullboard Hotel</li>
+                                <li>Handling Indonesia dan Saudi Arabia</li>
+                                <li>Bus AC minimal tahun 2022</li>
+                                <li>Kereta Cepat Madinah  Makkah atau rute sebaliknya </li>
+                                <li>City Tour Madinah, Makkah dan Thaif termasuk snack di perjalanan </li>
+                                <li>Tour Guide/Mutowwif/Mutowwifah Berpengalaman</li>
+                                <li>Ayam Al-Baik (pada saat kepulangan)</li>
+                                <li>Perlengkapan Umroh Istimewa (Koper 24 dan 18 inch, Buku Doa, kain ihram, mukena, bergo, sabuk ihram, bahan seragam batik, tas sandal, tas dokumen, syal, ID Card resmi Kemenag)</li>
+                                <li>Manasik Umroh Offline di Hotel Swiss-Belinn Airport H-1 *waktu dan tempat tentatif</li>
+                                <li>Zam Zam 5 liter </li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>DOKUMEN PENDAFTARAN
+                            <ol class="ordered-list-ketentuan">
+                                <li>Paspor Asli minimal nama 2 kata (contoh: Arifin Bahri) dengan masa berlaku maksimal 7 bulan sebelum jadwal keberangkatan.</li>
+                                <li>E-KTP</li>
+                                <li>Foto Close-Up <em>*bila di paspor belum berhijab</em></li>
+                                <li>KK (Kartu Keluarga)</li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>BIAYA-BIAYA YANG TIDAK TERMASUK
+                            <ol class="ordered-list-ketentuan">
+                                <li>Biaya Pembuatan Paspor</li>
+                                <li>Vaksin meningitis, dan vaksin lainnya (*tidak wajib)</li>
+                                <li>Ongkos ke Bandara Soekarno Hatta</li>
+                                <li>Ongkos Kirim Perlengkapan ke alamat masing-masing</li>
+                                <li>Tiket pesawat domestik bila dari Daerah</li>
+                                <li>Hotel di Jakarta bila menginap</li>
+                                <li>Kuota Data Internet di Saudi</li>
+                                <li>Laundry</li>
+                                <li>Overkapasitas Bagasi</li>
+                                <li>Upgrade Room jika tidak dapat paket Quad/Quint (sekamar ber4/5)</li>
+                                <li>Biaya lainnya di luar paket dan program</li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>PERUBAHAN-PERUBAHAN
+                            <ol class="ordered-list-ketentuan">
+                                <li>Harga paket/program yang tercantum dapat berubah sewaktu-waku dan akan diinformasikan kepada calon jamaah, menyesuaikan dengan nilai tukar rupiah ke USD, aturan-aturan Pemerintah RI dan Saudi, Maskapai, serta perusahaan-perusahaan yang terlibat di dalamnya.</li>
+                                <li>Jadwal keberangkatan mengacu kepada aturan maskapai terhadap paket tiket group umroh, hal-hal terkait perubahan jadwal keberangkatan dan kepulangan sepenuhnya kewenangan dari maskapai itu sendiri, dan akan kami sampaikan secara resmi/tertulis kepada jamaah dengan melampirkan surat resmi dari maskapai.</li>
+                                <li>Itinerary, fasilitas dan jadwal kegiatan dapat berubah sewaktu-waktu menyesuaikan dengan situasi dan kondisi yang ada.</li>
+                                <li>Paket Hotel dan Maskapai adalah paket setaraf (grade, budget, jarak, waktu dan kondisi) dengan mengacu pada brosur yang telah dirilis, apabila terdapat perubahan akan disampaikan kemudian.</li>
+                                <li>Jamaah yang mendaftar paket Quad (sekamar ber-4, apabila pada saat room-list dibentuk tidak mendapatkan sesuai komposisinya, maka wajib upgrade sesuai komposisi yang tersedia atau menjadi Quint Room/sekamar ber-5).</li>
+                                <li>Apabila pada jadwal keberangkatan ke Makkah via Madinah/sebaliknya, group tidak mendapatkan quota tiket Kereta Cepat sesuai paket, maka akan diberikan Cash-Back sebesar Rp. 700.000,- dan perjalanan ke Makkah/Madinah menggunakan Bus AC sesuai paket dari Visa Provider.</li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>ATURAN PEMBATALAN
+                            <ol class="ordered-list-ketentuan">
+                                <li>Uang muka/booking seat/deposit pendaftaran (Rp. 3.000.000,-) tidak dapat diuangkan kembali (no-refund).</li>
+                                <li>Re-Schedule/penjadwalan ulang bisa dilakukan maksimal di periode &lt;= 21 hari sebelum keberangkatan, dan menyesuaikan dengan biaya dan paket di jadwal berikutnya.</li>
+                                <li>Pembatalan &lt;= 14 hari sebelum keberangkatan, biaya hangus 100% atau mengganti dengan orang lain dengan tambahan biaya pergantian nama/change name tiket (*sesuai biaya yang dirilis oleh provider group tiket) dan biaya Visa 100%.</li>
+                                <li>Jika jamaah mengalami sakit/halangan lainnya yang menyebabkan tidak dapat berangkat, mengacu ke kondisi sebagai berikut:
+                                    <ol>
+                                        <li>Jika dalam periode &lt;= 21 hari sebelum keberangkatan (solusinya reschedule/penjadwalan ulang dan biaya mengacu ke keberangkatan aktual).</li>
+                                        <li>Jika dalam periode &lt;= 14 hari keberangkatan, biaya hangus 100% atau mengganti dengan orang lain dengan tambahan biaya pergantian nama/change name tiket (*sesuai biaya yang dirilis oleh provider group tiket) dan biaya Visa 100%.</li>
+                                        <li>Aturan ini mengikat untuk diri jamaah sendiri, tidak berlaku ke anggota keluarga lainnya yang juga mendaftar.</li>
+                                    </ol>
+                                </li>
+                                <li>Jika jamaah meninggal dunia bisa diproses ganti dengan pihak keluarga/lainnya (*syarat ketentuan berlaku dan ada biaya tambahan) atau pengembalian dana 100% maksimal proses 90 hari kerja dengan melampirkan surat keterangan kematian resmi dari pihak terkait, dan jika mendaftar lebih dari 1 orang, jamaah lainnya tetap berangkat sesuai pada jadwal yang sudah direncanakan.</li>
+                            </ol>
+                        </li>
+                        <p></p>
+                        <li>FORCE MAJEUR
+                            <p class="ordered-list-ketentuan">Apabila terjadi keterlambatan/kegagalan oleh salah satu pihak untuk memenuhi kewajiban sebagaimana tercantum dalam perjanjian ini, yang disebabkan oleh karena tindakan atau kejadian yang dapat ditimbulkan atau diakibatkan oleh suatu kejadian yang berada di luar kemampuan para pihak seperti; wabah pandemi/endemik, banjir, badai, gempa bumi, pemogokan, huru hara, peledakan, sabotase, pertempuran, peperangan, embargo, pemberontakan, penundaan, dan keterlambatan penerbangan, maka keterlambatan atau kegagalan tersebut tidak boleh dianggap sebagai kesalahan pihak yang bersangkutan, melainkan dilindungi namun tetap berkewajiban untuk memberangkatkan atau mengembalikan uang yang sudah disetor selambat lambatnya 90 hari dari hari dinyatakan gagal berangkat.</p>
+                        </li>
+                        <p></p>
+                        <li>ADDENDUM
+                            <p class="ordered-list-ketentuan">Hal-hal yang belum tercantum dalam Akad Perjanjian Kerjasama ini akan diatur lebih lanjut sebagai Addendum dan merupakan bagian yang tidak dapat dipisahkan dari Perjanjian Induk ini.</p>
+                        </li>
+                        <p></p>
+                    </ol>
+                </div>
+            </t>
         </template>
     </data>
 </odoo>
