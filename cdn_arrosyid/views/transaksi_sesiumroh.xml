@@ -11,7 +11,7 @@
             <field name="binding_model_id" ref="model_cdn_sesi_umroh"/>
         </record>
 
-        <record id="cdn_sesi_umroh_view_calendar" model="ir.ui.view">
+        <!-- <record id="cdn_sesi_umroh_view_calendar" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
             <field name="model">cdn.sesi.umroh</field>
             <field name="arch" type="xml">
@@ -20,7 +20,7 @@
                     <field name="state" invisible="1" filters="1"/>
                 </calendar>
             </field>
-        </record>
+        </record> -->
 
         <record id="cdn_sesi_umroh_view_kanban" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
@@ -90,21 +90,31 @@
                     </header>
                         <sheet>
                             <group>
-                                <field name="name"/>
-                                <field name="keterangan"/>
-                                <field name="paket_umroh_id"/>
-                                <field name="lst_price" readonly="0"/>
-                                <field name="pembimbing_id"/>
-                                <field name="petugas_lapangan" />
-                                <field name="tanggal_berangkat"/>
-                                <field name="durasi"/>
-                                <field name="tanggal_pulang"/>
-                                <field name="maskapai_id" />
-                                <field name="hotel_id" />
+                                <field name="name" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="keterangan" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="paket_umroh_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="lst_price" attrs="{'readonly': [('state', '=', 'selesai')]}"/>
+                                <field name="pembimbing_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="petugas_lapangan" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="tanggal_berangkat" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="durasi" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="tanggal_pulang" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="maskapai_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="hotel_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
                             </group>
                             <notebook>
                                 <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
-                                    <field name="rencana_perjalanan_ids"/>
+                                    <field name="rencana_perjalanan_ids" attrs="{'readonly': [('state', '=', 'selesai')]}">
+                                        <form>
+                                            <group>
+                                                <!-- <field name="sesi_umroh_id"/> -->
+                                                <field name="nama"/>
+                                                <field name="keterangan"/>
+                                                <field name="dimulai"/>
+                                                <field name="durasi" widget="float_time"/>
+                                            </group>
+                                        </form>
+                                    </field>
                                 </page>
                                 <page name="jammaah_idss" string="Jamaah">
                                     <field name="jammaah_ids" readonly="1">
@@ -141,7 +151,7 @@
             <field name="name">Sesi Umroh</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.sesi.umroh</field>
-            <field name="view_mode">tree,form,kanban,calendar</field>
+            <field name="view_mode">tree,form,kanban</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Create your first item

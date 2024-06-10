@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <template id="homepage_template" inherit_id="website.homepage">
+            <xpath expr="//div[@id='wrapwrap']/main/div[@class='oe_structure']" position="inside">
+                <!-- Your custom content here -->
+                <div class="custom-section">
+                    <h2>Welcome to Our Website</h2>
+                    <p>This is a custom section added to the homepage.</p>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

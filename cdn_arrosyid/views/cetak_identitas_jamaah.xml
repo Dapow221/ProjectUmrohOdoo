@@ -3,34 +3,38 @@
     <template id="report_identitas_jamaah_document">
         <t t-foreach="docs" t-as="doc">
             <t t-call="web.basic_layout">
-                <div class="page">
-                    <h2>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <div class="card">
+                    <h2 class="card-header text-center">
                         <span>Identitas Jamaah</span>
                     </h2>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td><strong>Nama Jamaah:</strong></td>
-                                <td><span t-field="doc.partner_id.name"/></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Nomor Paspor:</strong></td>
-                                <td><span t-field="doc.paspor"/></td>
-                            </tr>
-                            <tr>
-                                <td><strong>No Referensi:</strong></td>
-                                <td><span t-field="doc.referensi"/></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Tanggal Lahir:</strong></td>
-                                <td><span t-field="doc.tgl_lahir"/></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Jenis Kelamin:</strong></td>
-                                <td><span t-field="doc.jenis_kel"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Nama Jamaah:</strong></td>
+                                    <td><span t-field="doc.partner_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nomor Paspor:</strong></td>
+                                    <td><span t-field="doc.paspor"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>No Referensi:</strong></td>
+                                    <td><span t-field="doc.referensi"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tanggal Lahir:</strong></td>
+                                    <td><span t-field="doc.tgl_lahir"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Jenis Kelamin:</strong></td>
+                                    <td><span t-field="doc.jenis_kel"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </t>
         </t>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- wizard.rencana.perjalanan tree view -->
+        <record id="wizard_rencana_perjalanan_view_tree" model="ir.ui.view">
+            <field name="name">wizard.rencana.perjalanan.view.tree</field>
+            <!-- <field name="model">wizard.rencana.perjalanan</field> -->
+            <field name="model">cdn.sesi.umroh</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="name"/>
+                    <field name="paket_umroh_id"/>
+                    <field name="proses_perjalanan" widget="progressbar"/>
+                    <button name="action_lihat_perjalanan" string="Lihat Perjalanan" type="object" class="btn-outline-success"/>
+                    <button name="action_selesai" string="Tandai Selesai" type="object" class="oe_highlight" attrs="{'invisible': [('proses_perjalanan', '&lt;', 100)]}"/>
+                    <!-- <field name="rencana_perjalanan_ids"/> -->
+                </tree>
+            </field>
+        </record>
+        <!-- wizard.rencana.perjalanan action window -->
+        <record id="wizard_rencana_perjalanan_action" model="ir.actions.act_window">
+            <field name="name">Perjalanan Umroh</field>
+            <field name="type">ir.actions.act_window</field>
+            <!-- <field name="res_model">wizard.rencana.perjalanan</field> -->
+            <field name="res_model">cdn.sesi.umroh</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wizard_rencana_perjalanan_view_tree"/>
+            <!-- <field name="view_type">form</field> -->
+            <field name="domain">[('state','=', 'proses')]</field>
+            <!-- <field name="context">{}</field> -->
+            <!-- <field name="target">{current}</field> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="rencana_perjalanan_menu_action" name="Perjalanan Umroh" parent="travel_umroh_menu_root" action="wizard_rencana_perjalanan_action" sequence="20"/>
+    </data>
+    
+</odoo>
