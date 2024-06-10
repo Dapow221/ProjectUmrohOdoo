@@ -105,4 +105,7 @@ class SesiUmroh(models.Model):
             'domain': [('sesi_umroh_id', '=', self.id)],
         }
         return action
+    
+    def action_pilih_sesi(self):
+        return
 

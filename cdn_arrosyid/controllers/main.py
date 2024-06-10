@@ -13,16 +13,12 @@ class HomeController(http.Controller):
         
         return request.render('cdn_arrosyid.homepage', data)
 
-    @http.route('/sesi', type='http', auth="public", website=True)
-    def get_sesi(self, **kw):
-
-        pendaftarans = request.env['cdn.pendaftaran'].sudo().search([])
-
-        data = {
-            'pendaftarans' : pendaftarans 
-        }
-        
-        return request.render('cdn_arrosyid.sesi_umroh', data)
+    @http.route('/sesi_umroh', auth='public', website=True)
+    def sesi_umroh(self, **kwargs):
+            sesi_umroh_records = request.env['cdn.sesi.umroh'].sudo().search([])
+            return request.render('cdn_arrosyid.sesi_umroh_template', {
+                'sesi_umroh_records': sesi_umroh_records
+            })
 
     @http.route('/ketentuan', type='http', auth="public", website=True)
     def get_ketentuan(self, **kw):

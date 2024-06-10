@@ -57,5 +57,9 @@
         'demo/demo.xml',
         
     ],
-    'css': ['static/src/css/custom.css'],
+    'assets': {
+    'web.assets_frontend': [
+        'cdn_arrosyid/static/src/css/custom.css',
+    ],
+},
 }
