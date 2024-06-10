@@ -14,13 +14,13 @@
                     <field name="durasi" widget="float_time"/>
                     <field name="state" 
                             decoration-success="state == 'selesai'"
-                            decoration-info="state == 'belum'"
                             decoration-danger="state == 'batal'"
                             decoration-warning="state == 'proses'"
                             widget="badge"/>
                 </tree>
             </field>
         </record>
+
         <!-- cdn.rencana.perjalanan form view -->
         <record id="cdn_rencana_perjalan_view_form" model="ir.ui.view">
             <field name="name">cdn.rencana.perjalanan.view.form</field>

@@ -79,21 +79,31 @@
                     </header>
                         <sheet>
                             <group>
-                                <field name="name"/>
-                                <field name="keterangan"/>
-                                <field name="paket_umroh_id"/>
-                                <field name="lst_price" readonly="0"/>
-                                <field name="pembimbing_id"/>
-                                <field name="petugas_lapangan" />
-                                <field name="tanggal_berangkat"/>
-                                <field name="durasi"/>
-                                <field name="tanggal_pulang"/>
-                                <field name="maskapai_id" />
-                                <field name="hotel_id" />
+                                <field name="name" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="keterangan" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="paket_umroh_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="lst_price" attrs="{'readonly': [('state', '=', 'selesai')]}"/>
+                                <field name="pembimbing_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="petugas_lapangan" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="tanggal_berangkat" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="durasi" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="tanggal_pulang" attrs="{'readonly': [('state', '=', 'selesai')]}" />
+                                <field name="maskapai_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="hotel_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
                             </group>
                             <notebook>
                                 <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
-                                    <field name="rencana_perjalanan_ids"/>
+                                    <field name="rencana_perjalanan_ids" attrs="{'readonly': [('state', '=', 'selesai')]}">
+                                        <form>
+                                            <group>
+                                                <!-- <field name="sesi_umroh_id"/> -->
+                                                <field name="nama"/>
+                                                <field name="keterangan"/>
+                                                <field name="dimulai"/>
+                                                <field name="durasi" widget="float_time"/>
+                                            </group>
+                                        </form>
+                                    </field>
                                 </page>
                                 <page name="jammaah_idss" string="Jamaah">
                                     <field name="jammaah_ids" readonly="1">

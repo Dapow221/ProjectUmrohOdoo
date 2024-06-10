@@ -7,7 +7,8 @@ class CdnPendaftaran(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
 
     no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
-    state             = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
+    state            = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
+
     # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
     jamaah_id      = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
     # relatad jamaah
@@ -33,9 +34,7 @@ class CdnPendaftaran(models.Model):
     pendidikan     = fields.Selection(related='jamaah_id.pendidikan')
     vaksin_meningitis = fields.Boolean(related='jamaah_id.vaksin_meningitis')
     vaksin_covid19 = fields.Selection(related='jamaah_id.vaksin_covid19')
-    product_ids    = fields.Many2many(related='sesi_id.paket_umroh_id.product_ids')
-    
-    
+    perlengkapan_line = fields.One2many(comodel_name='perlengkapan.detail', inverse_name='pendaftaran_id', string='Perlengkapan')
 
     sesi_id = fields.Many2one('cdn.sesi.umroh', string='Sesi Umroh',required=True, tracking=True)
     # related sesi
@@ -52,7 +51,6 @@ class CdnPendaftaran(models.Model):
     penagihan_ids     = fields.One2many('account.move', 'pendaftaran_id', string='penagihan')
     btn_batal         = fields.Boolean(string='btn batal', default=False)
     status            = fields.Selection(string='status', selection=[('draf', 'Draf'), ('konfirmasi', 'konfirmasi'), ('batal', 'batal'), ('nol', 'nol')], default='nol')
-    
     
     # action button
     def action_draf(self):
@@ -79,6 +77,8 @@ class CdnPendaftaran(models.Model):
                 if get_penagihan.payment_state == 'paid':
                     rec.state = 'lunas'
                 elif get_penagihan.payment_state == 'not_paid':
+                    rec.state = 'belum'
+                elif get_penagihan.payment_state == 'partial':
                     rec.state = 'belum'
             else:
                 if rec.status == 'draf':
@@ -175,3 +175,27 @@ class CdnPendaftaran(models.Model):
     
     def name_get(self):
         return [(record.id, "[%s] %s" % (record.no_pendaftaran, record.nama)) for record in self]
+
+
+class PerlengkapanDetail(models.Model):
+    _name = 'perlengkapan.detail'
+    _description = 'Perlengkapan Detail'
+
+    name = fields.Many2one('product.product', string="Name", domain=[('detailed_type', '=', 'consu')])
+    pendaftaran_id = fields.Many2one('cdn.pendaftaran', string='Pendaftaran')
+    cek_perlengkapan = fields.Boolean(string='Sudah Diambil', default=False)
+
+    @api.model
+    def create(self, vals):
+        if 'name' in vals and 'pendaftaran_id' in vals:
+            existing_record = self.env['perlengkapan.detail'].search([('name', '=', vals['name']), ('pendaftaran_id', '=', vals['pendaftaran_id'])])
+            if existing_record:
+                raise ValidationError("Perlengkapan tidak bisa dua")
+        return super(PerlengkapanDetail, self).create(vals)
+
+    def write(self, vals):
+        if 'name' in vals and 'pendaftaran_id' in vals:
+            existing_record = self.env['perlengkapan.detail'].search([('name', '=', vals['name']), ('pendaftaran_id', '=', vals['pendaftaran_id'])])
+            if existing_record:
+                raise ValidationError("Perlengkapan tidak bisa dua")
+        return super(PerlengkapanDetail, self).write(vals)

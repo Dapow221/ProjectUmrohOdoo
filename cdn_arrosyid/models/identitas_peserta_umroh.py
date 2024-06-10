@@ -4,37 +4,60 @@ from datetime        import date
 from odoo.exceptions import ValidationError
 
 class IdentitasJamaah(models.Model):
-    _name            = 'cdn.identitas.jamaah' 
-    _description     = 'Identitas Jamaah'
-    _inherits        = {'res.partner':'partner_id'}
+    _name               = 'cdn.identitas.jamaah' 
+    _description        = 'Identitas Jamaah'
+    _inherits           = {'res.partner':'partner_id'}
 
-    partner_id       = fields.Many2one(comodel_name='res.partner', string='Nama Jamaah', required=True, ondelete="cascade")
-    jenis_kel        = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
-    referensi        = fields.Char(string='No Referensi')
-    paspor           = fields.Char(string='Nomor Paspor', required=True)
-    masa_paspor      = fields.Date(string='Masa berlaku Paspor', required=True)
-    tgl_lahir        = fields.Date(string='Tanggal Lahir', required=True)
-    umur             = fields.Integer(string='Umur', compute='_compute_umur') 
-    image            = fields.Image(string='image',)
-    is_menikah       = fields.Boolean(string='Sudah menikah', default = False)
-    nama_pasangan    = fields.Char(string='Nama Pasangan')
-    riwayat_penyakit = fields.Char(string='Riwayat Penyakit')
-    active           = fields.Boolean(string='Active', default= True)
-    state            = fields.Selection(string='Status', selection=[('draft', 'draft'),('proses', 'Sedang Umroh'),('selesai', 'Selesai'),('batal', 'Perjalanan Batal')], default='draft')
-    pendaftaran_ids  = fields.One2many('cdn.pendaftaran', 'jamaah_id', string='Pendaftaran')
-    jumlah_pendaftaran = fields.Integer(string='Jumlah pendaftaran ', compute="_compute_jumlah_pendaftaran")
-    penagihan_ids    = fields.One2many('account.move', 'partner_id', string='Penagihan')
-    jumlah_penagihan = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
-    lunas            = fields.Char(string='Lunas')
-    golongan_darah   = fields.Selection(string='Golongan Darah', selection=[('oplus', 'O+'), ('ominus', 'O-'),('aplus', 'A+'),('aminus', 'A-'),('bplus', 'B+'), ('bminus', 'B-'),('abplus', 'AB+'),('abminus', 'AB-')], default='oplus')
-    pekerjaan        = fields.Selection(string='Pekerjaan', selection=[('pns', 'PNS'), ('irt', 'Ibu Rumah Tangga'),('tni', 'TNI'),('dagang', 'Pedagang'),('tani', 'Petani'),('swasta', 'Swasta'),('pelajar', 'Pelajar'),('bumn', 'BUMN'),], default='pns')
-    pendidikan = fields.Selection(string='Pendidikan Terakhir', selection=[('sd', 'SD'), ('smp', 'SMP'),('sma', 'SMA'),('kuliah', 'Perguruan Tinggi')], default='sd')
-    vaksin_meningitis = fields.Boolean(string='Vaksinasi Meningitis', default=False)
-    vaksin_covid19    = fields.Selection(string='Vaksinasi Covid19', selection=[('belum', 'Belum Vaksin'), ('vaksin1', 'Vaksinasi Pertama'), ('vaksin2', 'Vaksinasi Kedua'), ('booster', 'Vaksin Booster')], default='belum')
-    is_umroh = fields.Boolean(string='Pernah Umroh')
-    tanggal_umroh = fields.Date(string='Tanggal Umroh')
-    
-    
+    partner_id          = fields.Many2one(comodel_name='res.partner', string='Nama Jamaah', required=True, ondelete="cascade")
+    jenis_kel           = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
+    referensi           = fields.Char(string='No Referensi')
+    paspor              = fields.Char(string='Nomor Paspor', required=True)
+    masa_paspor         = fields.Date(string='Masa berlaku Paspor', required=True)
+    tgl_lahir           = fields.Date(string='Tanggal Lahir', required=True)
+    umur                = fields.Integer(string='Umur', compute='_compute_umur') 
+    image               = fields.Image(string='image',)
+    is_menikah          = fields.Boolean(string='Sudah menikah', default = False)
+    nama_pasangan       = fields.Char(string='Nama Pasangan')
+    riwayat_penyakit    = fields.Char(string='Riwayat Penyakit')
+    active              = fields.Boolean(string='Active', default= True)
+    state               = fields.Selection(string='Status', selection=[('draft', 'draft'),('proses', 'Sedang Umroh'),('selesai', 'Selesai'),('batal', 'Perjalanan Batal')], default='draft')
+    pendaftaran_ids     = fields.One2many('cdn.pendaftaran', 'jamaah_id', string='Pendaftaran')
+    jumlah_pendaftaran  = fields.Integer(compute="_compute_jumlah_pendaftaran")
+    penagihan_ids       = fields.One2many('account.move', 'partner_id', string='Penagihan')
+    jumlah_penagihan    = fields.Integer(string='Jumlah penagihan ', compute="_compute_jumlah_penagihan")
+    lunas               = fields.Char(string='Lunas')
+    golongan_darah      = fields.Selection(string='Golongan Darah', selection=[('oplus', 'O+'), ('ominus', 'O-'),('aplus', 'A+'),('aminus', 'A-'),('bplus', 'B+'), ('bminus', 'B-'),('abplus', 'AB+'),('abminus', 'AB-')], default='oplus')
+    pekerjaan           = fields.Selection(string='Pekerjaan', selection=[('pns', 'PNS'), ('irt', 'Ibu Rumah Tangga'),('tni', 'TNI'),('dagang', 'Pedagang'),('tani', 'Petani'),('swasta', 'Swasta'),('pelajar', 'Pelajar'),('bumn', 'BUMN'),], default='pns')
+    pendidikan          = fields.Selection(string='Pendidikan Terakhir', selection=[('sd', 'SD'), ('smp', 'SMP'),('sma', 'SMA'),('kuliah', 'Perguruan Tinggi')], default='sd')
+    vaksin_meningitis   = fields.Boolean(string='Vaksinasi Meningitis', default=False)
+    vaksin_covid19      = fields.Selection(string='Vaksinasi Covid19', selection=[('belum', 'Belum Vaksin'), ('vaksin1', 'Vaksinasi Pertama'), ('vaksin2', 'Vaksinasi Kedua'), ('booster', 'Vaksin Booster')], default='belum')
+    is_umroh            = fields.Boolean(string='Pernah Umroh')
+    tanggal_umroh       = fields.Date(string='Tanggal Umroh')
+    company_id          = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    currency_id         = fields.Many2one('res.currency', related='company_id.currency_id', required=True)
+
+    total_pembayaran    = fields.Float(string='Total Pembayaran', compute='_compute_total_pembayaran')
+    total_due           = fields.Float(string='Total Due', compute='_compute_total_due')
+
+    def _get_company_currency(self):
+        for partner in self:
+            if partner.company_id:
+                partner.currency_id = partner.sudo().company_id.currency_id
+            else:
+                partner.currency_id = self.env.company.currency_id
+
+    @api.depends('penagihan_ids')
+    def _compute_total_pembayaran(self):
+        for rec in self:
+            jmlh_total            = self.env['account.move'].search([('partner_id', '=', rec.partner_id.id)])
+            rec.total_pembayaran = sum(total.amount_untaxed for total in jmlh_total)
+
+    @api.depends('penagihan_ids')
+    def _compute_total_due(self):
+        for rec in self:
+            jmlh_total            = self.env['account.move'].search([('partner_id', '=', rec.partner_id.id)])
+            rec.total_due = sum(total.amount_residual for total in jmlh_total)
+
     @api.depends('tgl_lahir')
     def _compute_umur(self):    
         for rec in self:
@@ -103,8 +126,8 @@ class IdentitasJamaah(models.Model):
             'name': _('Penagihan'),
             'res_model': 'account.move',
             'view_mode': 'list,form',
-            'context': {'default_partner_id': self.partner_id.id},
-            'domain': [('partner_id', '=', self.partner_id.id)],
+            'context': {'default_partner_id': self.partner_id.id, 'default_move_type': 'out_invoice'},
+            'domain': [('partner_id', '=', self.partner_id.id), ('move_type', '=', 'out_invoice')],
             'target': 'current',
             'type': 'ir.actions.act_window'
         }
