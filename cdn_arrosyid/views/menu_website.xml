@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="menu_home" model="website.menu">
+    <record id="website.main_menu" model="website.menu">
         <field name="name">Home</field>
-        <field name="url">/home</field>
+        <field name="url">/</field>
         <field name="parent_id" search="[('parent_id', '=', False), ('website_id', '=', 1)]"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website.default_website"/>
@@ -35,5 +35,4 @@
         <field name="sequence" type="int">50</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
-    
 </odoo>

@@ -31,6 +31,10 @@
     border-radius: 5px;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+.cdn-text-footer {
+    color: #5f9edd;
+}
+
+.oe_structure.oe_structure_solo {
+    background-color: #03172c;
 }
