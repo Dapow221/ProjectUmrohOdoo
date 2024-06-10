@@ -31,7 +31,6 @@
     border-radius: 5px;
 }
 
-<<<<<<< HEAD:cdn_arrosyid/static/src/css/custom.css
 .btn:hover {
     background-color: #0056b3;
 }
@@ -44,12 +43,9 @@
 .ordered-list-ketentuan {
     font-weight: normal;
     list-style-type: decimal;
-=======
-.cdn-text-footer {
-    color: #5f9edd;
 }
 
 .oe_structure.oe_structure_solo {
     background-color: #03172c;
->>>>>>> main:cdn_arrosyid/static/src/css/layout.css
+
 }
