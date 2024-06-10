@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_identitas_manifes_jamaah_document">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <center>
+                        <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">
+                            Identitas Manifes Jamaah
+                        </h1>
+                    </center>
+                    <div style="margin-bottom: 20px;">
+                        <h2 style="font-size: 18px; color: #555;">
+                            <span t-field="docs.paket_umroh_id.name"/>
+                        </h2>
+                        <h3 style="font-size: 16px; color: #555;">
+                            <span t-field="docs.name"/>
+                        </h3>
+                        <h3 style="font-size: 14px; color: #555;">
+                            Mulai <span t-field="docs.tanggal_berangkat"/> s/d <span t-field="docs.tanggal_pulang"/>
+                        </h3>
+                    </div>
+                    <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>No</strong></th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Nama Jamaah</strong></th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Nomor Paspor</strong></th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>No Referensi</strong></th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Tanggal Lahir</strong></th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Jenis Kelamin</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="counter" t-value="1"/>
+                            <t t-foreach="doc.jammaah_ids" t-as="data">
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-esc="counter"/></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.nama"/></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.paspor"/></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.referensi"/></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.tgl_lahir"/></td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.jenis_kel"/></td>
+                                </tr>
+                                <t t-set="counter" t-value="counter + 1"/>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
