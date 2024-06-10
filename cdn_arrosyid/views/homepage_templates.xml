@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <data>
-        <template id="homepage" name="Home Page">
+    <data>        
+        <template id="homepages" name="Home Page">
             <t t-call="website.layout">
                <main>                
                     <div id="wrap" class="oe_structure" data-oe-model="ir.ui.view" data-oe-id="825" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
                         <section class="s_banner parallax s_parallax_is_fixed o_cc o_cc3" data-scroll-background-ratio="1" data-oe-shape-data="{&#34;shape&#34;:&#34;web_editor/Origins/18&#34;,&#34;flip&#34;:[&#34;x&#34;]}" data-snippet="s_banner">
-                            <span class="s_parallax_bg oe_img_bg" style="background-image: url(&#39;cdn_arrosyid/static/src/img/background_home.jpg&#39;); background-position: 50% 0;"></span>
+                            <span class="s_parallax_bg oe_img_bg" style="background-image: url(&#39;cdn_arrosyid/static/src/img/background_homepage.jpg&#39;); background-position: 50% 0;"></span>
                                 <div class="o_we_bg_filter bg-black-50"></div>
                                     <div class="o_we_shape o_web_editor_Origins_18 o_we_flip_x o_header_extra_shape_mapping"></div>
                                         <div class="container">
@@ -17,29 +17,24 @@
                                                 </div>
                                             </div>
                                         </div>
+                        </section>          
+                        <section class="s_text_block pt40 pb40 o_cc o_cc4 pb56 pt56" data-snippet="s_text_block">
+                            <div class="container s_allow_columns">
+                                <h1>Fasilitator Para Tamu-Tamu Allah</h1>
+                                <p>Jumlah penduduk muslim Indonesia sebanyak 200 juta menjadikan ini sebagai amanah bagi kami para fasilitator para tamu-tamu Allah. Meski banyak penyelenggara Haji Khusus dan Umroh yang juga berkomitmen untuk memberikan pelayanan terbaik bagi seluruh Jemaahnya. Pusat Umroh Indonesia hadir bersama mitra terbaik untuk memberikan solusi layanan penyelenggara Haji Khusus dan Umroh bagi kaum muslimin semua dengan niat tulus sebagai fasilitator terbaik untuk para tamu-tamu Allahyang mulia. Semoga ini menjadi ladang pahala bagi kami semua. Aamiin Allahumma Aamiin.</p>
+                            </div>
                         </section>
-                    
-                    <section class="s_text_block pt40 pb40 o_cc o_cc4 pb56 pt56" data-snippet="s_text_block">
-
-                    <div class="container s_allow_columns">
-                        <h1>Fasilitator Para Tamu-Tamu Allah
-                        </h1>
-                        <p>Jumlah penduduk muslim Indonesia sebanyak 200 juta menjadikan ini sebagai amanah bagi kami para fasilitator para tamu-tamu Allah. Meski banyak penyelenggara Haji Khusus dan Umroh yang juga berkomitmen untuk memberikan pelayanan terbaik bagi seluruh Jemaahnya. Pusat Umroh Indonesia hadir bersama mitra terbaik untuk memberikan solusi layanan penyelenggara Haji Khusus dan Umroh bagi kaum muslimin semua dengan niat tulus sebagai fasilitator terbaik untuk para tamu-tamu Allahyang mulia. Semoga ini menjadi ladang pahala bagi kami semua. Aamiin Allahumma Aamiin.</p>
-                    </div>
-
-                    </section><section class="s_text_image pt48 pb0" data-snippet="s_text_image">
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
-                    <h2>
-        Are you thinking of selling?
-    </h2>
+                        <section class="s_text_image pt48 pb0" data-snippet="s_text_image">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <h2>
+                            Are you thinking of selling?
+                        </h2>
                     <p>
         Make an appointment for a free valuation of your property. We visit the property, advise you on a realistic asking price and we explain our way of working. <br/>
         You can decide in all freedom whether or not you would like to work with us for the sale of your property.
     </p>
-                    <p><a href="#" class="btn btn-primary mb-2">Learn more</a></p>
                 </div>
                 <div class="col-lg-6 pt16 pb16">
                     <img src="/web_editor/image_shape/website.s_text_image_default_image/web_editor/solid/sld_square_1.svg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
@@ -62,147 +57,7 @@
                     <p>
         Discover our tailor-made services to embellish the decoration of your home.
     </p>
-                    <p><a href="#" class="btn btn-primary">Explore our services</a></p>
     </div>
-            </div>
-        </div>
-    </section><section class="s_title pb40 pt72" data-vcss="001" data-snippet="s_title">
-        <div class="container s_allow_columns">
-            <h1 style="text-align: center;"><font style="font-size: 62px;">Your Site Title</font></h1>
-        </div>
-    </section><section class="s_three_columns o_cc o_cc3 pt0 pb72" data-vcss="001" data-snippet="s_three_columns">
-        <div class="container">
-            <div class="row d-flex align-items-stretch">
-                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-                    <div class="card text-bg-white h-100">
-                        <img class="card-img-top" src="/web/image/website.s_three_columns_default_image_1" alt="" loading="lazy"/>
-                        <div class="card-body">
-        <span class="text-600 fw-bold">$295,000</span>
-                            <h3 class="card-title">
-        House On The Hill
-    </h3>
-                            <p class="card-text">
-        Waste no time in viewing this truly stunning property. The property's surroundings really set it apart, offering idyllic sea views overlooking a park.
-    </p>
-        <a href="#" class="btn btn-primary mb-0">View details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-                    <div class="card text-bg-white h-100">
-                        <img class="card-img-top" src="/web/image/website.s_three_columns_default_image_2" alt="" loading="lazy"/>
-                        <div class="card-body">
-        <span class="text-600 fw-bold">$1,295,000,000</span>
-                            <h3 class="card-title">
-        Moutain View
-    </h3>
-                            <p class="card-text">
-        The house is surrounded by garden terraces that create unique spaces and an intimate ambience. With no overlooking neighbours, the garden offers real privacy.
-    </p>
-        <a href="#" class="btn btn-primary mb-0">View details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
-                    <div class="card text-bg-white h-100">
-                        <img class="card-img-top" src="/web/image/website.s_three_columns_default_image_3" alt="" loading="lazy"/>
-                        <div class="card-body">
-        <span class="text-600 fw-bold">$455,000</span>
-                            <h3 class="card-title">
-        Paradise Residence
-    </h3>
-                            <p class="card-text">
-        Elegant, modern sophisticated architecture with an impressive in large scale home designed with the finest imported finishes. Marble and wood floors...
-    </p>
-        <a href="#" class="btn btn-primary mb-0">View details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><section class="s_title pb40 pt72" data-vcss="001" data-snippet="s_title">
-        <div class="container s_allow_columns">
-            <h1 style="text-align: center;"><font style="font-size: 62px;">Your Site Title</font></h1>
-        </div>
-    </section><section class="s_masonry_block" data-vcss="001" data-vxml="001" data-snippet="s_masonry_block">
-        <div class="container">
-    <div class="row o_grid_mode" data-row-count="10">
-        <div class="o_grid_item col-lg-6 g-col-lg-6 g-height-10 o_grid_item_image text-center" data-name="Block" style="grid-area: 1 / 1 / 11 / 7; z-index: 1;">
-            <img src="/web/image/website.s_masonry_block_default_image_1" class="img img-fluid mx-auto" alt="" loading="lazy"/>
-        </div>
-        <div class="o_grid_item col-lg-3 g-col-lg-3 g-height-5 text-center o_cc o_cc2,o_cc1" data-name="Block" style="grid-area: 1 / 7 / 6 / 10; z-index: 2;">
-        <span class="fa fa-star fa-2x mb-4"></span>
-            <h3>
-        Increased Visibility
-    </h3>
-            <p>
-        Increase Visitor retention. Customer engagement on a website with virtual tour is 5 times longer compared to a site without it.
-    </p>
-        </div>
-        <div class="o_grid_item col-lg-3 g-col-lg-3 g-height-5 text-center o_cc o_cc3,o_cc1" data-name="Block" style="grid-area: 1 / 10 / 6 / 13; z-index: 3;">
-        <span class="fa fa-tag fa-2x mb-4"></span>
-            <h3>
-        No fixed fees
-    </h3>
-            <p>
-        At Real Estate Agency we have fixed price fees. This means we only charge when your home sale is confirmed.
-    </p>
-        </div>
-        <div class="o_grid_item col-lg-3 g-col-lg-3 g-height-5 text-center o_cc o_cc4,o_cc1" data-name="Block" style="grid-area: 6 / 7 / 11 / 10; z-index: 4;">
-        <span class="fa fa-camera fa-2x mb-4"></span>
-            <h3>
-        Pro Photo Shoot
-    </h3>
-            <p>
-        They say an image is worth a thousand words and we know you know how important it is to have the best photography.
-    </p>
-        </div>
-        <div class="o_grid_item col-lg-3 g-col-lg-3 g-height-5 text-center o_cc o_cc2,o_cc1" data-name="Block" style="grid-area: 6 / 10 / 11 / 13; z-index: 5;">
-        <span class="fa fa-check fa-2x mb-4"></span>
-            <h3>
-        Premium Quality
-    </h3>
-            <p>
-        We are committed to delivering high quality services that enhance your brand by allowing visitors to interact virtually.
-    </p>
-        </div>
-    </div>
-        </div>
-    </section><section class="s_numbers o_cc o_cc1 pt32 pb56" data-snippet="s_numbers">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 text-center pt24 pb24">
-                    <span class="s_number display-4">
-        14,000
-    </span>
-                    <h6>
-        properties already sold
-    </h6>
-                </div>
-                <div class="col-lg-3 text-center pt24 pb24">
-                    <span class="s_number display-4">
-        97%
-    </span>
-                    <h6>
-        happy customers
-    </h6>
-                </div>
-                <div class="col-lg-3 text-center pt24 pb24">
-                    <span class="s_number display-4">
-        142
-    </span>
-                    <h6>
-        amazing agents
-    </h6>
-                </div>
-                <div class="col-lg-3 text-center pt24 pb24">
-                    <span class="s_number display-4">
-        100+
-    </span>
-                    <h6>
-        offices
-    </h6>
-                </div>
             </div>
         </div>
     </section><section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
@@ -291,80 +146,79 @@
         </template>
 
 
-        <!-- Footer templates -->
-<template id="template_footer_contact" inherit_id="website.layout" name="Contact" active="True">
-    <xpath expr="//div[@id='footer']" position="replace">
-        <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
-            <section class="s_text_block pt32 pb16" data-snippet="s_text_block" data-name="Text">
-                <div class="container">
-                    <div class="row align-items-end">
-                        <div class="col-lg-3 pt16 pb16">
-                            <p class="mb-2">How can we help?</p>
-                            <h4>Contact us anytime</h4>
-                        </div>
-                        <div class="col-lg-3 pt16 pb16">
-                            <p class="mb-2">Call us</p>
-                            <h5><span class="o_force_ltr"><a href="tel:1 (650) 555-0111">+1 (650) 555-0111</a></span></h5>
-                        </div>
-                        <div class="col-lg-3 pt16 pb16">
-                            <p class="mb-2">Send us a message</p>
-                            <h5><a href="mailto:hello@mycompany.com">hello@mycompany.com</a></h5>
-                        </div>
-                        <div class="col-lg-3 pt16 pb16">
-                            <div class="s_social_media text-end no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
-                                <p class="s_social_media_title d-block mb-2" contenteditable="true">Follow us</p>
-                                <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
-                                    <i class="fa fa-twitter m-1 o_editable_media"/>
-                                </a>
-                                <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
-                                    <i class="fa fa-linkedin m-1 o_editable_media"/>
-                                </a>
-                                <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
-                                    <i class="fa fa-instagram m-1 o_editable_media"/>
-                                </a>
+        <!-- Footer -->
+        <template id="template_footer_contact" inherit_id="website.layout" name="Contact" active="True">
+            <xpath expr="//div[@id='footer']" position="replace">
+                <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                    <section class="s_text_block pt32 pb16" data-snippet="s_text_block" data-name="Text">
+                        <div class="container">
+                            <div class="row align-items-end">
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Apa yang bisa kami bantu?</p>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Hubungi kami :</p>
+                                    <h5 style="color: white;"><span class="o_force_ltr"><a style="color: inherit;" href="tel:+62 81234567891">+62 81234567891</a></span></h5>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Kirim email :</p>
+                                    <h5 style="color: white;"><a style="color: inherit;" href="mailto:travelumroharrosyid@gmail.com">travelumroharrosyid@gmail.com</a></h5>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <div class="s_social_media text-end no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                        <p class="s_social_media_title d-block mb-2" contenteditable="true">Ikuti kami</p>
+                                        <a style="color: white;" href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                            <i style="color: inherit;" class="fa fa-instagram m-1 o_editable_media"/>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
-                <div class="container allow_columns">
-                    <div class="s_hr pt16 pb16">
-                        <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid; border-color: var(--600);"/>
-                    </div>
-                </div>
-            </section>
-            <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-2 pb16">
-                            <a href="/" class="o_footer_logo logo">
-                                <img src="/website/static/src/img/website_logo.svg" class="img-fluid" aria-label="Logo of MyCompany" title="MyCompany" role="img"/>
-                            </a>
+                    </section>
+                    <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+                        <div class="container allow_columns">
+                            <div class="s_hr pt16 pb16">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid; border-color: var(--600);"/>
+                            </div>
                         </div>
-                        <div class="col-lg-10 pb16 text-end">
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item"><a href="/">Home</a></li>
-                                <li class="list-inline-item">•</li>
-                                <li class="list-inline-item"><a href="#">About us</a></li>
-                                <li class="list-inline-item">•</li>
-                                <li class="list-inline-item"><a href="#">Products</a></li>
-                                <li class="list-inline-item">•</li>
-                                <li class="list-inline-item"><a href="#">Terms of Services</a></li>
-                                <t t-set="configurator_footer_links" t-value="[]"/>
-                                <t t-foreach="configurator_footer_links" t-as="link" class="list-inline-item">
-                                    <li class="list-inline-item">•</li>
-                                    <li class="list-inline-item"><a t-att-href="link['href']" t-esc="link['text']"/></li>
-                                </t>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </xpath>
-</template>
+                    </section>
+                    <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 pb16">
+                                    <a href="/" class="o_footer_logo logo">
+                                        <img src="/cdn_arrosyid/static/src/img/logo_travel.png" class="img-fluid" aria-label="Logo of MyCompany" title="MyCompany" role="img"/>
+                                    </a>
+                                </div>
 
-            </data>
-    
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </xpath>
+
+        </template>
+
+        <template id="footer_copyright_company_name" inherit_id="website.layout">
+            <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+                <span id="currentYear" class="o_footer_copyright_name me-2">&amp;copy;Copyright 2024 - Travel Umroh AR ROSYID TOUR</span>
+            </xpath>
+        </template>
+
+        <!-- Scroll to Top option -->
+        <template id="option_footer_scrolltop" inherit_id="website.layout" active="True">
+            <xpath expr="//div[@id='footer']" position="after">
+                <div id="o_footer_scrolltop_wrapper" class="container h-0 d-flex align-items-center justify-content-center">
+                    <a id="o_footer_scrolltop"
+                    role="button"
+                    href="#top"
+                    title="Scroll To Top"
+                    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center">
+                        <span class="fa fa-1x fa-chevron-up"/>
+                    </a>
+                </div>
+            </xpath>
+        </template>
+        
+    </data>
 </odoo>
