@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="sesi_umroh" name="Sesi Umroh">
+            <t t-call="website.layout">
+        <h1>sesi
+        </h1>
+        </t>
+        </template>
+    </data>
+</odoo>
+
+
+
