@@ -27,11 +27,4 @@
         <field name="sequence" type="int">40</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
-    <record id="menu_profil" model="website.menu">
-        <field name="name">Profil</field>
-        <field name="url">/profil</field>
-        <field name="parent_id" search="[('parent_id', '=', False), ('website_id', '=', 1)]"/>
-        <field name="sequence" type="int">50</field>
-        <field name="website_id" ref="website.default_website"/>
-    </record>
 </odoo>
