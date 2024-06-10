@@ -1,0 +1,9 @@
+<odoo>
+    <template id="pendaftaran_umroh_template" name="Pendaftaran Umroh Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Pendaftaran Umroh</h1>
+            </div>
+        </t>
+    </template>
+</odoo>
