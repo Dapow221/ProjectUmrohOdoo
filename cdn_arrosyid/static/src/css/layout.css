@@ -31,7 +31,28 @@
     border-radius: 5px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:cdn_arrosyid/static/src/css/custom.css
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.custom-alpha-list {
+    list-style-type: upper-alpha;
+    font-weight: bold;
+}
+
+.ordered-list-ketentuan {
+    font-weight: normal;
+    list-style-type: decimal;
+=======
+.cdn-text-footer {
+    color: #5f9edd;
+}
+>>>>>>> 18f77fb2980b8ab0c81fe96a9d64a21c6dbc6168
 
 .oe_structure.oe_structure_solo {
     background-color: #03172c;
+>>>>>>> main:cdn_arrosyid/static/src/css/layout.css
 }

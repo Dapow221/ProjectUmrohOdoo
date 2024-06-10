@@ -27,8 +27,8 @@
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'views/menu.xml',
-        'views/cetak_identitas_jamaah.xml',
-        'views/cetak_manifes_jamaah.xml',
+        'record/cetak_identitas_jamaah.xml',
+        'record/cetak_manifes_jamaah.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
@@ -58,8 +58,15 @@
         
     ],
     'assets': {
+<<<<<<< HEAD
+    'web.assets_frontend': [
+        'cdn_arrosyid/static/src/css/custom.css',
+    ],
+},
+=======
         'web.assets_frontend': [
             'cdn_arrosyid/static/src/css/layout.css',
         ],
     },
+>>>>>>> main
 }

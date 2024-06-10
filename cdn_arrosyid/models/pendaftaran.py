@@ -12,6 +12,7 @@ class CdnPendaftaran(models.Model):
     # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
     jamaah_id      = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
     # relatad jamaah
+    partner_id     = fields.Many2one(related='jamaah_id.partner_id')
     nama           = fields.Char(related='jamaah_id.name', string="Nama")
     jenis_kel      = fields.Selection(related='jamaah_id.jenis_kel')
     referensi      = fields.Char(related='jamaah_id.referensi')

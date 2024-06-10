@@ -1,14 +1,47 @@
-<?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <data>
-        <template id="sesi_umroh" name="Sesi Umroh">
-            <t t-call="website.layout">
-        <h1>sesi
-        </h1>
+    <template id="sesi_umroh_template" name="Sesi Umroh Page">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Sesi Umroh yang tersedia</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Durasi</th>
+                            <th>Tanggal Keberangkatan</th>
+                            <th>Tanggal Kepulangan</th>
+                            <th>Nama Maskapai</th>
+                            <th>Nama Hotel</th>
+                            <th>Pilih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="sesi_umroh_records" t-as="sesi">
+                            <tr>
+                                <td><t t-esc="sesi.name"/></td>
+                                <td><t t-esc="sesi.lst_price"/></td>
+                                <td><t t-esc="sesi.durasi"/> Hari</td>
+                                <td><t t-esc="sesi.tanggal_berangkat"/></td>
+                                <td><t t-esc="sesi.tanggal_pulang"/></td>
+                                <td><t t-esc="sesi.maskapai_id.name"/></td>
+                                <td><t t-foreach="sesi.hotel_id" t-as="hotel">
+                                        <t t-esc="hotel.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <div class="row s_nb_column_fixed">
+                                        <div class="col-lg-12 s_title pt16 pb16">
+                                            <button type="button" id="submit_button" class="btn btn-primary btn-md o_website_form_send">Pilih
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
         </t>
-        </template>
-    </data>
+    </template>
 </odoo>
-
-
-

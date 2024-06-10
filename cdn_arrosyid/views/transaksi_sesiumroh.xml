@@ -11,17 +11,6 @@
             <field name="binding_model_id" ref="model_cdn_sesi_umroh"/>
         </record>
 
-        <!-- <record id="cdn_sesi_umroh_view_calendar" model="ir.ui.view">
-            <field name="name">Sesi Umroh</field>
-            <field name="model">cdn.sesi.umroh</field>
-            <field name="arch" type="xml">
-                <calendar string="Sesi Umroh" date_start="tanggal_berangkat" date_stop="tanggal_pulang" mode="month" date_delay="durasi" color="state" quick_add="False" hide_time="True" event_open_popup="True" form_view_id="cdn_arrosyid.cdn_sesi_umroh_view_form" event_limit="5">
-                    <field name="paket_umroh_id" options="{'avatar_field': 'image'}" filters="1"/>
-                    <field name="state" invisible="1" filters="1"/>
-                </calendar>
-            </field>
-        </record> -->
-
         <record id="cdn_sesi_umroh_view_kanban" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
             <field name="model">cdn.sesi.umroh</field>
