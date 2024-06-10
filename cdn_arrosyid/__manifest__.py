@@ -45,12 +45,12 @@
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
+        'views/menu_website.xml',
         'views/homepage_templates.xml',
         'views/sesi_umroh_templates.xml',
         'views/ketentuan_umum_templates.xml',
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
-        'views/menu_website.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -58,8 +58,15 @@
         
     ],
     'assets': {
+<<<<<<< HEAD
     'web.assets_frontend': [
         'cdn_arrosyid/static/src/css/custom.css',
     ],
 },
+=======
+        'web.assets_frontend': [
+            'cdn_arrosyid/static/src/css/layout.css',
+        ],
+    },
+>>>>>>> main
 }
