@@ -51,6 +51,7 @@
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
         'views/menu_website.xml',
+        # 'views/disable_contactus_menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="menu_home" model="website.menu">
+    <record id="website.main_menu" model="website.menu">
         <field name="name">Home</field>
-        <field name="url">/home</field>
+        <field name="url">/</field>
         <field name="parent_id" search="[('parent_id', '=', False), ('website_id', '=', 1)]"/>
         <field name="sequence" type="int">10</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
+    <record id="website.menu_contactus" model="website.menu">
+            <field name="active" eval="False"/>
+        </record>
     <record id="website_sesi_umroh_menu" model="website.menu">
             <field name="name">Sesi Umroh</field>
             <field name="url">/sesi_umroh</field>
@@ -27,11 +30,5 @@
         <field name="sequence" type="int">40</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
-    <record id="menu_profil" model="website.menu">
-        <field name="name">Profil</field>
-        <field name="url">/profil</field>
-        <field name="parent_id" search="[('parent_id', '=', False), ('website_id', '=', 1)]"/>
-        <field name="sequence" type="int">50</field>
-        <field name="website_id" ref="website.default_website"/>
-    </record>
+        
 </odoo>
