@@ -15,8 +15,8 @@
             <field name="name">Sesi Umroh</field>
             <field name="model">cdn.sesi.umroh</field>
             <field name="arch" type="xml">
-                <calendar string="Sesi Umroh" date_start="tanggal_berangkat" date_stop="tanggal_pulang" mode="month" date_delay="durasi" color="state" quick_add="False" hide_time="True" event_open_popup="True" form_view_id="%(cdn_arrosyid.cdn_sesi_umroh_view_form)d" event_limit="5">
-                    <field name="paket_umroh_id" filters="1" avatar_field="image"/>
+                <calendar string="Sesi Umroh" date_start="tanggal_berangkat" date_stop="tanggal_pulang" mode="month" date_delay="durasi" color="state" quick_add="False" hide_time="True" event_open_popup="True" form_view_id="cdn_arrosyid.cdn_sesi_umroh_view_form" event_limit="5">
+                    <field name="paket_umroh_id" options="{'avatar_field': 'image'}" filters="1"/>
                     <field name="state" invisible="1" filters="1"/>
                 </calendar>
             </field>
