@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="ketentuan_umum" name="ketentuan umum">
+        <t t-call="website.layout">
+        <h1>ketentuan umum
+        </h1>
+        </t>
+        </template>
+    </data>
+</odoo>

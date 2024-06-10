@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="profil_web" name="profil_web Umroh">
+            <t t-call="website.layout">
+        <h1>profil
+        </h1>
+        </t>
+        </template>
+    </data>
+</odoo>
