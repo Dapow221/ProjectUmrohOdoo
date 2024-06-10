@@ -82,6 +82,7 @@
                                     <tree editable="bottom">
                                         <field name="name"/>
                                         <field name="keterangan"/>
+                                        <field name="state"/>
                                     </tree>
                                 </field>
                             </page>

@@ -40,6 +40,8 @@
         'views/perlengkapan.xml',
         'wizards/wizard_pembayaran.xml',
         'wizards/wizard_pendaftaran.xml',
+        'wizards/wizard_proses_perjalanan.xml',
+        'wizards/wizard_list_perjalanan.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',

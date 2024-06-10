@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+         <!-- tree untuk wizard -->
+         <record id="wizard_custom_rencana_perjalanan_view_tree" model="ir.ui.view">
+            <field name="name">wizard.custom.rencana.perjalanan.view.tree</field>
+            <field name="model">cdn.rencana.perjalanan</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="nama"/>
+                    <field name="dimulai"/>
+                    <field name="state" decoration-info="state == 'selesai'" decoration-danger="state == 'batal'" widget="badge"/>
+                    <button name="action_cancel" type="object" icon="fa-times" string="Batal" class="btn-danger" attrs="{'invisible': [('state', '!=', 'proses')]}"/>
+                    <button name="action_done" type="object" icon="fa-check" string="Selesai" class="btn-info" attrs="{'invisible': [('state', '!=', 'proses')]}"/>
+                    <!-- <button name="action_proses" type="object" string="proses" class="oe_highlight"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- wizard.list.perjalanan action window -->
+        <record id="wizard_list_perjalanan_action" model="ir.actions.act_window">
+            <field name="name">wizard.list.perjalanan.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cdn.rencana.perjalanan</field>
+            <field name="view_mode">tree</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
