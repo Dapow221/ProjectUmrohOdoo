@@ -2,10 +2,67 @@
 <odoo>
     <data>
         <template id="pendaftaran_web" name="pendaftaran web">
-        <t t-call="website.layout">
-        <h1>pendaftaran_web
-        </h1>
-        </t>
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Form Pendaftaran Umroh</h2>
+                            <p>Silahkan isi dengan lengkap formulir berikut ini, untuk mendaftar paket perjalanan umroh di Pusat Haji Umroh Indonesia. Selanjutnya sistem akan menyajikan secara otomatis file PDF yang dikirim melalui email dan bisa diunduh otomatis.</p>
+                        </div>
+                        <div class="card-body">
+                            <form  class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="nama">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="telepon">Nomor Telepon</label>
+                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="tanggal_keberangkatan">Tanggal Keberangkatan</label>
+                                    <input type="date" class="form-control" id="tanggal_keberangkatan"/>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                    <label for="paket_umroh">Pilih Paket Umroh</label>
+                                    <select class="form-control" id="paket_umroh">
+                                        <option value="">Pilih Paket Umroh</option>
+                                        <option value="Paket A">Paket A</option>
+                                        <option value="Paket B">Paket B</option>
+                                        <option value="Paket C">Paket C</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="button">Button</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- <h1>pendaftaran_web</h1> -->
+            </t>
         </template>
     </data>
 </odoo>

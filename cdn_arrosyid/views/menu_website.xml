@@ -34,5 +34,4 @@
         <field name="sequence" type="int">50</field>
         <field name="website_id" ref="website.default_website"/>
     </record>
-    
 </odoo>
