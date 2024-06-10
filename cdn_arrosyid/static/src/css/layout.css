@@ -44,3 +44,8 @@
     font-weight: normal;
     list-style-type: decimal;
 }
+
+.oe_structure.oe_structure_solo {
+    background-color: #03172c;
+
+}

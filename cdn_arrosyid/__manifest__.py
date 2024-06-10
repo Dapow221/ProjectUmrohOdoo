@@ -11,17 +11,10 @@
 
     'author': "My Company",
     'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Travel',
     'version': '1.0.0',
-
-    # any module necessary for this one to work correctly
     'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website'],
 
-    # always loaded
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
@@ -45,22 +38,20 @@
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
+        'views/menu_website.xml',
         'views/homepage_templates.xml',
         'views/sesi_umroh_templates.xml',
         'views/ketentuan_umum_templates.xml',
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
-        'views/menu_website.xml',
-        # 'views/disable_contactus_menu.xml',
     ],
-    # only loaded in demonstration mode
+
     'demo': [
         'demo/demo.xml',
-        
     ],
     'assets': {
-    'web.assets_frontend': [
-        'cdn_arrosyid/static/src/css/custom.css',
-    ],
-},
+        'web.assets_frontend': [
+            'cdn_arrosyid/static/src/css/layout.css',
+        ],
+    },
 }
