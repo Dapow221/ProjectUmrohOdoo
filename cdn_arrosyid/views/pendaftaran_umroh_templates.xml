@@ -3,53 +3,162 @@
     <data>
         <template id="pendaftaran_web" name="pendaftaran web">
             <t t-call="website.layout">
-                <div class="container">
+                <div class="container-fluid m-2">
                     <div class="card">
                         <div class="card-header">
                             <h2>Form Pendaftaran Umroh</h2>
-                            <p>Silahkan isi dengan lengkap formulir berikut ini, untuk mendaftar paket perjalanan umroh di Pusat Haji Umroh Indonesia. Selanjutnya sistem akan menyajikan secara otomatis file PDF yang dikirim melalui email dan bisa diunduh otomatis.</p>
                         </div>
                         <div class="card-body">
-                            <form  class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="nama">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap"/>
+                            <p class="text-danger">*Silahkan isi dengan lengkap formulir berikut ini, untuk mendaftar paket perjalanan umroh di Pusat Haji Umroh Indonesia. Selanjutnya sistem akan menyajikan secara otomatis file PDF yang dikirim melalui email dan bisa diunduh otomatis.</p>
+                            <form class="shadow">
+                                <!-- <div class="shadow"> -->
+                                    <h4 class="p-3"><b><u>Identitas</u></b></h4>
+                                    <ul class="nav nav-tabs m-2" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" data-bs-toggle="tab" href="#info_umum" aria-selected="true" role="tab">Informasi Umum</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#keimigrasian" aria-selected="false" tabindex="-1" role="tab">Informasi Khusus dan Keimigrasian</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#info_lain" aria-selected="false" tabindex="-1" role="tab">Informasi Lain</a>
+                                          </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane p-3 fade show active" id="info_umum" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label for="nama">Nama Lengkap</label>
+                                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name" readonly="1"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label for="nama">Jenis Kelamin</label>
+                                                    <input type="text" class="form-control" id="jenis_kelamin" placeholder="Masukkan nama lengkap"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email" readonly="1"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label for="telepon">Nomor Telepon</label>
+                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.phone" readonly="1"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label>Sudah Menikah</label>
+                                                    <input type="text" class="form-control" id="is_meniskah"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                    <label>Pendidikan Terakhir</label>
+                                                    <input type="text" class="form-control" id="pend_terakhir"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="alamat">Alamat</label>
+                                                        <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"><t t-esc="data_login.street"/>></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane p-3 fade" id="keimigrasian" role="tabpanel">
+                                            <div class="row">
+                                                <label>Keimigrasian</label><hr/>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>No Paspor</label>
+                                                        <input type="number" class="form-control" id="pend_terakhir"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>Masa Berlaku Paspor</label>
+                                                        <input type="date" class="form-control" id="masa_paspor"/>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <label>Informais Khusus</label><hr/>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label for="alamat">Riwayat Penyakit</label>
+                                                        <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane p-3 fade" id="info_lain" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>Golongan Darah</label>
+                                                        <input type="text" class="form-control" id="gol_darah"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>Pekerjaan</label>
+                                                        <input type="text" class="form-control" id="pekerjaan"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>vaksin mengitis</label>
+                                                        <input type="text" class="form-control" id="meningitis"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>vaksin covid</label>
+                                                        <input type="text" class="form-control" id="covid"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label>Sudah Umroh</label>
+                                                        <input type="text" class="form-control" id="sudah_umroh"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email"/>
+                                <!-- </div> -->
+                                <br/><br/>
+                                <h4 class="p-3"><b><u>Paket Umroh</u></b></h4>
+                                <div class="p-3 row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="paket_umroh">Pilih Paket Umroh</label>
+                                            <select class="form-control" id="paket_umroh">
+                                                <option value="" selected="1" disabled="1">Pilih Paket Umroh</option>
+                                                <t t-foreach="data_paket_umroh" t-as="paket">
+                                                    <option t-att-value="paket.id"><t t-esc="paket.name"/></option>
+                                                </t>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="telepon">Nomor Telepon</label>
-                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon"/>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="alamat">Alamat</label>
-                                    <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="tanggal_keberangkatan">Tanggal Keberangkatan</label>
-                                    <input type="date" class="form-control" id="tanggal_keberangkatan"/>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                    <label for="paket_umroh">Pilih Paket Umroh</label>
-                                    <select class="form-control" id="paket_umroh">
-                                        <option value="">Pilih Paket Umroh</option>
-                                        <option value="Paket A">Paket A</option>
-                                        <option value="Paket B">Paket B</option>
-                                        <option value="Paket C">Paket C</option>
-                                    </select>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="paket_umroh">Pilih Sesi</label>
+                                            <select class="form-control" id="sesi_umroh">
+                                                <option value="" selected="1" disabled="1">Pilih Sesi Umroh</option>
+                                                <t t-foreach="data_sesi_umroh" t-as="sesi">
+                                                    <option t-att-value="sesi.id"><t t-esc="sesi.name"/></option>
+                                                </t>
+                                                <!-- <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option> -->
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2">
@@ -61,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <h1>pendaftaran_web</h1> -->
+            <!-- <script type="text/javascript" src="/cdn_arrosyid/static/src/js/pendaftaran.js"></script> -->
             </t>
         </template>
     </data>

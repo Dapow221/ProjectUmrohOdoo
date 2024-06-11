@@ -51,6 +51,7 @@
     ],
     'assets': {
         'web.assets_frontend': [
+            'cdn_arrosyid/static/src/js/pendaftaran.js',
             'cdn_arrosyid/static/src/css/layout.css',
         ],
     },
