@@ -13,6 +13,7 @@ class MainController(http.Controller):
             return request.render('cdn_arrosyid.sesi_umroh_template', {
                 'sesi_umroh_records': sesi_umroh_records
             })
+            
 
     @http.route('/ketentuan', type='http', auth="public", website=True)
     def get_ketentuan(self, **kw):

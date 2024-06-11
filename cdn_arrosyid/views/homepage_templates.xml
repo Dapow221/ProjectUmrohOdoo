@@ -28,121 +28,119 @@
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 pt16 pb16">
+                                        <h2>Are you thinking of selling?</h2>
+                                        <p>
+                                        Make an appointment for a free valuation of your property. We visit the property, advise you on a realistic asking price and we explain our way of working. <br/>You can decide in all freedom whether or not you would like to work with us for the sale of your property.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <img src="/web_editor/image_shape/website.s_text_image_default_image/web_editor/solid/sld_square_1.svg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="s_text_image pt32 o_cc o_cc1 pb48 pt48" data-snippet="s_image_text">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <img src="/web_editor/image_shape/website.s_image_text_default_image/web_editor/solid/sld_square_2.svg?c1=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_2" data-original-mimetype="image/jpeg" data-file-name="s_image_text.svg" data-shape-colors="o-color-3;;;;" loading="lazy"/>
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16">
                                         <h2>
-                            Are you thinking of selling?
-                        </h2>
-                    <p>
-        Make an appointment for a free valuation of your property. We visit the property, advise you on a realistic asking price and we explain our way of working. <br/>
-        You can decide in all freedom whether or not you would like to work with us for the sale of your property.
-    </p>
-                </div>
-                <div class="col-lg-6 pt16 pb16">
-                    <img src="/web_editor/image_shape/website.s_text_image_default_image/web_editor/solid/sld_square_1.svg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
-                </div>
-            </div>
-        </div>
-    </section><section class="s_text_image pt32 o_cc o_cc1 pb48 pt48" data-snippet="s_image_text">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
-                    <img src="/web_editor/image_shape/website.s_image_text_default_image/web_editor/solid/sld_square_2.svg?c1=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_2" data-original-mimetype="image/jpeg" data-file-name="s_image_text.svg" data-shape-colors="o-color-3;;;;" loading="lazy"/>
-                </div>
-                <div class="col-lg-6 pt16 pb16">
-                    <h2>
-        Bored with your interior?
-    </h2>
-                    <p>
-        Our decoration experts are at your disposal to guide you step by step in the design of your interior and will give you the best advice for your interior design.
-    </p>
-                    <p>
-        Discover our tailor-made services to embellish the decoration of your home.
-    </p>
-    </div>
-            </div>
-        </div>
-    </section><section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
-        <div class="s_quotes_carousel s_carousel_default carousel slide o_cc o_cc2" data-bs-interval="10000" id="myQuoteCarousel664899">
-            
-            <ol class="carousel-indicators">
-                <li data-bs-slide-to="0" class="active" data-bs-target="#myQuoteCarousel664899"></li>
-                <li data-bs-slide-to="1" data-bs-target="#myQuoteCarousel664899"></li>
-                <li data-bs-slide-to="2" data-bs-target="#myQuoteCarousel664899"></li>
-            </ol>
-            
-            <div class="carousel-inner">
-                
-                <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_0&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote mx-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        Amazing team! smiling, always nice to talk with, they always have the best advices for you, adapted to your needs!
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_3" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>Jane Doe</b> • Customer, bought a house
-    </span>
-                                </footer>
+                                            Bored with your interior?
+                                        </h2>
+                                        <p>
+                                            Our decoration experts are at your disposal to guide you step by step in the design of your interior and will give you the best advice for your interior design.
+                                        </p>
+                                        <p>
+                                            Discover our tailor-made services to embellish the decoration of your home.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </blockquote>
-                    </div>
-                </div>
-                
-                <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_1&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote me-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        From start to finish, they were extremely professional, friendly, helpful and easy to do business with. Very happy with the experience and the company.
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>John Doe</b> • Customer, bought an appartement
-    </span>
-                                </footer>
+                        </section>
+                        <section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
+                            <div class="s_quotes_carousel s_carousel_default carousel slide o_cc o_cc2" data-bs-interval="10000" id="myQuoteCarousel664899">
+                                
+                                <ol class="carousel-indicators">
+                                    <li data-bs-slide-to="0" class="active" data-bs-target="#myQuoteCarousel664899"></li>
+                                    <li data-bs-slide-to="1" data-bs-target="#myQuoteCarousel664899"></li>
+                                    <li data-bs-slide-to="2" data-bs-target="#myQuoteCarousel664899"></li>
+                                </ol>
+                                
+                                <div class="carousel-inner">
+                                    
+                                    <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_0&#39;); background-position: 50% 50%;" data-name="Slide">
+                                        <div class="container">
+                                            <blockquote class="s_blockquote s_blockquote_classic blockquote mx-auto w-50" data-name="Blockquote">
+                                                <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                <div class="s_blockquote_content o_cc1">
+                                                    <p>
+                                                        Amazing team! smiling, always nice to talk with, they always have the best advices for you, adapted to your needs!
+                                                    </p>
+                                                    <footer class="blockquote-footer">
+                                                        <img src="/web/image/website.s_quotes_carousel_demo_image_3" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                        <span class="s_blockquote_author">
+                                                            <b>Jane Doe</b> • Customer, bought a house
+                                                        </span>
+                                                    </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_1&#39;); background-position: 50% 50%;" data-name="Slide">
+                                        <div class="container">
+                                            <blockquote class="s_blockquote s_blockquote_classic blockquote me-auto w-50" data-name="Blockquote">
+                                                <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                <div class="s_blockquote_content o_cc1">
+                                                    <p>
+                                                        From start to finish, they were extremely professional, friendly, helpful and easy to do business with. Very happy with the experience and the company.
+                                                    </p>
+                                                    <footer class="blockquote-footer">
+                                                        <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                        <span class="s_blockquote_author">
+                                                            <b>John Doe</b> • Customer, bought an appartement
+                                                        </span>
+                                                    </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_2&#39;); background-position: 50% 50%;" data-name="Slide">
+                                        <div class="container">
+                                            <blockquote class="s_blockquote s_blockquote_classic blockquote ms-auto w-50" data-name="Blockquote">
+                                                <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                <div class="s_blockquote_content o_cc1">
+                                                    <p>
+                                                        Positive energy, great team spirit, hard workers and awesome people! I warmly recommend them!
+                                                    </p>
+                                                    <footer class="blockquote-footer">
+                                                        <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                        <span class="s_blockquote_author">
+                                                            <b>Iris Doe</b> • Customer, sold an appartement
+                                                        </span>
+                                                    </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="carousel-control-prev o_not_editable" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" data-bs-target="#myQuoteCarousel664899">
+                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </div>
+                                <div class="carousel-control-next o_not_editable" data-bs-slide="next" role="img" aria-label="Next" title="Next" data-bs-target="#myQuoteCarousel664899">
+                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </div>
                             </div>
-                        </blockquote>
+                        </section>
                     </div>
-                </div>
-                
-                <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_2&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote ms-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        Positive energy, great team spirit, hard workers and awesome people! I warmly recommend them!
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>Iris Doe</b> • Customer, sold an appartement
-    </span>
-                                </footer>
-                            </div>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-control-prev o_not_editable" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" data-bs-target="#myQuoteCarousel664899">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-            </div>
-            <div class="carousel-control-next o_not_editable" data-bs-slide="next" role="img" aria-label="Next" title="Next" data-bs-target="#myQuoteCarousel664899">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-            </div>
-        </div>
-    </section></div>
-    
                 </main>
-
-    </t>
+            </t>
         </template>
 
 
