@@ -24,7 +24,7 @@ class CdnRencanaPerjalanan(models.Model):
                 elif rec.sesi_umroh_id.state == 'batal_perjalanan':
                     rec.state = 'batal'
             else:
-                rec.state = 'belum'
+                rec.state = 'proses'
     
     @api.constrains('dimulai', 'sesi_umroh_id.tanggal_berangkat', 'sesi_umroh_id.tanggal_pulang')
     def _check_dates_within_range(self):
