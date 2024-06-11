@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <data>        
+    <data>
+        <!-- content -->
         <template id="homepages" name="Home Page">
             <t t-call="website.layout">
-               <main>                
+                        
                     <div id="wrap" class="oe_structure" data-oe-model="ir.ui.view" data-oe-id="825" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
                         <section class="s_banner parallax s_parallax_is_fixed o_cc o_cc3" data-scroll-background-ratio="1" data-oe-shape-data="{&#34;shape&#34;:&#34;web_editor/Origins/18&#34;,&#34;flip&#34;:[&#34;x&#34;]}" data-snippet="s_banner">
                             <span class="s_parallax_bg oe_img_bg" style="background-image: url(&#39;cdn_arrosyid/static/src/img/background_homepage.jpg&#39;); background-position: 50% 0;"></span>
@@ -17,134 +18,161 @@
                                                 </div>
                                             </div>
                                         </div>
-                        </section>          
-                        <section class="s_text_block pt40 pb40 o_cc o_cc4 pb56 pt56" data-snippet="s_text_block">
-                            <div class="container s_allow_columns">
-                                <h1>Fasilitator Para Tamu-Tamu Allah</h1>
-                                <p>Jumlah penduduk muslim Indonesia sebanyak 200 juta menjadikan ini sebagai amanah bagi kami para fasilitator para tamu-tamu Allah. Meski banyak penyelenggara Haji Khusus dan Umroh yang juga berkomitmen untuk memberikan pelayanan terbaik bagi seluruh Jemaahnya. Pusat Umroh Indonesia hadir bersama mitra terbaik untuk memberikan solusi layanan penyelenggara Haji Khusus dan Umroh bagi kaum muslimin semua dengan niat tulus sebagai fasilitator terbaik untuk para tamu-tamu Allahyang mulia. Semoga ini menjadi ladang pahala bagi kami semua. Aamiin Allahumma Aamiin.</p>
+                        </section>   
+
+                        <section class="s_text_block pt40 pb40 o_cc o_cc4 pb56 pt56" data-snippet="s_text_block" style="background-color: #03172c">
+                            <div class="container s_allow_columns" style="color: white">
+                                <h1 class="text-center">Fasilitator Para Tamu-Tamu Allah</h1>
+                                <p class="text-center">Jumlah penduduk muslim Indonesia sebanyak 200 juta menjadikan ini sebagai amanah bagi kami para fasilitator para tamu-tamu Allah. Meski banyak penyelenggara Haji Khusus dan Umroh yang juga berkomitmen untuk memberikan pelayanan terbaik bagi seluruh Jemaahnya. Pusat Umroh Indonesia hadir bersama mitra terbaik untuk memberikan solusi layanan penyelenggara Haji Khusus dan Umroh bagi kaum muslimin semua dengan niat tulus sebagai fasilitator terbaik untuk para tamu-tamu Allahyang mulia. Semoga ini menjadi ladang pahala bagi kami semua. Aamiin Allahumma Aamiin.</p>
                             </div>
                         </section>
+
+                        <section class="s_text_block pt40 pb40 o_cc o_cc4 pb56 pt56" data-snippet="s_text_block" style="background-color: white">
+                            <div class="container s_allow_columns" style="color: black">
+                                <h1 class="text-center">Nilai Lebih Kami</h1>
+                                <p class="text-center">Sebagai penyelenggara perjalanan ibadah Haji Khusus dan Umroh tentunya kami harus memiliki komitmen serta visi dan misi yang dapat menjadikan kami sebagai pilihan, berikut ini kenapa Anda harus menjadikan Pusat Umroh Indonesia sebagai pilihan terbaik bagi pelayan ibadah Haji dan Umroh anda.</p>
+                            </div>
+                        </section>
+
                         <section class="s_text_image pt48 pb0" data-snippet="s_text_image">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 pt16 pb16">
-                                        <h2>
-                            Are you thinking of selling?
-                        </h2>
-                    <p>
-        Make an appointment for a free valuation of your property. We visit the property, advise you on a realistic asking price and we explain our way of working. <br/>
-        You can decide in all freedom whether or not you would like to work with us for the sale of your property.
-    </p>
-                </div>
-                <div class="col-lg-6 pt16 pb16">
-                    <img src="/web_editor/image_shape/website.s_text_image_default_image/web_editor/solid/sld_square_1.svg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
-                </div>
-            </div>
-        </div>
-    </section><section class="s_text_image pt32 o_cc o_cc1 pb48 pt48" data-snippet="s_image_text">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 pt16 pb16">
-                    <img src="/web_editor/image_shape/website.s_image_text_default_image/web_editor/solid/sld_square_2.svg?c1=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="web_editor/solid/sld_square_2" data-original-mimetype="image/jpeg" data-file-name="s_image_text.svg" data-shape-colors="o-color-3;;;;" loading="lazy"/>
-                </div>
-                <div class="col-lg-6 pt16 pb16">
-                    <h2>
-        Bored with your interior?
-    </h2>
-                    <p>
-        Our decoration experts are at your disposal to guide you step by step in the design of your interior and will give you the best advice for your interior design.
-    </p>
-                    <p>
-        Discover our tailor-made services to embellish the decoration of your home.
-    </p>
-    </div>
-            </div>
-        </div>
-    </section><section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
-        <div class="s_quotes_carousel s_carousel_default carousel slide o_cc o_cc2" data-bs-interval="10000" id="myQuoteCarousel664899">
-            
-            <ol class="carousel-indicators">
-                <li data-bs-slide-to="0" class="active" data-bs-target="#myQuoteCarousel664899"></li>
-                <li data-bs-slide-to="1" data-bs-target="#myQuoteCarousel664899"></li>
-                <li data-bs-slide-to="2" data-bs-target="#myQuoteCarousel664899"></li>
-            </ol>
-            
-            <div class="carousel-inner">
-                
-                <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_0&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote mx-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        Amazing team! smiling, always nice to talk with, they always have the best advices for you, adapted to your needs!
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_3" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>Jane Doe</b> • Customer, bought a house
-    </span>
-                                </footer>
+                                        <h2>Harga Realistis</h2>
+                                        <p>Kami bukan fokus di harga yang murah, melainkan realistis demi kenyamanan dan keamanan para tamu-tamu Allah. <br/></p>
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <img src="/cdn_arrosyid/static/src/img/jamaah.jpg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="cdn_arrosyid/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
+                                    </div>
+                                </div>
                             </div>
-                        </blockquote>
-                    </div>
-                </div>
-                
-                <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_1&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote me-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        From start to finish, they were extremely professional, friendly, helpful and easy to do business with. Very happy with the experience and the company.
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>John Doe</b> • Customer, bought an appartement
-    </span>
-                                </footer>
-                            </div>
-                        </blockquote>
-                    </div>
-                </div>
-                
-                <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/web/image/website.s_quotes_carousel_demo_image_2&#39;); background-position: 50% 50%;" data-name="Slide">
-                    <div class="container">
-                        <blockquote class="s_blockquote s_blockquote_classic blockquote ms-auto w-50" data-name="Blockquote">
-                            <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
-                            <div class="s_blockquote_content o_cc1">
-                                <p>
-        Positive energy, great team spirit, hard workers and awesome people! I warmly recommend them!
-    </p>
-                                <footer class="blockquote-footer">
-                                    <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
-                                    <span class="s_blockquote_author">
-        <b>Iris Doe</b> • Customer, sold an appartement
-    </span>
-                                </footer>
-                            </div>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-control-prev o_not_editable" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" data-bs-target="#myQuoteCarousel664899">
-                <span class="carousel-control-prev-icon"></span>
-                <span class="visually-hidden">Previous</span>
-            </div>
-            <div class="carousel-control-next o_not_editable" data-bs-slide="next" role="img" aria-label="Next" title="Next" data-bs-target="#myQuoteCarousel664899">
-                <span class="carousel-control-next-icon"></span>
-                <span class="visually-hidden">Next</span>
-            </div>
-        </div>
-    </section></div>
-    
-                </main>
+                        </section>
 
-    </t>
+                        <section class="s_text_image pt32 o_cc o_cc1 pb48 pt48" data-snippet="s_image_text">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <img src="/cdn_arrosyid/static/src/img/kabbah.jpg?c2=o-color-3" class="img img-fluid mx-auto" alt="" data-shape="cdn_arrosyid/solid/sld_square_1" data-original-mimetype="image/jpeg" data-file-name="s_text_image.svg" data-shape-colors=";o-color-3;;;" loading="lazy"/>
+                                    </div>
+                                    <div class="col-lg-6 pt16 pb16">
+                                        <h2>Tim Professional</h2>
+                                        <p>Dibimbing oleh Ustadz yang professional, lulusan Universitas Islam Madinah, Universitas Ummul Qura, Universitas Al-Azhar Mesir.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
+                            <div class="s_quotes_carousel s_carousel_default carousel slide o_cc o_cc2" data-bs-interval="10000" id="myQuoteCarousel664899">
+                                <ol class="carousel-indicators">
+                                    <li data-bs-slide-to="0" class="active" data-bs-target="#myQuoteCarousel664899"></li>
+                                    <li data-bs-slide-to="1" data-bs-target="#myQuoteCarousel664899"></li>
+                                    <li data-bs-slide-to="2" data-bs-target="#myQuoteCarousel664899"></li>
+                                </ol>
+            
+                                <div class="carousel-inner">        
+                                    <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh1.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
+                                            <div class="container">
+                                                <blockquote class="s_blockquote s_blockquote_classic blockquote mx-auto w-50" data-name="Blockquote">
+                                                    <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                    <div class="s_blockquote_content o_cc1">
+                                                        <p>
+                                                            Paket umroh sangat berkah di Travel Arrosyid
+                                                        </p>
+                                                        <footer class="blockquote-footer">
+                                                            <img src="/web/image/website.s_quotes_carousel_demo_image_3" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                            <span class="s_blockquote_author">
+                                                            <b>Azisah</b> • Jamaah dari Jakarta
+                                                        </span>
+                                                        </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                    
+                                    <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh2.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
+                                        <div class="container">
+                                            <blockquote class="s_blockquote s_blockquote_classic blockquote me-auto w-50" data-name="Blockquote">
+                                                <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                <div class="s_blockquote_content o_cc1">
+                                                    <p>
+                                                        Fasilitas sangat lengkap!!!
+                                                    </p>
+                                                    <footer class="blockquote-footer">
+                                                        <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                        <span class="s_blockquote_author">
+                                                        <b>M. Alli</b> • Jamaah dari Malang
+                                                    </span>
+                                                    </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh3.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
+                                        <div class="container">
+                                            <blockquote class="s_blockquote s_blockquote_classic blockquote ms-auto w-50" data-name="Blockquote">
+                                                <i class="fa fa-1x fa-quote-left rounded float-start bg-o-color-2 s_blockquote_icon"></i>
+                                                <div class="s_blockquote_content o_cc1">
+                                                    <p>Barokah bareng-bareng</p>
+                                                    <footer class="blockquote-footer">
+                                                        <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
+                                                        <span class="s_blockquote_author">
+                                                        <b>Noor</b> • Jamaah dari Surabaya
+                                                        </span>
+                                                    </footer>
+                                                </div>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    
+                                <div class="carousel-control-prev o_not_editable" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" data-bs-target="#myQuoteCarousel664899">
+                                    <span class="carousel-control-prev-icon"></span>
+                                    <span class="visually-hidden">Sebelumnya</span>
+                                </div>
+                                
+                                <div class="carousel-control-next o_not_editable" data-bs-slide="next" role="img" aria-label="Next" title="Next" data-bs-target="#myQuoteCarousel664899">
+                                    <span class="carousel-control-next-icon"></span>
+                                    <span class="visually-hidden">Selanjutnya</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+            </t>
         </template>
 
+        <!-- <template id="layout" inherit_id="website.layout" name="Welcome Message">
+  
+            <xpath expr="//header[@id='top']" position="replace">
+                <nav data-name="Navbar" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc shadow-sm">
+                    <div id="top_menu_container" class="container justify-content-start justify-content-lg-between">
+                        <a href="#" class="navbar-brand logo me-4">
+                            <span role="img" aria-label="Logo of My Website" title="My Website"><img src="/cdn_arrosyid/static/src/img/logo_travel.png" class="img img-fluid" width="95" height="40" alt="My Website" loading="lazy"/></span>
+                        </a>
+                        
+          
+                <div id="top_menu_collapse" class="collapse navbar-collapse order-last order-lg-0">
+                    <t t-call="website.navbar_nav">
+                        <t t-set="_nav_class" t-valuef="flex-grow-1"/>
+                
+                        <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                            <t t-call="website.submenu">
+                                <t t-set="item_class" t-valuef="nav-item"/>
+                                <t t-set="link_class" t-valuef="nav-link"/>
+                            </t>
+                        </t>
+                    </t>
+                        </div>
+                    </div>      
+                </nav>
+            </xpath>
+        </template> -->
+
+                        
 
         <!-- Footer -->
         <template id="template_footer_contact" inherit_id="website.layout" name="Contact" active="True">
@@ -155,6 +183,7 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-3 pt16 pb16">
                                     <p class="mb-2">Apa yang bisa kami bantu?</p>
+                                    <h4>Hubungi kami kapanpun</h4>
                                 </div>
                                 <div class="col-lg-3 pt16 pb16">
                                     <p class="mb-2">Hubungi kami :</p>
@@ -165,9 +194,9 @@
                                     <h5 style="color: white;"><a style="color: inherit;" href="mailto:travelumroharrosyid@gmail.com">travelumroharrosyid@gmail.com</a></h5>
                                 </div>
                                 <div class="col-lg-3 pt16 pb16">
-                                    <div class="s_social_media text-end no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <div class="s_social_media text-end no_icon_color o_not_editable text-center" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
                                         <p class="s_social_media_title d-block mb-2" contenteditable="true">Ikuti kami</p>
-                                        <a style="color: white;" href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                        <a style="color: white;" href="#" class="s_social_media_instagram" target="_blank">
                                             <i style="color: inherit;" class="fa fa-instagram m-1 o_editable_media"/>
                                         </a>
                                     </div>
@@ -186,7 +215,7 @@
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-2 pb16">
-                                    <a href="/" class="o_footer_logo logo">
+                                    <a href="#" class="o_footer_logo logo">
                                         <img src="/cdn_arrosyid/static/src/img/logo_travel.png" class="img-fluid" aria-label="Logo of MyCompany" title="MyCompany" role="img"/>
                                     </a>
                                 </div>
@@ -198,22 +227,24 @@
             </xpath>
 
         </template>
-
-        <template id="footer_copyright_company_name" inherit_id="website.layout">
-            <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
-                <span id="currentYear" class="o_footer_copyright_name me-2">&amp;copy;Copyright 2024 - Travel Umroh AR ROSYID TOUR</span>
+        
+        <!-- Hide Copyright -->
+        <template id="footer_no_copyright" inherit_id="website.layout" name="Footer No Copyright" active="True">
+            <xpath expr="//div[hasclass('o_footer_copyright')]" position="before">
+                <t t-set="no_copyright" t-value="True"/>
             </xpath>
         </template>
 
         <!-- Scroll to Top option -->
         <template id="option_footer_scrolltop" inherit_id="website.layout" active="True">
             <xpath expr="//div[@id='footer']" position="after">
-                <div id="o_footer_scrolltop_wrapper" class="container h-0 d-flex align-items-center justify-content-center">
+                <div id="o_footer_scrolltop_wrapper" class="container h-0 d-flex align-items-center justify-content-center" >
                     <a id="o_footer_scrolltop"
                     role="button"
                     href="#top"
-                    title="Scroll To Top"
-                    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center">
+                    title="Scroll ke Atas"
+                    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center"
+                    style="background-color: white; border:none;">
                         <span class="fa fa-1x fa-chevron-up"/>
                     </a>
                 </div>
