@@ -8,10 +8,10 @@
         <field name="website_id" ref="website.default_website"/>
     </record>
     <record id="website_sesi_umroh_menu" model="website.menu">
-            <field name="name">Sesi Umroh</field>
-            <field name="url">/sesi_umroh</field>
-            <field name="sequence">20</field>
-            <field name="parent_id" ref="website.main_menu"/>
+        <field name="name">Sesi Umroh</field>
+        <field name="url">/sesi_umroh</field>
+        <field name="sequence">20</field>
+        <field name="parent_id" ref="website.default_website"/>
     </record>
     <record id="menu_ketentuan" model="website.menu">
         <field name="name">Ketentuan Umum</field>

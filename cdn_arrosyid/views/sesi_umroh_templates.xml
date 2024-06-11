@@ -1,47 +1,79 @@
 <odoo>
     <template id="sesi_umroh_template" name="Sesi Umroh Page">
         <t t-call="website.layout">
-            <div class="container">
-                <h1>Sesi Umroh yang tersedia</h1>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Harga</th>
-                            <th>Durasi</th>
-                            <th>Tanggal Keberangkatan</th>
-                            <th>Tanggal Kepulangan</th>
-                            <th>Nama Maskapai</th>
-                            <th>Nama Hotel</th>
-                            <th>Pilih</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="sesi_umroh_records" t-as="sesi">
-                            <tr>
-                                <td><t t-esc="sesi.name"/></td>
-                                <td><t t-esc="sesi.lst_price"/></td>
-                                <td><t t-esc="sesi.durasi"/> Hari</td>
-                                <td><t t-esc="sesi.tanggal_berangkat"/></td>
-                                <td><t t-esc="sesi.tanggal_pulang"/></td>
-                                <td><t t-esc="sesi.maskapai_id.name"/></td>
-                                <td><t t-foreach="sesi.hotel_id" t-as="hotel">
-                                        <t t-esc="hotel.name"/>
-                                    </t>
-                                </td>
-                                <td>
-                                    <div class="row s_nb_column_fixed">
-                                        <div class="col-lg-12 s_title pt16 pb16">
-                                            <button type="button" id="submit_button" class="btn btn-primary btn-md o_website_form_send">Pilih
-                                            </button>
+            <main>
+                <div id="wrap_sesi_umroh" class="oe_structure" data-oe-model="ir.ui.view" data-oe-id="825" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
+                    <section class="s_banner parallax s_parallax_is_fixed o_cc o_cc3" data-scroll-background-ratio="1" data-oe-shape-data="{&#34;shape&#34;:&#34;web_editor/Origins/18&#34;,&#34;flip&#34;:[&#34;x&#34;]}" data-snippet="s_banner">
+                            <span class="s_parallax_bg oe_img_bg" style="background-image: url(&#39;cdn_arrosyid/static/src/img/sesi_umroh_bg.jpg&#39;); background-position: 50% 0;"></span>
+                                <div class="o_we_bg_filter bg-black-50"></div>
+                                    <div class="o_we_shape o_web_editor_Origins_18 o_we_flip_x o_header_extra_shape_mapping"></div>
+                                        <!-- <t t-call="theme_orchid.s_banner"/> -->
+                                        <div class="container">
+                                            <div class="row s_nb_column_fixed">
+                                                <div class="col-lg-7 h-100 pt160 pb160" data-name="Box">
+                                                    <p> Rencanakan perjalanan umrah istimewa bersama keluarga, kolega, atau orang-orang terdekat anda. </p>
+                                                    <h1> <b> Umrah Lebih Nyaman, Kereta Cepat, Hotel Lebih Dekat, Penyelenggara Tersertifikasi Kemenag RI </b></h1>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-            </div>
+                    </section>
+                    <section class="s_banner parallax s_parallax_is_fixed pt96 pb96" data-scroll-background-ratio="1">
+                        <span class="s_parallax_bg oe_img_bg" style="background-color:#0056b3; background-position: 50% 0;"/>
+                        <div class="container">
+                            <div class="row s_nb_column_fixed">
+                                <div class="col-lg-6 jumbotron rounded o_cc o_cc1 pt32 pb32" data-name="Box">
+                                    <h1><font style="font-size: 40px;">Paket Biaya Umroh 2024-2025/1446H</font></h1>
+                                    <p >Paket Biaya Umroh 2024-2025 musim 1446 H adalah biaya perjalanan ibadah umroh untuk periode tahun 2024-2025 musim 1446 H, semoga dapat menjadi pilihan bagi para tamu-tamu Allah yang mulia. Paket Umroh terbaik, biaya terjangkau, Pembimbing berpengalaman dan profesional, Perlengkapan umroh lengkap, Free Ayam Al Baik, Kereta Cepat Madinah-Makkah, dan fasilitas terbaik lainnya.</p>
+                                    <a t-att-href="cta_btn_href" class="btn btn-primary mb-2"><t t-esc="cta_btn_text">Contact Us</t></a>
+                                    <button type="button" class="btn btn-primary">Ketentuan Umroh</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="container">
+                        <h1>Sesi Umroh yang tersedia</h1>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Harga</th>
+                                    <th>Durasi</th>
+                                    <th>Tanggal Keberangkatan</th>
+                                    <th>Tanggal Kepulangan</th>
+                                    <th>Nama Maskapai</th>
+                                    <th>Nama Hotel</th>
+                                    <th>Pilih Sesi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="sesi_umroh_records" t-as="sesi">
+                                    <tr>
+                                        <td><t t-esc="sesi.name"/></td>
+                                        <td><t t-esc="sesi.lst_price"/></td>
+                                        <td><t t-esc="sesi.durasi"/> Hari</td>
+                                        <td><t t-esc="sesi.tanggal_berangkat"/></td>
+                                        <td><t t-esc="sesi.tanggal_pulang"/></td>
+                                        <td><t t-esc="sesi.maskapai_id.name"/></td>
+                                        <td><t t-foreach="sesi.hotel_id" t-as="hotel">
+                                                <t t-esc="hotel.name"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <div class="row s_nb_column_fixed">
+                                                <div class="col-lg-12 s_title pt16 pb16">
+                                                    <button type="button" id="submit_button" class="btn btn-primary btn-md o_website_form_send">Pilih
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+                
+            </main>
         </t>
     </template>
 </odoo>

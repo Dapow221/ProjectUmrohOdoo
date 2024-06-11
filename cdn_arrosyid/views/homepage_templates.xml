@@ -61,7 +61,6 @@
                                 </div>
                             </div>
                         </section>
-
                         <section class="s_quotes_carousel_wrapper" data-vxml="001" data-vcss="001" data-snippet="s_quotes_carousel">
                             <div class="s_quotes_carousel s_carousel_default carousel slide o_cc o_cc2" data-bs-interval="10000" id="myQuoteCarousel664899">
                                 <ol class="carousel-indicators">
@@ -69,7 +68,6 @@
                                     <li data-bs-slide-to="1" data-bs-target="#myQuoteCarousel664899"></li>
                                     <li data-bs-slide-to="2" data-bs-target="#myQuoteCarousel664899"></li>
                                 </ol>
-            
                                 <div class="carousel-inner">        
                                     <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh1.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
                                             <div class="container">
@@ -89,7 +87,6 @@
                                             </blockquote>
                                         </div>
                                     </div>
-                    
                                     <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh2.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
                                         <div class="container">
                                             <blockquote class="s_blockquote s_blockquote_classic blockquote me-auto w-50" data-name="Blockquote">
@@ -101,14 +98,13 @@
                                                     <footer class="blockquote-footer">
                                                         <img src="/web/image/website.s_quotes_carousel_demo_image_4" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
                                                         <span class="s_blockquote_author">
-                                                        <b>M. Alli</b> • Jamaah dari Malang
-                                                    </span>
+                                                          <b>M. Alli</b> • Jamaah dari Malang
+                                                        </span>
                                                     </footer>
                                                 </div>
                                             </blockquote>
                                         </div>
-                                    </div>
-                                
+                                    </div>                    
                                     <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url(&#39;/cdn_arrosyid/static/src/img/umroh3.jpg&#39;); background-position: 50% 50%;" data-name="Slide">
                                         <div class="container">
                                             <blockquote class="s_blockquote s_blockquote_classic blockquote ms-auto w-50" data-name="Blockquote">
@@ -118,7 +114,7 @@
                                                     <footer class="blockquote-footer">
                                                         <img src="/web/image/website.s_quotes_carousel_demo_image_5" class="s_blockquote_avatar img rounded-circle me-2" alt="" loading="lazy"/>
                                                         <span class="s_blockquote_author">
-                                                        <b>Noor</b> • Jamaah dari Surabaya
+                                                          <b>Noor</b> • Jamaah dari Surabaya
                                                         </span>
                                                     </footer>
                                                 </div>
@@ -139,10 +135,7 @@
                             </div>
                         </section>
                     </div>
-
-
-
-            </t>
+                </t>
         </template>
 
         <!-- <template id="layout" inherit_id="website.layout" name="Welcome Message">

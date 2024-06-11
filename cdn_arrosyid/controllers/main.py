@@ -13,13 +13,14 @@ class MainController(http.Controller):
             return request.render('cdn_arrosyid.sesi_umroh_template', {
                 'sesi_umroh_records': sesi_umroh_records
             })
+            
 
     @http.route('/ketentuan', type='http', auth="public", website=True)
     def get_ketentuan(self, **kw):
         
         return request.render('cdn_arrosyid.ketentuan_umum')
 
-    @http.route('/pendaftaran', type='http', auth="public", website=True)
+    @http.route('/pendaftaran', type='http', auth="user", website=True)
     def get_pendaftaran(self, **kw):
         data_paket_umroh = request.env['cdn.paket.umroh'].search([])
         # paket_id = request.params.get('paket_id')
