@@ -23,8 +23,6 @@ class SesiUmroh(models.Model):
     rencana_perjalanan_ids = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='rencana_perjalanan')
     maskapai_id            = fields.Many2one(related='paket_umroh_id.maskapai_id')
     hotel_id               = fields.Many2many(related='paket_umroh_id.hotel_id')
-    product_id             = fields.Many2one('product.product')
-    # proses_perjalanan = fields.Float(string='Proses Perjalanan (%)', compute='_compute_proses_perjalanan', store=True)
     proses_perjalanan = fields.Float(compute='_compute_rencana_perjalanan_count', string='Proses Perjalanan (%)')
 
     def write(self, values):
