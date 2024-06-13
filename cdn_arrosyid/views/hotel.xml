@@ -8,14 +8,10 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-            <xpath expr="//field[@name='jenis']" position="after">
-                <field name="kelas" widget="priority" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
-                <field name="lokasi_hotel" widget="peta_widget"/>
-                <field name="koordinat"/>
-            </xpath>
-            <xpath expr="//field[@name='category_id']" position="after">
-                <field name="koordinat" widget="peta"/>
-            </xpath>
+                <xpath expr="//field[@name='jenis']" position="after">
+                    <field name="kelas" widget="priority" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
+                    <field name="lokasi_hotel" widget="peta_widget" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
+                </xpath>
             </field>
         </record>
 

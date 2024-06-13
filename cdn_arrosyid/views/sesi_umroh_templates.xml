@@ -32,8 +32,8 @@
                     </section>
                     <section class="container">
                         <h1>Sesi Umroh yang tersedia</h1>
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table table-bordered table-hover table-sm">
+                            <thead class="table-dark">
                                 <tr>
                                     <th>Nama</th>
                                     <th>Harga</th>
