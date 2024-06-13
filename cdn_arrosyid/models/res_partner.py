@@ -9,3 +9,4 @@ class ResPartner(models.Model):
     
 
     
+    lokasi_hotel = fields.Float(string='Lokasi Hotel')

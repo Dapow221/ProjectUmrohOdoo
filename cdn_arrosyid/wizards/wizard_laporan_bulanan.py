@@ -15,7 +15,6 @@ class WizardLaporanBulanan(models.Model):
     start_date = fields.Date(string='Tanggal dimulai')
     end_date = fields.Date(string='Tanggal berakhir')
     jamaah_ids = fields.Many2many('cdn.identitas.jamaah', string='Jamaah')
-
     file_export             = fields.Binary(string='File Export')
     file_export_name        = fields.Char(string='File Export Name')
 

@@ -24,8 +24,8 @@
                                 <div class="col-lg-6 jumbotron rounded o_cc o_cc1 pt32 pb32" data-name="Box">
                                     <h1><font style="font-size: 40px;">Paket Biaya Umroh 2024-2025/1446H</font></h1>
                                     <p >Paket Biaya Umroh 2024-2025 musim 1446 H adalah biaya perjalanan ibadah umroh untuk periode tahun 2024-2025 musim 1446 H, semoga dapat menjadi pilihan bagi para tamu-tamu Allah yang mulia. Paket Umroh terbaik, biaya terjangkau, Pembimbing berpengalaman dan profesional, Perlengkapan umroh lengkap, Free Ayam Al Baik, Kereta Cepat Madinah-Makkah, dan fasilitas terbaik lainnya.</p>
-                                    <a t-att-href="cta_btn_href" class="btn btn-primary mb-2"><t t-esc="cta_btn_text">Contact Us</t></a>
-                                    <button type="button" class="btn btn-primary">Ketentuan Umroh</button>
+                                    <a t-att-href="cta_btn_href" id="action_contactus" class="btn btn-primary"><t t-esc="cta_btn_text">Contact Us</t></a>
+                                    <button type="button" id="action_ketentuan_umroh" class="btn btn-primary">Ketentuan Umroh</button>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                         <td>
                                             <div class="row s_nb_column_fixed">
                                                 <div class="col-lg-12 s_title pt16 pb16">
-                                                    <button type="button" id="submit_button" class="btn btn-primary btn-md o_website_form_send">Pilih
+                                                    <button type="button" id="submit_button_sesi_umroh" class="btn btn-primary btn-md o_website_form_send">Pilih
                                                     </button>
                                                 </div>
                                             </div>

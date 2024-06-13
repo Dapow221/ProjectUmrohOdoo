@@ -18,7 +18,6 @@ class commonController(http.Controller):
 
         if not file_name:
             file_name = '%s_%s' % (model.replace('.', '_'), id)
-
         return request.make_response(filecontent, [
             ('Content-Type', 'application/octet-stream'),
             ('Content-Disposition', content_disposition(file_name))

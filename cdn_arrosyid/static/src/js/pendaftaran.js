@@ -1,4 +1,4 @@
-odoo.define('cdn_arrosyid.pendafatran', function (require) {
+odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     'use strict';
 
     var core = require('web.core');
@@ -43,7 +43,6 @@ odoo.define('cdn_arrosyid.pendafatran', function (require) {
             ribuan = ribuan.join('.').split('').reverse().join('');
             return 'Rp ' + ribuan;
         }
-        
     }); 
 
     $(document).on('click', "#submit_pendaftaran", function () {
@@ -74,5 +73,4 @@ odoo.define('cdn_arrosyid.pendafatran', function (require) {
             }
         });
     });    
-
 })

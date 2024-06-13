@@ -7,8 +7,18 @@ odoo.define('cdn_arrosyid.website_sesi_umroh', function (require) {
     var rpc = require('web.rpc');
     var QWeb = core.qweb;
 
-    $(document).on('click', "#submit_button", function () {
-        
+    $(document).on('click', "#submit_button_sesi_umroh", function () {
+        var sesiName = $(this).closest('tr').find('td:first').text().trim();
+        sessionStorage.setItem('chosenSesiName', sesiName);
+        window.location.href = '/pendaftaran';
+    });
+
+    $(document).on('click', "#action_ketentuan_umroh", function () {
+        window.location.href = '/ketentuan';
+    });
+
+    $(document).on('click', "#action_contactus", function () {
+        window.location.href = '/contactus';
     });
 
 });
