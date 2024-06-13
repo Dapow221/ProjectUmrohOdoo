@@ -14,7 +14,7 @@ class WizardLaporanBulanan(models.Model):
 
     start_date = fields.Date(string='Tanggal dimulai')
     end_date = fields.Date(string='Tanggal berakhir')
-
+    jamaah_ids = fields.Many2many('cdn.identitas.jamaah', string='Jamaah')
     file_export             = fields.Binary(string='File Export')
     file_export_name        = fields.Char(string='File Export Name')
 
@@ -22,7 +22,10 @@ class WizardLaporanBulanan(models.Model):
         if self.start_date >= self.end_date: 
             raise ValidationError(_('Tanggal tidak sesuai!'))
         else:
-            pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date),])
+            if self.jamaah_ids:
+                pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date), ('partner_id', 'in', self.jamaah_ids.mapped('partner_id').ids)])
+            else:
+                pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date),])
             names = ', '.join(set(payment.partner_id.name for payment in pembayaran if payment.partner_id))
             
             path_module         = os.path.dirname(os.path.realpath(__file__))
@@ -90,7 +93,7 @@ class WizardLaporanBulanan(models.Model):
             with open(file_name, 'rb') as file:
                 file_base64 = base64.b64encode(file.read())
 
-            self.file_export_name   = 'Laporan_Pembayaran_{}_{}.xlsx'.format(
+            self.file_export_name   = 'Lapoan_Pembayaran_{}_{}.xlsx'.format(
                 self.id, 
                 self.start_date.strftime('%Y-%m-%d'),
                 self.end_date.strftime('%Y-%m-%d')

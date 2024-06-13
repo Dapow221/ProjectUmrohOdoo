@@ -4,3 +4,24 @@ document.addEventListener('DOMContentLoaded', function() {
         copyrightElement.style.backgroundColor = '#03172c';
     }
 });
+
+    // Ambil semua tautan dengan kelas "nav-link"
+    var links = document.querySelectorAll('.nav-link');
+
+    // Loop melalui setiap tautan
+    links.forEach(function(link) {
+        // Tambahkan event listener untuk setiap tautan
+        link.addEventListener('click', function() {
+            // Hilangkan kelas "active" dari semua tautan
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            // Tambahkan kelas "active" ke tautan yang diklik
+            this.classList.add('active');
+        });
+        // Periksa apakah href tautan sesuai dengan URL saat ini
+        if (window.location.pathname === link.getAttribute('href')) {
+            // Tambahkan kelas "active" jika sesuai
+            link.classList.add('active');
+        }
+    });

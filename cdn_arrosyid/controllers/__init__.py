@@ -2,3 +2,5 @@
 
 from . import main
 from . import common
+from . import pendaftaran
+from . import signup

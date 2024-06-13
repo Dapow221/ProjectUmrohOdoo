@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <template id="login" inherit_id="web.login" name="Custom Login" >
+            <xpath expr="//div[hasclass('o_login_auth')]" position="after">
+                 <button string="daftar" type="button" class="btn">Daftar</button>
+           </xpath>
+       </template>    
+    </data>
+    
+</odoo>

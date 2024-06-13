@@ -13,7 +13,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'web', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website',],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'auth_signup'],
 
     'data': [
         'security/groups.xml',
@@ -46,7 +46,8 @@
         'views/ketentuan_umum_templates.xml',
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
-
+        'views/signup_templates.xml',
+        'wizards/wizard_laporan_bulanan.xml',
         'views/snippets/s_banner.xml',
         'views/snippets/s_picture.xml',
         'views/snippets/s_image_text.xml',
@@ -82,6 +83,10 @@
                      's_title', 's_masonry_block', 's_numbers', 's_quotes_carousel'],
     },
     'assets': {
+        'web.assets_backend': [
+            'cdn_arrosyid/static/src/js/peta.js',
+            'cdn_arrosyid/static/src/xml/widget_peta.xml',
+        ],
         'web.assets_frontend': [
             'cdn_arrosyid/static/src/js/pendaftaran.js',
             'cdn_arrosyid/static/src/js/website_sesi_umroh.js',

@@ -37,7 +37,7 @@
                                     <field name="jumlah_pendaftaran" string="x Pendaftaran" widget="statinfo" class="text-center"/>
                                 </div>
                             </button>
-                            <button class="oe_stat_button" type="object" name="action_view_penagihan" icon="fa-money" context="{'default_jamaah_id': active_id}">
+                            <button class="oe_stat_button" type="object" name="action_view_penagihan" icon="fa-money">
                                 <div class="o_field_widget o_stat_info mr4">
                                     <span class="o_stat_text">Inv:</span>
                                     <span class="o_stat_text">Due:</span>

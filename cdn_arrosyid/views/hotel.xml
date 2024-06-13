@@ -11,6 +11,10 @@
             <xpath expr="//field[@name='jenis']" position="after">
                 <field name="kelas" widget="priority" attrs="{'invisible': [('jenis', '!=', 'hotel')]}"/>
                 <field name="lokasi_hotel" widget="peta_widget"/>
+                <field name="koordinat"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="koordinat" widget="peta"/>
             </xpath>
             </field>
         </record>

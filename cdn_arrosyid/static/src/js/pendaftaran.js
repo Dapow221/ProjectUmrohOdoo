@@ -2,50 +2,75 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     'use strict';
 
     var core = require('web.core');
-    var Widget = require('web.Widget');
-    var ajax = require('web.ajax');
-    var _t = core._t;
     var rpc = require('web.rpc');
-    var QWeb = core.qweb;
+    var ajax = require('web.ajax');
 
     $(document).on('change', "#paket_umroh", function () {
-        var data = $("#paket_umroh").val();
-        console.log('data :', data);
-        
-    });
-    $(document).ready(function () {
-        // Retrieve the chosen session name from sessionStorage
-        const chosenSesiName = sessionStorage.getItem('chosenSesiName');
-        if (chosenSesiName) {
-            const sesiOptions = $('#sesi_umroh option');
-            sesiOptions.each(function () {
-                if ($(this).text().trim() === chosenSesiName) {
-                    $(this).prop('selected', true);
+        var paket_id = $("#paket_umroh").val();
+        var selectSesi = $("#sesi_umroh");
+        var harga = $("#harga");
+        // console.log('data :', paket_id);
+
+        selectSesi.empty();
+        function get_sesi(){
+            rpc.query({
+                model: 'cdn.sesi.umroh',
+                method: 'search_read', 
+                args: [[]],
+                kwargs: {
+                    fields: ['id', 'name', 'paket_umroh_id', 'lst_price'],
                 }
+            }).then(function (result) {
+                result.forEach(sesi => {
+                    if (sesi.paket_umroh_id[0] === parseInt(paket_id)) {
+                        console.log("Data data:", sesi);
+                        // Create a new option element
+                        var option = $('<option>', {
+                            value: sesi.id,
+                            text: sesi.name
+                        });
+                        // Append the option to the select element
+                        selectSesi.append(option);
+                        harga.val(formatRupiah(sesi.lst_price));
+                    }
+                });
             });
         }
+        get_sesi();
+        function formatRupiah(angka) {
+            var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            return 'Rp ' + ribuan;
+        }
+    }); 
 
-        // Handle change event on the paket_umroh select element
-        $('#paket_umroh').on('change', function () {
-            var data = $(this).val();
-            console.log('Selected Paket Umroh:', data);
-            // Add any additional logic based on selected paket_umroh
-        });
+    $(document).on('click', "#submit_pendaftaran", function () {
+        var jamaah = $("#jamaah_umroh").val();
+        var sesi = $("#sesi_umroh").val();
+        var csrf_token = $("input[name='csrf_token']").val();
+        var data_pendaftaran = {
+            'jamaah_id': parseInt(jamaah),
+            'sesi_id': parseInt(sesi),
+            'csrf_token': csrf_token
+        };
 
-        
-
-        // Handle form submission
-        // $('#submit_pendaftaran').on('click', function () {
-        //     const selectedSesi = $('#sesi_umroh').val();
-        //     if (!selectedSesi) {
-        //         alert('Please select a session');
-        //         return;
-        //     }
-        //     // Add further validation or form submission logic here
-        //     alert('Form submitted successfully!');
-        // });
-    });
-
+        // console.log('data_pendaftaran : ', data_pendaftaran);
     
-   
+        $.ajax({
+            url: "/buat_pendaftaran",
+            type: "POST",
+            data: data_pendaftaran,
+            dataType: "json",
+            success: function (data) {
+                console.log("Rekaman baru dibuat dengan ID:", data);
+                // alert('Data berhasil disimpan');
+                window.location.href = "/pendaftaran_berhasil";
+            },
+            error: function (xhr, status, error) {
+                console.error("Kesalahan dalam panggilan AJAX:", error);
+                alert('Kesalahan: ' + error);
+            }
+        });
+    });    
 })

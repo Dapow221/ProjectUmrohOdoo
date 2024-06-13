@@ -49,28 +49,3 @@ class PaketUmroh(models.Model):
         })
         return paket_baru
 
-    # def action_create_invoice(self):
-    #     invoice_lines = []
-    #     for item in self.perlengkapan_ids:
-    #         invoice_lines.append((0, 0, {
-    #             'product_id': item.product_id.id,
-    #             'quantity': item.jumlah,
-    #             'price_unit': item.harga,
-    #             'name': item.product_id.name,
-    #         }))
-
-    #     invoice = self.env['account.move'].create({
-    #         'move_type': 'out_invoice',
-    #         'partner_id': self.sesi_umroh.jammaah_ids,  
-    #         'invoice_date': fields.Date.today(),
-    #         'invoice_line_ids': invoice_lines,
-    #         'currency_id': self.currency_id.id,
-    #     })
-
-    #     return {
-    #         'type': 'ir.actions.act_window',
-    #         'name': 'Invoice',
-    #         'view_mode': 'form',
-    #         'res_model': 'account.move',
-    #         'res_id': invoice.id,
-    #     }

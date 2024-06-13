@@ -10,9 +10,22 @@
                         </div>
                         <div class="card-body">
                             <p class="text-danger">*Silahkan isi dengan lengkap formulir berikut ini, untuk mendaftar paket perjalanan umroh di Pusat Haji Umroh Indonesia. Selanjutnya sistem akan menyajikan secara otomatis file PDF yang dikirim melalui email dan bisa diunduh otomatis.</p>
+                            <t t-set="csrf_token" t-value="request.csrf_token()"/>
                             <form class="shadow">
+                                <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
                                 <!-- <div class="shadow"> -->
                                     <h4 class="p-3"><b><u>Identitas</u></b></h4>
+                                    <div class="col-12">
+                                        <div class="form-group m-2">
+                                            <label for="jamaah_umroh">Pilih Jamaah Umroh</label>
+                                            <select class="form-control" id="jamaah_umroh">
+                                                <option value="" selected="1" disabled="1">Pilih Paket Umroh</option>
+                                                <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                                                    <option t-att-value="jamaah.id"><t t-esc="jamaah.partner_id.name"/></option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <ul class="nav nav-tabs m-2" role="tablist">
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link active" data-bs-toggle="tab" href="#info_umum" aria-selected="true" role="tab">Informasi Umum</a>
@@ -151,26 +164,42 @@
                                             <label for="paket_umroh">Pilih Sesi</label>
                                             <select class="form-control" id="sesi_umroh">
                                                 <option value="" selected="1" disabled="1">Pilih Sesi Umroh</option>
-                                                <t t-foreach="data_sesi_umroh" t-as="sesi">
+                                                <!-- <t t-foreach="data_sesi_umroh" t-as="sesi">
                                                     <option t-att-value="sesi.id"><t t-esc="sesi.name"/></option>
-                                                </t>
+                                                </t> -->
                                                 <!-- <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option> -->
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="harga">Harga</label>
+                                            <input type="text" class="form-control" id="harga" readonly="1"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-primary" type="button">Button</button>
+                                        <button class="btn btn-primary" type="submit" id="submit_pendaftaran">Button</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            <!-- <script type="text/javascript" src="/cdn_arrosyid/static/src/js/pendaftaran.js"></script> -->
+            </t>
+        </template>
+
+        <template id="pendaftaran_berhasil" name="Thank you">
+            <t t-call="website.layout">
+                <form>
+                    <div style="text-align: center;padding: 125px;">
+                        <h1>Terima Kasih</h1>
+                        <h2>Pendaftaran Berhasil Ditambahkan</h2>
+                    </div>
+                </form>
             </t>
         </template>
     </data>

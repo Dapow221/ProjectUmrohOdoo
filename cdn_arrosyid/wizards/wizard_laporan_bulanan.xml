@@ -12,6 +12,7 @@
                             <!-- Add your fields here -->
                             <field name="start_date"/>
                             <field name="end_date"/>
+                            <field name="jamaah_ids" widget="many2many_tags" placeholder="Jika kosong megambil data semua jamaah"/>
                         </group>
                         <footer>
                             <button name="action_cetak_laporan" type="object"
@@ -35,7 +36,7 @@
             <field name="view_id" ref="wizard_laporan_bulanan_view_form"/>
         </record>
 
-        <menuitem id="laporan_bulanan_menu_action" name="Laporan Pembayaran" parent="travel_umroh_menu_root" action="wizard_laporan_bulanan_action" sequence="1000"/>
+        <menuitem id="laporan_bulanan_menu_action" name="Laporan Pembayaran" parent="laporan_menu_categ" action="wizard_laporan_bulanan_action" sequence="10"/>
     </data>
     
 </odoo>
