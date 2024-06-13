@@ -47,6 +47,7 @@
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
         'views/signup_templates.xml',
+        'views/tes.xml',
         'wizards/wizard_laporan_bulanan.xml',
         'views/snippets/s_banner.xml',
         'views/snippets/s_picture.xml',
