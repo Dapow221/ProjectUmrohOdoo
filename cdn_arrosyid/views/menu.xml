@@ -8,11 +8,12 @@
         <menuitem id="travel_arrosyid_menu_categ" name="Identitas" parent="travel_umroh_menu_root" sequence="30"/>
 
         <!-- <menuitem id="umroh_menu_categ" name="Umroh" parent="travel_umroh_menu_root" sequence="400"/> -->
-
-        <!-- <menuitem id="rencana_perjalanan_menu_categ" name="Rencana Perjalanan" parent="travel_umroh_menu_root" sequence="500"/> -->
+        
         <menuitem id="travel_pendaftaran_pengaturan_menu_categ" name="Pendaftaran dan Penagihan" parent="travel_umroh_menu_root" sequence="40"/>
+        
+        <menuitem id="laporan_menu_categ" name="Laporan" parent="travel_umroh_menu_root" sequence="50"/>
 
-        <menuitem id="travel_pengaturan_menu_categ" name="Pengaturan" parent="travel_umroh_menu_root" sequence="50"/>
+        <menuitem id="travel_pengaturan_menu_categ" name="Pengaturan" parent="travel_umroh_menu_root" sequence="60"/>
 
 
     </data>
