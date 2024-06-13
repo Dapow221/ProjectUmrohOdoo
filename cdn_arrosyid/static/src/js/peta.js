@@ -13,7 +13,7 @@ const {
 
 export class Peta extends Component {
     /** @type {String} */
-    static template = 'PetaArmada';
+    static template = 'PetaHotel';
 
     /** @type {HTMLElement} */
     #map_container;
@@ -67,6 +67,6 @@ export class Peta extends Component {
     }
 }
 
-// Peta.template = 'cdn_rental_armada.Peta';
+// Peta.template = 'module_name.Peta';
 registry.category('fields').add('peta_widget', Peta);
 // core.form_widget_registry.add('peta_widget',Peta);
