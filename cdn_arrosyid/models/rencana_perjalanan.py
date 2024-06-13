@@ -11,7 +11,7 @@ class CdnRencanaPerjalanan(models.Model):
     keterangan = fields.Text(string='Keterangan')
     dimulai = fields.Date('Dimulai')
     durasi  = fields.Integer(string='Durasi')
-    state = fields.Selection([('batal', 'Batal'),('proses', 'Proses'),('selesai', 'selesai')], string='state', compute='_compute_state', store=True)
+    state = fields.Selection([('batal', 'Batal'),('proses', 'Proses'),('selesai', 'selesai')], string='state', compute='_compute_state', store=True, default='proses')
 
     @api.depends('sesi_umroh_id.state')
     def _compute_state(self):
