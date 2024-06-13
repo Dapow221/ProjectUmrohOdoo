@@ -13,7 +13,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'auth_signup'],
 
     'data': [
         'security/groups.xml',
@@ -44,9 +44,8 @@
         'views/ketentuan_umum_templates.xml',
         'views/pendaftaran_umroh_templates.xml',
         'views/profil_templates.xml',
+        'views/signup_templates.xml',
         'wizards/wizard_laporan_bulanan.xml',
-        # 'views/tes.xml',
-
         'views/snippets/s_banner.xml',
         'views/snippets/s_picture.xml',
         'views/snippets/s_image_text.xml',
@@ -91,7 +90,7 @@
             'cdn_arrosyid/static/src/css/layout.css',
             'cdn_arrosyid/static/src/js/layout.js',
         ],
-           'website.assets_editor': [
+        'website.assets_editor': [
             'cdn_arrosyid/static/src/js/tour.js',
         ],
     },

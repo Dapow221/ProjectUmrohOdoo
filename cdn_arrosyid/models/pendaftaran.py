@@ -1,5 +1,10 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import requests
+import random
+import string
+from odoo import http
+import json
 
 class CdnPendaftaran(models.Model):
     _name = 'cdn.pendaftaran'
@@ -147,6 +152,30 @@ class CdnPendaftaran(models.Model):
                 'type': 'ir.actions.act_window'
             }
             return pelunasan_view
+
+
+    def action_bayar(self):
+        for rec in self:
+            data            = {
+                'virtual_account'   : 'tes',
+                'amount'            : 'tes',
+                'date'              : 'tes',
+                'description'   : 'tes',
+            }
+
+            headers         = {
+                'Content-Type'  : 'application/json'
+            }
+
+            url             = "http://localhost:8069/virtual_account/create"
+            response        = requests.post(
+                url     = url,
+                headers = headers,
+                json    = data
+            )
+        return response
+
+            
 
 
     # validasi jamaah double
