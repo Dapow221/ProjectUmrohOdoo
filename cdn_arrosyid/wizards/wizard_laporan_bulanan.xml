@@ -12,7 +12,7 @@
                             <!-- Add your fields here -->
                             <field name="start_date"/>
                             <field name="end_date"/>
-                            <field name="jamaah_id" placeholder="Jika kosong megambil data semua jamaah"/>
+                            <field name="jamaah_ids" widget="many2many_tags" placeholder="Jika kosong megambil data semua jamaah"/>
                         </group>
                         <footer>
                             <button name="action_cetak_laporan" type="object"
