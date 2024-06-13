@@ -14,7 +14,7 @@ class WizardLaporanBulanan(models.Model):
 
     start_date = fields.Date(string='Tanggal dimulai')
     end_date = fields.Date(string='Tanggal berakhir')
-    jamaah_id = fields.Many2one('cdn.identitas.jamaah', string='jamaah')
+    jamaah_ids = fields.Many2many('cdn.identitas.jamaah', string='Jamaah')
 
     file_export             = fields.Binary(string='File Export')
     file_export_name        = fields.Char(string='File Export Name')
@@ -23,8 +23,8 @@ class WizardLaporanBulanan(models.Model):
         if self.start_date >= self.end_date: 
             raise ValidationError(_('Tanggal tidak sesuai!'))
         else:
-            if self.jamaah_id:
-                pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date),('partner_id', '=', self.jamaah_id.partner_id.id)])
+            if self.jamaah_ids:
+                pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date), ('partner_id', 'in', self.jamaah_ids.mapped('partner_id').ids)])
             else:
                 pembayaran          = self.env['account.move'].search([('date', '>=', self.start_date), ('date', '<=', self.end_date),])
             names = ', '.join(set(payment.partner_id.name for payment in pembayaran if payment.partner_id))
