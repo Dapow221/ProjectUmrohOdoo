@@ -7,7 +7,7 @@ class CdnPendaftaran(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
 
     no_pendaftaran = fields.Char(string='Nomor Pendaftaran', tracking=True)
-    state            = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Kofirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
+    state            = fields.Selection(string='Status', selection=[('draf', 'Draf'), ('batal', 'Batal'), ('konfirmasi', 'Konfirmasi'),('belum', 'Belum Lunas'), ('lunas', 'Lunas'),], compute="_cek_status_pembayaran", default="draf", tracking=True)
 
     # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
     jamaah_id      = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)

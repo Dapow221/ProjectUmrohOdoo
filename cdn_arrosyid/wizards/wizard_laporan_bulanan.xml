@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- wizard.laporan.bulanan form view -->
+        <record id="wizard_laporan_bulanan_view_form" model="ir.ui.view">
+            <field name="name">wizard.laporan.bulanan.view.form</field>
+            <field name="model">wizard.laporan.bulanan</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <footer>
+                            <button name="action_cetak_laporan" type="object"
+                                    class="btn-primary">
+                                <i class="fa fa-download mr-2"/>
+                                Cetak Laporan (XLS)
+                            </button>
+                            <button special="cancel" string="Cancel" class="btn-secondary"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>    
+        <!-- wizard.laporan.bulanan action window -->
+        <record id="wizard_laporan_bulanan_action" model="ir.actions.act_window">
+            <field name="name">Laporan Pembayaran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.laporan.bulanan</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="wizard_laporan_bulanan_view_form"/>
+        </record>
+
+        <menuitem id="laporan_bulanan_menu_action" name="Laporan Pembayaran" parent="travel_umroh_menu_root" action="wizard_laporan_bulanan_action" sequence="1000"/>
+    </data>
+    
+</odoo>

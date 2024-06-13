@@ -13,7 +13,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website'],
+    'depends': ['base', 'web', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website',],
 
     'data': [
         'security/groups.xml',
@@ -22,6 +22,7 @@
         'views/menu.xml',
         'record/cetak_identitas_jamaah.xml',
         'record/cetak_manifes_jamaah.xml',
+        'record/wizard_cetak_laporan_bulanan.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
@@ -35,6 +36,7 @@
         'wizards/wizard_pendaftaran.xml',
         'wizards/wizard_proses_perjalanan.xml',
         'wizards/wizard_list_perjalanan.xml',
+        'wizards/wizard_laporan_bulanan.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
@@ -82,10 +84,17 @@
     'assets': {
         'web.assets_frontend': [
             'cdn_arrosyid/static/src/js/pendaftaran.js',
+            'cdn_arrosyid/static/src/js/website_sesi_umroh.js',
             'cdn_arrosyid/static/src/css/layout.css',
             'cdn_arrosyid/static/src/js/layout.js',
         ],
-           'website.assets_editor': [
+        'web.assets_backend': [
+            'cdn_arrosyid/static/src/js/peta.js',
+            'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
+            'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
+            'cdn_arrosyid/static/src/xml/peta.xml',
+        ],
+        'website.assets_editor': [
             'cdn_arrosyid/static/src/js/tour.js',
         ],
     },

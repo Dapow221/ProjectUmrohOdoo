@@ -26,5 +26,6 @@ access_cdn_rencana_perjalanan,access_cdn_rencana_perjalanan,model_cdn_rencana_pe
 access_cdn_sesi_umroh,access_cdn_sesi_umroh,model_cdn_sesi_umroh,group_travel_admin,1,1,1,1
 access_cdn_pendaftaran,access_cdn_pendaftaran,model_cdn_pendaftaran,group_travel_admin,1,1,1,1
 access_perlengkapan_detail,access_perlengkapan_detail,model_perlengkapan_detail,group_travel_admin,1,1,1,1
+access_wizard_laporan_bulanan,access_wizard_laporan_bulanan,model_wizard_laporan_bulanan,group_travel_admin,1,1,1,1
 
 
