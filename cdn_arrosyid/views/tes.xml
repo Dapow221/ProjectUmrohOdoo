@@ -59,7 +59,7 @@
                                     <th scope="col">Nama Jamaah</th>
                                     <th scope="col">Nama Sesi</th>
                                     <th scope="col">Tanggal Berangkat</th>
-                                    <th scope="col">Tanggal Mulai</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +69,7 @@
                                     </t>
                                     <td t-esc="pendaftaran.name_sesi"/>
                                     <td t-esc="pendaftaran.tanggal_berangkat"/>
-                                    <td t-esc="pendaftaran.tanggal_pulang"/>
+                                    <td t-esc="pendaftaran.state"/>
                                 </tr>
                             </tbody>
                         </table>
