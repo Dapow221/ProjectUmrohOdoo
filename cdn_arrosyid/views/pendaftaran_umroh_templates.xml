@@ -79,7 +79,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="alamat">Alamat</label>
-                                                        <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"><t t-esc="data_login.street"/>></textarea>
+                                                        <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"><t t-esc="data_login.street"/></textarea>
                                                     </div>
                                                 </div>
                                             </div>

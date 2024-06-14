@@ -65,8 +65,8 @@
                                     <field name="is_umroh" />
                                 </group>
                                 <group>
-                                    <field name="tgl_lahir" />
-                                    <field name="umur" />
+                                    <field name="tgl_lahir" required="1"/>
+                                    <field name="umur" required="1"/>
                                     <field name="mobile" string="No. HP"/>  
                                     <field name="street" string="Alamat" />
                                     <field name="pendidikan" />
@@ -74,8 +74,8 @@
                             </group>
                             <group>
                                 <group name="imigrasi" string="Keimigrasian">
-                                    <field name="paspor" />
-                                    <field name="masa_paspor" />
+                                    <field name="paspor"/>
+                                    <field name="masa_paspor" required="1"/>
                                 </group>
                                 <group name="khusus" string="Informasi Khusus">
                                     <field name="nama_pasangan" attrs="{'invisible': [('is_menikah', '!=', True)]}" />
@@ -88,7 +88,7 @@
                                     <field name="golongan_darah" />
                                     <field name="pekerjaan" widget='selection' />
                                     <field name="email" />
-                                    <field name="tanggal_umroh" attrs="{'invisible': [('is_umroh', '!=', True)]}" />
+                                    <field name="tanggal_umroh" attrs="{'invisible': [('is_umroh', '!=', True)]}"/>
                                 </group>
                                 <group>
                                     <field name="vaksin_meningitis" />

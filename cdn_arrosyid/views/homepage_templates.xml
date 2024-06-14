@@ -12,9 +12,11 @@
                  <h5 class="text-center gap-1 d-grid mb-1">Login</h5>
            </xpath>
        </template>  
+
         <!-- navbar -->
         <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
             <xpath expr="//div[@id='top_menu_container']" position="replace">
+            
                 <a href="/" class="navbar-brand logo me-4">
                     <span role="img" aria-label="Travel Umroh" title="Travel Umroh" data-oe-model="cdn_arrosyid" data-oe-id="1" data-oe-field="logo" data-oe-type="image" data-oe-expression="cdn_arrosyid.logo"><img src="/cdn_arrosyid/static/src/img/logo-web.png" class="img img-fluid" width="95" height="40" alt="My Website" loading="lazy"/></span>
                 </a>
@@ -52,8 +54,11 @@
                             <t t-set="_link_class" t-value="'nav-link'"/>
                             <t t-set="_dropdown_menu_class" t-value="'dropdown-menu-end'"/>
                         </t>
-                    </ul>   
+                    </ul>
                 </div>
+                    <button type="button" t-attf-class="navbar-toggler #{_toggler_class}" data-bs-toggle="collapse" data-bs-target="#top_menu_collapse">
+                        <span class="navbar-toggler-icon o_not_editable"/>
+                    </button>   
              </xpath>
         </template>
     

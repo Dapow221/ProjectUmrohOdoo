@@ -13,7 +13,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'auth_signup'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'contacts'],
 
     'data': [
         'security/groups.xml',
@@ -49,6 +49,7 @@
         'views/signup_templates.xml',
         'views/tes.xml',
         'wizards/wizard_laporan_bulanan.xml',
+        
         'views/snippets/s_banner.xml',
         'views/snippets/s_picture.xml',
         'views/snippets/s_image_text.xml',
@@ -89,9 +90,11 @@
             'cdn_arrosyid/static/src/js/website_sesi_umroh.js',
             'cdn_arrosyid/static/src/css/layout.css',
             'cdn_arrosyid/static/src/js/layout.js',
+            'cdn_arrosyid/static/src/js/signup.js',
         ],
         'web.assets_backend': [
             'cdn_arrosyid/static/src/js/peta.js',
+            'cdn_arrosyid/static/src/xml/widget_peta.xml',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
             'cdn_arrosyid/static/src/xml/peta.xml',
