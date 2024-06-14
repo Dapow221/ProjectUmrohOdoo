@@ -21,9 +21,10 @@ export class Peta extends Component {
 
     setup() {
       super.setup();
+      var propsval = this.props.value != '' ? JSON.parse(this.props.value.replace(/'/g, '"')) : {'lat' : '-7.975229131435001', 'lng' : '112.63040852567805'}
       this.state = useState({ 
-        lat: this.props.record.data.lokasi_hotel || 24.47312970118572,
-        lng: this.props.record.data.long_penjemputan || 39.606477722138365, 
+        lat: propsval.lat,
+        lng: propsval.lng
       });
       this.#map_container = useRef('map_container');
 
@@ -34,7 +35,7 @@ export class Peta extends Component {
 
     #onMounted() {
       this.#map = L.map(this.#map_container.el, {
-         center: [24.47312970118572, 39.606477722138365],
+         center: [this.state.lat, this.state.lng],
          zoom: 13
       });
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -42,22 +43,19 @@ export class Peta extends Component {
       }).addTo(this.#map);
       
       var marker;
-      console.log(this.state.lat, this.state.lng);
-      marker = L.marker([this.state.lat, this.state.lng]).addTo(this.#map);
-      marker.setLatLng([this.state.lat, this.state.lng]);
+      if (marker) {
+        marker.setLatLng([this.state.lat, this.state.lng]);
+      } else {
+        marker = L.marker([this.state.lat, this.state.lng]).addTo(this.#map);
+      }
       this.#map.on('click', (e) => {
           var lat = e.latlng.lat;
           var lng = e.latlng.lng;
           this.state.lat = lat;
           this.state.lng = lng;
-          // if (marker) {
           marker.setLatLng(e.latlng);
-          this.props.record.data.lokasi_hotel = this.state.lat
-          this.props.record.data.long_penjemputan = this.state.lng
-              // this.trigger('field-changed', { latitude: lat, longitude: lng });
-          // } else {
-          //     marker = L.marker(e.latlng).addTo(this.#map);
-          // }
+          this.props.update(e.latlng)
+          
       });
       
     }
@@ -67,6 +65,6 @@ export class Peta extends Component {
     }
 }
 
-// Peta.template = 'module_name.Peta';
+// Peta.template = 'your_module.Peta';
 registry.category('fields').add('peta_widget', Peta);
 // core.form_widget_registry.add('peta_widget',Peta);
