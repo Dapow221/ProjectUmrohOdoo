@@ -12,26 +12,28 @@ odoo.define('cdn_arrosyid.website_sesi_umroh', function (require) {
         var sesi_id = $(this).closest('tr').find('td:first').text().trim();
         sessionStorage.setItem('chosenSesiName', sesiName);
         var csrf_token = $("input[name='csrf_token']").val();
-        var sesi = {
-            'sesi': sesi_id,
-            'csrf_token': csrf_token
-        };
+        window.location.href = '/pendaftaran_sesi/'+ sesi_id;
 
-        $.ajax({
-            url: "/pendaftaran_sesi",
-            type: "POST",
-            data: sesi,
-            dataType: "json",
-            success: function (data) {
-                console.log("sesi :", data);
-                // alert('Data berhasil disimpan');
-                window.location.href = '/pendaftaran_sesi';
-            },
-            error: function (xhr, status, error) {
-                console.error("Kesalahan dalam panggilan AJAX:", error);
-                alert('Kesalahan: ' + error);
-            }
-        });
+        // var sesi = {
+        //     'sesi': sesi_id,
+        //     'csrf_token': csrf_token
+        // };
+
+        // $.ajax({
+        //     url: "/pendaftaran_sesi",
+        //     type: "POST",
+        //     data: sesi,
+        //     dataType: "json",
+        //     success: function (data) {
+        //         console.log("data :", data);
+        //         // alert('Data berhasil disimpan');
+        //         // window.location.href = '/pendaftaran_sesi';
+        //     },
+        //     error: function (xhr, status, error) {
+        //         console.error("Kesalahan dalam panggilan AJAX:", error);
+        //         alert('Kesalahan: ' + error);
+        //     }
+        // });
         // console.log('________ : ', sesi);
 
 

@@ -30,8 +30,36 @@
                     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
                 </div>
                 <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
-                    <h4>pendaftaran</h4>
-                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    <!-- <h4>pendaftaran</h4> -->
+                    <table class="table">
+                        <th>
+                            <td>nama</td>
+                            <td>sesi</td>
+                            <td>status</td>
+                        </th>
+                        <t t-foreach="data_pendaftaran" t-as="daftar">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <t t-foreach="daftar.jamaah_id" t-as="jamaah">
+                                        <t t-foreach="jamaah.partner_id" t-as="partner">
+                                            <h5 t-esc="partner.name"/>
+                                        </t>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-foreach="daftar.sesi_id" t-as="sesii">
+                                        <h5 t-esc="sesii.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <h5 t-esc="daftar.state"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    
+                    <!-- <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p> -->
                 </div>
                 <div class="tab-pane fade" id="sesi">
                     <h4>sesi</h4>
