@@ -18,7 +18,7 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
                 method: 'search_read', 
                 args: [[]],
                 kwargs: {
-                    fields: ['id', 'name', 'paket_umroh_id', 'lst_price'],
+                    fields: ['id', 'name', 'paket_umroh_id', 'lst_price', 'keterangan', 'tanggal_berangkat', 'tanggal_pulang', 'pembimbing_id'],
                 }
             }).then(function (result) {
                 result.forEach(sesi => {
@@ -32,6 +32,15 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
                         // Append the option to the select element
                         selectSesi.append(option);
                         harga.val(formatRupiah(sesi.lst_price));
+                        // modal
+                        $("#nama_sesi_modal").text(sesi.name);
+                        $("#keterangan_sesi").text(sesi.keterangan);
+                        $("#tgl_brk").text(sesi.tanggal_berangkat);
+                        $("#tgl_plg").text(sesi.tanggal_pulang);
+                        $("#hotel").text(sesi.hotel_id);
+                        $("#maskapai").text(sesi.maskapai_id);
+                        $("#pembimbing").text(sesi.pembimbing_id);
+                        $("#petugas").text(sesi.petugas_ids);
                     }
                 });
             });
@@ -72,5 +81,6 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
                 alert('Kesalahan: ' + error);
             }
         });
-    });    
+    });  
+    
 })
