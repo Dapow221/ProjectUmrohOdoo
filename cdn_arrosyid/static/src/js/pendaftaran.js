@@ -81,6 +81,35 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
                 alert('Kesalahan: ' + error);
             }
         });
-    });  
+    }); 
+    
+    $(document).on('click', "#submit_pendaftaran_sesi", function () {
+        var jamaah = $("#jamaah_umroh").val();
+        var sesi = $("#sesi_umroh_sesi").val();
+        var csrf_token = $("input[name='csrf_token']").val();
+        var data_pendaftaran = {
+            'jamaah_id': parseInt(jamaah),
+            'sesi_id': parseInt(sesi),
+            'csrf_token': csrf_token
+        };
+
+        // console.log('data_pendaftaran : ', data_pendaftaran);
+    
+        $.ajax({
+            url: "/buat_pendaftaran",
+            type: "POST",
+            data: data_pendaftaran,
+            dataType: "json",
+            success: function (data) {
+                console.log("Rekaman baru dibuat dengan ID:", data);
+                // alert('Data berhasil disimpan');
+                window.location.href = "/pendaftaran_berhasil";
+            },
+            error: function (xhr, status, error) {
+                console.error("Kesalahan dalam panggilan AJAX:", error);
+                alert('Kesalahan: ' + error);
+            }
+        });
+    }); 
     
 })

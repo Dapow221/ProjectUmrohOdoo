@@ -373,7 +373,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="paket_umroh">Pilih Paket Umroh</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="paket_umroh_sesi">
                                                 <t t-foreach="data_paket_umroh" t-as="paket">
                                                     <option t-att-value="paket.id"><t t-esc="paket.name"/></option>
                                                 </t>
@@ -383,7 +383,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="sesi_umroh">Pilih Sesi</label>
-                                            <select class="form-control">
+                                            <select class="form-control" id="sesi_umroh_sesi">
                                                 <t t-foreach="data_sesi_umroh" t-as="sesi">
                                                     <option t-att-value="sesi.id"><t t-esc="sesi.name"/></option>
                                                 </t>
@@ -438,7 +438,7 @@
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-primary" type="submit" id="submit_pendaftaran">Daftar</button>
+                                        <button class="btn btn-primary" type="submit" id="submit_pendaftaran_sesi">Daftar</button>
                                     </div>
                                 </div>
                             </form>
