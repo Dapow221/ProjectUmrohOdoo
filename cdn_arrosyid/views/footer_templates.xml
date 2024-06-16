@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Footer -->
+        <template id="template_footer_contact" inherit_id="website.layout" name="Contact" active="True">
+            <xpath expr="//div[@id='footer']" position="replace">
+                <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                    <section class="s_text_block pt32 pb16" data-snippet="s_text_block" data-name="Text">
+                        <div class="container">
+                            <div class="row align-items-end">
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Apa yang bisa kami bantu?</p>
+                                    <h4>Hubungi kami kapanpun</h4>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Hubungi kami :</p>
+                                    <h5 style="color: white;"><span class="o_force_ltr"><a style="color: inherit;" href="tel:+62 81234567891">+62 81234567891</a></span></h5>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <p class="mb-2">Kirim email :</p>
+                                    <h5 style="color: white;"><a style="color: inherit;" href="mailto:travelumroharrosyid@gmail.com">travelumroharrosyid@gmail.com</a></h5>
+                                </div>
+                                <div class="col-lg-3 pt16 pb16">
+                                    <div class="s_social_media text-end no_icon_color o_not_editable text-center" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                        <p class="s_social_media_title d-block mb-2" contenteditable="true">Ikuti kami</p>
+                                        <a style="color: white;" href="#" class="s_social_media_instagram" target="_blank">
+                                            <i style="color: inherit;" class="fa fa-instagram m-1 o_editable_media"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+                        <div class="container allow_columns">
+                            <div class="s_hr pt16 pb16">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid; border-color: var(--600);"/>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_block" data-snippet="s_text_block" data-name="Text">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 pb16">
+                                    <a href="#" class="o_footer_logo logo">
+                                        <img src="/cdn_arrosyid/static/src/img/logo_travel.png" class="img-fluid" aria-label="Logo of MyCompany" title="MyCompany" role="img"/>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </xpath>
+
+        </template>
+        
+        <!-- Hide Copyright -->
+        <template id="footer_no_copyright" inherit_id="website.layout" name="Footer No Copyright" active="True">
+            <xpath expr="//div[hasclass('o_footer_copyright')]" position="before">
+                <t t-set="no_copyright" t-value="True"/>
+            </xpath>
+        </template>
+
+        <!-- Scroll to Top option -->
+        <template id="option_footer_scrolltop" inherit_id="website.layout" active="True">
+            <xpath expr="//div[@id='footer']" position="after">
+                <div id="o_footer_scrolltop_wrapper" class="container h-0 d-flex align-items-center justify-content-center" >
+                    <a id="o_footer_scrolltop"
+                    role="button"
+                    href="#top"
+                    title="Scroll ke Atas"
+                    class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center"
+                    style="background-color: white; border:none;">
+                        <span class="fa fa-1x fa-chevron-up"  style="color: black"/>
+                    </a>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

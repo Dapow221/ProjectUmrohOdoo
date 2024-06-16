@@ -17,7 +17,6 @@
             <field name="name">Ketentuan Umum</field>
             <field name="url">/ketentuan</field>
             <field name="parent_id" ref="website.main_menu"/>
-            <field name="sequence">40</field>
         </record>      
     </data>
 </odoo>
