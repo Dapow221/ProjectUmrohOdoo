@@ -98,9 +98,7 @@
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
             'cdn_arrosyid/static/src/xml/peta.xml',
-        ],
-        'website.assets_editor': [
-            'cdn_arrosyid/static/src/js/tour.js',
+            'cdn_arrosyid/static/src/xml/widget_peta.xml',
         ],
     },
 }
