@@ -13,16 +13,17 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'auth_signup'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'contacts'],
 
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
+        'data/navbar_templates.xml',
         'data/sequence_data.xml',
         'views/menu.xml',
-        'record/cetak_identitas_jamaah.xml',
-        'record/cetak_manifes_jamaah.xml',
-        'record/wizard_cetak_laporan_bulanan.xml',
+        'reports/report_identitas_manifes_jamaah.xml',
+        'reports/report_kartu_identitas_jamaah.xml',
+        'reports/wizard_cetak_laporan_bulanan.xml',
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
@@ -40,7 +41,6 @@
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
-        'views/menu_website.xml',
         'views/homepage_templates.xml',
         'views/sesi_umroh_templates.xml',
         'views/ketentuan_umum_templates.xml',
@@ -49,6 +49,7 @@
         'views/signup_templates.xml',
         'views/tes.xml',
         'wizards/wizard_laporan_bulanan.xml',
+        
         'views/snippets/s_banner.xml',
         'views/snippets/s_picture.xml',
         'views/snippets/s_image_text.xml',
@@ -84,24 +85,20 @@
                      's_title', 's_masonry_block', 's_numbers', 's_quotes_carousel'],
     },
     'assets': {
-        'web.assets_backend': [
-            'cdn_arrosyid/static/src/js/peta.js',
-            'cdn_arrosyid/static/src/xml/widget_peta.xml',
-        ],
         'web.assets_frontend': [
             'cdn_arrosyid/static/src/js/pendaftaran.js',
             'cdn_arrosyid/static/src/js/website_sesi_umroh.js',
             'cdn_arrosyid/static/src/css/layout.css',
             'cdn_arrosyid/static/src/js/layout.js',
+            'cdn_arrosyid/static/src/js/signup.js',
         ],
         'web.assets_backend': [
             'cdn_arrosyid/static/src/js/peta.js',
+            'cdn_arrosyid/static/src/xml/widget_peta.xml',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
             'cdn_arrosyid/static/src/xml/peta.xml',
-        ],
-        'website.assets_editor': [
-            'cdn_arrosyid/static/src/js/tour.js',
+            'cdn_arrosyid/static/src/xml/widget_peta.xml',
         ],
     },
 }

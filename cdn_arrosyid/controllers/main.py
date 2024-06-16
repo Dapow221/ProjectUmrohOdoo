@@ -23,19 +23,42 @@ class MainController(http.Controller):
         return request.render('cdn_arrosyid.ketentuan_umum')
 
     @http.route('/pendaftaran', type='http', auth="user", website=True)
-    def get_pendaftaran(self, **kw):
-        data_paket_umroh = request.env['cdn.paket.umroh'].search([])
-        data_jamaah_umroh = request.env['cdn.identitas.jamaah'].search([])
-        # paket_id = request.params.get('paket_id')
-        data_sesi_umroh = request.env['cdn.sesi.umroh'].search([])
-        data_login = request.env.user
-        # data_login = request.env['cdn.sesi.umroh'].search([('email', '=', login.email)])
+    def get_pendaftaran(self, **kwargs):            
+            data_paket_umroh = request.env['cdn.paket.umroh'].search([])
+            data_jamaah_umroh = request.env['cdn.identitas.jamaah'].search([])
+            data_login = request.env.user
 
-        return request.render('cdn_arrosyid.pendaftaran_web', {
-            'data_paket_umroh': data_paket_umroh,
-            'data_jamaah_umroh': data_jamaah_umroh,
-            'data_login': data_login,
-        })
+            return request.render('cdn_arrosyid.pendaftaran_web', {
+                'data_paket_umroh': data_paket_umroh,
+                'data_jamaah_umroh': data_jamaah_umroh,
+                'data_login': data_login,
+            })
+
+    @http.route('/pendaftaran_sesi', type='http', auth="user", website=True, csrf=True, methods=['POST', 'GET'])
+    def get_pendaftaran_sesi(self, **post):
+            try:
+                sesi_id = post.get('sesi')
+                tes = 'hello world'
+                return json.dumps({'result': True, 'sesi id': sesi_id, 'tes': tes})
+                # return sesi_id
+            except Exception as e:
+                # Handle errors and return error message
+                return json.dumps({'result': False, 'error': str(e)})
+
+            # sesi_id = post.get('sesi_id')
+            # data_paket_umroh = request.env['cdn.paket.umroh'].search([('sesi_umroh', 'in', [data_sesi_umroh])])
+            # data_jamaah_umroh = request.env['cdn.identitas.jamaah'].search([])
+            # data_sesi_umroh = request.env['cdn.sesi.umroh'].search(['sesi', '=', sesi_id])
+            # data_login = request.env.user
+
+            # return request.render('cdn_arrosyid.pendaftaran_web_from_sesi', {
+            #     'data_paket_umroh': data_paket_umroh,
+            #     'data_sesi_umroh': data_sesi_umroh,
+            #     'data_jamaah_umroh': data_jamaah_umroh,
+            #     'data_login': data_login,
+            # })
+            # return sesi_id
+
 
     @http.route('/buat_pendaftaran', csrf=True, type="http", methods=['POST'], auth="public", website=True)
     def buat_pendaftaran(self, **post):

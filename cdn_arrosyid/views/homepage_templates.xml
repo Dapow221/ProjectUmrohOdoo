@@ -1,61 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
+
         <!-- register -->
         <template id="login" inherit_id="web.login" name="Custom Login" >
+  
             <xpath expr="//div[hasclass('o_login_auth')]" position="after">
                  <button string="daftar" type="button" class="btn btn-primary">
                     <a href="/signup" class="nav-link" style="color: white">Daftar</a>
                  </button>
            </xpath>
-            <xpath expr="//div[hasclass('field-login')]" position="before">
+            <xpath expr="//div[contains(@class, 'field-login')]" position="before">
                  <h5 class="text-center gap-1 d-grid mb-1">Login</h5>
            </xpath>
        </template>  
-        <!-- navbar -->
-        <template id="layout" name="Main layout" inherit_id="portal.frontend_layout">
-            <xpath expr="//div[@id='top_menu_container']" position="replace">
-                <a href="/" class="navbar-brand logo me-4">
-                    <span role="img" aria-label="Travel Umroh" title="Travel Umroh" data-oe-model="cdn_arrosyid" data-oe-id="1" data-oe-field="logo" data-oe-type="image" data-oe-expression="cdn_arrosyid.logo"><img src="/cdn_arrosyid/static/src/img/logo-web.png" class="img img-fluid" width="95" height="40" alt="My Website" loading="lazy"/></span>
-                </a>
-                <div id="top_menu_collapse" class="collapse navbar-collapse order-last order-lg-0">
-                    <ul id="top_menu" role="menu" class="nav navbar-nav o_menu_loading flex-grow-1">                    
-                        <li role="presentation" class="nav-item">
-                            <a role="menuitem" href="/" class="nav-link">
-                                <span data-oe-model="website.menu" data-oe-id="5" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Home</span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="nav-item">
-                            <a role="menuitem" href="/sesi_umroh" class="nav-link ">
-                                <span data-oe-model="website.menu" data-oe-id="10" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Sesi Umroh</span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="nav-item">
-                            <a role="menuitem" href="/ketentuan" class="nav-link ">
-                                <span data-oe-model="website.menu" data-oe-id="13" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Ketentuan Umum</span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="nav-item">
-                            <a role="menuitem" href="/pendaftaran" class="nav-link ">
-                                <span data-oe-model="website.menu" data-oe-id="14" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Pendaftaran</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul id="top_menu" class="nav navbar-nav ms-auto">
-                        <t t-call="portal.placeholder_user_sign_in">
-                            <t t-set="_item_class" t-value="'nav-item'"/>
-                            <t t-set="_link_class" t-value="'nav-link'"/>
-                        </t>
-                        <t t-call="portal.user_dropdown">
-                            <t t-set="_user_name" t-value="true"/>
-                            <t t-set="_item_class" t-value="'nav-item dropdown'"/>
-                            <t t-set="_link_class" t-value="'nav-link'"/>
-                            <t t-set="_dropdown_menu_class" t-value="'dropdown-menu-end'"/>
-                        </t>
-                    </ul>   
-                </div>
-             </xpath>
-        </template>
+
     
         <!-- content -->
         <template id="homepages" name="Home Page">
