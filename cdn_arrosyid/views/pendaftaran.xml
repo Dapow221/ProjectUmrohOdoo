@@ -1,14 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
     <data>
-            <record id="action_report_pendaftaran" model="ir.actions.report">
-                <field name="name">Cetak Kartu Umroh Jamaah</field>
-                <field name="model">cdn.pendaftaran</field>
-                <field name="report_type">qweb-pdf</field>
-                <field name="report_name">cdn_arrosyid.report_identitas_jamaah_document</field>
-                <field name="report_file">cdn_arrosyid.report_identitas_jamaah_document</field>
-                <field name="binding_model_id" ref="model_cdn_identitas_jamaah"/>
-            </record>
 
         <!-- cdn.pendaftaran tree view -->
            <record id="cdn_pendaftaran_view_tree" model="ir.ui.view">
@@ -35,7 +27,7 @@
             <field name="arch" type="xml">
                 <form string="">
                     <header>
-                        <button name="%(action_report_pendaftaran)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
+                        <button name="%(action_report_kartu_identitas_jamaah)d" string="Cetak Kartu" type="action" class="oe_highlight"/>
                         <button name="action_draf" string="Kembali ke Draf" type="object" class="oe_highlight" states="batal"/>
                         <button name="action_konfirmasi" string="Konfirmasi" type="object" class="oe_highlight" states="draf"/>
                         <button name="action_batal" string="Batal" type="object" class="btn-danger" states="konfirmasi,belum"/>
