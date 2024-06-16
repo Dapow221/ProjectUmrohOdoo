@@ -41,12 +41,14 @@ class SignupController(http.Controller):
                 })
 
                 # Membuat objek cdn.identitas.jamaah jika partner berhasil dibuat atau sudah ada
-                request.env['cdn.identitas.jamaah'].create({
-                    'partner_id': partner_id.id if partner_id else partner_exists.id,
-                    # Tambahkan atribut lain jika diperlukan
-                })
-
-                request.env.cr.commit()
+                partner_record = partner_id if partner_id else partner_exists
+                if partner_record:
+                    identitas_jamaah = request.env['cdn.identitas.jamaah'].create({
+                        'partner_id': partner_record.id,
+                        # Tambahkan atribut lain jika diperlukan
+                    })
+                    # Pastikan untuk melakukan commit setelah membuat cdn.identitas.jamaah
+                    request.env.cr.commit()
 
             # Kembalikan respons JSON
             return json.dumps({'result': True})
