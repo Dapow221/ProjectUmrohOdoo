@@ -19,7 +19,7 @@ odoo.define('cdn_arrosyid.signup', function (require) {
             'csrf_token': csrf_token
         };
 
-        // console.log('data_pendaftaran : ', data_pendaftaran);
+        console.log('data_pendaftaran : ', data_pendaftaran);
     
         $.ajax({
             url: "/create_signup",
@@ -28,8 +28,8 @@ odoo.define('cdn_arrosyid.signup', function (require) {
             dataType: "json",
             success: function (data) {
                 console.log("Rekaman baru dibuat dengan ID:", data);
-                // alert('Data berhasil disimpan');
-                window.location.href = "/web/login";
+                alert('Data berhasil disimpan');
+                // window.location.href = "/web/login";
             },
             error: function (xhr, status, error) {
                 console.error("Kesalahan dalam panggilan AJAX:", error);
