@@ -1,6 +1,7 @@
 import json
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import ValidationError
 
 class SignupController(http.Controller):
     @http.route('/signup', type='http', auth='public', website=True)
@@ -39,3 +40,11 @@ class SignupController(http.Controller):
             return json.dumps({'result': True})
         except Exception as e:
             return json.dumps({'result': False, 'error': str(e)})
+
+    @http.route('/check_email_exists', type='json', auth='public', methods=['POST'])
+    def check_email_exists(self, **kw):
+        email = kw.get('email')
+        if email:
+            existing_user = request.env['res.users'].sudo().search([('email', '=', email)])
+            return {'exists': True if existing_user else False}
+        return {'exists': False}

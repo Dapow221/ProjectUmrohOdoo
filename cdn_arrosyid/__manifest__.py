@@ -73,6 +73,7 @@
             'cdn_arrosyid/static/src/css/layout.css',
             'cdn_arrosyid/static/src/js/layout.js',
             'cdn_arrosyid/static/src/js/signup.js',
+            'cdn_arrosyid/static/src/js/password.js',
         ],
         'web.assets_backend': [
             'cdn_arrosyid/static/src/js/peta.js',
