@@ -2,6 +2,7 @@ import json
 
 from odoo import http
 from odoo.http import request
+from datetime import date
 
 class MainController(http.Controller):
     @http.route('/', type='http', auth="public", website=True)
@@ -11,7 +12,8 @@ class MainController(http.Controller):
 
     @http.route('/sesi_umroh', auth='public', website=True)
     def sesi_umroh(self, **kwargs):
-            sesi_umroh_records = request.env['cdn.sesi.umroh'].sudo().search([])
+            today = date.today()
+            sesi_umroh_records = request.env['cdn.sesi.umroh'].sudo().search([('tanggal_berangkat', '>', today)])
             return request.render('cdn_arrosyid.sesi_umroh_template', {
                 'sesi_umroh_records': sesi_umroh_records
             })
