@@ -16,6 +16,7 @@ class CdnPendaftaran(models.Model):
 
     # pilih_jamaah = fields.Selection(string='', selection=[('baru', 'Baru'), ('pilih', 'Pilih yang sudah terdaftar'),])
     jamaah_id      = fields.Many2one('cdn.identitas.jamaah', string='Jamaah', required=True, domain="[('state', '!=', 'proses')]", Tracking=True)
+    pendaftar_id   = fields.Many2one('cdn.identitas.jamaah', string='pendaftar')
     # relatad jamaah
     partner_id     = fields.Many2one(related='jamaah_id.partner_id')
     nama           = fields.Char(related='jamaah_id.name', string="Nama")
@@ -102,6 +103,7 @@ class CdnPendaftaran(models.Model):
         # Mendapatkan data Jamaah
             jamaah = pendaftaran.jamaah_id
             partner = jamaah.partner_id
+            pendaftar = pendaftaran.pendaftar_id.partner_id
 
             # Mendapatkan data Sesi Umroh
             sesi_umroh = pendaftaran.sesi_id
@@ -117,27 +119,51 @@ class CdnPendaftaran(models.Model):
                 'price_unit': sesi_umroh.lst_price,
             })]
 
-            # Membuat invoice
-            account_move = self.env['account.move']
-            buat_penagian = account_move.create({
-                'move_type': 'out_invoice',
-                'partner_id': partner.id,
-                'invoice_date': fields.Date.today(),
-                'invoice_line_ids': data_penagihan,
-                'paket_umroh': True,
-                'pendaftaran_id': pendaftaran.id
-            })
+            if pendaftar:
+                # Membuat invoice
+                account_move = self.env['account.move']
+                buat_penagian = account_move.create({
+                    'move_type': 'out_invoice',
+                    'partner_id': pendaftar.id,
+                    'invoice_date': fields.Date.today(),
+                    'invoice_line_ids': data_penagihan,
+                    'paket_umroh': True,
+                    'pendaftaran_id': pendaftaran.id
+                })
 
-            view_penagihan = {
-                'name': f'Invoice {partner.name}',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'account.move',
-                'res_id': buat_penagian.id,
-                'target': 'current', 
-            }
+                view_penagihan = {
+                    'name': f'Invoice {pendaftar.name}',
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'form',
+                    'res_model': 'account.move',
+                    'res_id': buat_penagian.id,
+                    'target': 'current', 
+                }
+                return view_penagihan
+                
+            else:
+                # Membuat invoice
+                account_move = self.env['account.move']
+                buat_penagian = account_move.create({
+                    'move_type': 'out_invoice',
+                    'partner_id': partner.id,
+                    'invoice_date': fields.Date.today(),
+                    'invoice_line_ids': data_penagihan,
+                    'paket_umroh': True,
+                    'pendaftaran_id': pendaftaran.id
+                })
 
-            return view_penagihan
+                view_penagihan = {
+                    'name': f'Invoice {partner.name}',
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'form',
+                    'res_model': 'account.move',
+                    'res_id': buat_penagian.id,
+                    'target': 'current', 
+                }
+                return view_penagihan
+
+
 
     def action_lunas(self):
         for pelunasan in self:

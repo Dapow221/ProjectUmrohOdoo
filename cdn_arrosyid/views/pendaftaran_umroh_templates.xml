@@ -13,14 +13,23 @@
                             <t t-set="csrf_token" t-value="request.csrf_token()"/>
                             <form class="shadow">
                                 <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
-                                <!-- <div class="shadow"> -->
-                                    <h4 class="p-3"><b><u>Identitas</u></b></h4>
+                                <h4 class="p-3"><b><u>Jamaah</u></b></h4>
+                                <div class="form-group p-3">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="radio_dftr" id="radio_sendiri" value="sendiri" checked="checked"/>
+                                        <label class="form-check-label" for="radio_sendiri">Daftar Sendiri</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="radio_dftr" id="radio_jamaah" value="jamaah"/>
+                                        <label class="form-check-label" for="radio_jamaah">Daftarkan Jamaah</label>
+                                    </div>
+                                </div>
+                                <div id="paket_sendiri">
                                     <div class="col-12">
                                         <div class="form-group m-2">
-                                            <label for="jamaah_umroh">Pilih Jamaah Umroh</label>
-                                            <select class="form-control" id="jamaah_umroh">
-                                                <option value="" selected="1" disabled="1">Pilih Paket Umroh</option>
-                                                <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                                            <label for="jamaah_umroh">Lengkapi form jika ada yang belum terisi</label>
+                                            <select class="form-control" id="jamaah_umroh" hidden="1">
+                                                <t t-foreach="data_login" t-as="jamaah">
                                                     <option t-att-value="jamaah.id"><t t-esc="jamaah.partner_id.name"/></option>
                                                 </t>
                                             </select>
@@ -35,7 +44,7 @@
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" data-bs-toggle="tab" href="#info_lain" aria-selected="false" tabindex="-1" role="tab">Informasi Lain</a>
-                                          </li>
+                                            </li>
                                     </ul>
                                     <div id="myTabContent" class="tab-content">
                                         <div class="tab-pane p-3 fade show active" id="info_umum" role="tabpanel">
@@ -43,25 +52,49 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="nama">Nama Lengkap</label>
-                                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name" readonly="1"/>
+                                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label for="nama">Jenis Kelamin</label>
-                                                    <input type="text" class="form-control" id="jenis_kelamin" placeholder="Masukkan nama lengkap"/>
+                                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                        <t t-if="data_login.jenis_kel == 'l'">
+                                                            <div>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="jenis_kelamin" checked="1" />
+                                                                    Laki-laki
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="jenis_kelamin"/>
+                                                                    Perempuan
+                                                                </label>
+                                                            </div>
+                                                            
+                                                        </t>
+                                                        <t t-else="">
+                                                            <div>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="jenis_kelamin" />
+                                                                    Laki-laki
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="jenis_kelamin" checked="1"/>
+                                                                    Perempuan
+                                                                </label>
+                                                            </div>
+                                                        </t>
                                                     </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email" readonly="1"/>
+                                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="telepon">Nomor Telepon</label>
-                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.phone" readonly="1"/>
+                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.phone"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -144,7 +177,211 @@
                                             </div>
                                         </div>
                                     </div>
-                                <!-- </div> -->
+                                </div>
+                                <div id="paket_jamaah" hidden="1">
+                                    <input type="number" name="data_login_id" t-att-value="data_login.id" hidden="1"/>
+                                    <div class="col-12" id="identity_table">
+                                        <div class="form-group m-2">
+                                            <label for="jamaah_umroh" class="text-center">Data Jamaah <span id="ttl_dft_jamaah"></span></label>
+                                            <table class="table table-hover container-fluid" id="tabel_jamaah">
+                                                <thead class="thead-dark">
+                                                    <tr class="bg-primary">
+                                                        <th hidden="1">id</th>
+                                                        <th>Nama</th>
+                                                        <th>Jenis kelamin</th>
+                                                        <th>Tanggal lahir</th>
+                                                        <th>paspor</th>
+                                                        <th>...</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dt_jamaah">
+                                                    <tr>
+                                                        <t t-foreach="data_login" t-as="jamaah2">
+                                                            <td hidden="1"><t t-esc="jamaah2.id"/></td>
+                                                            <td><t t-esc="jamaah2.partner_id.name"/></td>
+                                                            <t t-if="jamaah2.jenis_kel == 'l'">
+                                                                <td>Laki-laki</td>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <td>Perempuan</td>
+                                                            </t>
+                                                            <td><t t-esc="jamaah2.tgl_lahir"/></td>
+                                                            <td><t t-esc="jamaah2.paspor"/></td>
+                                                            <td class="static"><span class="btn btn-outline-danger dlt_jamaah"><i class="fa fa-trash"></i></span></td>
+                                                        </t>
+                                                    </tr>
+                                                </tbody>
+                                                <!-- <tfoot>
+                                                    <tr>
+                                                        <td colspan="6">
+                                                                <button  class="btn btn-primary btn-block text-left" type="button" id="toggle_tambah"> tambah jamaah baru <i class="fa fa-caret-down"></i></button>
+                                                                <button  class="btn btn-outline-primary btn-block text-left" type="button" id="toggle_pilih">tambah jamaah yang sudah terdaftar <i class="fa fa-caret-down"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot> -->
+                                            </table>
+                                            <div>
+                                                <button  class="btn btn-primary btn-block text-left" type="button" id="toggle_tambah"> tambah jamaah baru <i class="fa fa-caret-down"></i></button>
+                                                <button  class="btn btn-outline-primary btn-block text-left" type="button" id="toggle_pilih">tambah jamaah yang sudah terdaftar <i class="fa fa-caret-down"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tambah_jamaah" class=" card border-primary m-4" hidden="1">
+                                        <h5 class="card-header">Tambah jamaah baru</h5>
+                                        <ul class="nav nav-tabs m-2" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" data-bs-toggle="tab" href="#info_umum_jamaah" aria-selected="true" role="tab">Informasi Umum</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#keimigrasian_jamaah" aria-selected="false" tabindex="-1" role="tab">Informasi Khusus dan Keimigrasian</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#info_lain_jamaah" aria-selected="false" tabindex="-1" role="tab">Informasi Lain</a>
+                                                </li>
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div class="tab-pane p-3 fade show active" id="info_umum_jamaah" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label for="nama">Nama Lengkap</label>
+                                                        <input name="nama_jamaah" type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label for="nama">Jenis Kelamin</label>
+                                                        <div class="form-control">
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="jenis_kelamin" value="l" checked="1" />
+                                                                Laki-laki
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="jenis_kelamin" value="p"/>
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input name="email_jamaah" type="email" class="form-control" id="email" placeholder="Masukkan email"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label for="telepon">Nomor Telepon</label>
+                                                        <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label>Sudah Menikah</label>
+                                                        <input type="text" class="form-control" id="is_meniskah"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label>Tanggal Lahir</label>
+                                                        <input name="tgl_lahir_jamaah" type="date" class="form-control" id="tgl_lahir"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="alamat">Alamat</label>
+                                                            <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane p-3 fade" id="keimigrasian_jamaah" role="tabpanel">
+                                                <div class="row">
+                                                    <label>Keimigrasian</label><hr/>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>No Paspor</label>
+                                                            <input type="number" class="form-control" id="pend_terakhir"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>Masa Berlaku Paspor</label>
+                                                            <input type="date" class="form-control" id="masa_paspor"/>
+                                                        </div>
+                                                    </div>
+                                                    <br/>
+                                                    <label>Informais Khusus</label><hr/>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="alamat">Riwayat Penyakit</label>
+                                                            <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane p-3 fade" id="info_lain_jamaah" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>Golongan Darah</label>
+                                                            <input type="text" class="form-control" id="gol_darah"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                        <label>Pendidikan Terakhir</label>
+                                                        <input type="text" class="form-control" id="pend_terakhir"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>Pekerjaan</label>
+                                                            <input type="text" class="form-control" id="pekerjaan"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>vaksin mengitis</label>
+                                                            <input type="text" class="form-control" id="meningitis"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>vaksin covid</label>
+                                                            <input type="text" class="form-control" id="covid"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>Sudah Umroh</label>
+                                                            <input type="text" class="form-control" id="sudah_umroh"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 p-3">
+                                                <div class="d-grid gap-2">
+                                                    <button class="btn btn-primary" id="tambah_jamaah_table" type="button">tambah ke daftar jamaah</button>
+                                                    <hr/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="pilih_jamaah" class=" card border-primary m-4" hidden="1">
+                                        <h5 class="card-header">Pilih jamaah</h5>
+                                        <div class="form-group m-2">
+                                            <select class="form-control" id="dftr_jamaah_umroh">
+                                                <option value="" selected="1" disabled="1">pilih Jamaah</option>
+                                                <t t-foreach="data_semua_jamaah_umroh" t-as="jamaah_bnyk">
+                                                    <t t-if="jamaah_bnyk.partner_id.id != data_login.partner_id.id">
+                                                        <option t-att-value="jamaah_bnyk.id" t-att-data-id="jamaah_bnyk.id" t-att-data-nama="jamaah_bnyk.name" t-att-data-jenis-kelamin="jamaah_bnyk.jenis_kel" t-att-data-tgl-lahir="jamaah_bnyk.tgl_lahir" t-att-data-paspor="jamaah_bnyk.paspor"><t t-esc="jamaah_bnyk.partner_id.name"/></option>
+                                                    </t>
+                                                </t>
+                                            </select>
+                                        </div>   
+                                    </div>
+                                </div>
                                 <br/><br/>
                                 <h4 class="p-3"><b><u>Paket Umroh</u></b></h4>
                                 <div class="p-3 row">
@@ -225,7 +462,7 @@
             </t>
         </template>
 
-        <template id="pendaftaran_web_from_sesi" name="pendaftaran web">
+        <!-- <template id="pendaftaran_web_from_sesi" name="pendaftaran web">
             <t t-call="website.layout">
                 <div class="container-fluid m-2">
                     <div class="card">
@@ -367,7 +604,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <br/><br/>
                                 <h4 class="p-3"><b><u>Paket Umroh</u></b></h4>
                                 <div class="p-3 row">
                                     <div class="col-6">
@@ -446,8 +682,7 @@
                     </div>
                 </div>
             </t>
-            <!-- <h5 t-esc="data_sesi"/> -->
-        </template>
+        </template> -->
 
         <template id="pendaftaran_berhasil" name="Thank you">
             <t t-call="website.layout">
@@ -457,7 +692,7 @@
                             <h1>Terima Kasih</h1>
                             <h2>Pendaftaran Berhasil Ditambahkan</h2>
                             <h3>" Tunggu proses konfirmasi dari admin, nanti akan muncul di halaman profil anda "</h3>
-                            <a href="/my/home" class="btn btn_primaray">meunuju halaman Profil</a>
+                            <a href="/my/home" class="btn btn-primary">meunuju halaman Profil</a>
                         </div>
                     </div>
                 </form>
