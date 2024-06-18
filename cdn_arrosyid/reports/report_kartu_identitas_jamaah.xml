@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- format paperformat -->
+        <record id="paperformat_custom" model="report.paperformat">
+            <field name="name">B7</field>
+            <field name="default" eval="False"/>
+            <field name="format">B7</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <!-- action report -->
+        <record id="action_report_kartu_identitas_jamaah" model="ir.actions.report">
+            <field name="name">Report Kartu</field>
+            <field name="model">cdn.pendaftaran</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cdn_arrosyid.report_kartu_identitas_jamaah</field> 
+            <field name="report_file">cdn_arrosyid.report_kartu_identitas_jamaah</field> 
+            <field name="print_report_name">'%s' % object.partner_id.name</field>
+            <field name="binding_model_id" ref="model_cdn_identitas_jamaah"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paperformat_custom"/>
+        </record>
+        
+        <!-- tampilan kartu -->
+        <template id="report_kartu_identitas_jamaah">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="display: block; justify-content: center; align-items: center; height: 100vh; padding: 20px;">
+                        <div class="id-card-container" style="width: 100%; max-width: 350px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; border: 1px solid #ddd;">
+                            <div class="id-card" style="padding: 20px; background: #f9f9f9;">
+                                <div class="id-card-header" style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 20px; background: #007bff; color: white; padding: 10px 0; border-radius: 10px 10px 0 0;">
+                                    <img src="cdn_arrosyid/static/src/img/logo_travel.png" alt="Logo" border="0" width="100"/>
+                                    <p>JAMAAH UMROH <br> ARROSYID</br></p>
+                                </div>
+                                <div class="id-card-body" style="font-size: 14px; line-height: 1.6;">
+                                <center>
+                                <t t-if="doc.image">
+                                    <img t-att-src="'data:image/png;base64,%s' % doc.image.decode('utf-8')" style="max-height: 3cm; max-width: 8cm; border: 2px solid #007bff; border-radius: 10px; padding: 5px;"/>
+                                </t>
+                                    <h3 t-field="doc.partner_id.name"/>
+                                    <h5 t-field="doc.referensi"/>
+                                    <span t-field="doc.paspor"/>
+                                </center>
+                                </div>
+                                <div class="id-card-footer" style="font-size: 14px; text-align: center; margin-top: 20px; color: #007bff;">
+                                    Selamat Menunaikan Ibadah Umroh
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

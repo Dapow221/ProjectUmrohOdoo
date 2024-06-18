@@ -6,10 +6,9 @@
             </div>
         </t>
     </template>
-    
     <template id="auth_signup.fields" name="Sign Up">
-        <t t-set="csrf_token" t-value="request.csrf_token()"/>
-        <form class="oe_signup_form" role="form" t-if="not message">
+    <t t-set="csrf_token" t-value="request.csrf_token()"/>
+        <form class="oe_signup_form" role="form" t-if="not message" method="POST">
             <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
             <div class="container m-2">
                 <h5 class="">Register</h5>

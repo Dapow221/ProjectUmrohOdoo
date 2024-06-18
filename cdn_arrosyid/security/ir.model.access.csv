@@ -39,13 +39,3 @@ access_portal_res_users,access_portal_res_users,base.model_res_users,base.group_
 access_portal_ir_sequence,access_portal_ir_sequence,base.model_ir_sequence,base.group_portal,1,1,1,1
 access_portal_account_move,access_portal_account_move,model_account_move,base.group_portal,1,1,1,1
 
-access_public_cdn_paket_umroh,access_public_cdn_paket_umroh,model_cdn_paket_umroh,base.group_public,1,1,1,1
-access_public_cdn_pendaftaran,access_public_cdn_pendaftaran,model_cdn_pendaftaran,base.group_public,1,1,1,1
-access_public_cdn_sesi_umroh,access_public_cdn_sesi_umroh,model_cdn_sesi_umroh,base.group_public,1,1,1,1
-access_public_cdn_identitas_jamaah,access_public_cdn_identitas_jamaah,model_cdn_identitas_jamaah,base.group_public,1,1,1,1
-access_public_res_partner,access_public_res_partner,base.model_res_partner,base.group_public,1,1,1,1
-access_public_res_users,access_public_res_users,base.model_res_users,base.group_public,1,1,1,1
-access_public_res_groups,access_public_res_groups,base.model_res_groups,base.group_public,1,1,1,1
-access_public_res_company,access_public_res_company,base.model_res_company,base.group_public,1,1,1,1
-access_public_ir_sequence_date_range,access_public_ir_sequence_date_range,base.model_ir_sequence_date_range,base.group_public,1,1,1,1
-access_public_ir_sequence,access_public_ir_sequence,base.model_ir_sequence,base.group_public,1,1,1,1

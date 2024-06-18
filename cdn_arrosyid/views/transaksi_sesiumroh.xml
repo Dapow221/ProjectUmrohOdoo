@@ -2,14 +2,16 @@
 <odoo>
     <data>
 
+                <!-- report -->
         <record id="action_report_manifes_jamaah" model="ir.actions.report">
             <field name="name">Identitas Manifes Jamaah</field>
             <field name="model">cdn.sesi.umroh</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">cdn_arrosyid.report_identitas_manifes_jamaah_document</field>
-            <field name="report_file">cdn_arrosyid.report_identitas_manifes_jamaah_document</field>
+            <field name="report_name">cdn_arrosyid.report_identitas_manifes_jamaah</field>
+            <field name="report_file">cdn_arrosyid.report_identitas_manifes_jamaah</field>
             <field name="binding_model_id" ref="model_cdn_sesi_umroh"/>
         </record>
+
 
         <record id="cdn_sesi_umroh_view_kanban" model="ir.ui.view">
             <field name="name">Sesi Umroh</field>
