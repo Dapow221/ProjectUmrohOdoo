@@ -6,12 +6,13 @@ from odoo.http import request
 class MainController(http.Controller):
     @http.route('/my/home', type='http', auth='public', website=True)
     def get_data(self):
-        data_jamaah_umroh = request.env['cdn.identitas.jamaah'].search([])
-        data_pendaftaran = request.env['cdn.pendaftaran'].search([])
-        data_sesi_rencana_perjalanan = request.env['cdn.rencana.perjalanan'].search([])
+        user_id = request.env.user.partner_id.id
+        # data_sesi_umroh = request.env['cdn.sesi.umroh'].search([])
+        # data_pendaftaran = request.env['cdn.pendaftaran'].search([])
+        data_tagihan = request.env['account.move'].sudo().search([('partner_id', '=', user_id),('state', '=', 'posted')])
 
         return request.render('cdn_arrosyid.profil', {
-            'data_sesi': data_sesi_rencana_perjalanan,
-            'data_pendaftaran': data_pendaftaran,
-            'data_jamaah_umroh': data_jamaah_umroh,
+            # 'data_sesi': data_sesi_umroh,
+            # 'data_pendaftaran': data_pendaftaran,
+            'data_tagihan': data_tagihan,
         })

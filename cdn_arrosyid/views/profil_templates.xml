@@ -30,8 +30,36 @@
                     <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
                 </div>
                 <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
-                    <h4>pendaftaran</h4>
-                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    <!-- <h4>pendaftaran</h4> -->
+                    <table class="table">
+                        <th>
+                            <td>nama</td>
+                            <td>sesi</td>
+                            <td>status</td>
+                        </th>
+                        <!-- <t t-foreach="data_pendaftaran" t-as="daftar">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <t t-foreach="daftar.jamaah_id" t-as="jamaah">
+                                        <t t-foreach="jamaah.partner_id" t-as="partner">
+                                            <h5 t-esc="partner.name"/>
+                                        </t>
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-foreach="daftar.sesi_id" t-as="sesii">
+                                        <h5 t-esc="sesii.name"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <h5 t-esc="daftar.state"/>
+                                </td>
+                            </tr>
+                        </t> -->
+                    </table>
+                    
+                    <!-- <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p> -->
                 </div>
                 <div class="tab-pane fade" id="sesi">
                     <h4>sesi</h4>
@@ -41,8 +69,36 @@
                     <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
                 </div>
                 <div class="tab-pane fade" id="tagihan">
-                    <h4>tagihan</h4>
-                    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                    <!-- <h4>tagihan</h4> -->
+                    <table class="table">
+                        <tr>
+                            <th>nama</th>
+                            <th>Tanggal tagihan</th>
+                            <th>harga</th>
+                            <th>status pembayaran</th>
+                            <th>aksi</th>
+                        </tr>
+                        <t t-foreach="data_tagihan" t-as="tagihan">
+                            <tr>
+                                <td>
+                                    <t t-esc="tagihan.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.invoice_date"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.amount_total"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.payment_state"/>
+                                </td>
+                                <td>
+                                    <button string="tes" name="action_name" type="button" class="btn btn-success">Bayar</button>
+                                    <button string="tes2" name="action_name2" type="button" class="btn btn-outline-pri">lihat detail</button>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
                 </div>
             </div>
         </xpath>
