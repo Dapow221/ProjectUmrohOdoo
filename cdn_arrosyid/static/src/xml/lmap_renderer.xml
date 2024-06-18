@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<templates>
+    <t t-name="cdn_arrosyid.MapRenderer" owl="1">
+        <div class="row vh-100">
+            <div class="col-lg-2 ps-4 pe-0">
+                <h3 class="mt-2">Contacts</h3>
+                <ul>
+                    <li t-foreach="props.model.records" t-as="record" t-key="record.id" >
+                        <t t-esc="record.translated_display_name"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-10 ps-0">
+                <div t-ref="map" style="height: 80vh;"/>
+            </div>
+        </div>
+    </t>
+</templates>
