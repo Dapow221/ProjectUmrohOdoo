@@ -26,26 +26,96 @@
             </ul>
             <div id="myTabContent" class="tab-content m-2">
                 <div class="tab-pane fade show active" id="identitas" role="tabpanel">
-                    <h4>identitas</h4>
-                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                    <h4>Identitas</h4>
+                    <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Nama Jamaah</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Paspor</th>
+                                <th scope="col">Tanggal Umroh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <t t-foreach="jamaah.partner_id" t-as="data">
+                                        <td t-esc="data.name"/>
+                                    </t>
+                                    <td t-esc="jamaah.jenis_kel"/>
+                                    <td t-esc="jamaah.paspor"/>
+                                    <td t-esc="jamaah.tanggal_umroh"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
                 </div>
                 <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
-                    <h4>pendaftaran</h4>
-                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    <h4>Pendaftaran</h4>
+                    <t t-foreach="data_pendaftaran" t-as="pendaftaran">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Jamaah</th>
+                                    <th scope="col">Nama Sesi</th>
+                                    <th scope="col">Tanggal Berangkat</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <t t-foreach="pendaftaran.jamaah_id" t-as="jamaah">
+                                        <td t-esc="jamaah.name"/>
+                                    </t>
+                                    <td t-esc="pendaftaran.name_sesi"/>
+                                    <td t-esc="pendaftaran.tanggal_berangkat"/>
+                                    <td t-esc="pendaftaran.state"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
                 </div>
                 <div class="tab-pane fade" id="sesi">
-                    <h4>sesi</h4>
-                    <t t-foreach="data_sesi" t-as="sakarep">
-                        <h5 t-esc="sakarep.name"/>
+                    <h4>Sesi</h4>
+                    <t t-foreach="data_sesi" t-as="sesi">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Nama Sesi</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td t-esc="sesi.nama"/>
+                                    <td t-esc="sesi.keterangan"/>
+                                    <td t-esc="sesi.dimulai"/>
+                                    <td class="badge rounded-pill text-bg-primary" t-esc="sesi.state"/>
+                                </tr>
+                            </tbody>
+                        </table>
                     </t>
-                    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
                 </div>
                 <div class="tab-pane fade" id="tagihan">
-                    <h4>tagihan</h4>
-                    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                    <h4>Tagihan</h4>
+                    <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tagihan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td t-esc="jamaah.jumlah_penagihan"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
                 </div>
             </div>
         </xpath>
-    </template>    
-    
+    </template>      
 </odoo>

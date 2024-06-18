@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- tampilan report -->
+    <template id="report_identitas_manifes_jamaah">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                 <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .header, .section {
+                        margin-bottom: 20px;
+                    }
+                    .section-header {
+                        background-color: #ddd;
+                        padding: 10px;
+                        font-weight: bold;
+                    }
+                    .section-content {
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-bottom: 20px;
+                    }
+                    table, th, td {
+                        border: 1px solid #000;
+                    }
+                    th, td {
+                        padding: 10px;
+                        text-align: left;
+                    }
+                    .note {
+                        font-size: 0.9em;
+                    }
+                    .note ul {
+                        padding-left: 20px;
+                    }
+                    .invi {
+                        border: 1px solid white !important;
+                        border-collapse: collapse !important;
+                    }
+    
+                </style>
+                    <div class="container">
+                        <div class="header">
+                            <table style="width: 100%;" class="invi">
+                                <tbody class="invi">
+                                    <tr class="invi">
+                                        <td class="invi" style="text-align: right;border: 1px solid white;border-collapse: collapse">
+                                            <img src="cdn_arrosyid/static/src/img/logo_travel.png" alt="Logo" border="0" width="100"/>
+                                        </td>
+                                        <td class="invi" style="text-align: center;border: 1px solid white;border-collapse: collapse;">
+                                            <h1> <t>Travel Umroh AR ROSYID TOUR</t></h1>
+                                            <p><t>Umroh aman, nyaman, dan barokah</t></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <hr class="border border-dark border-2 opacity-50"></hr>   
+                            <center>
+                                <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">
+                                    Identitas Manifes Jamaah
+                                </h1>
+                            </center>
+                                <div style="margin-bottom: 20px;">
+                                    <h2 style="font-size: 18px; color: #555;">
+                                        <span t-field="docs.paket_umroh_id.name"/>
+                                    </h2>
+                                    <h3 style="font-size: 16px; color: #555;">
+                                        <span t-field="docs.name"/>
+                                    </h3>
+                                    <h3 style="font-size: 14px; color: #555;">
+                                        Mulai <span t-field="docs.tanggal_berangkat"/> s/d <span t-field="docs.tanggal_pulang"/>
+                                    </h3>
+                                </div>
+
+                        <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>No</strong></th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Nama Jamaah</strong></th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Nomor Paspor</strong></th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>No Referensi</strong></th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Tanggal Lahir</strong></th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;"><strong>Jenis Kelamin</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="counter" t-value="1"/>
+                                <t t-foreach="doc.jammaah_ids" t-as="data">
+                                    <tr>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-esc="counter"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.nama"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.paspor"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.referensi"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.tgl_lahir"/></td>
+                                        <td style="border: 1px solid #ddd; padding: 8px;"><span t-field="data.jenis_kel"/></td>
+                                    </tr>
+                                    <t t-set="counter" t-value="counter + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
