@@ -13,7 +13,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Travel',
     'version': '1.0.0',
-    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'contacts'],
+    'depends': ['base', 'product', 'account', 'l10n_id_efaktur', 'mail', 'website', 'portal', 'web', 'contacts',],
 
     'data': [
         # security
@@ -77,11 +77,20 @@
         ],
         'web.assets_backend': [
             'cdn_arrosyid/static/src/js/peta.js',
-            'cdn_arrosyid/static/src/xml/widget_peta.xml',
+            'cdn_arrosyid/static/src/js/lmap_renderer.js',
+            'cdn_arrosyid/static/src/js/lmap_controller.js',
+            'cdn_arrosyid/static/src/js/lmap_view.js',
+            'cdn_arrosyid/static/src/js/lmap_model.js',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
             'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js',
             'cdn_arrosyid/static/src/xml/peta.xml',
+            'cdn_arrosyid/static/src/xml/lmap_renderer.xml',
+            'cdn_arrosyid/static/src/xml/lmap_controller.xml',
+        ],
+        'website.assets_editor': [
+            'cdn_arrosyid/static/src/js/tour.js',
             'cdn_arrosyid/static/src/xml/widget_peta.xml',
+
         ],
     },
 }
