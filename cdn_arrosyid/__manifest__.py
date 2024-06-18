@@ -41,16 +41,16 @@
         'views/transaksi_sesiumroh.xml',
         'views/rencana_perjalanan.xml',
         'views/paket_umroh.xml',
-        # 'views/maskapai.xml',
+        'views/maskapai.xml',
         'views/identitas_peserta_umroh.xml',
         'views/identitas_petugas_lapangan.xml',
         'views/identitas_ustadz_pembimbing.xml',
-        # 'views/hotel.xml',
+        'views/hotel.xml',
         'views/perlengkapan.xml',
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
-    
+
         # views website
         'views/navbar_templates.xml',
         'views/footer_templates.xml',
