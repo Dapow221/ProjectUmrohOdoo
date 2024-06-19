@@ -7,9 +7,9 @@ class ProfilController(http.Controller):
     @http.route('/my/home', type='http', auth='public', website=True)
     def get_data(self):
         user_id = request.env.user.partner_id.id
-        data_sesi_umroh = request.env['cdn.sesi.umroh'].search([])
-        data_pendaftaran = request.env['cdn.pendaftaran'].search([])
-        data_jamaah_umroh = request.env['cdn.pendaftaran'].search(['|', ('partner_id', '=', user_id), ('pendaftar_id', '=', user_id)])
+        data_sesi_umroh = request.env['cdn.sesi.umroh'].sudo().search([])
+        data_pendaftaran = request.env['cdn.pendaftaran'].sudo().search([])
+        data_jamaah_umroh = request.env['cdn.pendaftaran'].sudo().search(['|', ('partner_id', '=', user_id), ('pendaftar_id', '=', user_id)])
         data_tagihan = request.env['account.move'].sudo().search([('partner_id', '=', user_id),('state', '=', 'posted')])
 
         return request.render('cdn_arrosyid.profil', {
