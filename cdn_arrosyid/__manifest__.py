@@ -50,7 +50,6 @@
         'views/invoice_inherit.xml',
         'views/pendaftaran.xml',
         'views/penagihan.xml',
-        # 'views/tes.xml',
 
         # views website
         'views/navbar_templates.xml',

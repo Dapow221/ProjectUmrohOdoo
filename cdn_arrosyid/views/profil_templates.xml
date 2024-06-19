@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <template id="profil" inherit_id="portal.portal_my_home" name="profil" >
+    <template id="profil" inherit_id="portal.portal_my_home" name="profil">
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="inside">
             <style>
                 .o_portal_my_home {
@@ -9,42 +9,126 @@
             </style>
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="after">
-            <h2>Nama Jamaah</h2>
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="tab" href="#pendaftaran" aria-selected="false" tabindex="-1" role="tab">Pendaftaran</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" data-bs-toggle="tab" href="#sesi" aria-selected="false" tabindex="-1" role="tab">Sesi dan Rencana Perjalanan</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="tab" href="#tagihan" aria-selected="false" tabindex="-1" role="tab">Tagihan</a>
-                </li>    
-            </ul>
-            <div id="myTabContent" class="tab-content m-2">
-                <div class="tab-pane fade show active" id="identitas" role="tabpanel">
-                    <h4>identitas</h4>
-                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-                </div>
-                <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
-                    <!-- <h4>pendaftaran</h4> -->
-                    <table class="table">
-                        <th>
-                            <td>nama</td>
-                            <td>sesi</td>
-                            <td>status</td>
-                        </th>
-                        <!-- <t t-foreach="data_pendaftaran" t-as="daftar">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <t t-foreach="daftar.jamaah_id" t-as="jamaah">
-                                        <t t-foreach="jamaah.partner_id" t-as="partner">
-                                            <h5 t-esc="partner.name"/>
+            <div class="container-fluid">
+                <h2 class="my-4">Nama Jamaah</h2>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#pendaftaran" aria-selected="false" tabindex="-1" role="tab">Pendaftaran</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#sesi" aria-selected="false" tabindex="-1" role="tab">Sesi dan Rencana Perjalanan</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#tagihan" aria-selected="false" tabindex="-1" role="tab">Tagihan</a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content m-2 ml-3">
+                    <div class="tab-pane fade show active" id="identitas" role="tabpanel">
+                        <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Jamaah</th>
+                                            <th scope="col">Jenis Kelamin</th>
+                                            <th scope="col">Paspor</th>
+                                            <th scope="col">Tanggal Umroh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <t t-foreach="jamaah.partner_id" t-as="data">
+                                                <td t-esc="data.name"/>
+                                            </t>
+                                            <td t-esc="jamaah.jenis_kel"/>
+                                            <td t-esc="jamaah.paspor"/>
+                                            <td t-esc="jamaah.tanggal_umroh"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
+                        <t t-foreach="data_pendaftaran" t-as="pendaftaran">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Jamaah</th>
+                                            <th scope="col">Nama Sesi</th>
+                                            <th scope="col">Tanggal Berangkat</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <t t-foreach="pendaftaran.jamaah_id" t-as="jamaah">
+                                                <td t-esc="jamaah.name"/>
+                                            </t>
+                                            <td t-esc="pendaftaran.name_sesi"/>
+                                            <td t-esc="pendaftaran.tanggal_berangkat"/>
+                                            <td t-esc="pendaftaran.state"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="tab-pane fade" id="sesi">
+                        <t t-foreach="data_sesi" t-as="sesi">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Sesi</th>
+                                            <th scope="col">Keterangan</th>
+                                            <th scope="col">Tanggal Mulai</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td t-esc="sesi.name"/>
+                                            <td t-esc="sesi.keterangan"/>
+                                            <td t-esc="sesi.tanggal_berangkat"/>
+                                            <td class="badge rounded-pill text-bg-primary" t-esc="sesi.state"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="tab-pane fade" id="tagihan">
+                        <t t-foreach="data_jamaah_umroh" t-as="jamaah">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Tanggal tagihan</th>
+                                            <th>Harga</th>
+                                            <th>Status pembayaran</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="data_tagihan" t-as="tagihan">
+                                            <tr>
+                                                <td><t t-esc="tagihan.name"/></td>
+                                                <td><t t-esc="tagihan.invoice_date"/></td>
+                                                <td><t t-esc="tagihan.amount_total"/></td>
+                                                <td><t t-esc="tagihan.payment_state"/></td>
+                                                <td>
+                                                    <button name="action_name" type="button" class="btn btn-success">Bayar</button>
+                                                    <button name="action_name2" type="button" class="btn btn-outline-primary">Lihat Detail</button>
+                                                </td>
+                                            </tr>
                                         </t>
+
                                     </t>
                                 </td>
                                 <td>
@@ -150,7 +234,9 @@
                                         <t t-esc="tagihan.invoice_date"/>
                                     </td>
                                     <td>
+
                                         <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
+
                                     </td>
                                     <td>
                                         <t t-esc="tagihan.payment_state"/>
@@ -162,11 +248,16 @@
                                     </td>
                                 </tr>
                             </t>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </t>
-                    </table>
+                    </div>
                 </div>
             </div>
         </xpath>
-    </template>    
-    
+    </template>
 </odoo>

@@ -26,7 +26,7 @@
             </ul>
             <div id="myTabContent" class="tab-content m-2">
                 <div class="tab-pane fade show active" id="identitas" role="tabpanel">
-                    <h4>Identitas</h4>
+                    <!-- <h4>Identitas</h4> -->
                     <t t-foreach="data_jamaah_umroh" t-as="jamaah">
                         <table class="table">
                             <thead>
@@ -51,7 +51,7 @@
                     </t>
                 </div>
                 <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
-                    <h4>Pendaftaran</h4>
+                    <!-- <h4>Pendaftaran</h4> -->
                     <t t-foreach="data_pendaftaran" t-as="pendaftaran">
                         <table class="table">
                             <thead>
@@ -76,7 +76,7 @@
                     </t>
                 </div>
                 <div class="tab-pane fade" id="sesi">
-                    <h4>Sesi</h4>
+                    <!-- <h4>Sesi</h4> -->
                     <t t-foreach="data_sesi" t-as="sesi">
                         <table class="table">
                             <thead>
@@ -99,20 +99,37 @@
                     </t>
                 </div>
                 <div class="tab-pane fade" id="tagihan">
-                    <h4>Tagihan</h4>
+                    <!-- <h4>Tagihan</h4> -->
                     <t t-foreach="data_jamaah_umroh" t-as="jamaah">
                         <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tagihan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td t-esc="jamaah.jumlah_penagihan"/>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <tr>
+                            <th>nama</th>
+                            <th>Tanggal tagihan</th>
+                            <th>harga</th>
+                            <th>status pembayaran</th>
+                            <th>aksi</th>
+                        </tr>
+                        <t t-foreach="data_tagihan" t-as="tagihan">
+                            <tr>
+                                <td>
+                                    <t t-esc="tagihan.name"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.invoice_date"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.amount_total"/>
+                                </td>
+                                <td>
+                                    <t t-esc="tagihan.payment_state"/>
+                                </td>
+                                <td>
+                                    <button string="tes" name="action_name" type="button" class="btn btn-success">Bayar</button>
+                                    <button string="tes2" name="action_name2" type="button" class="btn btn-outline-pri">lihat detail</button>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
                     </t>
                 </div>
             </div>
