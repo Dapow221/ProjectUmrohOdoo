@@ -58,7 +58,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                        <t t-if="data_login.jenis_kel == 'l'">
+                                                        <t t-att-value="data_login.jenis_kel" t-if=" data_login.jenis_kel == 'l'">
                                                             <div>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="jenis_kelamin" checked="1" />
@@ -71,7 +71,7 @@
                                                             </div>
                                                             
                                                         </t>
-                                                        <t t-else="">
+                                                        <t t-att-value="data_login.jenis_kel" t-if=" data_login.jenis_kel == 'p'">
                                                             <div>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="jenis_kelamin" />
@@ -94,19 +94,19 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="telepon">Nomor Telepon</label>
-                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.phone"/>
+                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.mobile"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label>Sudah Menikah</label>
-                                                    <input type="text" class="form-control" id="is_meniskah"/>
+                                                    <input type="text" class="form-control" id="is_meniskah" t-att-value="data_login.is_menikah"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label>Pendidikan Terakhir</label>
-                                                    <input type="text" class="form-control" id="pend_terakhir"/>
+                                                    <input type="text" class="form-control" id="pend_terakhir" t-att-value="pendidikan_label"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -123,21 +123,21 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>No Paspor</label>
-                                                        <input type="number" class="form-control" id="pend_terakhir"/>
+                                                        <input type="text" class="form-control" id="pend_terakhir" t-att-value="data_login.paspor"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Masa Berlaku Paspor</label>
-                                                        <input type="date" class="form-control" id="masa_paspor"/>
+                                                        <input type="date" class="form-control" id="masa_paspor" t-att-value="data_login.masa_paspor"/>
                                                     </div>
                                                 </div>
                                                 <br/>
-                                                <label>Informais Khusus</label><hr/>
+                                                <label>Informasi Khusus</label><hr/>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="alamat">Riwayat Penyakit</label>
-                                                        <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada"></textarea>
+                                                        <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada" t-att-value="data_login.riwayat_penyakit"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,31 +147,31 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Golongan Darah</label>
-                                                        <input type="text" class="form-control" id="gol_darah"/>
+                                                        <input type="text" class="form-control" id="gol_darah" t-att-value="golongan_darah_label"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Pekerjaan</label>
-                                                        <input type="text" class="form-control" id="pekerjaan"/>
+                                                        <input type="text" class="form-control" id="pekerjaan" t-att-value="pekerjaan_label"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label>vaksin mengitis</label>
-                                                        <input type="text" class="form-control" id="meningitis"/>
+                                                        <label>vaksin meningitis</label>
+                                                        <input type="text" class="form-control" id="meningitis" t-att-value="'Ya' if data_login.vaksin_meningitis else 'Tidak'"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>vaksin covid</label>
-                                                        <input type="text" class="form-control" id="covid"/>
+                                                        <input type="text" class="form-control" id="covid" t-att-value="vaksin_covid19_label"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Sudah Umroh</label>
-                                                        <input type="text" class="form-control" id="sudah_umroh"/>
+                                                        <input type="text" class="form-control" id="sudah_umroh" t-att-value="'Ya' if data_login.is_umroh else 'Tidak'"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -301,7 +301,7 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>No Paspor</label>
-                                                            <input type="number" class="form-control" id="pend_terakhir"/>
+                                                            <input type="text" class="form-control" id="pend_terakhir" t-att-value="data_login.paspor"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
