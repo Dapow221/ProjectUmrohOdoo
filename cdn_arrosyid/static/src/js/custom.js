@@ -30,20 +30,20 @@ odoo.define('cdn_arrosyid.custom', function (require) {
         };
         console.log('data : ', data_pembayaran);
 
-        // $.ajax({
-        //     url: "/buat_pembayaran",
-        //     type: "POST",
-        //     data: data_pembayaran,
-        //     dataType: "json",
-        //     success: function (data) {
-        //         console.log("Rekaman baru dibuat dengan ID:", data);
-        //         alert('Pembayaran berhasil');
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error("Kesalahan dalam panggilan AJAX:", error);
-        //         alert('Kesalahan: ' + error);
-        //     }
-        // });
+        $.ajax({
+            url: "/buat_pembayaran",
+            type: "POST",
+            data: data_pembayaran,
+            dataType: "json",
+            success: function (data) {
+                console.log("Rekaman baru dibuat dengan ID:", data);
+                alert('Pembayaran berhasil');
+            },
+            error: function (xhr, status, error) {
+                console.error("Kesalahan dalam panggilan AJAX:", error);
+                alert('Kesalahan: ' + error);
+            }
+        });
 
     });
 })

@@ -234,7 +234,9 @@
                                         <t t-esc="tagihan.invoice_date"/>
                                     </td>
                                     <td>
-                                        <t t-esc="tagihan.amount_total"/>
+
+                                        <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
+
                                     </td>
                                     <td>
                                         <t t-esc="tagihan.payment_state"/>
@@ -247,9 +249,11 @@
                                 </tr>
                             </t>
 
+
                                     </tbody>
                                 </table>
                             </div>
+
                         </t>
                     </div>
                 </div>
