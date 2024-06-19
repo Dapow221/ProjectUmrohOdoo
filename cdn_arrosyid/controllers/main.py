@@ -25,7 +25,7 @@ class MainController(http.Controller):
     @http.route('/pendaftaran', type='http', auth="user", website=True)
     def get_pendaftaran(self, **kwargs):            
             user_id = request.env.user.partner_id.id
-            data_login = request.env['cdn.identitas.jamaah'].search([('partner_id', '=', user_id)])
+            data_login = request.env['cdn.identitas.jamaah'].sudo().search([('partner_id', '=', user_id)])
             data_semua_jamaah_umroh = request.env['cdn.identitas.jamaah'].sudo().search([])
             data_paket_umroh = request.env['cdn.paket.umroh'].search([])
 

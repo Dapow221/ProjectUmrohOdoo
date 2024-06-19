@@ -5,7 +5,7 @@
         <template id="login" inherit_id="web.login" name="Custom Login" >
             <xpath expr="//div[hasclass('o_login_auth')]" position="after">
                 <div>
-                    <button string="daftar" type="button" class="btn btn-secondary" style="padding: 5px 2px; background-color: #2ecc71;" >
+                    <button string="daftar" type="button" class="btn btn-success" style="padding: 5px 2px;" >
                         <a href="/signup" class="nav-link" style="color: white; ">Daftar</a>
                     </button>
                 </div>
