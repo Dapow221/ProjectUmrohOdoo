@@ -18,7 +18,7 @@ class AccountMove(models.Model):
         if other_moves:
             other_moves._post(soft=False)
 
-        url = 'http://localhost:8069/virtual_account/create'
+        url = 'http://localhost:8015/virtual_account/create'
         data_bayar = {
             "virtual_account" : self.name,
             "amount" : self.amount_total,
