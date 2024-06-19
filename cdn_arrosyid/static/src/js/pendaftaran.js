@@ -33,6 +33,37 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     }
     removeRow();
 
+    function toggleTanggalUmrohField() {
+        var isUmrohChecked = $('#sudah_umroh').is(':checked');
+        if (isUmrohChecked) {
+            $('#tanggal_umroh_field').show();
+        } else {
+            $('#tanggal_umroh_field').hide();
+        }
+    }
+
+    function toggleNamaPasanganField() {
+        var isMenikahChecked = $('#sudah_menikah').is(':checked');
+        if (isMenikahChecked) {
+            $('#nama_pasangan_field').show();
+        } else {
+            $('#nama_pasangan_field').hide();
+        }
+    }
+
+    $(document).ready(function() {
+        toggleTanggalUmrohField();
+        toggleNamaPasanganField();
+    });
+
+    $('#sudah_umroh').change(function() {
+        toggleTanggalUmrohField();
+    });
+
+    $('#sudah_menikah').change(function() {
+        toggleNamaPasanganField();
+    });
+
     $('#toggle_tambah').click(function() {
         $('#tambah_jamaah').prop('hidden', false).toggle(); 
         $('#pilih_jamaah').hide();

@@ -44,15 +44,15 @@
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link" data-bs-toggle="tab" href="#info_lain" aria-selected="false" tabindex="-1" role="tab">Informasi Lain</a>
-                                            </li>
+                                        </li>
                                     </ul>
                                     <div id="myTabContent" class="tab-content">
                                         <div class="tab-pane p-3 fade show active" id="info_umum" role="tabpanel">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label for="nama">Nama Lengkap</label>
-                                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name"/>
+                                                        <label for="nama">Nama Lengkap</label>
+                                                        <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -84,29 +84,41 @@
                                                             </div>
                                                         </t>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email"/>
+                                                        <label for="email">Email</label>
+                                                        <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label for="telepon">Nomor Telepon</label>
-                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.mobile"/>
+                                                        <label for="telepon">Nomor Telepon</label>
+                                                        <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.mobile"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label>Sudah Menikah</label>
-                                                    <input type="text" class="form-control" id="is_meniskah" t-att-value="data_login.is_menikah"/>
+                                                        <label>Sudah Menikah</label>
+                                                        <input type="checkbox" id="sudah_menikah" t-att-checked="data_login.is_menikah"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label>Pendidikan Terakhir</label>
-                                                    <input type="text" class="form-control" id="pend_terakhir" t-att-value="pendidikan_label"/>
+                                                        <label>Pendidikan Terakhir</label>
+                                                        <select class="form-control" id="pendidikan" name="pendidikan">
+                                                            <t t-foreach="pendidikan_selection.items()" t-as="item">
+                                                                <option t-att-value="item[0]">
+                                                                    <t t-esc="item[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6" id="nama_pasangan_field" t-attf-style="display:#{'block' if data_login.is_menikah else 'none'};">
+                                                    <div class="form-group">
+                                                        <label for="nama_pasangan">Nama Pasangan</label>
+                                                        <input type="text" class="form-control" id="nama_pasangan_menikah" name="nama_pasangan" t-att-value="data_login.nama_pasangan"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -147,13 +159,26 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Golongan Darah</label>
-                                                        <input type="text" class="form-control" id="gol_darah" t-att-value="golongan_darah_label"/>
+                                                        <!-- <input type="text" class="form-control" id="gol_darah" t-att-value="golongan_darah_label"/> -->
+                                                        <select class="form-control" id="golongan_darah_dropdown" name="golongan_darah">
+                                                            <t t-foreach="golongan_darah_selection.items()" t-as="item">
+                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.golongan_darah else ''">
+                                                                    <t t-esc="item[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Pekerjaan</label>
-                                                        <input type="text" class="form-control" id="pekerjaan" t-att-value="pekerjaan_label"/>
+                                                        <select class="form-control" id="pekerjaan_dropdown" name="pekerjaan">
+                                                            <t t-foreach="pekerjaan_selection.items()" t-as="item">
+                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.pekerjaan else ''">
+                                                                    <t t-esc="item[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -165,13 +190,26 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>vaksin covid</label>
-                                                        <input type="text" class="form-control" id="covid" t-att-value="vaksin_covid19_label"/>
+                                                        <!-- <input type="text" class="form-control" id="covid" t-att-value="vaksin_covid19_label"/> -->
+                                                        <select class="form-control" id="vaksin_covid19_dropdown" name="vaksin_covid19">
+                                                            <t t-foreach="vaksin_covid19_selection.items()" t-as="item">
+                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.vaksin_covid19 else ''">
+                                                                    <t t-esc="item[1]"/>
+                                                                </option>
+                                                            </t>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Sudah Umroh</label>
-                                                        <input type="text" class="form-control" id="sudah_umroh" t-att-value="'Ya' if data_login.is_umroh else 'Tidak'"/>
+                                                        <input type="checkbox" id="sudah_umroh" t-att-checked="data_login.is_umroh" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6" id="tanggal_umroh_field" t-attf-style="display:#{'block' if data_login.is_umroh else 'none'};">
+                                                    <div class="form-group">
+                                                        <label for="tanggal_umroh">Tanggal Umroh</label>
+                                                        <input type="date" class="form-control" id="tanggal_umroh" name="tanggal_umroh" t-att-value="data_login.tanggal_umroh"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -342,7 +380,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label>vaksin mengitis</label>
+                                                            <label>vaksin meningitis</label>
                                                             <input type="text" class="form-control" id="meningitis"/>
                                                         </div>
                                                     </div>
