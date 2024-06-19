@@ -113,8 +113,6 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
         }
     });
 
-
-
     $(document).on('change', "#paket_umroh", function () {
         var paket_id = $("#paket_umroh").val();
         var selectSesi = $("#sesi_umroh");
