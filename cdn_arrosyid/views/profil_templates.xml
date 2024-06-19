@@ -10,7 +10,7 @@
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="after">
             <div class="container-fluid">
-                <h2 class="my-4">Nama Jamaah</h2>
+                <h2 t-esc="data_user.name" class="my-4"/>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
@@ -103,151 +103,103 @@
                             </div>
                     </div>
                     <div class="tab-pane fade" id="tagihan">
-                        <t t-foreach="data_jamaah_umroh" t-as="jamaah">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama</th>
-                                            <th>Tanggal tagihan</th>
-                                            <th>Harga</th>
-                                            <th>Status pembayaran</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="data_tagihan" t-as="tagihan">
-                                            <tr>
-                                                <td><t t-esc="tagihan.name"/></td>
-                                                <td><t t-esc="tagihan.invoice_date"/></td>
-                                                <td><t t-esc="tagihan.amount_total"/></td>
-                                                <td><t t-esc="tagihan.payment_state"/></td>
-                                                <td>
-                                                    <button name="action_name" type="button" class="btn btn-success">Bayar</button>
-                                                    <button name="action_name2" type="button" class="btn btn-outline-primary">Lihat Detail</button>
-                                                </td>
-                                            </tr>
-                                        </t>
-
-                                    </tbody>
-                                </table>
-                                <td>
-                                    <t t-foreach="daftar.sesi_id" t-as="sesii">
-                                        <h5 t-esc="sesii.name"/>
-                                    </t>
-                                </td>
-                                <td>
-                                    <h5 t-esc="daftar.state"/>
-                                </td>
-                            </div>
-                        </t> 
-                    </div>
-                    
-                    <!-- <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p> -->
-                </div>
-                <div class="tab-pane fade" id="sesi">
-                    <h4>sesi</h4>
-                    <t t-foreach="data_sesi" t-as="sakarep">
-                        <h5 t-esc="sakarep.name" class="text-warning"/>
-                    </t>
-                    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-                </div>
-                <div class="tab-pane fade" id="tagihan">
-                    <t t-set="total_residual" t-value="0"/>
-                    <t t-foreach="data_tagihan" t-as="tagihan_input">
-                        <t t-set="total_residual" t-value="total_residual + tagihan_input.amount_residual"/>
-                        <t t-set="data_partner_id" t-value="tagihan_input.partner_id.id"/>
-                    </t>
-                    <t t-set="formatted_residual" t-value="'{:,.0f}'.format(total_residual).replace(',', '.')"/>
-                    <h5>Total tagihan : Rp.<t t-esc="formatted_residual"/></h5>
-                    <div class="btn-group m-2">
-                        <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Bayar</button>
-                        <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Riwayat Pembayaran</button>
-                    </div>
-                    <div class="modal fade" id="crt_payment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Buat Pembayaran</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col-12 mb-3">
-                                            <label for="jml_uang" class="form-label">total tagihan</label>
-                                            <input type="text" class="form-control" id="jml_tagihan" readonly="1"/>
-                                        </div>
-                                        <t t-set="csrf_token" t-value="request.csrf_token()"/>
-                                        <form class="row">
-                                            <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
-                                            <input type="id" id="dt_partner_id" t-att-value="data_partner_id" hidden="1"/>
-                                            <div class="col-6 mb-3">
-                                                <label for="metode_bayar" class="form-label">Metode Pembayaran</label>
-                                                <select id="metode_bayar" class="form-select">
-                                                    <option selected="1" disabled="1">pilih metode</option>
-                                                    <option value="bank">bank</option>
-                                                    <option value="kas">kas</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <label for="jml_uang" class="form-label">Jumlah Uang</label>
-                                                <input type="text" class="form-control" id="jml_pembayaran"/>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <label for="tagihan" class="form-label">Tagihan</label>
-                                                <select id="tagihan_id" class="form-select">
-                                                    <option selected="1" disabled="1">pilih tagihan</option>
-                                                    <t t-foreach="data_tagihan" t-as="tagihan_input">
-                                                        <t t-if="'INV' in tagihan_input.name">
-                                                            <option t-att-value="tagihan_input.id"><t t-esc="tagihan_input.partner_id.name"/> {<t t-esc="tagihan_input.name"/>} - <t t-esc="tagihan_input.amount_residual"/></option>
-                                                        </t>
-                                                    </t>
-                                                </select>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <label for="tgl_pembayaran" class="form-label">Tangal Pembayaran</label>
-                                                <input type="date" class="form-control" id="tgl_pembayaran"/>
-                                            </div>                                       
-                                        </form>
+                        <t t-set="total_residual" t-value="0"/>
+                        <t t-foreach="data_tagihan" t-as="tagihan_input">
+                            <t t-set="total_residual" t-value="total_residual + tagihan_input.amount_residual"/>
+                            <t t-set="data_partner_id" t-value="tagihan_input.partner_id.id"/>
+                        </t>
+                        <t t-set="formatted_residual" t-value="'{:,.0f}'.format(total_residual).replace(',', '.')"/>
+                        <h5>Total tagihan : Rp.<t t-esc="formatted_residual"/></h5>
+                        <div class="btn-group m-2">
+                            <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Bayar</button>
+                            <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Riwayat Pembayaran</button>
+                        </div>
+                        <div class="modal fade" id="crt_payment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Buat Pembayaran</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-daner" data-bs-dismiss="modal">batal</button>
-                                    <button type="button" id="btn_submit_pembayaran" class="btn btn-success">Bayar</button>
+                                    <div class="modal-body">
+                                        <div class="col-12 mb-3">
+                                                <label for="jml_uang" class="form-label">total tagihan</label>
+                                                <input type="text" class="form-control" id="jml_tagihan" readonly="1"/>
+                                            </div>
+                                            <t t-set="csrf_token" t-value="request.csrf_token()"/>
+                                            <form class="row">
+                                                <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
+                                                <input type="id" id="dt_partner_id" t-att-value="data_partner_id" hidden="1"/>
+                                                <div class="col-6 mb-3">
+                                                    <label for="metode_bayar" class="form-label">Metode Pembayaran</label>
+                                                    <select id="metode_bayar" class="form-select">
+                                                        <option selected="1" disabled="1">pilih metode</option>
+                                                        <option value="bank">bank</option>
+                                                        <option value="kas">kas</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label for="jml_uang" class="form-label">Jumlah Uang</label>
+                                                    <input type="text" class="form-control" id="jml_pembayaran"/>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label for="tagihan" class="form-label">Tagihan</label>
+                                                    <select id="tagihan_id" class="form-select">
+                                                        <option selected="1" disabled="1">pilih tagihan</option>
+                                                        <t t-foreach="data_tagihan" t-as="tagihan_input">
+                                                            <t t-if="'INV' in tagihan_input.name">
+                                                                <option t-att-value="tagihan_input.id"><t t-esc="tagihan_input.partner_id.name"/> {<t t-esc="tagihan_input.name"/>} - <t t-esc="tagihan_input.amount_residual"/></option>
+                                                            </t>
+                                                        </t>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label for="tgl_pembayaran" class="form-label">Tangal Pembayaran</label>
+                                                    <input type="date" class="form-control" id="tgl_pembayaran"/>
+                                                </div>                                       
+                                            </form>
+                                        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-daner" data-bs-dismiss="modal">batal</button>
+                                        <button type="button" id="btn_submit_pembayaran" class="btn btn-success">Bayar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <table class="table">
-                        <tr>
-                            <th>nama</th>
-                            <th>Tanggal tagihan</th>
-                            <th>harga</th>
-                            <th>status pembayaran</th>
-                            <th>aksi</th>
-                        </tr>
-                        <t t-foreach="data_tagihan" t-as="tagihan">
-                            <t t-if="'INV' in tagihan.name">
-                                <tr>
-                                    <td>
-                                        <t t-esc="tagihan.partner_id.name"/> {<t t-esc="tagihan.name"/>}
-                                    </td>
-                                    <td>
-                                        <t t-esc="tagihan.invoice_date"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="tagihan.payment_state"/>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id"> lihat detail </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                        <table class="table">
+                            <tr>
+                                <th>nama</th>
+                                <th>Tanggal tagihan</th>
+                                <th>harga</th>
+                                <th>status pembayaran</th>
+                                <th>aksi</th>
+                            </tr>
+                            <t t-foreach="data_tagihan" t-as="tagihan">
+                                <t t-if="'INV' in tagihan.name">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="tagihan.partner_id.name"/> {<t t-esc="tagihan.name"/>}
+                                        </td>
+                                        <td>
+                                            <t t-esc="tagihan.invoice_date"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="tagihan.payment_state"/>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id"> lihat detail </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </t>
                             </t>
-                        </t>
-                    </table>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </xpath>
