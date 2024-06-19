@@ -27,14 +27,27 @@ class MainController(http.Controller):
     @http.route('/pendaftaran', type='http', auth="user", website=True)
     def get_pendaftaran(self, **kwargs):            
             user_id = request.env.user.partner_id.id
-            data_login = request.env['cdn.identitas.jamaah'].search([('partner_id', '=', user_id)])
+            data_login = request.env['cdn.identitas.jamaah'].sudo().search([('partner_id', '=', user_id)])
             data_semua_jamaah_umroh = request.env['cdn.identitas.jamaah'].sudo().search([])
             data_paket_umroh = request.env['cdn.paket.umroh'].search([])
+            
+            pendidikan_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['pendidikan'].selection)
+            pendidikan_label = pendidikan_selection.get(data_login.pendidikan, '')
+            golongan_darah_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['golongan_darah'].selection)
+            golongan_darah_label = golongan_darah_selection.get(data_login.golongan_darah, '')            
+            pekerjaan_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['pekerjaan'].selection)
+            pekerjaan_label = pekerjaan_selection.get(data_login.pekerjaan, '')
+            vaksin_covid19_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['vaksin_covid19'].selection)
+            vaksin_covid19_label = vaksin_covid19_selection.get(data_login.vaksin_covid19, '')
 
             return request.render('cdn_arrosyid.pendaftaran_web', {
                 'data_login': data_login,
                 'data_paket_umroh': data_paket_umroh,
                 'data_semua_jamaah_umroh': data_semua_jamaah_umroh,
+                'pendidikan_label': pendidikan_label,
+                'golongan_darah_label': golongan_darah_label,
+                'pekerjaan_label': pekerjaan_label,
+                'vaksin_covid19_label': vaksin_covid19_label,
                 # 'tes': user_id,
             })
 
