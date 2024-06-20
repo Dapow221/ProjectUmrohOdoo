@@ -1,7 +1,6 @@
 import json
 from odoo import http
 from odoo.http import request
-from odoo.exceptions import ValidationError
 
 class SignupController(http.Controller):
     @http.route('/signup', type='http', auth='public', website=True)
@@ -14,11 +13,6 @@ class SignupController(http.Controller):
             email = post.get('email')
             name = post.get('name')
             password = post.get('password')
-            confirm_password = post.get('confirm_password')
-
-            partner_exists = request.env['res.partner'].sudo().search([('email', '=', email)])
-            if partner_exists:
-                return json.dumps({'result': False, 'error': 'Email sudah terdaftar. Silakan gunakan email lain.'})
 
             partner = request.env['res.partner']
             partner_id = partner.sudo().create({
@@ -26,11 +20,12 @@ class SignupController(http.Controller):
                 'name': name,      
             })
 
-            request.env['res.users'].sudo().create({
+            user = request.env['res.users'].sudo().create({
                 'partner_id': partner_id.id,
                 'login': email,
                 'name': name,
                 'password': password,
+                'groups_id': [(6, 0, [10])],
             })
 
             request.env['cdn.identitas.jamaah'].sudo().create({
@@ -48,3 +43,8 @@ class SignupController(http.Controller):
             existing_user = request.env['res.users'].sudo().search([('email', '=', email)])
             return {'exists': True if existing_user else False}
         return {'exists': False}
+
+    @http.route('/register_berhasil', type='http',
+                auth="public", website=True)
+    def thank_you(self, **post):
+        return request.render('cdn_arrosyid.register_berhasil', {})

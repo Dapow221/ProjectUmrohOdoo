@@ -5,6 +5,8 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     var rpc = require('web.rpc');
     var ajax = require('web.ajax');
 
+    
+
 
     $('input[name="radio_dftr"]').change(function() {
         var selectedValue = $(this).val();
@@ -54,6 +56,42 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     $(document).ready(function() {
         toggleTanggalUmrohField();
         toggleNamaPasanganField();
+
+        var pendidikanDefault     = $('#pendidikan').data('default');
+        var golongan_darahDefault = $('#golongan_darah_dropdown').data('default');
+        var pekerjaanDefault      = $('#pekerjaan_dropdown').data('default');
+        var vaksin_covid19Default      = $('#vaksin_covid19_dropdown').data('default');
+        if (pendidikanDefault) {
+            $('#pendidikan option').each(function() {
+                if ($(this).val() === pendidikanDefault) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (golongan_darahDefault) {
+            $('#golongan_darah_dropdown option').each(function() {
+                if ($(this).val() === golongan_darahDefault) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (pekerjaanDefault) {
+            $('#pekerjaan_dropdown option').each(function() {
+                if ($(this).val() === pekerjaanDefault) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (vaksin_covid19Default) {
+            $('#vaksin_covid19_dropdown option').each(function() {
+                if ($(this).val() === vaksin_covid19Default) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
     });
 
     $('#sudah_umroh').change(function() {
@@ -143,8 +181,6 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
             updateTotalCount();
         }
     });
-
-
 
     $(document).on('change', "#paket_umroh", function () {
         var paket_id = $("#paket_umroh").val();

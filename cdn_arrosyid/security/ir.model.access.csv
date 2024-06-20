@@ -38,4 +38,3 @@ access_portal_res_partner,access_portal_res_partner,base.model_res_partner,base.
 access_portal_res_users,access_portal_res_users,base.model_res_users,base.group_portal,1,1,1,1
 access_portal_ir_sequence,access_portal_ir_sequence,base.model_ir_sequence,base.group_portal,1,1,1,1
 access_portal_account_move,access_portal_account_move,model_account_move,base.group_portal,1,1,1,1
-

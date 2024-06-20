@@ -106,7 +106,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Pendidikan Terakhir</label>
-                                                        <select class="form-control" id="pendidikan" name="pendidikan">
+                                                        <select class="form-control" id="pendidikan" name="pendidikan" t-att-data-default="data_login_pendidikan">
                                                             <t t-foreach="pendidikan_selection.items()" t-as="item">
                                                                 <option t-att-value="item[0]">
                                                                     <t t-esc="item[1]"/>
@@ -160,9 +160,9 @@
                                                     <div class="form-group">
                                                         <label>Golongan Darah</label>
                                                         <!-- <input type="text" class="form-control" id="gol_darah" t-att-value="golongan_darah_label"/> -->
-                                                        <select class="form-control" id="golongan_darah_dropdown" name="golongan_darah">
+                                                        <select class="form-control" id="golongan_darah_dropdown" name="golongan_darah" t-att-data-default="data_login_golongan_darah">
                                                             <t t-foreach="golongan_darah_selection.items()" t-as="item">
-                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.golongan_darah else ''">
+                                                                <option t-att-value="item[0]">
                                                                     <t t-esc="item[1]"/>
                                                                 </option>
                                                             </t>
@@ -172,9 +172,9 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Pekerjaan</label>
-                                                        <select class="form-control" id="pekerjaan_dropdown" name="pekerjaan">
+                                                        <select class="form-control" id="pekerjaan_dropdown" name="pekerjaan" t-att-data-default="data_login_pekerjaan">
                                                             <t t-foreach="pekerjaan_selection.items()" t-as="item">
-                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.pekerjaan else ''">
+                                                                <option t-att-value="item[0]" >
                                                                     <t t-esc="item[1]"/>
                                                                 </option>
                                                             </t>
@@ -183,17 +183,17 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label>vaksin meningitis</label>
+                                                        <label>Vaksin meningitis</label>
                                                         <input type="text" class="form-control" id="meningitis" t-att-value="'Ya' if data_login.vaksin_meningitis else 'Tidak'"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label>vaksin covid</label>
+                                                        <label>Vaksin Covid19</label>
                                                         <!-- <input type="text" class="form-control" id="covid" t-att-value="vaksin_covid19_label"/> -->
-                                                        <select class="form-control" id="vaksin_covid19_dropdown" name="vaksin_covid19">
+                                                        <select class="form-control" id="vaksin_covid19_dropdown" name="vaksin_covid19" t-att-data-default="data_login_vaksin_covid19">
                                                             <t t-foreach="vaksin_covid19_selection.items()" t-as="item">
-                                                                <option t-att-value="item[0]" t-att-selected="'selected' if item[0] == data_login.vaksin_covid19 else ''">
+                                                                <option t-att-value="item[0]" >
                                                                     <t t-esc="item[1]"/>
                                                                 </option>
                                                             </t>

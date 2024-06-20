@@ -71,8 +71,8 @@
                             <field name="name"/>
                             <field name="keterangan"/>
                             <field name="durasi" string="Durasi (hari)"/>
-                            <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
-                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/>
+                            <!-- <field name="maskapai_id" domain="[('jenis', '=', 'maskapai')]"/>         
+                            <field name="hotel_id" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags"/> -->
                             <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/> 
                             <field name="currency_id" invisible="1"/>
                         </group>   

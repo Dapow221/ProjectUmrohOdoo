@@ -32,26 +32,22 @@ class MainController(http.Controller):
         data_paket_umroh = request.env['cdn.paket.umroh'].search([])
         
         pendidikan_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['pendidikan'].selection)
-        pendidikan_label = pendidikan_selection.get(data_login.pendidikan, '')
         golongan_darah_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['golongan_darah'].selection)
-        golongan_darah_label = golongan_darah_selection.get(data_login.golongan_darah, '')            
         pekerjaan_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['pekerjaan'].selection)
-        pekerjaan_label = pekerjaan_selection.get(data_login.pekerjaan, '')
         vaksin_covid19_selection = dict(request.env['cdn.identitas.jamaah'].sudo()._fields['vaksin_covid19'].selection)
-        vaksin_covid19_label = vaksin_covid19_selection.get(data_login.vaksin_covid19, '')
 
         return request.render('cdn_arrosyid.pendaftaran_web', {
             'data_login': data_login,
             'data_paket_umroh': data_paket_umroh,
             'data_semua_jamaah_umroh': data_semua_jamaah_umroh,
-            'pendidikan_label': pendidikan_label,
             'pendidikan_selection': pendidikan_selection,
-            'golongan_darah_label': golongan_darah_label,
             'golongan_darah_selection':golongan_darah_selection,
-            'pekerjaan_label': pekerjaan_label,
             'pekerjaan_selection': pekerjaan_selection,
-            'vaksin_covid19_label': vaksin_covid19_label,
             'vaksin_covid19_selection': vaksin_covid19_selection,
+            'data_login_pendidikan': data_login.pendidikan if data_login else '',
+            'data_login_golongan_darah': data_login.golongan_darah if data_login else '',
+            'data_login_pekerjaan': data_login.pekerjaan if data_login else '',
+            'data_login_vaksin_covid19': data_login.vaksin_covid19 if data_login else '',
         })
 
     # @http.route('/pendaftaran_sesi/<string:sesi_id>', type='http', auth="user", website=True, csrf=True, methods=['POST', 'GET'])

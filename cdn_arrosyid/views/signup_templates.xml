@@ -7,28 +7,23 @@
         </t>
     </template>
     <template id="auth_signup.fields" name="Sign Up">
-    <t t-set="csrf_token" t-value="request.csrf_token()"/>
-        <form class="oe_signup_form" role="form" t-if="not message" method="POST">
-            <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
+        <form class="oe_signup_form" role="form" method="POST">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
             <div class="container m-2">
                 <h5 class="">Register</h5>
                 <div class="mb-3 field-login">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control form-control-sm" autofocus="autofocus"
-                        autocapitalize="off" required="required" t-att-readonly="'readonly' if only_passwords else None" />
+                    <input type="text" name="email" id="email" class="form-control form-control-sm" autocapitalize="off" required="required"/>
                 </div>
 
                 <div class="mb-3 field-name">
                     <label for="name">Nama</label>
-                    <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="e.g. John Doe"
-                        required="required" t-att-readonly="'readonly' if only_passwords else None"
-                        t-att-autofocus="'autofocus' if login and not only_passwords else None"  />
+                    <input type="text" name="name" id="name" class="form-control form-control-sm" required="required"/>
                 </div>
 
                 <div class="mb-3 field-password pt-2">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control form-control-sm"
-                        required="required" t-att-autofocus="'autofocus' if only_passwords else None"/>
+                    <input type="password" name="password" id="password" class="form-control form-control-sm" required="required"/>
                 </div>
 
                 <div class="mb-3 field-confirm_password">
@@ -40,4 +35,19 @@
             </div>
         </form>
     </template>
+
+        <template id="register_berhasil" name="Thank you">
+            <t t-call="website.layout">
+                <form>
+                    <div style="text-align: center;padding: 125px;">
+                        <div class="card">
+                            <h1>Terima Kasih</h1>
+                            <h2>Pendaftaran Berhasil Ditambahkan</h2>
+                            <h3>" Tunggu proses konfirmasi dari admin, nanti akan muncul di halaman profil anda "</h3>
+                            <a href="/my/home" class="btn btn-primary">meunuju halaman Profil</a>
+                        </div>
+                    </div>
+                </form>
+            </t>
+        </template>
 </odoo>
