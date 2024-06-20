@@ -16,6 +16,7 @@ links.forEach(function(link) {
         links.forEach(function(link) {
             link.classList.remove('active');
         });
+
         // Tambahkan kelas "active" ke tautan yang diklik
         this.classList.add('active');
     });

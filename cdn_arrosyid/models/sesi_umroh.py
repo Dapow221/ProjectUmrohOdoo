@@ -24,7 +24,7 @@ class SesiUmroh(models.Model):
     rencana_perjalanan_ids = fields.One2many('cdn.rencana.perjalanan', 'sesi_umroh_id', string='rencana_perjalanan')
     maskapai_id            = fields.Many2one(related='paket_umroh_id.maskapai_id')
     hotel_id               = fields.Many2many(related='paket_umroh_id.hotel_id')
-    proses_perjalanan = fields.Float(compute='_compute_rencana_perjalanan_count', string='Proses Perjalanan (%)')
+    proses_perjalanan      = fields.Float(compute='_compute_rencana_perjalanan_count', string='Proses Perjalanan (%)')
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
@@ -45,7 +45,6 @@ class SesiUmroh(models.Model):
                 rec.state = 'proses'
     
     def action_selesai(self):
-        # for rec in self:
         for rec in self:
             if rec.rencana_perjalanan_ids.filtered(lambda x: x.state not in ['selesai', 'batal']):
                 raise ValidationError("Tidak dapat menandai sesi umroh selesai karena ada perjalanan yang belum diselesaikan.")
@@ -107,4 +106,3 @@ class SesiUmroh(models.Model):
     
     def action_pilih_sesi(self):
         return
-

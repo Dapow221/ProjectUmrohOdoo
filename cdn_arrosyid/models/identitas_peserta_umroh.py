@@ -1,6 +1,5 @@
 from odoo            import models, fields, api, _
 from datetime        import date
-# from dateutil        import relativedelta
 from odoo.exceptions import ValidationError
 
 class IdentitasJamaah(models.Model):
@@ -15,7 +14,7 @@ class IdentitasJamaah(models.Model):
     masa_paspor         = fields.Date(string='Masa berlaku Paspor')
     tgl_lahir           = fields.Date(string='Tanggal Lahir')
     umur                = fields.Integer(string='Umur', compute='_compute_umur') 
-    image               = fields.Image(string='image',)
+    image               = fields.Binary(string='image',)
     is_menikah          = fields.Boolean(string='Sudah menikah', default = False)
     nama_pasangan       = fields.Char(string='Nama Pasangan')
     riwayat_penyakit    = fields.Char(string='Riwayat Penyakit')
@@ -79,14 +78,6 @@ class IdentitasJamaah(models.Model):
         ("paspor_unique", "unique(paspor)", "Nomor Paspor sudah tercatat"),
     ]
     
-    # @api.constrains('masa_paspor')
-    # def _check_masa_paspor(self):
-    #     for rec in self:
-    #         today = date.today()
-    #         masa_berlaku_paspor = today - relativedelta.relativedelta(month=6)
-    #         if rec.masa_paspor and rec.masa_paspor < masa_berlaku_paspor:
-    #             raise ValidationError (_("Masa Berlaku Paspor harus lebih dari 6 bulan dari hari ini."))
-
     @api.model
     def create(self, vals):
         vals['referensi'] = self.env['ir.sequence'].next_by_code('cdn.identitas.jamaah.peserta')
@@ -143,6 +134,7 @@ class IdentitasJamaah(models.Model):
             'target': 'current',
             'type': 'ir.actions.act_window',
         }
+        
     # action button
     def action_draft(self):
         for rec in self:
@@ -159,4 +151,3 @@ class IdentitasJamaah(models.Model):
     def action_selesai(self):
         for rec in self:
             rec.state = 'selesai'
-    

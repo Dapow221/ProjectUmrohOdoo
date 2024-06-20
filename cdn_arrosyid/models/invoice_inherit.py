@@ -4,10 +4,10 @@ import json
 from datetime import date
 
 class AccountMove(models.Model):
-    _inherit = 'account.move'
+    _inherit       = 'account.move'
 
-    sesi_umroh = fields.Boolean(string='sesi_umroh')
-    paket_umroh = fields.Boolean(string='Paket_umroh')
+    sesi_umroh     = fields.Boolean(string='sesi_umroh')
+    paket_umroh    = fields.Boolean(string='Paket_umroh')
     pendaftaran_id = fields.Integer(string='Pendaftaran Id')
 
     def action_post(self):
@@ -18,7 +18,7 @@ class AccountMove(models.Model):
         if other_moves:
             other_moves._post(soft=False)
 
-        url = 'http://localhost:8069/virtual_account/create'
+        url = 'http://localhost:8015/virtual_account/create'
         data_bayar = {
             "virtual_account" : self.name,
             "amount" : self.amount_total,
