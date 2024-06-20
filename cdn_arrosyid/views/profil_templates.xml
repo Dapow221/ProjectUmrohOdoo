@@ -72,8 +72,9 @@
                                                     Masa Berlaku Paspor : <b> <t t-esc="data_identitas_jamaah.masa_paspor"/> </b>
                                                 </p>
                                                 <p class="m-b-10 f-w-600">
-                                                    Pekerjaan : <b>
-                                                        <t t-esc="{
+                                                    <b>
+                                                    <t t-set="pekerjaans">
+                                                        <t t-raw="{
                                                             'pns': 'PNS',
                                                             'irt': 'Ibu Rumah Tangga',
                                                             'tni': 'TNI',
@@ -81,8 +82,10 @@
                                                             'tani': 'Petani',
                                                             'swasta': 'Swasta',
                                                             'pelajar': 'Pelajar',
-                                                            'bumn': 'BUMN'
-                                                        }[data_identitas_jamaah.pekerjaan]"/>
+                                                            'bumn': 'BUMN',
+                                                        }.get(data_identitas_jamaah.pekerjaan, '')"/>
+                                                    </t>
+                                                    <t t-esc="pekerjaans"/>
                                                     </b>
                                                 </p>
                                                 <p class="m-b-10 f-w-600">Pernah Umroh :
@@ -114,12 +117,15 @@
                                                 </p>
                                                 <p class="m-b-10 f-w-600">
                                                     Pendidikan : <b>
-                                                        <t t-esc="{
+                                                    <t t-set="pendidikans">
+                                                        <t t-raw="{
                                                             'sd': 'SD',
                                                             'smp': 'SMP',
                                                             'sma': 'SMA',
                                                             'kuliah': 'Perguruan Tinggi'
-                                                        }[data_identitas_jamaah.pendidikan]"/>
+                                                        }.get(data_identitas_jamaah.pendidikan, '')"/>
+                                                    </t>
+                                                    <t t-esc="pendidikans"/>
                                                     </b>
                                                 </p>
                                                 <p class="m-b-10 f-w-600">
@@ -134,13 +140,17 @@
                                                     </t>
                                                 </p>
                                                 <p class="m-b-10 f-w-600">
-                                                    Vaksin Covid19: <b>
-                                                        <t t-esc="{
+                                                    Vaksin Covid19:
+                                                    <b> 
+                                                        <t t-set="vaksins">
+                                                            <t t-raw="{
                                                             'belum': 'Belum Vaksin',
                                                             'vaksin1': 'Vaksinasi Pertama',
                                                             'vaksin2': 'Vaksinasi Kedua',
                                                             'booster': 'Vaksin Booster'
-                                                        }[data_identitas_jamaah.vaksin_covid19]"/>
+                                                            }.get(data_identitas_jamaah.vaksin_covid19, '')"/>
+                                                        </t>
+                                                        <t t-esc="vaksins"/>
                                                     </b>
                                                 </p>
                                                 <p class="m-b-10 f-w-600">
@@ -177,13 +187,12 @@
                                     </thead>
                                     <tbody>
                                         <t t-foreach="data_pendaftaran" t-as="pendaftaran">
+                                        <t t-if="data_identitas_jamaah.partner_id.id in pendaftaran.pendaftar_id.mapped('partner_id').ids">
                                         <tr>
-                                            <t t-foreach="pendaftaran.jamaah_id" t-as="jamaah">
-                                                <td t-esc="jamaah.name"/>
-                                            </t>
+                                            <td t-esc="pendaftaran.nama"/>
                                             <td t-esc="pendaftaran.name_sesi"/>
                                             <td t-esc="pendaftaran.tanggal_berangkat"/>
-                                           <td class="d-flex justify-content-center align-items-center">
+                                            <td class="d-flex justify-content-center align-items-center">
                                                 <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
                                                     <t t-set="state_map" t-value="{
                                                         'draf': 'Draf',
@@ -196,6 +205,7 @@
                                                 </span>
                                             </td>
                                         </tr>
+                                        </t>
                                         </t>
                                     </tbody>
                                 </table>
@@ -215,34 +225,36 @@
                                 </thead>
                                 <tbody>
                                     <t t-foreach="data_sesi" t-as="sesi">
-                                    <tr>
-                                        <td t-esc="sesi.name"/>
-                                        <td t-esc="sesi.keterangan"/>
-                                        <td t-esc="sesi.tanggal_berangkat"/>
-                                        <td class="d-flex justify-content-center align-items-center">
-                                            <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
-                                                <t t-set="state_map" t-value="{
-                                                    'akan_datang': 'Akan Datang',
-                                                    'proses': 'Sedang Berjalan',
-                                                    'selesai': 'Selesai',
-                                                    'batal_perjalanan': 'Perjalanan Batal'
-                                                }"/>
-                                                <t t-esc="state_map.get(sesi.state, sesi.state)"/>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                    role="progressbar"
-                                                    t-att-aria-valuenow="int(sesi.proses_perjalanan)"
-                                                    aria-valuemin="0"
-                                                    aria-valuemax="100"
-                                                    t-att-style="'width: ' + str(int(sesi.proses_perjalanan)) + '%'">
-                                                    <span class="progress-text"><t t-esc="int(sesi.proses_perjalanan)"/>%</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <t t-if="data_identitas_jamaah.partner_id.id in sesi.jammaah_ids.jamaah_id.mapped('partner_id').ids">
+                                            <tr>
+                                                <td t-esc="sesi.name"/>
+                                                <td t-esc="sesi.keterangan"/>
+                                                <td t-esc="sesi.tanggal_berangkat"/>
+                                                <td class="d-flex justify-content-center align-items-center">
+                                                    <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
+                                                        <t t-set="state_map" t-value="{
+                                                            'akan_datang': 'Akan Datang',
+                                                            'proses': 'Sedang Berjalan',
+                                                            'selesai': 'Selesai',
+                                                            'batal_perjalanan': 'Perjalanan Batal'
+                                                        }"/>
+                                                        <t t-esc="state_map.get(sesi.state, sesi.state)"/>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                            role="progressbar"
+                                                            t-att-aria-valuenow="int(sesi.proses_perjalanan)"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="100"
+                                                            t-att-style="'width: ' + str(int(sesi.proses_perjalanan)) + '%'">
+                                                            <span class="progress-text"><t t-esc="int(sesi.proses_perjalanan)"/>%</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </t>
                                     </t>
                                 </tbody>
                             </table>
