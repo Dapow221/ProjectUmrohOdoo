@@ -10,7 +10,7 @@
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="after">
             <div class="container-fluid">
-                <h2 t-esc="data_user.name" class="my-4"/>
+                <!-- <h2 t-esc="data_user.name" class="my-4"/> -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
@@ -109,10 +109,10 @@
                             <t t-set="data_partner_id" t-value="tagihan_input.partner_id.id"/>
                         </t>
                         <t t-set="formatted_residual" t-value="'{:,.0f}'.format(total_residual).replace(',', '.')"/>
-                        <h5>Total tagihan : Rp.<t t-esc="formatted_residual"/></h5>
+                        <h5>Total tagihan : Rp <t t-esc="formatted_residual"/></h5>
                         <div class="btn-group m-2">
                             <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Bayar</button>
-                            <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Riwayat Pembayaran</button>
+                            <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#riwayat_pembayaran">Riwayat Pembayaran</button>
                         </div>
                         <div class="modal fade" id="crt_payment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -122,7 +122,12 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        
+                                        <div id="loading_pembayaran" class="text-center p-2" style="display: none;">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div>Mohon tunggu...</div>
+                                        </div>
                                         <t t-set="csrf_token" t-value="request.csrf_token()"/>
                                         <form class="row">
                                             <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
@@ -144,7 +149,7 @@
                                                 <select id="tagihan_id" class="form-select"  required="1">
                                                     <option selected="1" disabled="1">pilih tagihan</option>
                                                     <t t-foreach="data_tagihan" t-as="tagihan_input">
-                                                        <t t-if="'INV' in tagihan_input.name">
+                                                        <t t-if="'INV' in tagihan_input.name and tagihan_input.amount_residual != 0">
                                                             <option t-att-value="tagihan_input.id"><t t-esc="tagihan_input.partner_id.name"/> {<t t-esc="tagihan_input.name"/>} - <t t-esc="tagihan_input.amount_residual"/></option>
                                                         </t>
                                                     </t>
@@ -159,6 +164,56 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-daner" data-bs-dismiss="modal">batal</button>
                                         <button type="submit" id="btn_submit_pembayaran" class="btn btn-success">Bayar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="riwayat_pembayaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Riwayat Pembayaran</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">                                        
+                                        <table class="table">
+                                            <tr>
+                                                <th>Nama Prefix</th>
+                                                <th>Tanggal Pembayaran</th>
+                                                <th>Jumlah (Rp)</th>
+                                                <th>Mode pembayaran</th>
+                                                <th>Tujuan Tagihan</th>
+                                            </tr>
+                                            <t t-foreach="data_tagihan" t-as="tagihan">
+                                                <t t-if="'INV' not in tagihan.name">
+                                                    <tr>
+                                                        <td>
+                                                            <t t-esc="tagihan.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="tagihan.date"/>
+                                                        </td>
+                                                        <td>
+                                                            Rp <t t-esc="'{:,.0f}'.format(tagihan.amount_total).replace(',', '.')"/>
+                                                        </td>
+                                                        <td>
+                                                            <t t-if="'PBNK' in tagihan.name">
+                                                                Bank
+                                                            </t>
+                                                            <t t-elif=" 'PCSH' in tagihan.name">
+                                                                Tunai
+                                                            </t>
+                                                            <t t-else="">
+                                                                data tidak valid
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="tagihan.ref"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -181,14 +236,20 @@
                                             <t t-esc="tagihan.invoice_date"/>
                                         </td>
                                         <td>
-                                            <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
+                                            Rp <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
                                         </td>
                                         <td>
-                                            <t t-esc="tagihan.payment_state"/>
+                                            <t t-set="payment_state_label">
+                                                <t t-raw="{
+                                                    'partial': 'sebagian',
+                                                    'paid': 'lunas'
+                                                }.get(tagihan.payment_state, 'belum lunas')"/>
+                                            </t>
+                                            <t t-esc="payment_state_label"/>
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id"> lihat detail </button>
+                                                <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id" t-att-data-dt_nm_user="tagihan.partner_id.name">  lihat detail </button>
                                             </div>
                                         </td>
                                     </tr>

@@ -51,8 +51,8 @@ odoo.define('cdn_arrosyid.signup', function (require) {
                             dataType: "json",
                             success: function (data) {
                                 console.log("Pendaftaran banyak berhasil:", data);
-                                alert('Data berhasil disimpan');
-                                // window.location.href = "/register_berhasil";
+                                // alert('Data berhasil disimpan');
+                                window.location.href = "/web/login";
                             },
                             error: function (xhr, status, error) {
                                 console.error("Kesalahan dalam panggilan AJAX:", error);
