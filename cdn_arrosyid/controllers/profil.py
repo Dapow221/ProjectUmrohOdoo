@@ -30,33 +30,23 @@ class ProfilController(http.Controller):
             metode_bayar = post.get('metode_bayar')
             jml_pembayaran = post.get('jml_pembayaran')
             tagihan_id = post.get('tagihan_id')
-            dt_partner_id = post.get('dt_partner_id')
             tgl_pembayaran = post.get('tgl_pembayaran')
-            csrf_token = post.get('csrf_token')
+            # dt_partner_id = post.get('dt_partner_id')
+            # csrf_token = post.get('csrf_token')
             
-            # Buat pembayaran baru
-
+            # Buat pembayaran baru    
             invoice = request.env['account.move'].sudo().browse(int(tagihan_id))
-           
-            print(f"tagihan_id: {tagihan_id}, type: {type(tagihan_id)}")
-            print(f"invoice.journal_id.id: {invoice.journal_id.id}")
-            # payment = request.env['account.payment'].sudo().create({
-            #     'amount': int(jml_pembayaran),
-            #     'partner_id': int(dt_partner_id),
-            #     'date': tgl_pembayaran,
-            #     # 'payment_type': 'inbound',
-            #     # 'move_id': invoice.id,
-            #     # 'journal_id': invoice.journal_id.id,
-            # })
-            # payment.action_post()
-            action_data = invoice.action_register_payment()
-            # invoice.payment_by_id = action_data['context']['default_journal_id'] = request.env.user.company_id.journal_tunai.id
-            wizard = Form(request.env['account.payment.register'].sudo().with_context(action_data['context'])).save()
-            action = wizard.action_create_payments()
-            # invoice.write({'payment_state': 'paid'})
-            # success_invoice_payment.append(invoice)
-            # Kembalikan respons JSON
+            btn_reg_patment = invoice.action_register_payment()
+            pembayaran = Form(request.env['account.payment.register'].sudo().with_context(btn_reg_patment['context'])).save()
+            pembayaran.write({
+                'amount': int(jml_pembayaran),
+                'journal_id': int(metode_bayar),
+                'payment_date': tgl_pembayaran,
+                # 'partner_id': dt_partner_id
+            })
+            pembayaran.action_create_payments()
             return json.dumps({'result': True})
+            
         except Exception as e:
             # Tangani kesalahan dan kembalikan pesan kesalahan
             return json.dumps({'result': False, 'error': str(e)})
