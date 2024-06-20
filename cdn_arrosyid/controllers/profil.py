@@ -9,7 +9,6 @@ class ProfilController(http.Controller):
         user_id = request.env.user.partner_id.id
         data_sesi_umroh = request.env['cdn.sesi.umroh'].sudo().search([])
         data_pendaftaran = request.env['cdn.pendaftaran'].sudo().search([])
-        data_jamaah_umroh = request.env['cdn.pendaftaran'].sudo().search(['|', ('partner_id', '=', user_id), ('pendaftar_id', '=', user_id)])
         data_tagihan = request.env['account.move'].sudo().search([('partner_id', '=', user_id),('state', '=', 'posted')])
 
         data_identitas_jamaah = request.env['cdn.identitas.jamaah'].sudo().search([('partner_id', '=', user_id)])
@@ -18,7 +17,6 @@ class ProfilController(http.Controller):
             'data_sesi': data_sesi_umroh,
             'data_pendaftaran': data_pendaftaran,
             'data_tagihan': data_tagihan,
-            'data_jamaah_umroh': data_jamaah_umroh,
             'data_identitas_jamaah': data_identitas_jamaah,
         })
 
