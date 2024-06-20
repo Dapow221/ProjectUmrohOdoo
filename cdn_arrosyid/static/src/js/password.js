@@ -19,8 +19,7 @@ function isValidPassword(password) {
     // Memeriksa keberadaan angka, huruf besar, huruf kecil, dan karakter khusus
     if (!hasNumber.test(password) ||
         !hasUpperCase.test(password) ||
-        !hasLowerCase.test(password) ||
-        !hasSpecialChar.test(password)) {
+        !hasLowerCase.test(password)) {
         return false;
     }
 

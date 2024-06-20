@@ -39,7 +39,7 @@ class ProfilController(http.Controller):
             btn_reg_patment = invoice.action_register_payment()
             pembayaran = Form(request.env['account.payment.register'].sudo().with_context(btn_reg_patment['context'])).save()
             pembayaran.write({
-                'amount': int(jml_pembayaran),
+                'amount': float(jml_pembayaran),
                 'journal_id': int(metode_bayar),
                 'payment_date': tgl_pembayaran,
                 # 'partner_id': dt_partner_id
