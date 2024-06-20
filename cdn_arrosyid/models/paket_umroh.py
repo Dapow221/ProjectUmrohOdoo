@@ -48,4 +48,3 @@ class PaketUmroh(models.Model):
             'lst_price': self.lst_price,
         })
         return paket_baru
-

@@ -2,23 +2,21 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from datetime        import date
 
-
 class UstadzPembimbing(models.Model):
-    _name        = 'cdn.ustadz.pembimbing'
-    _description = 'Ustadz Pembimbing'
-    _inherits    = {'res.partner':'partner_id'}
+    _name             = 'cdn.ustadz.pembimbing'
+    _description      = 'Ustadz Pembimbing'
+    _inherits         = {'res.partner':'partner_id'}
     
-    partner_id          = fields.Many2one(comodel_name='res.partner', string='Nama Ustadz Pembimbing', ondelete='cascade')
-    jenis_kel           = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
-    referensi           = fields.Char(string='No Referensi')
-    paspor              = fields.Char(string='Nomor Paspor', required=True)
-    masa_paspor         = fields.Date(string='Masa berlaku Paspor', required=True)
-    tgl_lahir           = fields.Date(string='Tanggal Lahir', required=True)
-    umur                = fields.Integer(string='Umur', compute='_compute_umur') 
-    image               = fields.Image(string='image',)
-    status_pembimbing   = fields.Selection(string='Status Kesiapan Pembimbing', selection=[('siap', 'Siap'), ('sibuk', 'Sibuk'),], default='siap')
-    active              = fields.Boolean(string='Active', default= True)
-    
+    partner_id        = fields.Many2one(comodel_name='res.partner', string='Nama Ustadz Pembimbing', ondelete='cascade')
+    jenis_kel         = fields.Selection(string='Jenis Kelamin', selection=[('l', 'Laki-laki'), ('p', 'Perempuan'),], default='l')
+    referensi         = fields.Char(string='No Referensi')
+    paspor            = fields.Char(string='Nomor Paspor', required=True)
+    masa_paspor       = fields.Date(string='Masa berlaku Paspor', required=True)
+    tgl_lahir         = fields.Date(string='Tanggal Lahir', required=True)
+    umur              = fields.Integer(string='Umur', compute='_compute_umur') 
+    image             = fields.Image(string='image',)
+    status_pembimbing = fields.Selection(string='Status Kesiapan Pembimbing', selection=[('siap', 'Siap'), ('sibuk', 'Sibuk'),], default='siap')
+    active            = fields.Boolean(string='Active', default= True)
     
     @api.depends('tgl_lahir')
     def _compute_umur(self):    

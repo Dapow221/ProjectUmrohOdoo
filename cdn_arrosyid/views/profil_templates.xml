@@ -10,10 +10,9 @@
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="after">
             <div class="container-fluid">
-                <h2 t-esc="data_user.name" class="my-4"/>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Profil</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" href="#pendaftaran" aria-selected="false" tabindex="-1" role="tab">Pendaftaran</a>
@@ -27,30 +26,143 @@
                 </ul>
                 <div id="myTabContent" class="tab-content m-2 ml-3">
                     <div class="tab-pane fade show active" id="identitas" role="tabpanel">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nama Jamaah</th>
-                                            <th scope="col">Jenis Kelamin</th>
-                                            <th scope="col">Paspor</th>
-                                            <th scope="col">Tanggal Umroh</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="data_jamaah_umroh" t-as="jamaah">
-                                        <tr>
-                                            <t t-foreach="jamaah.partner_id" t-as="data">
-                                                <td t-esc="data.name"/>
-                                            </t>
-                                            <td t-esc="jamaah.jenis_kel"/>
-                                            <td t-esc="jamaah.paspor"/>
-                                            <td t-esc="jamaah.tanggal_umroh"/>
-                                        </tr>
+                        <div class="card user-card-full shadow">
+                            <div class="row m-l-0 m-r-0">                     
+                                <div class="col-sm-16">
+                                    <div class="card-block" style="padding: 20px">
+                                        <h6  class="m-b-20 p-b-5 b-b-default f-w-600">INFORMASI JAMAAH</h6>
+                                        <t t-if="data_identitas_jamaah.image">
+                                            <img t-attf-src="data:image;base64,{{data_identitas_jamaah.image}}" alt="avatar" class="rounded-circle img-fluid" style="width:150px;" />
                                         </t>
-                                    </tbody>
-                                </table>
+                                        <t t-else="">
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"/>
+                                        </t>
+                                        <h4><t t-esc="data_identitas_jamaah.referensi"/></h4>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">
+                                                    Nama : <b> <t t-esc="data_identitas_jamaah.name"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Email : <b> <t t-esc="data_identitas_jamaah.email"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Tanggal Lahir : <b> <t t-esc="data_identitas_jamaah.tgl_lahir"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Umur : <b> <t t-esc="data_identitas_jamaah.umur"/> Tahun</b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Jenis Kelamin : <b>
+                                                        <t t-if="data_identitas_jamaah.jenis_kel == 'l'">
+                                                            Laki-laki
+                                                        </t>
+                                                        <t t-elif="data_identitas_jamaah.jenis_kel == 'p'">
+                                                            Perempuan
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-esc="data_identitas_jamaah.jenis_kel"/>
+                                                        </t>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    No. Paspor : <b> <t t-esc="data_identitas_jamaah.paspor"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Masa Berlaku Paspor : <b> <t t-esc="data_identitas_jamaah.masa_paspor"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Pekerjaan : <b>
+                                                        <t t-esc="{
+                                                            'pns': 'PNS',
+                                                            'irt': 'Ibu Rumah Tangga',
+                                                            'tni': 'TNI',
+                                                            'dagang': 'Pedagang',
+                                                            'tani': 'Petani',
+                                                            'swasta': 'Swasta',
+                                                            'pelajar': 'Pelajar',
+                                                            'bumn': 'BUMN'
+                                                        }[data_identitas_jamaah.pekerjaan]"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Pernah Umroh :
+                                                    <t t-if="data_identitas_jamaah.is_umroh">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Status Nikah :
+                                                    <t t-if="data_identitas_jamaah.is_menikah">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Nama Pasangan : <b> <t t-esc="data_identitas_jamaah.nama_pasangan"/> </b>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6" style="border-left: 1px solid #ccc;">
+                                                <p class="m-b-10 f-w-600">
+                                                    No. Hp : <b> <t t-esc="data_identitas_jamaah.mobile"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Alamat : <b> <t t-esc="data_identitas_jamaah.street"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Pendidikan : <b>
+                                                        <t t-esc="{
+                                                            'sd': 'SD',
+                                                            'smp': 'SMP',
+                                                            'sma': 'SMA',
+                                                            'kuliah': 'Perguruan Tinggi'
+                                                        }[data_identitas_jamaah.pendidikan]"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Riwayat Penyakit : <b> <t t-esc="data_identitas_jamaah.riwayat_penyakit"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Vaksin Meningitis :
+                                                    <t t-if="data_identitas_jamaah.vaksin_meningitis">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Vaksin Covid19: <b>
+                                                        <t t-esc="{
+                                                            'belum': 'Belum Vaksin',
+                                                            'vaksin1': 'Vaksinasi Pertama',
+                                                            'vaksin2': 'Vaksinasi Kedua',
+                                                            'booster': 'Vaksin Booster'
+                                                        }[data_identitas_jamaah.vaksin_covid19]"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Golongan Darah : <b>
+                                                        <t t-if="data_identitas_jamaah.golongan_darah == 'oplus'">O+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'ominus'">O-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'aplus'">A+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'aminus'">A-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'bplus'">B+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'bminus'">B-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'abplus'">AB+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'abminus'">AB-</t>
+                                                        <t t-else=""><t t-esc="data_identitas_jamaah.golongan_darah"/></t>
+                                                    </b>
+                                                </p>
+
+                                            </div>
+                                        </div>                                 
+                                    </div>
+                                </div>
                             </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
                             <div class="table-responsive">
@@ -71,7 +183,18 @@
                                             </t>
                                             <td t-esc="pendaftaran.name_sesi"/>
                                             <td t-esc="pendaftaran.tanggal_berangkat"/>
-                                            <td t-esc="pendaftaran.state"/>
+                                           <td class="d-flex justify-content-center align-items-center">
+                                                <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
+                                                    <t t-set="state_map" t-value="{
+                                                        'draf': 'Draf',
+                                                        'batal': 'Batal',
+                                                        'konfirmasi': 'Konfirmasi',
+                                                        'belum': 'Belum Lunas',
+                                                        'lunas': 'Lunas'
+                                                    }"/>
+                                                    <t t-esc="state_map.get(pendaftaran.state, pendaftaran.state)"/>
+                                                </span>
+                                            </td>
                                         </tr>
                                         </t>
                                     </tbody>
@@ -87,6 +210,7 @@
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Tanggal Mulai</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Proses Perjalanan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,7 +219,29 @@
                                         <td t-esc="sesi.name"/>
                                         <td t-esc="sesi.keterangan"/>
                                         <td t-esc="sesi.tanggal_berangkat"/>
-                                        <td class="badge rounded-pill text-bg-primary" t-esc="sesi.state"/>
+                                        <td class="d-flex justify-content-center align-items-center">
+                                            <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
+                                                <t t-set="state_map" t-value="{
+                                                    'akan_datang': 'Akan Datang',
+                                                    'proses': 'Sedang Berjalan',
+                                                    'selesai': 'Selesai',
+                                                    'batal_perjalanan': 'Perjalanan Batal'
+                                                }"/>
+                                                <t t-esc="state_map.get(sesi.state, sesi.state)"/>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                    role="progressbar"
+                                                    t-att-aria-valuenow="int(sesi.proses_perjalanan)"
+                                                    aria-valuemin="0"
+                                                    aria-valuemax="100"
+                                                    t-att-style="'width: ' + str(int(sesi.proses_perjalanan)) + '%'">
+                                                    <span class="progress-text"><t t-esc="int(sesi.proses_perjalanan)"/>%</span>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </t>
                                 </tbody>

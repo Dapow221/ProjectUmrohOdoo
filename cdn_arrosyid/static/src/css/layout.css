@@ -50,3 +50,9 @@
 
 }
 
+.card-block h4 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    padding-left: 25px;
+}

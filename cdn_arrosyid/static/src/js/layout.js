@@ -25,3 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+
+    $('div.container.mb64').removeClass('container').addClass('container-fluid');
+    $('div[class="col-12 col-md col-lg-6"]').removeClass('col-lg-6').addClass('col-lg-9');
