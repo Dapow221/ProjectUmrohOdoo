@@ -23,6 +23,7 @@
         # data
         'data/navbar_templates.xml',
         'data/sequence_data.xml',
+        # 'data/data.xml',
 
         # report
         'reports/report_identitas_manifes_jamaah.xml',

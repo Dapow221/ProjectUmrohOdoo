@@ -5,6 +5,8 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
     var rpc = require('web.rpc');
     var ajax = require('web.ajax');
 
+    
+
 
     $('input[name="radio_dftr"]').change(function() {
         var selectedValue = $(this).val();
@@ -32,6 +34,73 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
         });
     }
     removeRow();
+
+    function toggleTanggalUmrohField() {
+        var isUmrohChecked = $('#sudah_umroh').is(':checked');
+        if (isUmrohChecked) {
+            $('#tanggal_umroh_field').show();
+        } else {
+            $('#tanggal_umroh_field').hide();
+        }
+    }
+
+    function toggleNamaPasanganField() {
+        var isMenikahChecked = $('#sudah_menikah').is(':checked');
+        if (isMenikahChecked) {
+            $('#nama_pasangan_field').show();
+        } else {
+            $('#nama_pasangan_field').hide();
+        }
+    }
+
+    $(document).ready(function() {
+        toggleTanggalUmrohField();
+        toggleNamaPasanganField();
+
+        var pendidikanDefault     = $('#pendidikan').data('default');
+        var golongan_darahDefault = $('#golongan_darah_dropdown').data('default');
+        var pekerjaanDefault      = $('#pekerjaan_dropdown').data('default');
+        var vaksin_covid19Default = $('#vaksin_covid19_dropdown').data('default');
+        if (pendidikanDefault) {
+            $('#pendidikan option').each(function() {
+                if ($(this).val() === pendidikanDefault) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (golongan_darahDefault) {
+            $('#golongan_darah_dropdown option').each(function() {
+                if ($(this).val() === golongan_darahDefault) {  
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (pekerjaanDefault) {
+            $('#pekerjaan_dropdown option').each(function() {
+                if ($(this).val() === pekerjaanDefault) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+
+        if (vaksin_covid19Default) {
+            $('#vaksin_covid19_dropdown option').each(function() {
+                if ($(this).val() === vaksin_covid19Default) {
+                    $(this).prop('selected', true);
+                }
+            });
+        }
+    });
+
+    $('#sudah_umroh').change(function() {
+        toggleTanggalUmrohField();
+    });
+
+    $('#sudah_menikah').change(function() {
+        toggleNamaPasanganField();
+    });
 
     $('#toggle_tambah').click(function() {
         $('#tambah_jamaah').prop('hidden', false).toggle(); 

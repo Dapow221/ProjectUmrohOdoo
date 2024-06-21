@@ -43,12 +43,24 @@
                 </form>
             </field>
         </record>
+
+        <record id="cdn_rencana_perjalanan_view_search" model="ir.ui.view">
+            <field name="name">cdn.rencana.perjalanan.view.search</field>
+            <field name="model">cdn.rencana.perjalanan</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <filter name="group_by_sesi" string="Kelompokkan berdasarkan sesi" context="{'group_by': 'sesi_umroh_id'}" />
+                </search>
+            </field>
+        </record>
+
         <!-- cdn.rencana.perjalanan action window -->
         <record id="cdn_rencana_perjalan_action" model="ir.actions.act_window">
             <field name="name">Rencana Perjalanan</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.rencana.perjalanan</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_sesi':True}</field> 
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->
