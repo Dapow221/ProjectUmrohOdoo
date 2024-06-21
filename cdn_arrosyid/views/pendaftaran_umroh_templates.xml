@@ -730,7 +730,7 @@
                             <h1>Terima Kasih</h1>
                             <h2>Pendaftaran Berhasil Ditambahkan</h2>
                             <h3>" Tunggu proses konfirmasi dari admin, nanti akan muncul di halaman profil anda "</h3>
-                            <a href="/my/home" class="btn btn-primary">meunuju halaman Profil</a>
+                            <a href="/my/home" class="btn btn-primary">Menuju halaman Profil</a>
                         </div>
                     </div>
                 </form>

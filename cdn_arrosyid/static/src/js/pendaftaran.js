@@ -60,7 +60,7 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
         var pendidikanDefault     = $('#pendidikan').data('default');
         var golongan_darahDefault = $('#golongan_darah_dropdown').data('default');
         var pekerjaanDefault      = $('#pekerjaan_dropdown').data('default');
-        var vaksin_covid19Default      = $('#vaksin_covid19_dropdown').data('default');
+        var vaksin_covid19Default = $('#vaksin_covid19_dropdown').data('default');
         if (pendidikanDefault) {
             $('#pendidikan option').each(function() {
                 if ($(this).val() === pendidikanDefault) {
@@ -71,7 +71,7 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
 
         if (golongan_darahDefault) {
             $('#golongan_darah_dropdown option').each(function() {
-                if ($(this).val() === golongan_darahDefault) {
+                if ($(this).val() === golongan_darahDefault) {  
                     $(this).prop('selected', true);
                 }
             });
