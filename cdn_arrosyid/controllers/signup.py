@@ -28,7 +28,7 @@ class SignupController(http.Controller):
                 'groups_id': [(6, 0, [10])],
             })
 
-            identitas = request.env['cdn.identitas.jamaah'].sudo().create({
+            request.env['cdn.identitas.jamaah'].sudo().create({
                 'partner_id': partner_id.id,
                 })
 
@@ -40,7 +40,7 @@ class SignupController(http.Controller):
     def check_email_exists(self, **kw):
         email = kw.get('email')
         if email:
-            existing_user = request.env['res.users'].sudo().search([('email', '=', email)])
+            existing_user = request.env['res.users'].sudo().search([('login', '=', email)])
             return {'exists': True if existing_user else False}
         return {'exists': False}
 
