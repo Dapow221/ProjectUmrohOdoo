@@ -68,7 +68,7 @@ class SesiUmroh(models.Model):
     def _compute_tanggal_pulang(self):
         for sesi in self:
             if sesi.tanggal_berangkat and sesi.durasi:
-                durasi = relativedelta.relativedelta(days=sesi.durasi)
+                durasi = relativedelta.relativedelta(days=sesi.durasi - 1)
                 sesi.tanggal_pulang = fields.Date.to_string(fields.Date.from_string(sesi.tanggal_berangkat) + durasi)
 
     @api.constrains('rencana_perjalanan_ids')

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="partner_akhmad_faisal" model="res.partner">
+            <field name="name">Akhmad Faisal</field>
+        </record>
+
+        <record id="partner_alliong_kurniawan" model="res.partner">
+            <field name="name">Alliong Kurniawan</field>
+        </record>
+
+        <record id="identitas_jamaah_01" model="cdn.identitas.jamaah">
+            <!-- <field name="partner_id" ref="base.res_partner_1"/> Assuming there's a partner record with this ID -->
+            <field name="partner_id" ref="partner_akhmad_faisal"/>
+            <field name="jenis_kel">l</field>
+            <field name="referensi">123456</field>
+            <field name="paspor">A1234567</field>
+            <field name="masa_paspor">2030-01-01</field>
+            <field name="tgl_lahir">1980-01-01</field>
+            <field name="is_menikah">True</field>
+            <field name="nama_pasangan">Siti Aisyah</field>
+            <field name="riwayat_penyakit">None</field>
+            <field name="golongan_darah">oplus</field>
+            <field name="pekerjaan">pns</field>
+            <field name="pendidikan">sd</field>
+            <field name="vaksin_meningitis">True</field>
+            <field name="vaksin_covid19">vaksin2</field>
+            <field name="is_umroh">True</field>
+            <field name="tanggal_umroh">2021-01-01</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="identitas_jamaah_02" model="cdn.identitas.jamaah">
+            <!-- <field name="partner_id" ref="base.res_partner_1"/> Assuming there's a partner record with this ID -->
+            <field name="partner_id" ref="partner_alliong_kurniawan"/>
+            <field name="jenis_kel">l</field>
+            <field name="referensi">123456</field>
+            <field name="paspor">A12345678</field>
+            <field name="masa_paspor">2025-01-01</field>
+            <field name="tgl_lahir">2000-01-01</field>
+            <field name="is_menikah">True</field>
+            <field name="nama_pasangan">Smadav</field>
+            <field name="riwayat_penyakit">None</field>
+            <field name="golongan_darah">bplus</field>
+            <field name="pekerjaan">swasta</field>
+            <field name="pendidikan">kuliah</field>
+            <field name="vaksin_meningitis">True</field>
+            <field name="vaksin_covid19">booster</field>
+            <field name="is_umroh">False</field>
+            <field name="tanggal_umroh">2021-01-01</field>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>
