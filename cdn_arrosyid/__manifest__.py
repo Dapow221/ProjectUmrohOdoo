@@ -90,7 +90,6 @@
         'website.assets_editor': [
             'cdn_arrosyid/static/src/js/tour.js',
             'cdn_arrosyid/static/src/xml/widget_peta.xml',
-
         ],
     },
 }

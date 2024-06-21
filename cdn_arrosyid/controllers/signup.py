@@ -28,11 +28,11 @@ class SignupController(http.Controller):
                 'groups_id': [(6, 0, [10])],
             })
 
-            request.env['cdn.identitas.jamaah'].sudo().create({
+            identitas = request.env['cdn.identitas.jamaah'].sudo().create({
                 'partner_id': partner_id.id,
                 })
 
-            return json.dumps({'result': True})
+            return json.dumps({'result': True,'data : ': user})
         except Exception as e:
             return json.dumps({'result': False, 'error': str(e)})
 
@@ -46,5 +46,5 @@ class SignupController(http.Controller):
 
     @http.route('/register_berhasil', type='http',
                 auth="public", website=True)
-    def thank_you(self, **post):
+    def pendaftaran_berhasil(self, **post):
         return request.render('cdn_arrosyid.register_berhasil', {})

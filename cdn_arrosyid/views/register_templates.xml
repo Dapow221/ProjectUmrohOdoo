@@ -4,12 +4,12 @@
         <!-- register -->
         <template id="login" inherit_id="web.login" name="Custom Login" >
             <xpath expr="//div[hasclass('o_login_auth')]" position="after">
-                <div>
+                <div class="d-grid gap-2">
                     <button string="daftar" type="button" class="btn btn-success" style="padding: 5px 2px;" >
                         <a href="/signup" class="nav-link" style="color: white; ">Daftar</a>
                     </button>
                 </div>
-           </xpath>
+            </xpath>
             <xpath expr="//div[contains(@class, 'field-login')]" position="before">
                  <h5 class="text-center gap-1 d-grid mb-1">Login</h5>
            </xpath>

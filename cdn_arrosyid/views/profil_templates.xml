@@ -10,10 +10,9 @@
         </xpath>
         <xpath expr="//div[hasclass('o_portal_my_home')]" position="after">
             <div class="container-fluid">
-                <h2 t-esc="data_user.name" class="my-4"/>
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Identitas</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#identitas" aria-selected="true" role="tab">Profil</a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" data-bs-toggle="tab" href="#pendaftaran" aria-selected="false" tabindex="-1" role="tab">Pendaftaran</a>
@@ -27,30 +26,153 @@
                 </ul>
                 <div id="myTabContent" class="tab-content m-2 ml-3">
                     <div class="tab-pane fade show active" id="identitas" role="tabpanel">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nama Jamaah</th>
-                                            <th scope="col">Jenis Kelamin</th>
-                                            <th scope="col">Paspor</th>
-                                            <th scope="col">Tanggal Umroh</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-foreach="data_jamaah_umroh" t-as="jamaah">
-                                        <tr>
-                                            <t t-foreach="jamaah.partner_id" t-as="data">
-                                                <td t-esc="data.name"/>
-                                            </t>
-                                            <td t-esc="jamaah.jenis_kel"/>
-                                            <td t-esc="jamaah.paspor"/>
-                                            <td t-esc="jamaah.tanggal_umroh"/>
-                                        </tr>
+                        <div class="card user-card-full shadow">
+                            <div class="row m-l-0 m-r-0">                     
+                                <div class="col-sm-16">
+                                    <div class="card-block" style="padding: 20px">
+                                        <h6  class="m-b-20 p-b-5 b-b-default f-w-600">INFORMASI JAMAAH</h6>
+                                        <t t-if="data_identitas_jamaah.image">
+                                            <img t-attf-src="data:image;base64,{{data_identitas_jamaah.image}}" alt="avatar" class="rounded-circle img-fluid" style="width:150px;" />
                                         </t>
-                                    </tbody>
-                                </table>
+                                        <t t-else="">
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"/>
+                                        </t>
+                                        <h4><t t-esc="data_identitas_jamaah.referensi"/></h4>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="m-b-10 f-w-600">
+                                                    Nama : <b> <t t-esc="data_identitas_jamaah.name"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Email : <b> <t t-esc="data_identitas_jamaah.email"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Tanggal Lahir : <b> <t t-esc="data_identitas_jamaah.tgl_lahir"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Umur : <b> <t t-esc="data_identitas_jamaah.umur"/> Tahun</b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Jenis Kelamin : <b>
+                                                        <t t-if="data_identitas_jamaah.jenis_kel == 'l'">
+                                                            Laki-laki
+                                                        </t>
+                                                        <t t-elif="data_identitas_jamaah.jenis_kel == 'p'">
+                                                            Perempuan
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-esc="data_identitas_jamaah.jenis_kel"/>
+                                                        </t>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    No. Paspor : <b> <t t-esc="data_identitas_jamaah.paspor"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Masa Berlaku Paspor : <b> <t t-esc="data_identitas_jamaah.masa_paspor"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    <b>
+                                                    <t t-set="pekerjaans">
+                                                        <t t-raw="{
+                                                            'pns': 'PNS',
+                                                            'irt': 'Ibu Rumah Tangga',
+                                                            'tni': 'TNI',
+                                                            'dagang': 'Pedagang',
+                                                            'tani': 'Petani',
+                                                            'swasta': 'Swasta',
+                                                            'pelajar': 'Pelajar',
+                                                            'bumn': 'BUMN',
+                                                        }.get(data_identitas_jamaah.pekerjaan, '')"/>
+                                                    </t>
+                                                    <t t-esc="pekerjaans"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Pernah Umroh :
+                                                    <t t-if="data_identitas_jamaah.is_umroh">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Status Nikah :
+                                                    <t t-if="data_identitas_jamaah.is_menikah">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Nama Pasangan : <b> <t t-esc="data_identitas_jamaah.nama_pasangan"/> </b>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6" style="border-left: 1px solid #ccc;">
+                                                <p class="m-b-10 f-w-600">
+                                                    No. Hp : <b> <t t-esc="data_identitas_jamaah.mobile"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Alamat : <b> <t t-esc="data_identitas_jamaah.street"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Pendidikan : <b>
+                                                    <t t-set="pendidikans">
+                                                        <t t-raw="{
+                                                            'sd': 'SD',
+                                                            'smp': 'SMP',
+                                                            'sma': 'SMA',
+                                                            'kuliah': 'Perguruan Tinggi'
+                                                        }.get(data_identitas_jamaah.pendidikan, '')"/>
+                                                    </t>
+                                                    <t t-esc="pendidikans"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Riwayat Penyakit : <b> <t t-esc="data_identitas_jamaah.riwayat_penyakit"/> </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">Vaksin Meningitis :
+                                                    <t t-if="data_identitas_jamaah.vaksin_meningitis">
+                                                        <input type="checkbox" checked="checked" disabled="disabled"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox" disabled="disabled"/>
+                                                    </t>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Vaksin Covid19:
+                                                    <b> 
+                                                        <t t-set="vaksins">
+                                                            <t t-raw="{
+                                                            'belum': 'Belum Vaksin',
+                                                            'vaksin1': 'Vaksinasi Pertama',
+                                                            'vaksin2': 'Vaksinasi Kedua',
+                                                            'booster': 'Vaksin Booster'
+                                                            }.get(data_identitas_jamaah.vaksin_covid19, '')"/>
+                                                        </t>
+                                                        <t t-esc="vaksins"/>
+                                                    </b>
+                                                </p>
+                                                <p class="m-b-10 f-w-600">
+                                                    Golongan Darah : <b>
+                                                        <t t-if="data_identitas_jamaah.golongan_darah == 'oplus'">O+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'ominus'">O-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'aplus'">A+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'aminus'">A-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'bplus'">B+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'bminus'">B-</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'abplus'">AB+</t>
+                                                        <t t-elif="data_identitas_jamaah.golongan_darah == 'abminus'">AB-</t>
+                                                        <t t-else=""><t t-esc="data_identitas_jamaah.golongan_darah"/></t>
+                                                    </b>
+                                                </p>
+
+                                            </div>
+                                        </div>                                 
+                                    </div>
+                                </div>
                             </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="pendaftaran" role="tabpanel">
                             <div class="table-responsive">
@@ -65,14 +187,25 @@
                                     </thead>
                                     <tbody>
                                         <t t-foreach="data_pendaftaran" t-as="pendaftaran">
+                                        <t t-if="data_identitas_jamaah.partner_id.id in pendaftaran.pendaftar_id.mapped('partner_id').ids">
                                         <tr>
-                                            <t t-foreach="pendaftaran.jamaah_id" t-as="jamaah">
-                                                <td t-esc="jamaah.name"/>
-                                            </t>
+                                            <td t-esc="pendaftaran.nama"/>
                                             <td t-esc="pendaftaran.name_sesi"/>
                                             <td t-esc="pendaftaran.tanggal_berangkat"/>
-                                            <td t-esc="pendaftaran.state"/>
+                                            <td class="d-flex justify-content-center align-items-center">
+                                                <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
+                                                    <t t-set="state_map" t-value="{
+                                                        'draf': 'Draf',
+                                                        'batal': 'Batal',
+                                                        'konfirmasi': 'Konfirmasi',
+                                                        'belum': 'Belum Lunas',
+                                                        'lunas': 'Lunas'
+                                                    }"/>
+                                                    <t t-esc="state_map.get(pendaftaran.state, pendaftaran.state)"/>
+                                                </span>
+                                            </td>
                                         </tr>
+                                        </t>
                                         </t>
                                     </tbody>
                                 </table>
@@ -87,16 +220,41 @@
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Tanggal Mulai</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Proses Perjalanan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <t t-foreach="data_sesi" t-as="sesi">
-                                    <tr>
-                                        <td t-esc="sesi.name"/>
-                                        <td t-esc="sesi.keterangan"/>
-                                        <td t-esc="sesi.tanggal_berangkat"/>
-                                        <td class="badge rounded-pill text-bg-primary" t-esc="sesi.state"/>
-                                    </tr>
+                                        <t t-if="data_identitas_jamaah.partner_id.id in sesi.jammaah_ids.jamaah_id.mapped('partner_id').ids">
+                                            <tr>
+                                                <td t-esc="sesi.name"/>
+                                                <td t-esc="sesi.keterangan"/>
+                                                <td t-esc="sesi.tanggal_berangkat"/>
+                                                <td class="d-flex justify-content-center align-items-center">
+                                                    <span style="padding: 8px;" class="badge rounded-pill text-bg-primary">
+                                                        <t t-set="state_map" t-value="{
+                                                            'akan_datang': 'Akan Datang',
+                                                            'proses': 'Sedang Berjalan',
+                                                            'selesai': 'Selesai',
+                                                            'batal_perjalanan': 'Perjalanan Batal'
+                                                        }"/>
+                                                        <t t-esc="state_map.get(sesi.state, sesi.state)"/>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                            role="progressbar"
+                                                            t-att-aria-valuenow="int(sesi.proses_perjalanan)"
+                                                            aria-valuemin="0"
+                                                            aria-valuemax="100"
+                                                            t-att-style="'width: ' + str(int(sesi.proses_perjalanan)) + '%'">
+                                                            <span class="progress-text"><t t-esc="int(sesi.proses_perjalanan)"/>%</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </t>
                                     </t>
                                 </tbody>
                             </table>
@@ -109,10 +267,10 @@
                             <t t-set="data_partner_id" t-value="tagihan_input.partner_id.id"/>
                         </t>
                         <t t-set="formatted_residual" t-value="'{:,.0f}'.format(total_residual).replace(',', '.')"/>
-                        <h5>Total tagihan : Rp.<t t-esc="formatted_residual"/></h5>
+                        <h5>Total tagihan : Rp <t t-esc="formatted_residual"/></h5>
                         <div class="btn-group m-2">
                             <button type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Bayar</button>
-                            <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#crt_payment">Riwayat Pembayaran</button>
+                            <button type="button" class="btn btn-outline-success m-1" data-bs-toggle="modal" data-bs-target="#riwayat_pembayaran">Riwayat Pembayaran</button>
                         </div>
                         <div class="modal fade" id="crt_payment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -122,7 +280,12 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        
+                                        <div id="loading_pembayaran" class="text-center p-2" style="display: none;">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div>Mohon tunggu...</div>
+                                        </div>
                                         <t t-set="csrf_token" t-value="request.csrf_token()"/>
                                         <form class="row">
                                             <input type="hidden" name="csrf_token" t-att-value="csrf_token" hidden="1"/>
@@ -144,7 +307,7 @@
                                                 <select id="tagihan_id" class="form-select"  required="1">
                                                     <option selected="1" disabled="1">pilih tagihan</option>
                                                     <t t-foreach="data_tagihan" t-as="tagihan_input">
-                                                        <t t-if="'INV' in tagihan_input.name">
+                                                        <t t-if="'INV' in tagihan_input.name and tagihan_input.amount_residual != 0">
                                                             <option t-att-value="tagihan_input.id"><t t-esc="tagihan_input.partner_id.name"/> {<t t-esc="tagihan_input.name"/>} - <t t-esc="tagihan_input.amount_residual"/></option>
                                                         </t>
                                                     </t>
@@ -159,6 +322,56 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-daner" data-bs-dismiss="modal">batal</button>
                                         <button type="submit" id="btn_submit_pembayaran" class="btn btn-success">Bayar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="riwayat_pembayaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Riwayat Pembayaran</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">                                        
+                                        <table class="table">
+                                            <tr>
+                                                <th>Nama Prefix</th>
+                                                <th>Tanggal Pembayaran</th>
+                                                <th>Jumlah (Rp)</th>
+                                                <th>Mode pembayaran</th>
+                                                <th>Tujuan Tagihan</th>
+                                            </tr>
+                                            <t t-foreach="data_tagihan" t-as="tagihan">
+                                                <t t-if="'INV' not in tagihan.name">
+                                                    <tr>
+                                                        <td>
+                                                            <t t-esc="tagihan.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="tagihan.date"/>
+                                                        </td>
+                                                        <td>
+                                                            Rp <t t-esc="'{:,.0f}'.format(tagihan.amount_total).replace(',', '.')"/>
+                                                        </td>
+                                                        <td>
+                                                            <t t-if="'PBNK' in tagihan.name">
+                                                                Bank
+                                                            </t>
+                                                            <t t-elif=" 'PCSH' in tagihan.name">
+                                                                Tunai
+                                                            </t>
+                                                            <t t-else="">
+                                                                data tidak valid
+                                                            </t>
+                                                        </td>
+                                                        <td>
+                                                            <t t-esc="tagihan.ref"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -181,14 +394,20 @@
                                             <t t-esc="tagihan.invoice_date"/>
                                         </td>
                                         <td>
-                                            <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
+                                            Rp <t t-esc="'{:,.0f}'.format(tagihan.amount_residual).replace(',', '.')"/>
                                         </td>
                                         <td>
-                                            <t t-esc="tagihan.payment_state"/>
+                                            <t t-set="payment_state_label">
+                                                <t t-raw="{
+                                                    'partial': 'sebagian',
+                                                    'paid': 'lunas'
+                                                }.get(tagihan.payment_state, 'belum lunas')"/>
+                                            </t>
+                                            <t t-esc="payment_state_label"/>
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id"> lihat detail </button>
+                                                <button type="button" class="btn btn-outline-success btn_detail_tagihan" t-att-data-dt_tagihan_id="tagihan.id" t-att-data-dt_nm_user="tagihan.partner_id.name">  lihat detail </button>
                                             </div>
                                         </td>
                                     </tr>

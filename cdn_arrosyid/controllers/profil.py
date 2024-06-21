@@ -1,5 +1,4 @@
 import json
-
 from odoo import http
 from odoo.http import request
 from odoo.tests import Form
@@ -10,16 +9,14 @@ class ProfilController(http.Controller):
         user_id = request.env.user.partner_id.id
         data_sesi_umroh = request.env['cdn.sesi.umroh'].sudo().search([])
         data_pendaftaran = request.env['cdn.pendaftaran'].sudo().search([])
-        data_jamaah_umroh = request.env['cdn.pendaftaran'].sudo().search(['|', ('partner_id', '=', user_id), ('pendaftar_id', '=', user_id)])
         data_tagihan = request.env['account.move'].sudo().search([('partner_id', '=', user_id),('state', '=', 'posted')])
-
-        data_user = request.env.user.partner_id
+        data_identitas_jamaah = request.env['cdn.identitas.jamaah'].sudo().search([('partner_id', '=', user_id)])
+        
         return request.render('cdn_arrosyid.profil', {
             'data_sesi': data_sesi_umroh,
             'data_pendaftaran': data_pendaftaran,
             'data_tagihan': data_tagihan,
-            'data_jamaah_umroh': data_jamaah_umroh,
-            'data_user': data_user
+            'data_identitas_jamaah': data_identitas_jamaah,
         })
 
     @http.route('/buat_pembayaran', csrf=True, type="http", methods=['POST'], auth="public", website=True)
@@ -39,7 +36,7 @@ class ProfilController(http.Controller):
             btn_reg_patment = invoice.action_register_payment()
             pembayaran = Form(request.env['account.payment.register'].sudo().with_context(btn_reg_patment['context'])).save()
             pembayaran.write({
-                'amount': int(jml_pembayaran),
+                'amount': float(jml_pembayaran),
                 'journal_id': int(metode_bayar),
                 'payment_date': tgl_pembayaran,
                 # 'partner_id': dt_partner_id
