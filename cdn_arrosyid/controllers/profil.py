@@ -2,8 +2,13 @@ import json
 from odoo import http
 from odoo.http import request
 from odoo.tests import Form
+from werkzeug.utils import redirect
 
 class ProfilController(http.Controller):
+    @http.route('/my', type='http', auth='user')
+    def redirect_to_home(self):
+        return redirect('/my/home')
+        
     @http.route('/my/home', type='http', auth='public', website=True)
     def get_data(self):
         user_id = request.env.user.partner_id.id
