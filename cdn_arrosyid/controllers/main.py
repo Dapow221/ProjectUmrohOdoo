@@ -73,6 +73,18 @@ class MainController(http.Controller):
     @http.route('/tambah_jamaah_baru', csrf=True, type="http", methods=['POST'], auth="public", website=True)
     def tambah_jamaah_baru(self, **post):
         try:
+            b_email: post.get('b_email')
+            b_telepon: post.get('b_telepon')
+            b_is_menikah: post.get('b_is_menikah')
+            b_tgl_lahir: post.get('b_tgl_lahir')
+            b_alamat: post.get('b_alamat')
+            b_paspor: post.get('b_paspor')
+            b_masa_paspor: post.get('b_masa_paspor')
+            b_riwayat_penyakit: post.get('b_riwayat_penyakit')
+            b_golongan_darah: post.get('b_golongan_darah')
+            b_pendidikan: post.get('b_pendidikan')
+
+
             nama = post.get('nama')
             jenis_kelamin = post.get('jenis_kelamin')
             tgl_lahir = post.get('tgl_lahir')
@@ -81,6 +93,9 @@ class MainController(http.Controller):
             m_partner = request.env['res.partner']
             partner = m_partner.create({
                 'name': nama,
+                'email': b_email,
+                'mobile': b_telepon,
+                'street': b_alamat
             })
 
             m_identitas = request.env['cdn.identitas.jamaah']
@@ -88,6 +103,12 @@ class MainController(http.Controller):
                 'partner_id': partner.id,
                 'jenis_kel': jenis_kelamin,
                 'tgl_lahir': tgl_lahir,
+                'is_menikah': b_is_menikah,
+                'paspor': b_paspor,
+                'masa_paspor': b_masa_paspor,
+                'riwayat_penyakit': b_riwayat_penyakit,
+                'golongan_darah': b_golongan_darah,
+                'pendidikan': b_pendidikan
             })
             
             # Kembalikan respons JSON dengan ID partner yang baru dibuat
@@ -101,14 +122,42 @@ class MainController(http.Controller):
     def buat_pendaftaran(self, **post):
         try:
             # Ambil data dari permintaan POST
+            s_nama = post.get('s_nama')
+            s_jenis_kelamin = post.get('s_jenis_kelamin')
+            s_email = post.get('s_email')
+            s_telepon = post.get('s_telepon')
+            s_is_menikah = post.get('s_is_menikah')
+            s_pendidikan = post.get('s_pendidikan')
+            s_paspor = post.get('s_paspor')
+            s_masa_paspor = post.get('s_masa_paspor')
+            s_riwayat_penyakit = post.get('s_riwayat_penyakit')
+            s_alamat = post.get('s_alamat')
+            s_golongan_darah = post.get('s_golongan_darah')
+
             jamaah_id = post.get('jamaah_id')
             sesi_id = post.get('sesi_id')
             # csrf_token = post.get('csrf_token')  # Ambil CSRF token dari permintaan
-            
-            # Verifikasi CSRF token
-            # if request.csrf_token() != csrf_token:
-                # raise ValueError("Invalid CSRF token")
 
+            identitas = request.env['cdn.identitas.jamaah'].sudo().browse(int(jamaah_id))
+            partner = request.env['res.partner'].sudo().browse(identitas.partner_id.id)
+
+            partner.write({
+                'name': s_nama,
+                'email': s_email,
+                'mobile': s_telepon,
+                'street': s_alamat
+            })
+
+            identitas.write({
+                'jenis_kel': s_jenis_kelamin,
+                'is_menikah': s_is_menikah,
+                'pendidikan': s_pendidikan,
+                'paspor': s_paspor,
+                'masa_paspor': s_masa_paspor,
+                'riwayat_penyakit': s_riwayat_penyakit,
+                'golongan_darah': s_golongan_darah
+            })
+            
             # Buat pendaftaran baru
             pendaftaran = request.env['cdn.pendaftaran']
             pendaftaran.create({

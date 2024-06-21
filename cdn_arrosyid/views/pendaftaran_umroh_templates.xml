@@ -52,33 +52,32 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="nama">Nama Lengkap</label>
-                                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name"/>
+                                                    <input type="text" class="form-control" id="s_nama" placeholder="Masukkan nama lengkap" t-att-value="data_login.name"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                        <t t-att-value="data_login.jenis_kel" t-if=" data_login.jenis_kel == 'l'">
+                                                        <t t-if="data_login.jenis_kel == 'l'">
                                                             <div>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="jenis_kelamin" checked="1" />
+                                                                    <input value="l" type="radio" name="s_jenis_kelamin" checked="1" />
                                                                     Laki-laki
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="jenis_kelamin"/>
+                                                                    <input  value="p" type="radio" name="s_jenis_kelamin"/>
                                                                     Perempuan
                                                                 </label>
                                                             </div>
-                                                            
                                                         </t>
-                                                        <t t-att-value="data_login.jenis_kel" t-if=" data_login.jenis_kel == 'p'">
+                                                        <t t-else="">
                                                             <div>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="jenis_kelamin" />
+                                                                    <input value="l" type="radio" name="s_jenis_kelamin" />
                                                                     Laki-laki
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="jenis_kelamin" checked="1"/>
+                                                                    <input value="p" type="radio" name="s_jenis_kelamin" checked="true"/>
                                                                     Perempuan
                                                                 </label>
                                                             </div>
@@ -88,31 +87,47 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" placeholder="Masukkan email" t-att-value="data_login.email"/>
+                                                    <input type="email" class="form-control" id="s_email" placeholder="Masukkan email" t-att-value="data_login.email"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                     <label for="telepon">Nomor Telepon</label>
-                                                    <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.mobile"/>
+                                                    <input type="text" class="form-control" id="s_telepon" placeholder="Masukkan nomor telepon" t-att-value="data_login.mobile"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label>Sudah Menikah</label>
-                                                    <input type="text" class="form-control" id="is_meniskah" t-att-value="data_login.is_menikah"/>
+                                                        <label>Sudah Menikah</label>
+                                                        <t t-if="data_login.is_menikah == True">
+                                                            <select class="form-select" id="s_is_menikah">
+                                                                <option value="True" selected="1">Sudah</option>
+                                                                <option value="False">Belum</option>
+                                                            </select>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <select class="form-select" id="s_is_menikah">
+                                                                <option value="True" selected="1">Sudah</option>
+                                                                <option value="False">Belum</option>
+                                                            </select>
+                                                        </t>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                    <label>Pendidikan Terakhir</label>
-                                                    <input type="text" class="form-control" id="pend_terakhir" t-att-value="pendidikan_label"/>
+                                                        <label>Pendidikan Terakhir</label>
+                                                        <select class="form-select" id="s_pendidikan">
+                                                            <option value="sd">SD</option>
+                                                            <option value="smp">SMP</option>
+                                                            <option value="sma" selected="1">SMA/SMK</option>
+                                                            <option value="kuliah">Kuliah / Perguruan Tinggi</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="alamat">Alamat</label>
-                                                        <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"><t t-esc="data_login.street"/></textarea>
+                                                        <textarea class="form-control" id="s_alamat" rows="3" placeholder="Masukkan alamat lengkap"><t t-esc="data_login.street"/></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,13 +138,13 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>No Paspor</label>
-                                                        <input type="text" class="form-control" id="pend_terakhir" t-att-value="data_login.paspor"/>
+                                                        <input type="text" class="form-control" id="s_paspor" t-att-value="data_login.paspor"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Masa Berlaku Paspor</label>
-                                                        <input type="date" class="form-control" id="masa_paspor" t-att-value="data_login.masa_paspor"/>
+                                                        <input type="date" class="form-control" id="s_masa_paspor" t-att-value="data_login.masa_paspor"/>
                                                     </div>
                                                 </div>
                                                 <br/>
@@ -137,7 +152,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="alamat">Riwayat Penyakit</label>
-                                                        <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada" t-att-value="data_login.riwayat_penyakit"></textarea>
+                                                        <textarea class="form-control" id="s_riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,7 +162,16 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Golongan Darah</label>
-                                                        <input type="text" class="form-control" id="gol_darah" t-att-value="golongan_darah_label"/>
+                                                        <select class="form-select" id="s_golongan_darah">
+                                                            <option value="oplus" selected="1">O+</option>
+                                                            <option value="ominus">O-</option>
+                                                            <option value="aplus">A+</option>
+                                                            <option value="aminus">A-</option>
+                                                            <option value="bplus">B+</option>
+                                                            <option value="bminus">B-</option>
+                                                            <option value="abplus">AB-</option>
+                                                            <option value="abminus">AB-</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -265,32 +289,35 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                        <label for="email">Email</label>
-                                                        <input name="email_jamaah" type="email" class="form-control" id="email" placeholder="Masukkan email"/>
+                                                            <label for="email">Email</label>
+                                                            <input name="email_jamaah" type="email" class="form-control" id="b_email" placeholder="Masukkan email"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                        <label for="telepon">Nomor Telepon</label>
-                                                        <input type="tel" class="form-control" id="telepon" placeholder="Masukkan nomor telepon"/>
+                                                            <label for="telepon">Nomor Telepon</label>
+                                                            <input type="tel" class="form-control" id="b_telepon" placeholder="Masukkan nomor telepon"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                        <label>Sudah Menikah</label>
-                                                        <input type="text" class="form-control" id="is_meniskah"/>
+                                                            <label>Sudah Menikah</label>
+                                                            <select class="form-select" id="b_is_menikah">
+                                                                <option value="True">Sudah</option>
+                                                                <option value="False" selected="1">Belum</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                         <label>Tanggal Lahir</label>
-                                                        <input name="tgl_lahir_jamaah" type="date" class="form-control" id="tgl_lahir"/>
+                                                        <input name="tgl_lahir_jamaah" type="date" class="form-control" id="b_tgl_lahir"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="alamat">Alamat</label>
-                                                            <textarea class="form-control" id="alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+                                                            <textarea class="form-control" id="b_alamat" rows="3" placeholder="Masukkan alamat lengkap"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -301,13 +328,13 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>No Paspor</label>
-                                                            <input type="text" class="form-control" id="pend_terakhir" t-att-value="data_login.paspor"/>
+                                                            <input type="text" class="form-control" id="b_paspor"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>Masa Berlaku Paspor</label>
-                                                            <input type="date" class="form-control" id="masa_paspor"/>
+                                                            <input type="date" class="form-control" id="b_masa_paspor"/>
                                                         </div>
                                                     </div>
                                                     <br/>
@@ -315,7 +342,7 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="alamat">Riwayat Penyakit</label>
-                                                            <textarea class="form-control" id="riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada"></textarea>
+                                                            <textarea class="form-control" id="b_riwayat_penyakit" rows="3" placeholder="Masukkan riwayat penyakit anda jika ada"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -325,13 +352,27 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>Golongan Darah</label>
-                                                            <input type="text" class="form-control" id="gol_darah"/>
+                                                            <select class="form-select" id="b_golongan_darah">
+                                                                <option value="oplus" selected="1">O+</option>
+                                                                <option value="ominus">O-</option>
+                                                                <option value="aplus">A+</option>
+                                                                <option value="aminus">A-</option>
+                                                                <option value="bplus">B+</option>
+                                                                <option value="bminus">B-</option>
+                                                                <option value="abplus">AB-</option>
+                                                                <option value="abminus">AB-</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                        <label>Pendidikan Terakhir</label>
-                                                        <input type="text" class="form-control" id="pend_terakhir"/>
+                                                            <label>Pendidikan Terakhir</label>
+                                                            <select class="form-select" id="b_pendidikan">
+                                                                <option value="sd">SD</option>
+                                                                <option value="smp">SMP</option>
+                                                                <option value="sma" selected="1">SMA/SMK</option>
+                                                                <option value="kuliah">Kuliah / Perguruan Tinggi</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
