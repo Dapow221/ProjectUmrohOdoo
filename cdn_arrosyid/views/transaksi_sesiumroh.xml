@@ -91,7 +91,7 @@
                                 <field name="durasi" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="tanggal_pulang" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="maskapai_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
-                                <field name="hotel_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="hotel_id" attrs="{'readonly': [('state', '=', 'selesai')]}" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags" />
                             </group>
                             <notebook>
                                 <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
