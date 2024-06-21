@@ -50,18 +50,39 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
         var nama = $("input[name=nama_jamaah]").val();
         var jenis_kelamin = $("input[name=jenis_kelamin_jamaah]").val();
         var tgl_lahir = $("input[name=tgl_lahir_jamaah]").val();
-        var jenis_kelamin_str = $("input[name=jenis_kelamin_jamaah]").val();
+        var jenis_kelamin = $("input[name=jenis_kelamin_jamaah]").val();
             if (jenis_kelamin == 'l') {
-                jenis_kelamin_str = 'Laki-laki'
+                var jenis_kelamin_str = 'Laki-laki'
             } else {
-                jenis_kelamin_str = 'Perempuan'
+                var jenis_kelamin_str = 'Perempuan'
             }
+        var b_email = $("#b_email").val();
+        var b_telepon = $("#b_telepon").val();
+        var b_is_menikah = $("#b_is_menikah").val();
+        var b_tgl_lahir = $("#b_tgl_lahir").val();
+        var b_alamat = $("#b_alamat").val();
+        var b_paspor = $("#b_paspor").val();
+        var b_masa_paspor = $("#b_masa_paspor").val();
+        var b_riwayat_penyakit = $("#b_riwayat_penyakit").val();
+        var b_golongan_darah = $("#b_golongan_darah").val();
+        var b_pendidikan = $("#b_pendidikan").val();
         
-        if (nama === "" || tgl_lahir === "" || jenis_kelamin === "") {
+        if (nama === "" || tgl_lahir === "" || b_email === "" || b_telepon === "" || b_tgl_lahir === "" || b_alamat === "" || b_paspor === "") {
             alert('data tidak lengkap');
         } else {
             var csrf_token = $("input[name='csrf_token']").val();
             var data_jamaah_baru = {
+                'b_email': b_email,
+                'b_telepon': b_telepon,
+                'b_is_menikah': b_is_menikah,
+                'b_tgl_lahir': b_tgl_lahir,
+                'b_alamat': b_alamat,
+                'b_paspor': b_paspor,
+                'b_masa_paspor': b_masa_paspor,
+                'b_riwayat_penyakit': b_riwayat_penyakit,
+                'b_golongan_darah': b_golongan_darah,
+                'b_pendidikan': b_pendidikan,
+
                 'nama': nama,
                 'jenis_kelamin': jenis_kelamin,
                 'tgl_lahir': tgl_lahir,
@@ -77,9 +98,16 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
                     console.log("Rekaman baru dibuat dengan ID:", data);
                     alert('Jamaah baru berhasil ditambahkan');
                     var identitas_id = data.identitas_id;
-                    $("#dt_jamaah").append('<tr><td hidden="1">'+identitas_id+'</td><td>'+nama+'</td><td>'+jenis_kelamin_str+'</td><td>'+tgl_lahir+'</td><td></td><td class="static"><span class="btn btn-outline-danger dlt_jamaah"><i class="fa fa-trash"></i></span></td></tr>'); 
+                    $("#dt_jamaah").append('<tr><td hidden="1">'+identitas_id+'</td><td>'+nama+'</td><td>'+jenis_kelamin_str+'</td><td>'+tgl_lahir+'</td><td>'+b_paspor+'</td><td class="static"><span class="btn btn-outline-danger dlt_jamaah"><i class="fa fa-trash"></i></span></td></tr>'); 
                     removeRow();
                     $("input[name=nama_jamaah], input[name=jenis_kelamin_jamaah], input[name=tgl_lahir_jamaah]").val("");
+                    $("#b_email").val("");
+                    $("#b_telepon").val("");
+                    $("#b_tgl_lahir").val("");
+                    $("#b_alamat").val("");
+                    $("#b_paspor").val("");
+                    $("#b_masa_paspor").val("");
+                    $("#b_riwayat_penyakit").val("");
                     updateTotalCount();
                 },
                 error: function (xhr, status, error) {
@@ -90,9 +118,14 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
         }
     });
 
+    var existingIds = {};
+    $('#dt_jamaah tr').each(function() {
+        var id = $(this).find('td:first').text().trim();
+        existingIds[id] = true;
+    });
+
     $("#dftr_jamaah_umroh").on('change', function() {
         var selectedJamaah = $(this).val();
-        // Perform actions based on selectedJamaah (replace with your logic)
         if (selectedJamaah) {
             var data_select_jamaah = $(this).find('option:selected');
             var id = data_select_jamaah.data('id');
@@ -105,11 +138,26 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
             }
             var tgl_lahir = data_select_jamaah.data('tgl-lahir');
             var paspor = data_select_jamaah.data('paspor');
-            
-            $("#dt_jamaah").append('<tr><td hidden="1">'+id+'</td><td>'+nama+'</td><td>'+jenis_kelamin+'</td><td>'+tgl_lahir+'</td><td>'+paspor+'</td><td class="static"><span class="btn btn-outline-danger dlt_jamaah"><i class="fa fa-trash"></i></span></td></tr>');
-            removeRow();
-            $(this).val("");
-            updateTotalCount();
+
+           // Periksa apakah ID sudah ada dalam objek existingIds
+            if (existingIds[id]) {
+                alert('Jamaah dengan ID yang sama sudah terdaftar.');
+            } else {
+                // Tambahkan ID ke objek existingIds
+                existingIds[id] = true;
+
+                // Tambahkan baris baru ke dalam tabel
+                $("#dt_jamaah").append('<tr><td hidden="1">'+id+'</td><td>'+nama+'</td><td>'+jenis_kelamin+'</td><td>'+tgl_lahir+'</td><td>'+paspor+'</td><td class="static"><span class="btn btn-outline-danger dlt_jamaah"><i class="fa fa-trash"></i></span></td></tr>');
+                
+                // Panggil fungsi untuk menghapus baris
+                removeRow();
+
+                // Kosongkan nilai terpilih dari dropdown
+                $(this).val("");
+
+                // Panggil fungsi untuk memperbarui jumlah total
+                updateTotalCount();
+            }
         }
     });
 
@@ -171,28 +219,61 @@ odoo.define('cdn_arrosyid.pendaftaran', function (require) {
 
         // console.log('data_pendaftaran : ', radio_dftr);
         if (radio_dftr == 'sendiri') {
+            
             var jamaah = $("#jamaah_umroh").val();
-            var data_pendaftaran = {
-                'jamaah_id': parseInt(jamaah),
-                'sesi_id': parseInt(sesi),
-                'csrf_token': csrf_token
-            };
+            var s_nama = $("#s_nama").val();
+            var s_jenis_kelamin = $("#s_jenis_kelamin").val();
+            var s_email = $("#s_email").val();
+            var s_telepon = $("#s_telepon").val();
+            var s_is_menikah = $("#s_is_menikah").val();
+            var s_pendidikan = $("#s_pendidikan").val();
+            var s_paspor = $("#s_paspor").val();
+            var s_masa_paspor = $("#s_masa_paspor").val();
+            var s_riwayat_penyakit = $("#s_riwayat_penyakit").val();
+            var s_alamat = $("#s_alamat").val();
+            var s_golongan_darah = $("#s_golongan_darah").val();
 
-            $.ajax({
-                url: "/buat_pendaftaran",
-                type: "POST",
-                data: data_pendaftaran,
-                dataType: "json",
-                success: function (data) {
-                    console.log("Rekaman baru dibuat dengan ID:", data);
-                    // alert('Data berhasil disimpan');
-                    window.location.href = "/pendaftaran_berhasil";
-                },
-                error: function (xhr, status, error) {
-                    console.error("Kesalahan dalam panggilan AJAX:", error);
-                    alert('Kesalahan: ' + error);
-                }
-            });
+
+            if (!sesi) {
+                alert('Pilih paket terlebih dahulu');
+            } else if (s_nama === '' || s_email === '' || s_telepon === '' || s_alamat === '' || s_paspor === '' || s_masa_paspor === '') {
+                alert('Mohon lengkapi data');
+            } else {
+                var data_pendaftaran = {
+                    's_nama': s_nama,
+                    's_jenis_kelamin': s_jenis_kelamin,
+                    's_email': s_email,
+                    's_telepon': s_telepon,
+                    's_is_menikah': s_is_menikah,
+                    's_pendidikan': s_pendidikan,
+                    's_paspor': s_paspor,
+                    's_masa_paspor': s_masa_paspor,
+                    's_riwayat_penyakit': s_riwayat_penyakit,
+                    's_alamat': s_alamat,
+                    's_golongan_darah': s_golongan_darah,
+
+                    'jamaah_id': parseInt(jamaah),
+                    'sesi_id': parseInt(sesi),
+                    'csrf_token': csrf_token
+                };
+
+                $.ajax({
+                    url: "/buat_pendaftaran",
+                    type: "POST",
+                    data: data_pendaftaran,
+                    dataType: "json",
+                    success: function (data) {
+                        console.log("Rekaman baru dibuat dengan ID:", data);
+                        // alert('Data berhasil disimpan');
+                        window.location.href = "/pendaftaran_berhasil";
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Kesalahan dalam panggilan AJAX:", error);
+                        alert('Kesalahan: ' + error);
+                    }
+                });
+            }
+
         } else {
             var get_id_jamaah = [];
             $("#tabel_jamaah tbody tr").each(function () {

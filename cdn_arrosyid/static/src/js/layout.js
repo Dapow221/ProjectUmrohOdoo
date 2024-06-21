@@ -26,10 +26,3 @@ links.forEach(function(link) {
         link.classList.add('active');
     }
 });
-
-$(document).ready(function() {
-    // Redirect dari /my ke /my/home
-    if (window.location.pathname === '/my') {
-        window.location.href = '/my/home';
-    }
-});

@@ -10,7 +10,6 @@ class ProfilController(http.Controller):
         data_sesi_umroh = request.env['cdn.sesi.umroh'].sudo().search([])
         data_pendaftaran = request.env['cdn.pendaftaran'].sudo().search([])
         data_tagihan = request.env['account.move'].sudo().search([('partner_id', '=', user_id),('state', '=', 'posted')])
-
         data_identitas_jamaah = request.env['cdn.identitas.jamaah'].sudo().search([('partner_id', '=', user_id)])
         
         return request.render('cdn_arrosyid.profil', {

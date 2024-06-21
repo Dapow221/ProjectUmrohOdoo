@@ -5,6 +5,165 @@ odoo.define('cdn_arrosyid.custom', function (require) {
     var rpc = require('web.rpc');
     var ajax = require('web.ajax');
 
+    // Redirect dari /my ke /my/home
+    if (window.location.pathname === '/my') {
+        window.location.href = '/my/home';
+    }
+
+    // if (window.location.pathname !== '/my') {
+    //     $('#myTabContent').append(`
+    //         <div class="tab-pane fade show active" id="identitas" role="tabpanel">
+    //             <div class="card user-card-full shadow">
+    //                 <div class="row m-l-0 m-r-0">                     
+    //                     <div class="col-sm-12"> <!-- Fixed: Changed col-sm-16 to col-sm-12 -->
+    //                         <div class="card-block" style="padding: 20px">
+    //                             <h6 class="m-b-20 p-b-5 b-b-default f-w-600">INFORMASI JAMAAH</h6>
+    //                             <t t-if="data_identitas_jamaah.image">
+    //                                 <img t-attf-src="data:image;base64,{{data_identitas_jamaah.image}}" alt="avatar" class="rounded-circle img-fluid" style="width:150px;" />
+    //                             </t>
+    //                             <t t-else="">
+    //                                 <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"/>
+    //                             </t>
+    //                             <h4><t t-esc="data_identitas_jamaah.referensi"/></h4>
+    //                             <div class="row">
+    //                                 <div class="col-sm-6">
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Nama : <b> <t t-esc="data_identitas_jamaah.name"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Email : <b> <t t-esc="data_identitas_jamaah.email"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Tanggal Lahir : <b> <t t-esc="data_identitas_jamaah.tgl_lahir"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Umur : <b> <t t-esc="data_identitas_jamaah.umur"/> Tahun</b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Jenis Kelamin : <b>
+    //                                             <t t-if="data_identitas_jamaah.jenis_kel == 'l'">
+    //                                                 Laki-laki
+    //                                             </t>
+    //                                             <t t-elif="data_identitas_jamaah.jenis_kel == 'p'">
+    //                                                 Perempuan
+    //                                             </t>
+    //                                             <t t-else="">
+    //                                                 <t t-esc="data_identitas_jamaah.jenis_kel"/>
+    //                                             </t>
+    //                                         </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         No. Paspor : <b> <t t-esc="data_identitas_jamaah.paspor"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Masa Berlaku Paspor : <b> <t t-esc="data_identitas_jamaah.masa_paspor"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         <b>
+    //                                         <t t-set="pekerjaans">
+    //                                             <t t-raw="{
+    //                                                 'pns': 'PNS',
+    //                                                 'irt': 'Ibu Rumah Tangga',
+    //                                                 'tni': 'TNI',
+    //                                                 'dagang': 'Pedagang',
+    //                                                 'tani': 'Petani',
+    //                                                 'swasta': 'Swasta',
+    //                                                 'pelajar': 'Pelajar',
+    //                                                 'bumn': 'BUMN',
+    //                                             }.get(data_identitas_jamaah.pekerjaan, '')"/>
+    //                                         </t>
+    //                                         <t t-esc="pekerjaans"/>
+    //                                         </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">Pernah Umroh :
+    //                                         <t t-if="data_identitas_jamaah.is_umroh">
+    //                                             <input type="checkbox" checked="checked" disabled="disabled"/>
+    //                                         </t>
+    //                                         <t t-else="">
+    //                                             <input type="checkbox" disabled="disabled"/>
+    //                                         </t>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">Status Nikah :
+    //                                         <t t-if="data_identitas_jamaah.is_menikah">
+    //                                             <input type="checkbox" checked="checked" disabled="disabled"/>
+    //                                         </t>
+    //                                         <t t-else="">
+    //                                             <input type="checkbox" disabled="disabled"/>
+    //                                         </t>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Nama Pasangan : <b> <t t-esc="data_identitas_jamaah.nama_pasangan"/> </b>
+    //                                     </p>
+    //                                 </div>
+    //                                 <div class="col-sm-6" style="border-left: 1px solid #ccc;">
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         No. Hp : <b> <t t-esc="data_identitas_jamaah.mobile"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Alamat : <b> <t t-esc="data_identitas_jamaah.street"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Pendidikan : <b>
+    //                                         <t t-set="pendidikans">
+    //                                             <t t-raw="{
+    //                                                 'sd': 'SD',
+    //                                                 'smp': 'SMP',
+    //                                                 'sma': 'SMA',
+    //                                                 'kuliah': 'Perguruan Tinggi'
+    //                                             }.get(data_identitas_jamaah.pendidikan, '')"/>
+    //                                         </t>
+    //                                         <t t-esc="pendidikans"/>
+    //                                         </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Riwayat Penyakit : <b> <t t-esc="data_identitas_jamaah.riwayat_penyakit"/> </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">Vaksin Meningitis :
+    //                                         <t t-if="data_identitas_jamaah.vaksin_meningitis">
+    //                                             <input type="checkbox" checked="checked" disabled="disabled"/>
+    //                                         </t>
+    //                                         <t t-else="">
+    //                                             <input type="checkbox" disabled="disabled"/>
+    //                                         </t>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Vaksin Covid19:
+    //                                         <b> 
+    //                                             <t t-set="vaksins">
+    //                                                 <t t-raw="{
+    //                                                 'belum': 'Belum Vaksin',
+    //                                                 'vaksin1': 'Vaksinasi Pertama',
+    //                                                 'vaksin2': 'Vaksinasi Kedua',
+    //                                                 'booster': 'Vaksin Booster'
+    //                                                 }.get(data_identitas_jamaah.vaksin_covid19, '')"/>
+    //                                             </t>
+    //                                             <t t-esc="vaksins"/>
+    //                                         </b>
+    //                                     </p>
+    //                                     <p class="m-b-10 f-w-600">
+    //                                         Golongan Darah : <b>
+    //                                             <t t-if="data_identitas_jamaah.golongan_darah == 'oplus'">O+</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'ominus'">O-</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'aplus'">A+</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'aminus'">A-</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'bplus'">B+</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'bminus'">B-</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'abplus'">AB+</t>
+    //                                             <t t-elif="data_identitas_jamaah.golongan_darah == 'abminus'">AB-</t>
+    //                                             <t t-else=""><t t-esc="data_identitas_jamaah.golongan_darah"/></t>
+    //                                         </b>
+    //                                     </p>
+    //                                 </div>
+    //                             </div>                                 
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     `);
+    // };
+    
+
     $('div.container.mb64').removeClass('container').addClass('container-fluid');
     $('div[class="col-12 col-md col-lg-6"]').removeClass('col-lg-6').addClass('col-lg-9');
 
