@@ -174,7 +174,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <!-- <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Pekerjaan</label>
                                                         <select class="form-control" id="pekerjaan_dropdown" name="pekerjaan" t-att-data-default="data_login_pekerjaan">
@@ -195,7 +195,6 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Vaksin Covid19</label>
-                                                        <!-- <input type="text" class="form-control" id="covid" t-att-value="vaksin_covid19_label"/> -->
                                                         <select class="form-control" id="vaksin_covid19_dropdown" name="vaksin_covid19" t-att-data-default="data_login_vaksin_covid19">
                                                             <t t-foreach="vaksin_covid19_selection.items()" t-as="item">
                                                                 <option t-att-value="item[0]" >
@@ -204,7 +203,7 @@
                                                             </t>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label>Sudah Umroh</label>
