@@ -88,6 +88,9 @@
             'cdn_arrosyid/static/src/xml/peta.xml',
             'cdn_arrosyid/static/src/xml/lmap_renderer.xml',
             'cdn_arrosyid/static/src/xml/lmap_controller.xml',
+            'cdn_arrosyid/static/src/js/time_widget.js',
+            'cdn_arrosyid/static/src/xml/timepicker.xml',
+            'cdn_arrosyid/static/src/scss/timepicker.scss'
         ],
         'website.assets_editor': [
             'cdn_arrosyid/static/src/js/tour.js',

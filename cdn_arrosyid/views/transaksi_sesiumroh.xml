@@ -50,7 +50,8 @@
                 <tree>
                     <field name="name"/>
                     <field name="paket_umroh_id"/>
-                    <field name="lst_price" readonly="0"/>
+                    <field name="lst_price" readonly="0" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="currency_id" invisible="1"/>
                     <field name="pembimbing_id"/>
                     <field name="tanggal_berangkat"/>
                     <field name="durasi"/>
@@ -84,14 +85,15 @@
                                 <field name="name" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="keterangan" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="paket_umroh_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
-                                <field name="lst_price" attrs="{'readonly': [('state', '=', 'selesai')]}"/>
+                                <field name="lst_price" attrs="{'readonly': [('state', '=', 'selesai')]}" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                 <field name="pembimbing_id" attrs="{'readonly': [('state', '=', 'selesai')]}" />
-                                <field name="petugas_lapangan" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
+                                <field name="petugas_lapangan" attrs="{'readonly': [('state', '=', 'selesai')]}"/>
                                 <field name="tanggal_berangkat" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="durasi" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="tanggal_pulang" attrs="{'readonly': [('state', '=', 'selesai')]}" />
                                 <field name="maskapai_id" attrs="{'readonly': [('state', '=', 'selesai')]}"  />
                                 <field name="hotel_id" attrs="{'readonly': [('state', '=', 'selesai')]}" domain="[('jenis', '=', 'hotel')]" widget="many2many_tags" />
+                                <field name="currency_id" invisible="1"/>
                             </group>
                             <notebook>
                                 <page name="rencana_perjalanan_ids" string="Rencana Perjalanan">
