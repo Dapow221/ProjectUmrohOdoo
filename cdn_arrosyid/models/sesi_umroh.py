@@ -25,6 +25,8 @@ class SesiUmroh(models.Model):
     maskapai_id            = fields.Many2one(related='paket_umroh_id.maskapai_id')
     hotel_id               = fields.Many2many(related='paket_umroh_id.hotel_id')
     proses_perjalanan      = fields.Float(compute='_compute_rencana_perjalanan_count', string='Proses Perjalanan (%)')
+    company_id          = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    currency_id         = fields.Many2one('res.currency', related='company_id.currency_id', required=True)
 
     def write(self, values):
         res = super(SesiUmroh, self).write(values)
